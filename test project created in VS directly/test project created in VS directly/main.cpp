@@ -1,13 +1,14 @@
 #include <iostream>
 #include <string>
-#include 
+#include <conio.h>
 
 using namespace std;
 
 int main()
 {
-	cout << "Hello world" << endl;
+	cout << "Hello world" << endl << endl;
+	cout << "Oke-bai!!" << endl;
 
-	getch();
+	_getch();
 	return 0;
 }
