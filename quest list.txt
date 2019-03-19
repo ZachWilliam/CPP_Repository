@@ -1,0 +1,122 @@
+starting quest - complete tutorial/get to main land
+
+speak with the captain of ship(crew survived)
+
+(0/3 boat parts) -- (always displays how much you have)
+(0/30 Logs) -- (always displays how much you have)
+
+speak to town folk about repairing boat
+
+boat part 1 
+_____________________________________________________________________________________________
+ search for and return with the black smiths son( went out 3 nights ago and hasnt returned) 
+hint search the cave that has the rare metal of the island
+
+part 1 -- locate and explore the cave to find the black smiths son(25% complete)
+
+part 2 -- help son whos trapped under a cave-in (50% complete)
+
+part 3 -- defeat the "boss/big bad" block exit(75% complete)
+
+part 4 -- return to town with the son(100% complete) "obtain boat part" (1/3)
+
+
+boat part 2 
+________________________________________________________________________________________________
+search for and capture the one who stole the sacred treasure of town(story stuff?)
+(hint it's dark out tonight might need a light source)
+
+part 1 -- find a light source to go out into the woods(20% complete)
+part 2 -- explore the woods and find the bandit camp(40% complete)(lots of random battles along the way)
+part 3 -- thinking a choose your own way kinda thing here(either charge into the bandit camp and attack them
+or sneak into camp and take treasure back(also leads to battle because you get caught but either way))(60% complete
+part 4 -- defeat the band of bandits (0/12)(80% complete)
+
+part 5 -- return to town with captured bandit leader and the treasure(100% complete)
+"obtain boat part" (2/3)
+
+
+boat part 3
+__________________________________________________________________________________________________
+ the town is under attack protect the city from the attackers(3 or 4 waves of enemies)
+ heals party between fights or every other fight
+
+(wave 1/4 complete) (wave 2/4 complete) (wave 3/4 complete) (wave 4/4 complete)
+"celebrate saving city rewarded with last boat piece) <-- unlocked and triggered after finishing first 2 boat parts
+obtain last boat part" (3/3)
+
+if(woodCollected == 30)
+speak to captain and finish repairing ship and set sail.....
+
+(attempt to fight kraken)  
+[oh no kraken says fuck you] ----> LOSE
+
+
+new main quest
+
+repair and turn boat into airship 
+(0/3 air ship parts) -- (always displays how much you have)
+(0/50 Logs) -- static -- (always displays how much you have)
+
+air ship part 1
+______________________________________________________________________________________________
+part 1 -- go to the mine with the rare metal of the island and explore deeper than ever before
+(go down 3 levels/"floors" in cave)(30% complete)
+part 2 -- interact with rare artifact on pedestal.
+part 3 -- defeat the boss/big bad(65% complete)
+part 4 -- retrieve artifact and bring it to town to have it identified(80% complete)
+part 5 -- take it to black smith and trade it for new boat part(100% complete) 
+"obtain air ship part" (1/3)
+
+air ship part 2
+_______________________________________________________________________________________________ 
+part 1 -- speak to the black smith and he will tell you he has the skills to make the ship part 
+for you but he needs certain items in order to do so.(tells you items are in different locations)
+(items needed rare hammer burried deep within the city catacombs, a "special powder"(used to help smelt?)
+sold by the "witch" of the woods, and 4 lumps of the rare metal)<must be done in order>
+
+part 1 -- search catacombs of city and explore(10% complete)
+part 2 -- find the basement level of the catacombs(3 levels)(20% complete
+part 3 -- defeat the monsters in final floor of catacombs to unlock chest
+"rare hammer obtained" (1/1)(30% complete)
+part 4 -- search the woods for the witch(40% complete)
+part 5 -- either buy the "special powder" or fight the witch for it(50% complete
+part 6 -- potion purchased or "witch" defeated "special powder obtained" (1/1) (60% complete)
+part 7 -- explore the mine and defeat the 4 "agressive miners"
+(miners defeated
+(1/4)"obtained 1 lump "rare metal"
+(2/4)"obtained 1 lump "rare metal"
+(3/4)"obtained 1 lump "rare metal"
+(4/4)"obtained 1 lump "rare metal" (90% complete)
+part 8 -- return all items to black smith to create the part...
+"air ship part obtained" (2/3)
+
+
+air ship part 3
+_______________________________________________________________________________________________
+part 1 -- another attempted take over of the city happens defeat all waves of enemies
+(0/6)
+(1/6)
+(2/6)
+(3/6)
+(4/6)
+(5/6)
+(6/6)
+
+awared the last part of air ship "air ship part obtained"
+
+
+speak with captain and take to the sky
+
+[kraken takes to sky aswell]
+[kraken says fuck you]
+
+Final quest defeat the AIR KRAKEN
+
+AIR KRAKEN defeated
+
+end game roll credits
+
+
+
+
