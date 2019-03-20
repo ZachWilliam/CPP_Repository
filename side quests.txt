@@ -1,0 +1,23 @@
+SIDE QUESTS
+_________________________________
+
+1.General Store Quest  Explore a cave to the west for to find the "mystical stream"
+(could also be a well) that improves potions potential,
+(clerk give you a vial to get some of the "mystical water" and return the full vial to clerk.
+Rewarded a special item(weapon (based on char class) or armour (based on char class) also some gold).
+
+2.Randy NPC Quest -- Find and kill the big bad boss in the woods who killed his father and return 
+with the big bad boss's head as proof. Rewarded with a family sword(special effect get fucked..jk). 
+
+3.Randy NPC Quest -- Locate the lost boy in a cave and bring him home(easy quest small cave not lots of 
+enemies)return boy to mother be rewarded with gold
+
+4.Town Leaders Quest -- kill his twin brother who is currently plotting to over throw him as leader
+he is located in a small village south of the main town his name is " " return with his family ring 
+as proof. Rewarded the ring of " "(effect/bonus)
+
+5.Magic Shop Quest -- Clerk gives you a special stone and would like to have it examined, bring
+it to the village in the north where a specialist lives her name is " " have her examine it
+she takes the stone and merges it with a wooden staff and imbues it with "magic"(story stuff)
+take staff back to Magic Shop Clerk. Rewarded with gold and able to buy the staff in store(can buy for
+amount of gold given from quest in case of warrior class)

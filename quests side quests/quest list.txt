@@ -3,7 +3,7 @@ starting quest - complete tutorial/get to main land
 speak with the captain of ship(crew survived)
 
 (0/3 boat parts) -- (always displays how much you have)
-(0/30 Logs) -- (always displays how much you have)
+(0/10 Logs) -- (always displays how much you have)
 
 speak to town folk about repairing boat
 
@@ -19,6 +19,7 @@ part 2 -- help son whos trapped under a cave-in (50% complete)
 part 3 -- defeat the "boss/big bad" block exit(75% complete)
 
 part 4 -- return to town with the son(100% complete) "obtain boat part" (1/3)
+
 
 
 boat part 2 
@@ -56,7 +57,7 @@ new main quest
 
 repair and turn boat into airship 
 (0/3 air ship parts) -- (always displays how much you have)
-(0/50 Logs) -- static -- (always displays how much you have)
+(0/20 Logs) -- static -- (always displays how much you have)
 
 air ship part 1
 ______________________________________________________________________________________________
