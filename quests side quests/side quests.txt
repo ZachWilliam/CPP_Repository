@@ -2,6 +2,7 @@ SIDE QUESTS
 _________________________________
 
 1.General Store Quest  Explore a cave to the west for to find the "mystical stream"
+just west of town.
 (could also be a well) that improves potions potential,
 (clerk give you a vial to get some of the "mystical water" and return the full vial to clerk.
 Rewarded a special item(weapon (based on char class) or armour (based on char class) also some gold).
