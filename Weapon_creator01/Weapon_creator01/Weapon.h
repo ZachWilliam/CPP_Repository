@@ -73,7 +73,7 @@ public:
 	void GetType(int Choice);
 	void SetDamageType(int EleChoice);
 	void DisplayName();
-	int SpellSlot = 1;
+	int SpellSlot = 0;
 	int GetSellValue();
 	int GetBuyValue();
 	vector<WeaponType> WEAPON_TYPES = { WeaponType("fists", 0, 3, 0, 0), //weapon, damMin, damMAx, statUsed, wield
@@ -121,13 +121,19 @@ void Weapon::SetDamageType(int EleChoice = -1)
 	if (m_Weapon_Type.m_Name == "wand" || m_Weapon_Type.m_Name == "staff" || m_Weapon_Type.m_Name == "tome" || m_Weapon_Type.m_Name == "scroll")
 	{
 		temp = 0;
-		if (m_Weapon_Type.m_Name == "staff")
+		int tempSpell;
+		tempSpell = (rand() % 10) + 1;
+		if (tempSpell < 7)
 		{
-			SpellSlot = 0;
+			SpellSlot = 1;
+		}
+		else if (tempSpell < 9)
+		{
+			SpellSlot = 2;
 		}
 		else
 		{
-			SpellSlot = (rand() % 3) + 1;
+			SpellSlot = 3;
 		}
 	}
 	if (m_Weapon_Type.m_Name == "rapier" || m_Weapon_Type.m_Name == "lance" || m_Weapon_Type.m_Name == "daggers" || m_Weapon_Type.m_Name == "bow")
@@ -268,6 +274,8 @@ string Weapon::GetName(int Choice = -1)
 	if (namePick == 0)//default
 	{
 		m_Prefix_Name = PREFIX_NAMES[0];
+		m_DamageMIN = _Max_value(m_DamageMIN - 3, 0);
+		m_DamageMAX = _Max_value(m_DamageMAX - 3, 1);
 	}
 	else if (namePick < 15)//bad
 	{
@@ -335,7 +343,7 @@ void Weapon::DisplayName()
 int Weapon::GetSellValue()
 {
 	int sellValue;
-	sellValue = (m_DamageMIN + m_DamageMAX) / 2;
+	sellValue = (((m_DamageMIN *2) + m_DamageMAX) / 2) * (_Max_value(m_Magic * 2, 1)) * ((_Max_value(SpellSlot - 1, 0)* 2) + 1);
 	if (sellValue < 1)
 	{
 		sellValue = 1;
@@ -345,6 +353,6 @@ int Weapon::GetSellValue()
 int Weapon::GetBuyValue()
 {
 	int buyValue;
-	buyValue = (m_DamageMIN + m_DamageMAX) * 2;
+	buyValue = (((m_DamageMIN * 2) + m_DamageMAX) * 2) * (_Max_value(m_Magic * 2, 1)) * ((_Max_value(SpellSlot - 1, 0) * 2) + 1);
 	return buyValue;
 }

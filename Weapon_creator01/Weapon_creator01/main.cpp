@@ -68,6 +68,8 @@ int main()
 	cout << endl;
 	cout << endl;
 
+
+
 	/*Weapon fists(0);
 	Weapon sword(WEAPON_TYPES[1]);
 	Weapon rapier(WEAPON_TYPES[2]);

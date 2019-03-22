@@ -42,16 +42,16 @@ string ArmorType::ToString()
 class ElementType
 {
 public:
-	ElementType(int);
-	//enum WhoIsFor { novice = 0, intermediate = 1, advanced = 2, elite = 3 };
-	//WhoIsFor m_WhoIsFor;
+	ElementType(int, int);
+	enum WhoIsFor { light = 0, medium = 1, heavy = 2, special = 3 };
+	WhoIsFor m_WhoIsFor;
 	vector<string> Element = { "entrophy", "fire", "ice", "water", "thunder", "wind", "earth", "darkness", "light", "healing" };
 	int m_Enhancement;
 	string ToString(bool);
 };
-ElementType::ElementType(int ele = 0)
+ElementType::ElementType(int isfor = 0, int ele = 0)
 {
-	//m_WhoIsFor = WhoIsFor(isfor);
+	m_WhoIsFor = WhoIsFor(isfor);
 	m_Enhancement = ele;
 }
 string ElementType::ToString(bool magic)
@@ -74,25 +74,24 @@ public:
 	void GetType(int Choice);
 	void SetResitanceType(int EleChoice);
 	void DisplayName();
-	//int SpellSlot = 1;
 	int GetSellValue();
 	int GetBuyValue();
-	vector<ArmorType> ARMOR_TYPES = {   ArmorType("silk", 5, 0, 0, 0, 0), 
-										ArmorType("cotton", 5, 0, 0, 1, 0),
-										ArmorType("polyester", 5, 0, 0, 2, 0),
-										ArmorType("leather", 5, 0, 0, 3, 0),
-										ArmorType("studded", 10, 5, 0, 3, 1),
-										ArmorType("chainmail", 10, 5, 0, 2, 1),
-										ArmorType("ringmail", 10, 5, 0, 1, 1),
-										ArmorType("plate", 10, 5, 0, 0, 1),
-										ArmorType("silver", 15, 10, -5, 0, 2),
-										ArmorType("gold", 15, 10, -5, 1, 2),
-										ArmorType("platinum", 15, 10, -5, 2, 2),
-										ArmorType("onix", 15, 10, -5, 3, 2),
-										ArmorType("ruby", 20, 15, 5, 0, 3),
-										ArmorType("emerald", 20, 15, 5, 1, 3),
-										ArmorType("amethyst", 20, 15, 5, 2, 3),
-										ArmorType("diamond", 20, 15, 5, 3, 3)	};
+	vector<ArmorType> ARMOR_TYPES = {   ArmorType("silk", 0, 6, 15, 3, 0), 
+										ArmorType("cotton", 2, 4, 15, 2, 0),
+										ArmorType("polyester", 4, 2, 15, 1, 0),
+										ArmorType("leather", 6, 0, 15, 0, 0),
+										ArmorType("studded", 7, 6, 0, 3, 1),
+										ArmorType("chainmail", 9, 5, 0, 2, 1),
+										ArmorType("ringmail", 12, 2, 0, 1, 1),
+										ArmorType("plate", 14, 0, 0, 0, 1),
+										ArmorType("titanium", 20, 0, -10, 0, 2),
+										ArmorType("steel", 16, 4, -10, 1, 2),
+										ArmorType("silver", 14, 6, -10, 2, 2),
+										ArmorType("onix", 6, 14, -10, 3, 2),
+										ArmorType("ruby", 10, 16, 5, 0, 3),
+										ArmorType("emerald", 13, 15, 0, 1, 3),
+										ArmorType("amethyst", 15, 13, 0, 2, 3),
+										ArmorType("diamond", 18, 12, -5, 3, 3)	};
 	//clothing name, damRes, magicRes, avoidance, statUsed(Str = 0, Dex = 1, Int = 2, Wis = 3), weight (light = 0, medium = 1, heavy = 2, special = 3)
 //private:
 	string m_Prefix_Name;
@@ -121,23 +120,24 @@ const string Armor::PREFIX_NAMES[NUM_PREFIX_NAMES] = { "legendarily bad", "bad",
 void Armor::SetResitanceType(int EleChoice = -1)
 {
 	int temp;
-	/*if (m_Armor_Type.m_Name == "silk" || m_Armor_Type.m_Name == "cotton" || m_Armor_Type.m_Name == "polyester" || m_Armor_Type.m_Name == "leather")
+	if (m_Armor_Type.m_Name == "silk" || m_Armor_Type.m_Name == "cotton" || m_Armor_Type.m_Name == "polyester" || m_Armor_Type.m_Name == "leather")
 	{
 		temp = 0;
 	}
-	if (m_Armor_Type.m_Name == "studded" || m_Armor_Type.m_Name == "chainmail" || m_Armor_Type.m_Name == "ringmail" || m_Armor_Type.m_Name == "plate")
+	else if (m_Armor_Type.m_Name == "studded" || m_Armor_Type.m_Name == "chainmail" || m_Armor_Type.m_Name == "ringmail" || m_Armor_Type.m_Name == "plate")
 	{
 		temp = 1;
 	}
-	if (m_Armor_Type.m_Name == "ruby" || m_Armor_Type.m_Name == "emerald" || m_Armor_Type.m_Name == "amethyst" || m_Armor_Type.m_Name == "diamond")
+	else if (m_Armor_Type.m_Name == "titanium" || m_Armor_Type.m_Name == "steel" || m_Armor_Type.m_Name == "silver" || m_Armor_Type.m_Name == "onix")
 	{
 		temp = 2;
 	}
-	if (m_Armor_Type.m_Name == "silver" || m_Armor_Type.m_Name == "gold" || m_Armor_Type.m_Name == "platinum" || m_Armor_Type.m_Name == "starlight")
+	else if (m_Armor_Type.m_Name == "ruby" || m_Armor_Type.m_Name == "emerald" || m_Armor_Type.m_Name == "amethyst" || m_Armor_Type.m_Name == "diamond")
 	{
 		temp = 3;
 	}
-	*/
+
+	
 
 	int eleChance;
 	if (EleChoice == -1)
@@ -148,50 +148,92 @@ void Armor::SetResitanceType(int EleChoice = -1)
 	{
 		eleChance = EleChoice;
 	}
-	if (eleChance < 60)
+	int temp2;
+	if (temp != 3)
 	{
-		temp = 0;
-	}
-	else if (eleChance < 66)
-	{
-		temp = 1;
-	}
-	else if (eleChance < 72)
-	{
-		temp = 2;
-	}
-	else if (eleChance < 78)
-	{
-		temp = 3;
-	}
-	else if (eleChance < 84)
-	{
-		temp = 4;
-	}
-	else if (eleChance < 90)
-	{
-		temp = 5;
-	}
-	else if (eleChance < 96)
-	{
-		temp = 6;
-	}
-	else if (eleChance < 98)
-	{
-		temp = 7;
+		if (eleChance < 60)
+		{
+			temp2 = 0;
+		}
+		else if (eleChance < 66)
+		{
+			temp2 = 1;
+		}
+		else if (eleChance < 72)
+		{
+			temp2 = 2;
+		}
+		else if (eleChance < 78)
+		{
+			temp2 = 3;
+		}
+		else if (eleChance < 84)
+		{
+			temp2 = 4;
+		}
+		else if (eleChance < 90)
+		{
+			temp2 = 5;
+		}
+		else if (eleChance < 96)
+		{
+			temp2 = 6;
+		}
+		else if (eleChance < 98)
+		{
+			temp2 = 7;
+		}
+		else
+		{
+			temp2 = 8;
+		}
 	}
 	else
 	{
-		temp = 8;
+		if (eleChance < 2)
+		{
+			temp2 = 0;
+		}
+		else if (eleChance < 15)
+		{
+			temp2 = 1;
+		}
+		else if (eleChance < 28)
+		{
+			temp2 = 2;
+		}
+		else if (eleChance < 41)
+		{
+			temp2 = 3;
+		}
+		else if (eleChance < 54)
+		{
+			temp2 = 4;
+		}
+		else if (eleChance < 67)
+		{
+			temp2 = 5;
+		}
+		else if (eleChance < 80)
+		{
+			temp2 = 6;
+		}
+		else if (eleChance < 90)
+		{
+			temp2 = 7;
+		}
+		else
+		{
+			temp2 = 8;
+		}
 	}
-	
-	m_ElementType = ElementType(temp);
-	if (temp != 0)
+
+	m_ElementType = ElementType(temp, temp2);
+	if (temp2 != 0)
 	{
 		m_Magic = true;
-		m_DamageResist += 5;
 		m_MagicResist += 5;
-		m_Avoidance += 5;
+		m_Avoidance += 10;
 	}
 	else
 	{
@@ -272,7 +314,7 @@ void Armor::GetType(int Choice = -1)
 
 void Armor::Status()
 {
-	cout << m_Prefix_Name << " " << m_Armor_Type.ToString() + m_ElementType.ToString(m_Magic); 
+	cout << m_Prefix_Name << " " << m_Armor_Type.ToString() + m_ElementType.ToString(m_Magic);
 	cout << "\ndamage resist: " + to_string(m_DamageResist) + ", magic resist: " + to_string(m_MagicResist) + ", avoidance: " + to_string(m_Avoidance);
 }
 void Armor::DisplayName()
@@ -282,7 +324,7 @@ void Armor::DisplayName()
 int Armor::GetSellValue()
 {
 	int sellValue;
-	sellValue = (m_DamageResist + m_MagicResist + m_Avoidance) / 2;
+	sellValue = (m_DamageResist + m_MagicResist + (m_Avoidance /2)) / 1.5;
 	if (sellValue < 1)
 	{
 		sellValue = 1;
@@ -292,6 +334,6 @@ int Armor::GetSellValue()
 int Armor::GetBuyValue()
 {
 	int buyValue;
-	buyValue = (m_DamageResist + m_MagicResist + m_Avoidance) * 2;
+	buyValue = (m_DamageResist + m_MagicResist + (m_Avoidance / 2)) * 3;
 	return buyValue;
 }
