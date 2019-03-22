@@ -68,6 +68,21 @@ int main()
 	cout << endl;
 	cout << endl;
 
+	Weapon fists(0);
+	fists.GetType(0);
+	fists.GetName(2);
+	fists.SetDamageType(1);
+	fists.Status();
+	cout << endl;
+	cout << endl;
+
+	Armor silk(0);
+	//silk.GetType(0);
+	silk.GetName(0);
+	silk.SetResitanceType(0);
+	silk.Status();
+	cout << endl;
+	cout << endl;
 
 
 	/*Weapon fists(0);

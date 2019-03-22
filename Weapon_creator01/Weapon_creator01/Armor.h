@@ -137,160 +137,374 @@ void Armor::SetResitanceType(int EleChoice = -1)
 		temp = 3;
 	}
 
-	
-
 	int eleChance;
-	if (EleChoice == -1)
+	if (EleChoice <= -1 || EleChoice > 10)
 	{
 		eleChance = (rand() % 101);
-	}
-	else
-	{
-		eleChance = EleChoice;
-	}
-	int temp2;
-	if (temp != 3)
-	{
-		if (eleChance < 60)
+		int temp2;
+		if (temp != 3)
 		{
-			temp2 = 0;
-		}
-		else if (eleChance < 66)
-		{
-			temp2 = 1;
-		}
-		else if (eleChance < 72)
-		{
-			temp2 = 2;
-		}
-		else if (eleChance < 78)
-		{
-			temp2 = 3;
-		}
-		else if (eleChance < 84)
-		{
-			temp2 = 4;
-		}
-		else if (eleChance < 90)
-		{
-			temp2 = 5;
-		}
-		else if (eleChance < 96)
-		{
-			temp2 = 6;
-		}
-		else if (eleChance < 98)
-		{
-			temp2 = 7;
-		}
-		else
-		{
-			temp2 = 8;
-		}
-	}
-	else
-	{
-		if (eleChance < 2)
-		{
-			temp2 = 0;
-		}
-		else if (eleChance < 15)
-		{
-			temp2 = 1;
-		}
-		else if (eleChance < 28)
-		{
-			temp2 = 2;
-		}
-		else if (eleChance < 41)
-		{
-			temp2 = 3;
-		}
-		else if (eleChance < 54)
-		{
-			temp2 = 4;
-		}
-		else if (eleChance < 67)
-		{
-			temp2 = 5;
-		}
-		else if (eleChance < 80)
-		{
-			temp2 = 6;
-		}
-		else if (eleChance < 90)
-		{
-			temp2 = 7;
+			if (eleChance < 60)
+			{
+				temp2 = 0;
+			}
+			else if (eleChance < 66)
+			{
+				temp2 = 1;
+			}
+			else if (eleChance < 72)
+			{
+				temp2 = 2;
+			}
+			else if (eleChance < 78)
+			{
+				temp2 = 3;
+			}
+			else if (eleChance < 84)
+			{
+				temp2 = 4;
+			}
+			else if (eleChance < 90)
+			{
+				temp2 = 5;
+			}
+			else if (eleChance < 96)
+			{
+				temp2 = 6;
+			}
+			else if (eleChance < 98)
+			{
+				temp2 = 7;
+			}
+			else
+			{
+				temp2 = 8;
+			}
 		}
 		else
 		{
-			temp2 = 8;
+			if (eleChance < 2)
+			{
+				temp2 = 0;
+			}
+			else if (eleChance < 15)
+			{
+				temp2 = 1;
+			}
+			else if (eleChance < 28)
+			{
+				temp2 = 2;
+			}
+			else if (eleChance < 41)
+			{
+				temp2 = 3;
+			}
+			else if (eleChance < 54)
+			{
+				temp2 = 4;
+			}
+			else if (eleChance < 67)
+			{
+				temp2 = 5;
+			}
+			else if (eleChance < 80)
+			{
+				temp2 = 6;
+			}
+			else if (eleChance < 90)
+			{
+				temp2 = 7;
+			}
+			else
+			{
+				temp2 = 8;
+			}
 		}
-	}
 
-	m_ElementType = ElementType(temp, temp2);
-	if (temp2 != 0)
-	{
-		m_Magic = true;
-		m_MagicResist += 5;
-		m_Avoidance += 10;
+		m_ElementType = ElementType(temp, temp2);
+		if (temp2 != 0)
+		{
+			m_Magic = true;
+			m_MagicResist += 5;
+			m_Avoidance += 10;
+		}
+		else
+		{
+			m_Magic = false;
+		}
 	}
 	else
 	{
-		m_Magic = false;
+		switch (EleChoice)
+		{
+		case 0://entrophy
+			eleChance = EleChoice;
+			m_ElementType = ElementType(temp, eleChance);
+			if (eleChance != 0 || temp == 3)
+			{
+				m_Magic = true;
+				if (temp != 0)
+				{
+					m_MagicResist += 5;
+					m_Avoidance += 10;
+				}
+			}
+			else
+			{
+				m_Magic = false;
+			}
+			break;
+		case 1://fire
+			eleChance = EleChoice;
+			m_ElementType = ElementType(temp, eleChance);
+			if (eleChance != 0 || temp == 0)
+			{
+				m_Magic = true;
+				if (temp != 0)
+				{
+					m_MagicResist += 5;
+					m_Avoidance += 10;
+				}
+			}
+			else
+			{
+				m_Magic = false;
+			}
+			break;
+		case 2://ice
+			eleChance = EleChoice;
+			m_ElementType = ElementType(temp, eleChance);
+			if (eleChance != 0 || temp == 0)
+			{
+				m_Magic = true;
+				if (temp != 0)
+				{
+					m_MagicResist += 5;
+					m_Avoidance += 10;
+				}
+			}
+			else
+			{
+				m_Magic = false;
+			}
+			break;
+		case 3://water
+			eleChance = EleChoice;
+			m_ElementType = ElementType(temp, eleChance);
+			if (eleChance != 0 || temp == 0)
+			{
+				m_Magic = true;
+				if (temp != 0)
+				{
+					m_MagicResist += 5;
+					m_Avoidance += 10;
+				}
+			}
+			else
+			{
+				m_Magic = false;
+			}
+			break;
+		case 4://thunder
+			eleChance = EleChoice;
+			m_ElementType = ElementType(temp, eleChance);
+			if (eleChance != 0 || temp == 0)
+			{
+				m_Magic = true;
+				if (temp != 0)
+				{
+					m_MagicResist += 5;
+					m_Avoidance += 10;
+				}
+			}
+			else
+			{
+				m_Magic = false;
+			}
+			break;
+		case 5://wind
+			eleChance = EleChoice;
+			m_ElementType = ElementType(temp, eleChance);
+			if (eleChance != 0 || temp == 0)
+			{
+				m_Magic = true;
+				if (temp != 0)
+				{
+					m_MagicResist += 5;
+					m_Avoidance += 10;
+				}
+			}
+			else
+			{
+				m_Magic = false;
+			}
+			break;
+		case 6://earth
+			eleChance = EleChoice;
+			m_ElementType = ElementType(temp, eleChance);
+			if (eleChance != 0 || temp == 0)
+			{
+				m_Magic = true;
+				if (temp != 0)
+				{
+					m_MagicResist += 5;
+					m_Avoidance += 10;
+				}
+			}
+			else
+			{
+				m_Magic = false;
+			}
+			break;
+		case 7://darkness
+			eleChance = EleChoice;
+			m_ElementType = ElementType(temp, eleChance);
+			if (eleChance != 0 || temp == 0)
+			{
+				m_Magic = true;
+				if (temp != 0)
+				{
+					m_MagicResist += 5;
+					m_Avoidance += 10;
+				}
+			}
+			else
+			{
+				m_Magic = false;
+			}
+			break;
+		case 8://light
+			eleChance = EleChoice;
+			m_ElementType = ElementType(temp, eleChance);
+			if (eleChance != 0 || temp == 0)
+			{
+				m_Magic = true;
+				if (temp != 0)
+				{
+					m_MagicResist += 5;
+					m_Avoidance += 10;
+				}
+			}
+			else
+			{
+				m_Magic = false;
+			}
+			break;
+		case 9://healing
+			eleChance = EleChoice;
+			m_ElementType = ElementType(temp, eleChance);
+			if (eleChance != 0 || temp == 0)
+			{
+				m_Magic = true;
+				if (temp != 0)
+				{
+					m_MagicResist += 5;
+					m_Avoidance += 10;
+				}
+			}
+			else
+			{
+				m_Magic = false;
+			}
+			break;
+		case 10://no magic
+			eleChance = EleChoice;
+			m_ElementType = ElementType(temp, eleChance);
+			m_Magic = false;
+		}
 	}
 }
 
 string Armor::GetName(int Choice = -1)
 {
 	int namePick;
-	if (Choice == -1)
+	if (Choice <= -1 || Choice > 5)
 	{
 		namePick = (rand() % 101);
+		if (namePick == 0)//default
+		{
+			m_Prefix_Name = PREFIX_NAMES[0];
+			m_DamageResist = _Max_value(m_DamageResist - 5, 0);
+			m_MagicResist = _Max_value(m_MagicResist - 5, 0);
+			m_Avoidance -= 5;
+		}
+		else if (namePick < 15)//bad
+		{
+			m_Prefix_Name = PREFIX_NAMES[1];
+			m_DamageResist = _Max_value(m_DamageResist - 3, 0);
+			m_MagicResist = _Max_value(m_MagicResist - 3, 0);
+			m_Avoidance -= 3;
+		}
+		else if (namePick < 55)//basic no bonus
+		{
+			m_Prefix_Name = PREFIX_NAMES[2];
+		}
+		else if (namePick < 80)//good
+		{
+			m_Prefix_Name = PREFIX_NAMES[3];
+			m_DamageResist += 5;
+			m_MagicResist += 5;
+			m_Avoidance += 3;
+		}
+		else if (namePick < 95)//great
+		{
+			m_Prefix_Name = PREFIX_NAMES[4];
+			m_DamageResist += 7;
+			m_MagicResist += 7;
+			m_Avoidance += 5;
+		}
+		else//legendary
+		{
+			m_Prefix_Name = PREFIX_NAMES[5];
+			m_DamageResist += 10;
+			m_MagicResist += 10;
+			m_Avoidance += 7;
+		}
 	}
 	else
 	{
-		namePick = Choice;
-	}
-
-	if (namePick == 0)//default
-	{
-		m_Prefix_Name = PREFIX_NAMES[0];
-		m_DamageResist = _Max_value(m_DamageResist - 5, 0);
-		m_MagicResist = _Max_value(m_MagicResist - 5, 0);
-		m_Avoidance -= 5;
-	}
-	else if (namePick < 15)//bad
-	{
-		m_Prefix_Name = PREFIX_NAMES[1];
-		m_DamageResist = _Max_value(m_DamageResist - 3, 0);
-		m_MagicResist = _Max_value(m_MagicResist - 3, 0);
-		m_Avoidance -= 3;
-	}
-	else if (namePick < 55)//basic no bonus
-	{
-		m_Prefix_Name = PREFIX_NAMES[2];
-	}
-	else if (namePick < 80)//good
-	{
-		m_Prefix_Name = PREFIX_NAMES[3];
-		m_DamageResist += 5;
-		m_MagicResist += 5;
-		m_Avoidance += 3;
-	}
-	else if (namePick < 95)//great
-	{
-		m_Prefix_Name = PREFIX_NAMES[4];
-		m_DamageResist += 7;
-		m_MagicResist += 7;
-		m_Avoidance += 5;
-	}
-	else//legendary
-	{
-		m_Prefix_Name = PREFIX_NAMES[5];
-		m_DamageResist += 10;
-		m_MagicResist += 10;
-		m_Avoidance += 7;
+		switch (Choice)
+		{
+		case 0://default
+			m_Prefix_Name = PREFIX_NAMES[0];
+			m_DamageResist = _Max_value(m_DamageResist - 5, 0);
+			m_MagicResist = _Max_value(m_MagicResist - 5, 0);
+			m_Avoidance -= 5;
+			namePick = Choice;
+			break;
+		case 1://badd
+			m_Prefix_Name = PREFIX_NAMES[1];
+			m_DamageResist = _Max_value(m_DamageResist - 3, 0);
+			m_MagicResist = _Max_value(m_MagicResist - 3, 0);
+			m_Avoidance -= 3;
+			namePick = Choice;
+			break;
+		case 2://basic
+			m_Prefix_Name = PREFIX_NAMES[2];
+			namePick = Choice;
+			break;
+		case 3://good
+			m_Prefix_Name = PREFIX_NAMES[3];
+			m_DamageResist += 5;
+			m_MagicResist += 5;
+			m_Avoidance += 3;
+			namePick = Choice;
+			break;
+		case 4://great
+			m_Prefix_Name = PREFIX_NAMES[4];
+			m_DamageResist += 7;
+			m_MagicResist += 7;
+			m_Avoidance += 5;
+			namePick = Choice;
+			break;
+		case 5://legendary
+			m_Prefix_Name = PREFIX_NAMES[5];
+			m_DamageResist += 10;
+			m_MagicResist += 10;
+			m_Avoidance += 7;
+			namePick = Choice;
+			break;
+		}
 	}
 	return m_Prefix_Name;
 }
