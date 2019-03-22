@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "Weapon.h"
+#include "Armor.h"
 //#include <cctype>
 //#include <algorithm>
 //#include <functional>
@@ -15,24 +16,8 @@ using namespace std;
 int main()
 {
 	srand(static_cast<unsigned int>(time(0)));
-	/*vector<WeaponType> WEAPON_TYPES = { WeaponType("fists", 0, 3, 0, 0), //weapon, damMin, damMAx, statUsed, wield
-										WeaponType("sword", 2, 5, 0, 0),
-										WeaponType("rapier", 2, 5, 1, 0),
-										WeaponType("axe", 3, 8, 0, 1),
-										WeaponType("warhammer", 4, 7, 0, 1),
-										WeaponType("mace", 1, 6, 0, 0),
-										WeaponType("club", 0, 4, 0, 0),
-										WeaponType("lance", 4, 4, 0, 1),
-										WeaponType("glaive", 3, 5, 0, 1),
-										WeaponType("wand", 2, 5, 2, 3),
-										WeaponType("tome", 0, 7, 2, 3),
-										WeaponType("scroll", 3, 4, 2, 3),
-										WeaponType("staff", 2, 2, 3, 4),
-										WeaponType("shuriken", 1, 2, 1, 2),
-										WeaponType("daggers", 1, 2, 1, 0),
-										WeaponType("bow", 2, 5, 1, 2) };
-*/
-	Weapon weapon1;
+
+	/*Weapon weapon1;
 
 	weapon1.GetType();
 	weapon1.GetName();
@@ -47,13 +32,43 @@ int main()
 	weapon1.Status();
 	cout << endl;
 
-	Weapon weapon2(15);
-	weapon2.SetDamageType(100);
+	Weapon weapon2;
+	weapon2.GetType(15);//bow
+	weapon2.GetName(100);//legendary
+	weapon2.SetDamageType(100);//of light
 	weapon2.Status();
 	weapon2.DisplayName();
 	cout << "'s attack: " << weapon2.Attack();
 	cout << endl;
+	cout << endl;*/
+
+	Weapon newWeapon;
+	newWeapon.GetType();
+	newWeapon.GetName();
+	newWeapon.SetDamageType();
+	cout << "weapon: \n";
+	newWeapon.Status();
 	cout << endl;
+	cout << "sell value: " << newWeapon.GetSellValue();
+	cout << ", ";
+	cout << "buy value: " << newWeapon.GetBuyValue();
+	cout << endl;
+	cout << endl;
+
+	Armor armor1;
+	armor1.GetType();
+	armor1.GetName();
+	armor1.SetResitanceType();
+	cout << "armor: \n";
+	armor1.Status();
+	cout << endl;
+	cout << "sell value: " << armor1.GetSellValue();
+	cout << ", ";
+	cout << "buy value: " << armor1.GetBuyValue();
+	cout << endl;
+	cout << endl;
+
+
 
 	/*Weapon fists(0);
 	Weapon sword(WEAPON_TYPES[1]);
