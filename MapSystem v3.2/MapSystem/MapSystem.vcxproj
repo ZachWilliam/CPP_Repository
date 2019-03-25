@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{51EF1964-E4B6-46F5-AB1D-C12189EB88D5}</ProjectGuid>
-    <RootNamespace>SchoolRPG3</RootNamespace>
+    <ProjectGuid>{DD702E6E-4708-4FC4-B7E2-823951664C0C}</ProjectGuid>
+    <RootNamespace>MapSystem</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -115,13 +115,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Coord.cpp" />
     <ClCompile Include="Format.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapMain.cpp" />
+    <ClCompile Include="MapManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Coord.h" />
     <ClInclude Include="Format.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="MapMain.h" />
+    <ClInclude Include="MapManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
