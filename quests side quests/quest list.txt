@@ -39,12 +39,9 @@ part 5 -- return to town with captured bandit leader and the treasure(100% compl
 
 boat part 3
 __________________________________________________________________________________________________
- the town is under attack protect the city from the attackers(3 or 4 waves of enemies)
- heals party between fights or every other fight
-
-(wave 1/4 complete) (wave 2/4 complete) (wave 3/4 complete) (wave 4/4 complete)
-"celebrate saving city rewarded with last boat piece) <-- unlocked and triggered after finishing first 2 boat parts
-obtain last boat part" (3/3)
+ if boat parts == 2/3
+set trigger on map north of city to trigger a boss battle
+defeat the boss and obtain final part.
 
 if(woodCollected == 30)
 speak to captain and finish repairing ship and set sail.....
@@ -95,14 +92,8 @@ part 8 -- return all items to black smith to create the part...
 
 air ship part 3
 _______________________________________________________________________________________________
-part 1 -- another attempted take over of the city happens defeat all waves of enemies
-(0/6)
-(1/6)
-(2/6)
-(3/6)
-(4/6)
-(5/6)
-(6/6)
+if air ship parts == 2/3
+set a trigger south of town for boss battle.
 
 awared the last part of air ship "air ship part obtained"
 
