@@ -112,29 +112,35 @@ void ClearBottom(int p_bottomStartRow, int p_screenWidth) {
 	}
 }
 
+void SetColorAndBackground(int backC, int textC) {
+	//Make sure color choice isnt above 15
+	if (backC > 15 || textC > 15 || backC < 0 || textC < 0) {
+		cout << "Invalid choice(s)" << endl;
+		return;
+	}
 
+	//Convert backC to binary and back (as a byte) so 15 = 11110000, not 00001111
+	int remainder = 0, newBackC = 0, multiplier = 1;
+	while (backC > 0)
+	{
+		remainder = backC % 2;
+		if (remainder % 2 != 0) newBackC += 16 * multiplier;
+		multiplier *= 2;
+		backC /= 2;
+	}
 
-
-
-/*void DrawRight(const Hero &p_hero1, const Hero &p_hero2) {
-const int INFO_DISTANCE = 10;
-
-
-GoToXY(3, COL_RIGHT); cout << CenterPhrase("Legend", SIDE_WIDTH);
-GoToXY(4, COL_RIGHT); cout << CenterPhrase("------------", SIDE_WIDTH);
-GoToXY(5, COL_RIGHT); cout << CenterPhrase("Something", SIDE_WIDTH);
-GoToXY(6, COL_RIGHT); cout << CenterPhrase("Another", SIDE_WIDTH);
-GoToXY(7, COL_RIGHT); cout << CenterPhrase("Thing", SIDE_WIDTH);
-
-Hero a_heroes[2] = { p_hero1, p_hero2 };
-
-for (size_t i = 0; i < 2; i++)
-{
-GoToXY(11 + i * INFO_DISTANCE, COL_RIGHT); cout << CenterPhrase(a_heroes[i].name, SIDE_WIDTH) << endl;
-GoToXY(12 + i * INFO_DISTANCE, COL_RIGHT); cout << CenterPhrase(string(a_heroes[i].name.size() + 6, '-'), SIDE_WIDTH);
-GoToXY(13 + i * INFO_DISTANCE, COL_RIGHT); cout << CenterPhrase("Level: " + to_string(a_heroes[i].level), SIDE_WIDTH) << endl;
-GoToXY(14 + i * INFO_DISTANCE, COL_RIGHT); cout << CenterPhrase("Health " + to_string(a_heroes[i].health), SIDE_WIDTH) << endl;
-GoToXY(15 + i * INFO_DISTANCE, COL_RIGHT); cout << CenterPhrase("Mana " + to_string(a_heroes[i].mana), SIDE_WIDTH) << endl;
-GoToXY(16 + i * INFO_DISTANCE, COL_RIGHT); cout << CenterPhrase("Exp " + to_string(a_heroes[i].exp), SIDE_WIDTH) << endl;
+	//Change colors
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), newBackC + textC);
 }
-}*/
+
+int GetColorValue(char displayChar) {
+	if (displayChar == 'W' || displayChar == 'w') return BLUE;
+	else if (displayChar == 'B' || displayChar == 'b') return BROWN;
+	else if (displayChar == ' ') return LIGHTGREEN;
+	else if (displayChar == 'T' || displayChar == 't') return GREEN;
+	else if (displayChar == 'd' || displayChar == 'D' || displayChar == '?') return BLACK;
+	else if (displayChar == 'g' || displayChar == 'G') return LIGHTGRAY;
+	else if (displayChar == 'r' || displayChar == 'R') return DARKGRAY;
+	else if (displayChar == 'P') return RED;
+	else return BLACK;
+}
