@@ -72,7 +72,7 @@ public:
 	void Status();
 	string GetName(int Choice);
 	void GetType(int Choice);
-	void SetResitanceType(int EleChoice);
+	void SetResistanceType(int EleChoice);
 	void DisplayName();
 	int GetSellValue();
 	int GetBuyValue();
@@ -102,7 +102,10 @@ public:
 	bool m_Magic = false;
 	ElementType m_ElementType;
 
-	static const int NUM_PREFIX_NAMES = 6;
+	void SetArmor(int, int, int);
+	void SetSuperArmor(int);
+
+	static const int NUM_PREFIX_NAMES = 7;
 	static const string PREFIX_NAMES[NUM_PREFIX_NAMES];
 };
 
@@ -115,9 +118,9 @@ Armor::Armor(int ArmorChoice = 0, int prefix_name = -1)
 	GetName(prefix_name);
 }
 
-const string Armor::PREFIX_NAMES[NUM_PREFIX_NAMES] = { "legendarily bad", "bad", "basic", "good", "great", "legendary" };
+const string Armor::PREFIX_NAMES[NUM_PREFIX_NAMES] = { "legendarily bad", "bad", "basic", "good", "great", "legendary", "Super Fantastic" };
 
-void Armor::SetResitanceType(int EleChoice = -1)
+void Armor::SetResistanceType(int EleChoice = -1)
 {
 	int temp;
 	if (m_Armor_Type.m_Name == "silk" || m_Armor_Type.m_Name == "cotton" || m_Armor_Type.m_Name == "polyester" || m_Armor_Type.m_Name == "leather")
@@ -138,7 +141,7 @@ void Armor::SetResitanceType(int EleChoice = -1)
 	}
 
 	int eleChance;
-	if (EleChoice <= -1 || EleChoice > 10)
+	if ((EleChoice <= -1 || EleChoice > 10) && EleChoice != 666)
 	{
 		eleChance = (rand() % 101);
 		int temp2;
@@ -257,7 +260,7 @@ void Armor::SetResitanceType(int EleChoice = -1)
 		case 1://fire
 			eleChance = EleChoice;
 			m_ElementType = ElementType(temp, eleChance);
-			if (eleChance != 0 || temp == 0)
+			if (eleChance != 0 || temp == 3)
 			{
 				m_Magic = true;
 				if (temp != 0)
@@ -274,7 +277,7 @@ void Armor::SetResitanceType(int EleChoice = -1)
 		case 2://ice
 			eleChance = EleChoice;
 			m_ElementType = ElementType(temp, eleChance);
-			if (eleChance != 0 || temp == 0)
+			if (eleChance != 0 || temp == 3)
 			{
 				m_Magic = true;
 				if (temp != 0)
@@ -291,7 +294,7 @@ void Armor::SetResitanceType(int EleChoice = -1)
 		case 3://water
 			eleChance = EleChoice;
 			m_ElementType = ElementType(temp, eleChance);
-			if (eleChance != 0 || temp == 0)
+			if (eleChance != 0 || temp == 3)
 			{
 				m_Magic = true;
 				if (temp != 0)
@@ -308,7 +311,7 @@ void Armor::SetResitanceType(int EleChoice = -1)
 		case 4://thunder
 			eleChance = EleChoice;
 			m_ElementType = ElementType(temp, eleChance);
-			if (eleChance != 0 || temp == 0)
+			if (eleChance != 0 || temp == 3)
 			{
 				m_Magic = true;
 				if (temp != 0)
@@ -325,7 +328,7 @@ void Armor::SetResitanceType(int EleChoice = -1)
 		case 5://wind
 			eleChance = EleChoice;
 			m_ElementType = ElementType(temp, eleChance);
-			if (eleChance != 0 || temp == 0)
+			if (eleChance != 0 || temp == 3)
 			{
 				m_Magic = true;
 				if (temp != 0)
@@ -342,7 +345,7 @@ void Armor::SetResitanceType(int EleChoice = -1)
 		case 6://earth
 			eleChance = EleChoice;
 			m_ElementType = ElementType(temp, eleChance);
-			if (eleChance != 0 || temp == 0)
+			if (eleChance != 0 || temp == 3)
 			{
 				m_Magic = true;
 				if (temp != 0)
@@ -359,7 +362,7 @@ void Armor::SetResitanceType(int EleChoice = -1)
 		case 7://darkness
 			eleChance = EleChoice;
 			m_ElementType = ElementType(temp, eleChance);
-			if (eleChance != 0 || temp == 0)
+			if (eleChance != 0 || temp == 3)
 			{
 				m_Magic = true;
 				if (temp != 0)
@@ -376,7 +379,7 @@ void Armor::SetResitanceType(int EleChoice = -1)
 		case 8://light
 			eleChance = EleChoice;
 			m_ElementType = ElementType(temp, eleChance);
-			if (eleChance != 0 || temp == 0)
+			if (eleChance != 0 || temp == 3)
 			{
 				m_Magic = true;
 				if (temp != 0)
@@ -393,7 +396,7 @@ void Armor::SetResitanceType(int EleChoice = -1)
 		case 9://healing
 			eleChance = EleChoice;
 			m_ElementType = ElementType(temp, eleChance);
-			if (eleChance != 0 || temp == 0)
+			if (eleChance != 0 || temp == 3)
 			{
 				m_Magic = true;
 				if (temp != 0)
@@ -411,6 +414,14 @@ void Armor::SetResitanceType(int EleChoice = -1)
 			eleChance = EleChoice;
 			m_ElementType = ElementType(temp, eleChance);
 			m_Magic = false;
+			break;
+		case 666:
+			eleChance = 8;//of light
+			m_ElementType = ElementType(temp, eleChance);
+			m_Magic = true;
+			m_MagicResist += 15;
+			m_Avoidance += 20;
+			break;
 		}
 	}
 }
@@ -418,7 +429,7 @@ void Armor::SetResitanceType(int EleChoice = -1)
 string Armor::GetName(int Choice = -1)
 {
 	int namePick;
-	if (Choice <= -1 || Choice > 5)
+	if ((Choice <= -1 || Choice > 5) && Choice != 666)
 	{
 		namePick = (rand() % 101);
 		if (namePick == 0)//default
@@ -504,6 +515,13 @@ string Armor::GetName(int Choice = -1)
 			m_Avoidance += 7;
 			namePick = Choice;
 			break;
+		case 666://specific
+			m_Prefix_Name = PREFIX_NAMES[6];
+			m_DamageResist += 25;
+			m_MagicResist += 25;
+			m_Avoidance += 15;
+			namePick = Choice;
+			break;
 		}
 	}
 	return m_Prefix_Name;
@@ -550,4 +568,22 @@ int Armor::GetBuyValue()
 	int buyValue;
 	buyValue = (m_DamageResist + m_MagicResist + (m_Avoidance / 2)) * 3;
 	return buyValue;
+}
+
+void Armor::SetArmor(int setType = 0, int setName = 1, int setResType = 10)
+{
+	//default armor is bad silk (no magic)
+	int x = setType;//type(0-15):(silk(0), cotton(1), polyester(2), leather(3), studded(4), chainmail(5), ringmail(6), plate(7), titanium(8), steel(9), silver(10), onix(11), ruby(12), emerald(13), amethyst(14), diamond(15))
+	int y = setName;//prefix(0-5):(legendarily bad(0), bad(1), basic(2), good(3), great(4), legendary(5))
+	int z = setResType;//of(0-10):(entrophy(0), fire(1), ice(2), water(3), thunder(4), wind(5), earth(6), darkness(7), light(8), healing(9), no magic(10))
+	GetType(x);
+	GetName(y);
+	SetResistanceType(z);
+}
+void Armor::SetSuperArmor(int setType = 0)
+{
+	int x = setType;//type(0-15):(silk(0), cotton(1), polyester(2), leather(3), studded(4), chainmail(5), ringmail(6), plate(7), titanium(8), steel(9), silver(10), onix(11), ruby(12), emerald(13), amethyst(14), diamond(15))
+	GetType(x);
+	GetName(666);
+	SetResistanceType(666);
 }

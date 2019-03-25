@@ -26,5 +26,11 @@
     <ClInclude Include="Armor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Items.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Backpack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

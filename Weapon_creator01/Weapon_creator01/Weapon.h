@@ -100,7 +100,10 @@ public:
 	bool m_Magic = false;
 	DamageType m_DamageType;
 
-	static const int NUM_PREFIX_NAMES = 6;
+	void SetWeapon(int, int, int);
+	void SetSuperWeapon(int);
+
+	static const int NUM_PREFIX_NAMES = 7;
 	static const string PREFIX_NAMES[NUM_PREFIX_NAMES];
 };
 
@@ -113,7 +116,7 @@ Weapon::Weapon(int WeaponChoice = 0, int prefix_name = -1)
 }
 
 
-const string Weapon::PREFIX_NAMES[NUM_PREFIX_NAMES] = { "legendarily bad", "bad", "basic", "good", "great", "legendary" };
+const string Weapon::PREFIX_NAMES[NUM_PREFIX_NAMES] = { "legendarily bad", "bad", "basic", "good", "great", "legendary", "Super Fantastic" };
 
 void Weapon::SetDamageType(int EleChoice = -1)
 {
@@ -150,7 +153,7 @@ void Weapon::SetDamageType(int EleChoice = -1)
 	}
 
 	int eleChance;
-	if (EleChoice <= -1 || EleChoice > 10)
+	if ((EleChoice <= -1 || EleChoice > 10) && EleChoice != 666)
 	{
 		eleChance = (rand() % 101);
 		int temp2;
@@ -429,6 +432,14 @@ void Weapon::SetDamageType(int EleChoice = -1)
 			eleChance = EleChoice;
 			m_DamageType = DamageType(temp, eleChance);
 			m_Magic = false;
+			break;
+		case 666://special
+			eleChance = 8;//of light
+			m_DamageType = DamageType(temp, eleChance);
+			m_Magic = true;	
+			m_DamageMIN += 10;
+			m_DamageMAX += 15;
+			break;
 		}
 	}
 }
@@ -437,7 +448,7 @@ void Weapon::SetDamageType(int EleChoice = -1)
 string Weapon::GetName(int Choice = -1)
 {
 	int namePick;
-	if (Choice <= -1 || Choice > 5)
+	if ((Choice <= -1 || Choice > 5) && Choice != 666)
 	{
 		namePick = (rand() % 101);
 		if (namePick == 0)//default
@@ -513,6 +524,12 @@ string Weapon::GetName(int Choice = -1)
 			m_DamageMAX += 5;
 			namePick = Choice;
 			break;
+		case 666://specific
+			m_Prefix_Name = PREFIX_NAMES[6];
+			m_DamageMIN += 15;
+			m_DamageMAX += 25;
+			namePick = Choice;
+			break;
 		}
 	}
 	return m_Prefix_Name;
@@ -522,7 +539,7 @@ string Weapon::GetName(int Choice = -1)
 void Weapon::GetType(int Choice = -1)
 {
 	int typePick;
-	if (Choice == -1)
+	if (Choice <= -1 || Choice > 15)
 	{
 		typePick = (rand() % WEAPON_TYPES.size());
 	}
@@ -565,4 +582,22 @@ int Weapon::GetBuyValue()
 	int buyValue;
 	buyValue = (((m_DamageMIN * 2) + m_DamageMAX) * 2) * (_Max_value(m_Magic * 2, 1)) * ((_Max_value(SpellSlot - 1, 0) * 2) + 1);
 	return buyValue;
+}
+
+void Weapon::SetWeapon(int setType = 0, int setName = 1, int setDamType = 10)
+{
+	//default weapon is bad fists (no magic)
+	int x = setType;//type(0-15):(fists(0), sword(1), rapier(2), axe(3), warhammer(4), mace(5), club(6), lance(7), glaive(8), wand(9), tome(10), scroll(11), staff(12), shuriken(13), daggers(14), bow(15))
+	int y = setName;//prefix(0-5):(legendarily bad(0), bad(1), basic(2), good(3), great(4), legendary(5))
+	int z = setDamType;//of(0-10):(entrophy(0), fire(1), ice(2), water(3), thunder(4), wind(5), earth(6), darkness(7), light(8), healing(9), no magic(10))
+	GetType(x);
+	GetName(y);
+	SetDamageType(z);
+}
+void Weapon::SetSuperWeapon(int setType = 0)
+{
+	int x = setType;//type(0-15):(fists(0), sword(1), rapier(2), axe(3), warhammer(4), mace(5), club(6), lance(7), glaive(8), wand(9), tome(10), scroll(11), staff(12), shuriken(13), daggers(14), bow(15))
+	GetType(x);
+	GetName(666);
+	SetDamageType(666);
 }
