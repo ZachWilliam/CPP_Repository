@@ -8,6 +8,7 @@ class Stats
 {
 public:
 	Stats(int, int, int, int, int, int, int);
+	int ValueFromStatIn(int);
 	vector<int> BattleStats(int);
 	int STRENGTH, DEXTERITY, CONSTITUTION, AGILITY, INTELLIGENCE, WISDOM, LUCK;
 	enum BattleStats {ATTACK = 0, DEFENSE, MAGIC, RESISTANCE, SPEED, HIT, AVOID, CRIT};
@@ -66,4 +67,23 @@ vector<int> Stats::BattleStats(int Relevant)
 
 	return RetVal;
 
+}
+int Stats::ValueFromStatIn(int statin)
+{
+	if (statin == 0)
+	{
+		return STRENGTH;
+	}
+	if (statin == 1)
+	{
+		return DEXTERITY;
+	}
+	if (statin == 2)
+	{
+		return INTELLIGENCE;
+	}
+	if (statin == 3)
+	{
+		return WISDOM;
+	}
 }

@@ -17,10 +17,13 @@ public:
 	void SpawnAtLevel(int);
 	int EnemyID;
 	string Species;
-	Stats BaseStats;
+	Stats stats;
 	Stats StatGrows;
 	int Level;
 	int MAX_HP;
+	enum BStats { ATTACK = 0, DEFENSE, MAGIC, RESISTANCE, SPEED, HIT, AVOID, CRIT };
+	bool NullEnemy = false;
+
 
 };
 Enemy::Enemy(int ID) : Combatant()
@@ -31,17 +34,24 @@ Enemy::Enemy(int ID) : Combatant()
 
 void Enemy::GenerateEnemy(int ID)
 {
+	// Generates an Enemy from a Monster object
 	EnemyID = ID;
-	Species = "Slime";
-	BaseStats = Stats(1, 1, 1, 1, 1, 1, 1);
-	StatGrows = Stats(50, 50, 50, 50, 50, 50, 50);
-	Level = 3;
-	SpawnAtLevel(Level);
-	MAX_HP = 0;
+	if (ID != -1)
+	{
+		Species = "Slime";
+		stats = Stats(1, 1, 1, 1, 1, 1, 1);
+		StatGrows = Stats(50, 10, 120, 10, 10, 20, 70);
+		Level = 15;
+		SpawnAtLevel(Level);
+		MAX_HP = 0;
+	}
+	else
+	{
+		NullEnemy = true;
+	}
 }
 void Enemy::SpawnAtLevel(int level)
 {
-	BattleStats = BaseStats;
 	srand(static_cast<unsigned int>(time(0)));
 	int Determine;
 	for (size_t i = 0; i < level - 1; i++)
@@ -49,121 +59,122 @@ void Enemy::SpawnAtLevel(int level)
 		Determine = (rand() % 100);
 		if (StatGrows.STRENGTH > 100)
 		{
-			BattleStats.STRENGTH++;
+			stats.STRENGTH++;
 			if (Determine < StatGrows.STRENGTH - 100)
 			{
-				BattleStats.STRENGTH++;
+				stats.STRENGTH++;
 			}
 		}
 		else
 		{
 			if (Determine < StatGrows.STRENGTH)
 			{
-				BattleStats.STRENGTH++;
+				stats.STRENGTH++;
 			}
 		}
 		Determine = (rand() % 100);
 		if (StatGrows.DEXTERITY > 100)
 		{
-			BattleStats.DEXTERITY++;
+			stats.DEXTERITY++;
 			if (Determine < StatGrows.DEXTERITY - 100)
 			{
-				BattleStats.DEXTERITY++;
+				stats.DEXTERITY++;
 			}
 		}
 		else
 		{
 			if (Determine < StatGrows.DEXTERITY)
 			{
-				BattleStats.DEXTERITY++;
+				stats.DEXTERITY++;
 			}
 		}
 		Determine = (rand() % 100);
 		if (StatGrows.CONSTITUTION > 100)
 		{
-			BattleStats.CONSTITUTION++;
+			stats.CONSTITUTION++;
 			if (Determine < StatGrows.CONSTITUTION - 100)
 			{
-				BattleStats.CONSTITUTION++;
+				stats.CONSTITUTION++;
 			}
 		}
 		else
 		{
 			if (Determine < StatGrows.CONSTITUTION)
 			{
-				BattleStats.CONSTITUTION++;
+				stats.CONSTITUTION++;
 			}
 		}
 		Determine = (rand() % 100);
 		if (StatGrows.AGILITY > 100)
 		{
-			BattleStats.AGILITY++;
+			stats.AGILITY++;
 			if (Determine < StatGrows.AGILITY - 100)
 			{
-				BattleStats.AGILITY++;
+				stats.AGILITY++;
 			}
 		}
 		else
 		{
 			if (Determine < StatGrows.AGILITY)
 			{
-				BattleStats.AGILITY++;
+				stats.AGILITY++;
 			}
 		}
 		Determine = (rand() % 100);
 		if (StatGrows.INTELLIGENCE > 100)
 		{
-			BattleStats.INTELLIGENCE++;
+			stats.INTELLIGENCE++;
 			if (Determine < StatGrows.INTELLIGENCE - 100)
 			{
-				BattleStats.INTELLIGENCE++;
+				stats.INTELLIGENCE++;
 			}
 		}
 		else
 		{
 			if (Determine < StatGrows.INTELLIGENCE)
 			{
-				BattleStats.INTELLIGENCE++;
+				stats.INTELLIGENCE++;
 			}
 		}
 		Determine = (rand() % 100);
 		if (StatGrows.WISDOM > 100)
 		{
-			BattleStats.WISDOM++;
+			stats.WISDOM++;
 			if (Determine < StatGrows.WISDOM - 100)
 			{
-				BattleStats.WISDOM++;
+				stats.WISDOM++;
 			}
 		}
 		else
 		{
 			if (Determine < StatGrows.WISDOM)
 			{
-				BattleStats.WISDOM++;
+				stats.WISDOM++;
 			}
 		}
 		Determine = (rand() % 100);
 		if (StatGrows.LUCK > 100)
 		{
-			BattleStats.LUCK++;
+			stats.LUCK++;
 			if (Determine < StatGrows.LUCK - 100)
 			{
-				BattleStats.LUCK++;
+				stats.LUCK++;
 			}
 		}
 		else
 		{
 			if (Determine < StatGrows.LUCK)
 			{
-				BattleStats.LUCK++;
+				stats.LUCK++;
 			}
 		}
 	}
+	BattleStats = stats.BattleStats(0);
 }
 void Enemy::toString()
 {
 	cout << "Enemy: " << Species << " | Level: " << Level << " | HP: " << CurrentHP << "/" << MAX_HP << endl;
-	cout << "STR: " << BattleStats.STRENGTH << " | DEX: " << BattleStats.DEXTERITY << " | CON: " << BattleStats.CONSTITUTION;
-	cout << " AGI: " << BattleStats.AGILITY << " | INT: " << BattleStats.INTELLIGENCE << " | WIS: " << BattleStats.WISDOM;
-	cout << " LUK: " << BattleStats.LUCK;
+	cout << "STR: " << stats.STRENGTH << " | DEX: " << stats.DEXTERITY << " | CON: " << stats.CONSTITUTION << " |";
+	cout << " AGI: " << stats.AGILITY << " | INT: " << stats.INTELLIGENCE << " | WIS: " << stats.WISDOM << " |";
+	cout << " LUK: " << stats.LUCK;
 }

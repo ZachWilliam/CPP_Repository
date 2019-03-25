@@ -157,6 +157,7 @@
     <ClInclude Include="Combatant.h" />
     <ClInclude Include="Encounter.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Party.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerClass.h" />

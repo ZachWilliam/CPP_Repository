@@ -20,12 +20,15 @@ public:
 	Stat_Change OFFENSE = NON;
 	Stat_Change DEFENSE = NON;
 	Stat_Change MOBILITY = NON;
-	Stats BattleStats;
+	vector<int> BattleStats = {0,0,0,0,0,0,0,0};
 	int initiative;
 	int CurrentHP;
+	int CurrentMana;
+	bool PlayerControl = false;
 };
 Combatant::Combatant()
 {
+	name = "";
 	initiative = 0;
 }
 void Combatant::StartCombat(int in)

@@ -14,7 +14,7 @@ public:
 	Player(string call);
 	void GeneratePlayer();
 	string name;
-	//Stats BaseStats = Stats();
+	int Level;
 	Stats CurrentStats = Stats();
 	PlayerClass Job = PlayerClass();
 	Backpack PlayerInventory = Backpack();
@@ -31,5 +31,5 @@ Player::Player(string call)
 }
 void Player::GeneratePlayer()
 {
-
+	PlayerControl = true;
 }
