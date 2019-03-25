@@ -56,7 +56,8 @@ void Menu()
 
 	cout << "1.Continue" << endl;
 	cout << "2.New Game" << endl;
-	cout << "3.Quit" << endl;
+	cout << "3.Credits" << endl;
+	cout << "4.Quit" << endl;
 	cin >> menuChoice;
 
 
@@ -78,6 +79,53 @@ void Menu()
 
 	case 3:
 		system("cls");
+		cout << "Created By VGDD Class of 2019" << endl;
+		cout << endl;
+		cout << R"(
+ +-+-+-+-+-+
+ |S|c|o|t|t|
+ +-+-+-+-+-+
+)" << endl
+<< R"(
+ +-+-+-+-+
+ |Z|a|c|h|
+ +-+-+-+-+
+)" << endl
+<< R"(
+ +-+-+-+-+-+-+-+-+-+
+ |S|e|b|a|s|t|i|a|n|
+ +-+-+-+-+-+-+-+-+-+
+)" << endl
+<< R"(
+ +-+-+-+-+-+-+
+ |C|u|r|t|i|s|
+ +-+-+-+-+-+-+
+)" << endl
+<< R"(
+ +-+-+-+-+
+ |N|i|c|k|
+ +-+-+-+-+
+)" << endl
+<< R"(
+ +-+-+-+-+-+
+ |A|a|r|o|n|
+ +-+-+-+-+-+
+)" << endl;
+		cout << "1.Back" << endl;
+
+		cin >> menuChoice;
+
+		switch (menuChoice)
+		{
+		case 1:
+			system("cls");
+			Menu();
+			break;
+		}
+		break;
+
+	case 4:
+		system("cls");
 		cout << "thank you for playing" << endl;
 		exit;
 		//exit game
@@ -89,7 +137,11 @@ void Menu()
 }
 
 
-
+void questA()
+{
+	bool questActive = false;
+	int questItem = 0;
+}
 
 
 
@@ -131,6 +183,8 @@ void Credits() {
 }
 
 
+
+
 void Bank()
 {
 	Setup();
@@ -167,7 +221,7 @@ void Bank()
 		<< "2.Withdawl Item" << endl
 		<< "3.Exit" << endl;
 	cin >> bankChoice;
-	
+
 	switch (bankChoice)
 	{
 	case 1:
@@ -177,7 +231,7 @@ void Bank()
 		//display inventory here
 		//playerInventory()
 		cout << "9.Previous Menu" << endl;
-		
+
 		cin >> bankChoice;
 		switch (bankChoice)
 		{
@@ -211,8 +265,8 @@ void Bank()
 	}
 
 
-	
-	
+
+
 }
 
 void Inn()
@@ -237,7 +291,7 @@ void Inn()
 		<< "2.Exit" << endl;
 
 	cin >> innChoice;
-	
+
 	switch (innChoice)
 	{
 	case 1:
@@ -250,12 +304,12 @@ void Inn()
 		break;
 
 
-		
+
 	case 2:
 		system("cls");
 		cout << "thanks for stopping by" << endl;
 		exit;
-}
+	}
 }
 
 void armourShop()
@@ -286,10 +340,11 @@ void armourShop()
 		<< "3.Exit" << endl;
 
 	cin >> armourChoice;
-	system("cls");
-
-	if (armourChoice == 1)
+	switch (armourChoice)
 	{
+	case 1:
+		system("cls");
+
 		cout << R"(
  _______                               
 (_______)                              
@@ -310,24 +365,28 @@ void armourShop()
 		cout << endl;
 		cout << "What would you like to buy?" << endl;
 		cout << endl;
-		cout << "1.item" << endl
-			<< "2.item" << endl
-			<< "3.item" << endl
-			<< "4.item" << endl
-			<< "5.item" << endl
-			<< "9.Previous Menu" << endl;
+		cout << endl;
+		cout << "SHOP INVENTORY" << endl;
+		cout << "9.Previous Menu" << endl;
+		cout << endl;
+		cout << endl;
 
 		cin >> armourChoice;
-		system("cls");
 
-		if (armourChoice == 9)
+		switch (armourChoice)
 		{
-			armourShop();
-		}
 
-	}
-	if (armourChoice == 2)
-	{
+		case 9:
+
+			system("cls");
+			armourShop();
+			break;
+		}
+		break;
+
+	case 2:
+
+		system("cls");
 		cout << R"(
  _______                               
 (_______)                              
@@ -350,18 +409,24 @@ void armourShop()
 		cout << "9.Previous Menu" << endl;
 
 		cin >> armourChoice;
-		system("cls");
-
-		if (armourChoice == 9)
+		switch (armourChoice)
 		{
+
+		case 9:
+			system("cls");
+
 			armourShop();
+			break;
 		}
-	}
-	if (armourChoice == 3)
-	{
+		break;
+
+	case 3:
+		system("cls");
 		cout << "Thank you for stopping by!" << endl;
 		//return to map
+		break;
 	}
+
 }
 
 void warriorShop()
@@ -393,10 +458,12 @@ void warriorShop()
 		<< "3.Exit" << endl;
 
 	cin >> warriorChoice;
-	system("cls");
-
-	if (warriorChoice == 1)
+	switch (warriorChoice)
 	{
+
+	case 1:
+		system("cls");
+
 		cout << R"(
  _  _  _                  _             
 (_)(_)(_)                (_)            
@@ -415,25 +482,25 @@ void warriorShop()
 )" << endl;
 		cout << endl;
 		cout << endl;
-		cout << "ITEM------------------VALUE" << endl;
-		cout << "1.item----------------6gold" << endl;
-		cout << "2.item----------------8gold" << endl;
-		cout << "3.item---------------33gold" << endl;
-		cout << "4.item----------------7gold" << endl;
-		cout << "5,item----------------1gold" << endl;
+		cout << "SHOP INVENTORY" << endl;
 		cout << "9.Previous Menu" << endl;
+		cout << endl;
+		cout << endl;
 
-		cin >> warriorChoice; \
-			system("cls");
+		cin >> warriorChoice;
 
-
-		if (warriorChoice == 9)
+		switch (warriorChoice)
 		{
+
+
+		case 9:
+			system("cls");
 			warriorShop();
+			break;
 		}
-	}
-	if (warriorChoice == 2)
-	{
+		break;
+	case 2:
+		system("cls");
 		cout << R"(
  _  _  _                  _             
 (_)(_)(_)                (_)            
@@ -453,29 +520,29 @@ void warriorShop()
 		cout << endl;
 		cout << endl;
 
-		cout << "Inventory" << endl
-			<< "item" << endl
-			<< "item" << endl
-			<< "item" << endl
-			<< "item" << endl
-			<< "item" << endl;
+		cout << "YOUR INVENTORY" << endl;
+		//display inventory
 		cout << "9.Previous Menu" << endl;
 		cin >> warriorChoice;
-		system("cls");
-		if (warriorChoice == 9)
 
+		switch (warriorChoice)
 		{
+
+		case 9:
+			system("cls");
 			warriorShop();
+			break;
 		}
-		cin >> warriorChoice;
+		break;
+
+
+
+	case 3:
 		system("cls");
+		cout << "Thanks for coming by" << endl;
+		// return to over world
 
-		if (warriorChoice == 3)
-		{
-			cout << "Thanks for coming by" << endl;
-			// return to over world
-
-		}
+		break;
 	}
 
 
@@ -517,10 +584,12 @@ void magicShop()
 	cout << "" << endl;
 	cin >> magicChoice;
 
-	system("cls");
-
-	if (magicChoice == 1)
+	switch (magicChoice)
 	{
+
+	case 1:
+		system("cls");
+
 		cout << R"(
  _______             _         
 (_______)           (_)        
@@ -540,24 +609,28 @@ void magicShop()
 		cout << endl;
 		cout << endl;
 		cout << "What are you looking to buy" << endl;
-		cout << "1.item" << endl
-			<< "2.item" << endl
-			<< "3.item" << endl
-			<< "4.item" << endl
-			<< "5.Previous Menu" << endl;
+		cout << endl;
+		cout << endl;
+		cout << "SHOP INVENTORY" << endl;
+		cout << "9.Previous Menu" << endl;
 		cout << "" << endl;
 		cout << "" << endl;
 
 		cin >> magicChoice;
-		system("cls");
 
-		if (magicChoice == 5)
+		switch (magicChoice)
 		{
+		case 9:
+			system("cls");
 			magicShop();
+			break;
 		}
-	}
-	if (magicChoice == 2)
-	{
+		break;
+
+
+
+	case 2:
+		system("cls");
 		cout << R"(
  _______             _         
 (_______)           (_)        
@@ -578,21 +651,27 @@ void magicShop()
 		cout << endl;
 		cout << "what would you like to sell?" << endl;
 		//need to be able to print inv/sellable items here
+		cout << endl;
+		cout << endl;
+		cout << "YOUR INVENTORY" << endl;
 		cout << "9.Previous Menu" << endl;
 		cout << "" << endl;
 		cout << "" << endl;
 		cin >> magicChoice;
 
+		switch (magicChoice)
+		{
+		case 9:
+			system("cls");
+			magicShop();
+			break;
+		}
+		break;
+
+
+	case 3:
 		system("cls");
 
-		if (magicChoice == 9)
-		{
-			magicShop();
-		}
-	}
-
-	if (magicChoice == 3)
-	{
 		cout << "so young traveller I have a favour to ask of you," << endl
 			<< "will you take this stone the village in the north" << endl
 			<< "and have it examined by the specialist there" << endl
@@ -601,31 +680,46 @@ void magicShop()
 		cout << "" << endl;
 		cin >> quest;
 
-		system("cls");
 
-		if (quest == 1)
+		switch (quest)
 		{
+		case 1:
+			system("cls");
 			cout << "here you are take the stone up north please" << endl
 				<< "and return it once finished" << endl;
 			cout << endl;
 			cout << endl;
 			cout << "The Stone has been placed in Inventory" << endl;
 			//stone placed in inventory
+			break;
+
+		case 2:
+			system("cls");
+			cout << "maybe another time then" << endl;
+			break;
 		}
-		if (quest == 2)
-		{
 
-			magicShop();
-		}
+		break;
 
-	}
 
-	if (magicChoice == 4)
-	{
+
+
+
+
+
+
+
+
+	case 4:
+		system("cls");
+
 		cout << "Thanks for stopping by " //<< playerName
 			<< endl;
 		//return to over world
+		break;
+
 	}
+
 
 
 }
@@ -653,19 +747,15 @@ void generalShop()
 )" << endl;
 	cout << endl;
 	cout << endl;
-	cout << "Welcome how can I help you?" << endl;
-	cout << endl;
-	cout << endl;
 	cout << "1.Buy" << endl
 		<< "2.Sell" << endl
-		<< "3.Talk About Something" << endl
-		<< "4.Exit" << endl;
+		<< "3.Exit" << endl;
 
 	cin >> generalChoice;
-	system("cls");
-
-	if (generalChoice == 1)
+	switch (generalChoice)
 	{
+	case 1:
+		system("cls");
 		cout << R"(
  _______                               _  
 (_______)                             | | 
@@ -684,23 +774,23 @@ void generalShop()
 )" << endl;
 		cout << endl;
 		cout << endl;
-		cout << "In Stock-----------------Value" << endl;
-		cout << "1.item    -----------------1 Gold" << endl
-			<< "2.item    -----------------5 Gold" << endl
-			<< "3.item    -----------------5 Gold" << endl
-			<< "9.Previous Menu" << endl;
+		cout << "SHOP INVENTORY" << endl;
+		//display shop items
+		cout << "9.Previous Menu" << endl;
 
 		cin >> generalChoice;
-		system("cls");
 
-		if (generalChoice == 9)
+		switch (generalChoice)
 		{
+		case 9:
+			system("cls");
 			generalShop();
+			break;
 		}
+		break;
 
-	}
-	if (generalChoice == 2)
-	{
+	case 2:
+		system("cls");
 		cout << R"(
  _______                               _  
 (_______)                             | | 
@@ -719,55 +809,43 @@ void generalShop()
 )" << endl;
 		cout << endl;
 		cout << endl;
-		cout << "-------Inventory-------" << endl;
-		cout << "1 item    ----------------3 Gold" << endl
-			<< "2.item    -----------------5 Gold" << endl
-			<< "3.item    -----------------5 Gold" << endl
-			<< "9.Previous Menu" << endl;
+		cout << "YOUR INVENTORY" << endl;
+		cout << "9.Previous Menu" << endl;
+		cout << endl;
+		cout << endl;
 
 		cin >> generalChoice;
-		system("cls");
-
-		if (generalChoice == 9)
+		switch (generalChoice)
 		{
+		case 9:
+			system("cls");
 			generalShop();
+			break;
 		}
-	}
-
-	if (generalChoice == 3)
-	{
-		cout << "Do you have spare time to help me out?" << endl
-			<< "theres this Mystical Stream just west of town" << endl
-			<< "they say the water in the stream has certain healing properties." << endl
-			<< "would you be willing to take this vial and go down to the stream" << endl
-			<< "and get me a sample?" << endl
-			<< "1.(YES)------2.(NO)" << endl;
-
-		cin >> generalChoice;
+		break;
+		
+	case 3:
 		system("cls");
-
-		if (generalChoice == 1)
-		{
-			cout << "Thank you so much take this vial and return it once you have filled" << endl
-				<< "it with the mystical water" << endl;
-			cout << endl;
-			cout << "The Vial has been placed in your Inventory" << endl;
-		}
-		if (generalChoice == 2)
-		{
-			generalShop();
-		}
+		cout << "Thanks for stopping by." << endl;
+		break;
 	}
 
-	if (generalChoice == 4)
-	{
-		cout << "Thank You for stopping by" << endl;
-		//return to over world
-	}
+
+
+
+
+
+
+
+
+
 }
+
 int main()
 {
-	Inn();
+	Menu();
+
+
 
 
 	_getch();
