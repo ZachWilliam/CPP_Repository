@@ -1,0 +1,24 @@
+menu -> charcter creation -> scene 1
+scene 1: shipwrecked
+-story of boat crash
+- join player on beach
+-describe beach
+- note cave entrace (hill flatland or natural slope leading to it. no one can agree. doesnt matter)
+- - player roams around to get to cave entrace.
+scene 2: entering cave
+- 
+
+
+scene 3: in town
+-npc that checks quest progress
+- player can leave by other available door, first door is locked.
+
+scene 4: leaving town
+-character can explore the area and battle. 
+- leads to chest drop containing quest item.
+
+scene 5: return to town
+- check with npc, they note the second exit will be passable. 
+- player goes through final door.
+
+scene 6: 
