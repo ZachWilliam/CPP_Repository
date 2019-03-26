@@ -39,11 +39,14 @@ void Enemy::GenerateEnemy(int ID)
 	if (ID != -1)
 	{
 		Species = "Slime";
+		name = Species;
 		stats = Stats(1, 1, 1, 1, 1, 1, 1);
 		StatGrows = Stats(50, 10, 120, 10, 10, 20, 70);
 		Level = 15;
+		
 		SpawnAtLevel(Level);
-		MAX_HP = 0;
+		MAX_HP = 8 + Level * stats.CONSTITUTION * 3;
+		CurrentHP = MAX_HP;
 	}
 	else
 	{

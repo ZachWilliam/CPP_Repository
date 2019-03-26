@@ -57,6 +57,12 @@ int main()
 	bool inBattle = true;
 	Player PC = Player();
 	CharacterCreator(PC);
+	system("cls");
+	cout << PC.name << " the " << PC.Job.name << endl;
+	cout << "Wielding a ";
+	PC.PlayerInventory.m_Weapon.DisplayName();
+	cout << endl;
+	_getch();
 	Party TheGroup = Party(PC);
 	system("cls");
 	Enemy Foe(0);
@@ -73,10 +79,15 @@ int main()
 
 	while (inBattle)
 	{
+		
 		DrawCombatScreen();
 		FirstBattle.TakeTurn();
-		
+		if (!FirstBattle.Battling)
+		{
+			inBattle = false;
+		}
 		_getch();
+		system("cls");
 	}
 }
 void gotoxy(int x, int y)

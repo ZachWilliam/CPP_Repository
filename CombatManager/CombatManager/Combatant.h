@@ -21,6 +21,7 @@ public:
 	Stat_Change DEFENSE = NON;
 	Stat_Change MOBILITY = NON;
 	vector<int> BattleStats = {0,0,0,0,0,0,0,0};
+	vector<float> Resistances = { 1,1,1,1,1,1,1,1,1,1,1 };
 	int initiative;
 	int CurrentHP;
 	int CurrentMana;
