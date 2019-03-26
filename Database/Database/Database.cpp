@@ -41,12 +41,19 @@ class Item
 {
 
 };
-
+*/
 class Dialogue
 {
+public:
+	Dialogue(int id, string text,string speaker);
 
+	
+private:
+	int m_ID;
+	string m_Text;
+	string m_NPCName;
 };
-*/
+
 class Database
 {
 public:
@@ -54,6 +61,7 @@ public:
 	void DisplayBeastiary();
 private:
 	vector<Monster>Beastiary;
+	vector<Dialogue>Scenes;
 	void Load();//loads all data from CSV and puts information into Beastiary/Item/Diaglogue vector
 };
 int main()
@@ -66,6 +74,8 @@ int main()
 	_getch();
 	return 0;
 }
+
+
 Monster::Monster(int ID, string name, string desc, string type, int min, int str, int dex, int con, int intel, int wis, int agi, int luk,
 	int str_G, int dex_G, int con_G, int intel_G, int wis_G, int agi_G, int luk_G, float pierce, float slash, float bludgeon,
 	float fire, float ice, float water, float thunder, float wind, float earth, float dark, float light,
