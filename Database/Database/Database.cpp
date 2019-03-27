@@ -26,14 +26,6 @@ public:
 	const float m_PierceRes, m_SlashRes, m_BludgeonRes, m_FireRes, m_IceRes, m_WaterRes,
 		m_ThunderRes, m_WindRes, m_EarthRes, m_DarkRes, m_LightRes;
 	const int m_Target;
-
-
-private:
-
-
-
-
-
 };
 
 /*
@@ -45,13 +37,10 @@ class Item
 class Dialogue
 {
 public:
-	Dialogue(int id, string text,string speaker);
-
-	
-private:
-	int m_ID;
-	string m_Text;
-	string m_NPCName;
+	Dialogue(int ID, string text, string speaker);
+	const int m_ID;
+	const string m_Text;
+	const string m_Speaker;
 };
 
 class Database
@@ -59,16 +48,19 @@ class Database
 public:
 	void Start();
 	void DisplayBeastiary();
+	void DisplayText();
 	vector<Monster>Beastiary;
 	vector<Dialogue>Scenes;
 private:
-	
-	void Load();//loads all data from CSV and puts information into Beastiary/Item/Diaglogue vector
+	void LoadMonsters();//loads all data from CSV and puts information into Beastiary/Item/Diaglogue vector
+	void LoadText();
 };
 int main()
 {
 	Database beast;
+	Database scene;
 	beast.Start();
+	scene.Start();
 
 
 	beast.DisplayBeastiary();
@@ -86,18 +78,22 @@ Monster::Monster(int ID, string name, string desc, string type, int min, int str
 	m_Agi_G(agi_G), m_Luk_G(luk_G), m_PierceRes(pierce), m_SlashRes(slash), m_BludgeonRes(bludgeon), m_FireRes(fire), m_IceRes(ice), m_WaterRes(water),
 	m_ThunderRes(thunder), m_WindRes(wind), m_EarthRes(earth), m_DarkRes(dark), m_LightRes(light), m_Target(target) {}
 
+Dialogue(int ID, string text, string speaker):
+m_ID(ID), m_Text(text), m_Speaker(speaker){}
+
 void Database::Start()
 {
 	Load();
 }
 
-void Database::Load()
+void Database::LoadMonsters()
 {
-	cout << "Load Start\n";
-	int tID;
-	string tName;
-	string tDesc;
-	string tType;
+	cout << "Loading monsters\n";
+	int tID;//used in all
+	string tName;//used in Monsters and items
+	string tDesc;//used in Monsters and items
+	string tType;//used in Monsters and items
+	//Monster exclusive variables
 	int tMin;
 	int tStr, tDex, tCon, tIntel, tWis, tAgi, tLuk, tStr_G,
 		tDex_G, tIntel_G, tCon_G, tWis_G, tAgi_G, tLuk_G;
@@ -179,13 +175,63 @@ void Database::Load()
 	}
 	else
 	{
-		cout << "It broke Jim.\n";
+		cout << "Monsters broke Jim.\n";
 	}
 	myFile.close();
+
+	
 	_getch();
 	system("CLS");
 }
+void Database::LoadText()
+{
+	
 
+	cout << "Loading story and dialogue\n";
+	//dialogue exclusive variables
+	int tID;
+	string tText;
+	string tSpeaker;
+
+	int loopCount = 0;
+	string line;
+	ifstream myFile.open("Database_Text");
+	if (myFile.is_open())
+	{
+		cout << "Inside if";
+		//getline(myFile, line);
+		while (getline(myFile, line))
+		{
+			string data[3];
+			int count = 0;
+			for (int i = 0; i < line.length; i++)
+			{
+				if (line[i] == ';')
+				{
+					count++;
+					continue;
+				}
+				data[count] += line[i];
+			}
+
+			tID = stoi(data[0]);
+			tText = data[1];
+			tSpeaker = data[2];
+
+			Dialogue temp(tID, tText, tSpeaker);
+			Scenes.push_back(temp);
+			cout << "line: " << Scenes[loopCount].m_ID << " loaded\n";
+		}
+	}
+	else
+	{
+		cout << "Story broke Jim.\n";
+	}
+	myFile.close();
+
+	_getch();
+	system("CLS");
+}
 void Database::DisplayBeastiary()
 {
 	vector<Monster>::iterator iter;
@@ -196,6 +242,17 @@ void Database::DisplayBeastiary()
 		cout << endl;
 	}
 
+}
+
+void Database::DisplayText()
+{
+	vector<Dialogue>::iterator iter;
+	for (iter = Scenes.begin(); iter != Beastiary.end(); iter++)
+	{
+		cout << (*iter).m_ID << ":\n";
+		cout << (*iter).m_Text << endl;
+		cout << (*iter).m_Speaker << endl;
+	}
 }
 
 
