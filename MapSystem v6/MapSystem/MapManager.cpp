@@ -45,11 +45,14 @@ void MapManager::LoadAllMaps() {
 
 void MapManager::LoadMap(ifstream &p_fileToRead) {
 	vector<vector<char> > tempMap;
-	vector<Coord> tempCoords;
+	vector<Coord> v_tempCoords;
+	vector<NPC> v_tempNPCs;
+	vector<Chest> v_tempChests;
 	string name;
 	bool canBattle;
 	int id;
 	int defaultCoords[2];
+	int tempSpaceColor;
 
 	string line;
 	//ifstream myfile("introisland.txt");
@@ -69,7 +72,7 @@ void MapManager::LoadMap(ifstream &p_fileToRead) {
 				if (i == 2) {canBattle = stoi(line); break;	}
 				//Getting transition coords
 				if (i == 3) {
-					tempCoords = GetCoords(line);
+					v_tempCoords = GetCoords(line);
 					break;
 				}
 				//Get default coords
@@ -88,20 +91,28 @@ void MapManager::LoadMap(ifstream &p_fileToRead) {
 					}
 					break;
 				}
-
+				if (i == 5) {
+					tempSpaceColor = stoi(line);
+				}
+				if (i == 6) {
+					v_tempNPCs = GetNPCs(line);
+				}
+				if (i == 7) {
+					v_tempChests = GetChests(line);
+				}
 
 				//At end of line
-				if (line[j] == 'e') break;
+				//if (line[j] == 'e') break;
 
 				temp.push_back(line[j]);
 
 			}
-			if (i > 4)tempMap.push_back(temp);
+			if (i > 7)tempMap.push_back(temp);
 			i++;
 		}
 		p_fileToRead.close();
 
-		Map newMap(name, tempMap, id, canBattle, tempCoords, defaultCoords[0], defaultCoords[1]);
+		Map newMap(name, tempMap, id, canBattle, v_tempCoords, v_tempNPCs, v_tempChests, defaultCoords[0], defaultCoords[1], tempSpaceColor);
 		mapList.push_back(newMap);
 	}
 
@@ -134,3 +145,58 @@ vector<Coord> MapManager::GetCoords(const string &p_line) {
 	
 	return v_tempCoords;
 }
+
+vector<NPC> MapManager::GetNPCs(const string &p_line) {
+	int posInLine = 0;
+	vector<NPC> v_tempNPCs;
+
+	//While we havent hit the end of the line
+	while (p_line[posInLine] != 'e') {
+		vector<int> v_curInfo;
+		//While were in the current set of coords aka 21,6,21,6,2
+		while (p_line[posInLine] != ' ' && p_line[posInLine] != 'e') {
+			//while were getting a set of number(s)
+			string tempNum;
+			while (p_line[posInLine] != ',' && p_line[posInLine] != ' ' && p_line[posInLine] != 'e') {
+				tempNum += p_line[posInLine];
+				posInLine++;
+			}
+			int num = stoi(tempNum);
+			v_curInfo.push_back(num);
+			if (p_line[posInLine] != 'e' && p_line[posInLine] != ' ') posInLine++;
+		}
+		NPC newNPC(v_curInfo[0], v_curInfo[1], v_curInfo[2]);
+		v_tempNPCs.push_back(newNPC);
+		if (p_line[posInLine] != 'e') posInLine++;
+	}
+
+	return v_tempNPCs;
+}
+
+vector<Chest> MapManager::GetChests(const string &p_line) {
+	int posInLine = 0;
+	vector<Chest> v_tempChests;
+
+	//While we havent hit the end of the line
+	while (p_line[posInLine] != 'e') {
+		vector<int> v_curInfo;
+		//While were in the current set of coords aka 21,6,21,6,2
+		while (p_line[posInLine] != ' ' && p_line[posInLine] != 'e') {
+			//while were getting a set of number(s)
+			string tempNum;
+			while (p_line[posInLine] != ',' && p_line[posInLine] != ' ' && p_line[posInLine] != 'e') {
+				tempNum += p_line[posInLine];
+				posInLine++;
+			}
+			int num = stoi(tempNum);
+			v_curInfo.push_back(num);
+			if (p_line[posInLine] != 'e' && p_line[posInLine] != ' ') posInLine++;
+		}
+		Chest newChest(v_curInfo[0], v_curInfo[1], v_curInfo[2], v_curInfo[3], v_curInfo[4], v_curInfo[5], v_curInfo[6]);
+		v_tempChests.push_back(newChest);
+		if (p_line[posInLine] != 'e') posInLine++;
+	}
+
+	return v_tempChests;
+}
+

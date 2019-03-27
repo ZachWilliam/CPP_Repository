@@ -53,7 +53,7 @@ public:
 
 
 	MapManager mapManager;
-	Map curMap = mapManager.mapList[0];
+	Map curMap = mapManager.mapList[3];
 
 	//Player Info
 	enum eDirection { LEFT = -1, RIGHT = 1, UP = -1, DOWN = 1, NEUTRAL = 0 };
@@ -62,8 +62,10 @@ public:
 	int playerR = curMap.defaultPR;
 	int playerC = curMap.defaultPC;
 	char lastChar = curMap.map[playerR][playerC];
+	bool interact = false;
 
-	vector<char> v_collisionChars = { 'W', 'T', 'B', 'D', 'G', 'R' };
+	vector<char> v_collisionChars = { 'W', 'T', 'B', 'D', 'G', 'R', 'U', 'L', '=', '#'};
+	vector<char> v_interactChars = { '=','#' };
 
 	//Input
 	bool aKey = false;
@@ -75,12 +77,12 @@ public:
 
 	//Protoypes
 	int main();
-	void Draw();
 	void Input();
 	void Logic();
 
 	bool CheckCollision(char p_nextChar);
 	void SetMap(int p_pRow, int p_pCol, int p_mapID);
+	void DoInteraction();
 	void PlayMapTransEffect(bool p_close);
 
 	void DrawGUI();

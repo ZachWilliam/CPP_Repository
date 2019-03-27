@@ -1,3 +1,4 @@
+#pragma comment(lib, "winmm.lib")
 #include <iostream>
 #define _WIN32_WINNT 0x0500//This needs to be here before #include <Windows.h> for GetConsoleWindow to work
 #include <Windows.h>
@@ -5,7 +6,12 @@
 #include <conio.h>
 #include "Format.h"
 #include "MapMain.h"
+
 using namespace std;
+
+
+
+
 
 
 void Setup() {
