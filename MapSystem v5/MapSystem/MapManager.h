@@ -17,6 +17,8 @@ public:
 
 
 	vector<Coord> GetCoords(const string &p_line);
+	vector<NPC> GetNPCs(const string &p_line);
+	vector<Chest> GetChests(const string &p_line);
 	void LoadAllMaps();
 	void LoadMap(ifstream &p_fileToRead);
 };
