@@ -52,6 +52,7 @@ public:
 	int Level;
 	int Selection = 0;
 	int NextMove = 0;
+	bool Battling = true;
 	bool TopMenu = true;
 	bool AtkMenu = false;
 	bool ItmMenu = false;
@@ -98,7 +99,7 @@ void Encounter::Attack(Player User, Combatant Target)
 {
 	int Damage = User.PlayerInventory.m_Weapon.Attack();
 	Damage += User.CurrentStats.ValueFromStatIn(User.PlayerInventory.m_Weapon.m_Weapon_Type.m_StatUsed);
-	if (User.PlayerInventory.m_Weapon.m_Weapon_Type.magic || User.PlayerInventory.m_Weapon.m_Weapon_Type.staff)
+	if (User.PlayerInventory.m_Weapon.m_Weapon_Type.magic)
 	{
 		Damage -= Target.BattleStats[RESISTANCE];
 	}
@@ -106,8 +107,32 @@ void Encounter::Attack(Player User, Combatant Target)
 	{
 		Damage -= Target.BattleStats[DEFENSE];
 	}
-	
-	
+	if (User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement > 0 && User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement < 9)
+	{
+		if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 0)
+		{
+			Damage *= Target.Resistances[User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement + 2];
+		}
+		else
+		{
+			Damage *= (Target.Resistances[User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement + 2] / float(2));
+		}
+		
+	}
+	if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 1)
+	{
+		Damage *= Target.Resistances[0];
+	}
+	if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 2)
+	{
+		Damage *= Target.Resistances[1];
+	}
+	if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 3 || User.PlayerInventory.m_Weapon.m_Weapon_Type.staff)
+	{
+		Damage *= Target.Resistances[2];
+	}
+	Target.CurrentHP -= Damage;
+
 }
 void Encounter::Attack(Enemy User, Combatant Target)
 {
@@ -115,10 +140,34 @@ void Encounter::Attack(Enemy User, Combatant Target)
 }
 void Encounter::TakeTurn()
 {
-	if (Order[InitiativeOrder].combatantValue.name == "")
+	
+	for (int i = Order.size() - 1; i >= 0; i--)
+	{
+		if (Order[i].combatantValue.CurrentHP <= 0 && Order[i].combatantValue.PlayerControl == false)
+		{
+			Order.erase(Order.begin()+i);
+			if (i <= InitiativeOrder)
+			{
+				InitiativeOrder--;
+			}
+		}
+	}
+	Battling = false;
+	for (int i = Order.size() - 1; i >= 0; i--)
+	{
+		if (!Order[i].combatantValue.PlayerControl)
+		{
+			Battling = true;
+		}
+	}
+	if (!Battling)
 	{
 		return;
 	}
+	//if (Order[InitiativeOrder].combatantValue.name == "")
+	//{
+	//	return;
+	//}
 	if (Order[InitiativeOrder].combatantValue.PlayerControl)
 	{
 		Selection = 0;
@@ -197,7 +246,7 @@ void Encounter::TakeTurn()
 			else if (Flee)
 			{
 				cout << Order[InitiativeOrder].combatantValue.name << " has fled the battle!";
-				Order[InitiativeOrder].combatantValue = Combatant();
+				Order.erase(Order.begin() + InitiativeOrder);
 			}
 			NextMove = _getch();
 
@@ -242,6 +291,7 @@ void Encounter::TakeTurn()
 				}
 				else if (Selection == 0 && AtkMenu)
 				{
+
 					break;
 				}
 				else if (Selection == 1 && AtkMenu)
@@ -271,10 +321,19 @@ void Encounter::TakeTurn()
 
 		}
 		InitiativeOrder++;
-		if (InitiativeOrder > Order.size())
+		if (InitiativeOrder >= Order.size())
 		{
 			InitiativeOrder = 0;
 		}
-
+	}
+	else
+	{
+		gotoxy(0, 33);
+		cout << "Slime acts!";
+		InitiativeOrder++;
+		if (InitiativeOrder >= Order.size())
+		{
+			InitiativeOrder = 0;
+		}
 	}
 }

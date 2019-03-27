@@ -15,7 +15,7 @@ public:
 
 	Monster(int ID, string name, string desc, string type, int min, int str, int dex, int con, int intel, int wis, int agi, int luk,
 		int str_G, int dex_G, int con_G, int intel_G, int wis_G, int agi_G, int luk_G, float pierce, float slash, float bludgeon,
-		float fire, float ice, float water, float thunder, float wind, float earth, float dark, float light,int target);
+		float fire, float ice, float water, float thunder, float wind, float earth, float dark, float light, int target);
 	const int m_ID;
 	const string m_Name;
 	const string m_Desc;
@@ -30,7 +30,7 @@ public:
 
 private:
 
-	
+
 
 
 
@@ -41,18 +41,27 @@ class Item
 {
 
 };
-
+*/
 class Dialogue
 {
+public:
+	Dialogue(int id, string text,string speaker);
 
+	
+private:
+	int m_ID;
+	string m_Text;
+	string m_NPCName;
 };
-*/
+
 class Database
 {
 public:
 	void Start();
+	void DisplayBeastiary();
 private:
 	vector<Monster>Beastiary;
+	vector<Dialogue>Scenes;
 	void Load();//loads all data from CSV and puts information into Beastiary/Item/Diaglogue vector
 };
 int main()
@@ -60,14 +69,19 @@ int main()
 	Database beast;
 	beast.Start();
 
+
+	beast.DisplayBeastiary();
+	_getch();
 	return 0;
 }
+
+
 Monster::Monster(int ID, string name, string desc, string type, int min, int str, int dex, int con, int intel, int wis, int agi, int luk,
-	int str_G, int dex_G, int con_G, int intel_G,int wis_G, int agi_G, int luk_G, float pierce, float slash, float bludgeon,
+	int str_G, int dex_G, int con_G, int intel_G, int wis_G, int agi_G, int luk_G, float pierce, float slash, float bludgeon,
 	float fire, float ice, float water, float thunder, float wind, float earth, float dark, float light,
 	int target) :
 	m_ID(ID), m_Name(name), m_Desc(desc), m_Type(type), m_Min(min), m_Str(str), m_Dex(dex), m_Con(con), m_Intel(intel),
-	m_Wis(wis), m_Agi(agi), m_Luk(luk), m_Str_G(str_G), m_Dex_G(dex_G), m_Con_G(con_G),m_Intel_G(intel_G), m_Wis_G(wis_G),
+	m_Wis(wis), m_Agi(agi), m_Luk(luk), m_Str_G(str_G), m_Dex_G(dex_G), m_Con_G(con_G), m_Intel_G(intel_G), m_Wis_G(wis_G),
 	m_Agi_G(agi_G), m_Luk_G(luk_G), m_PierceRes(pierce), m_SlashRes(slash), m_BludgeonRes(bludgeon), m_FireRes(fire), m_IceRes(ice), m_WaterRes(water),
 	m_ThunderRes(thunder), m_WindRes(wind), m_EarthRes(earth), m_DarkRes(dark), m_LightRes(light), m_Target(target) {}
 
@@ -96,10 +110,10 @@ void Database::Load()
 	if (myFile.is_open())
 	{
 		getline(myFile, line);
-		cout << "Inside if.\n";
+		//cout << "Inside if.\n";
 		while (getline(myFile, line))
 		{
-			cout << "Inside while\n";
+			//cout << "Inside while\n";
 			string data[31];
 			int count = 0;
 			for (int i = 0; i < line.length(); i++)
@@ -112,7 +126,7 @@ void Database::Load()
 				}
 				data[count] += line[i];
 			}
-			cout << "Loading to temp.\n";
+			//cout << "Loading to temp.\n";
 			//basic info
 			tID = stoi(data[0]);
 			tName = data[1];
@@ -136,25 +150,25 @@ void Database::Load()
 			tAgi_G = stoi(data[17]);
 			tLuk_G = stoi(data[18]);
 			//resistance
-			tPierceRes = stoi(data[19]);
-			tSlashRes = stoi(data[20]);
-			tBludgeonRes = stoi(data[21]);
-			tFireRes = stoi(data[22]);
-			tIceRes = stoi(data[23]);
-			tWaterRes = stoi(data[24]);
-			tThunderRes = stoi(data[25]);
-			tWindRes = stoi(data[26]);
-			tEarthRes = stoi(data[27]);
-			tDarkRes = stoi(data[28]);
-			tLightRes = stoi(data[29]);
+			tPierceRes = stof(data[19]);
+			tSlashRes = stof(data[20]);
+			tBludgeonRes = stof(data[21]);
+			tFireRes = stof(data[22]);
+			tIceRes = stof(data[23]);
+			tWaterRes = stof(data[24]);
+			tThunderRes = stof(data[25]);
+			tWindRes = stof(data[26]);
+			tEarthRes = stof(data[27]);
+			tDarkRes = stof(data[28]);
+			tLightRes = stof(data[29]);
 			//target
 			tTarget = stoi(data[30]);
-			cout << "starting constructor.\n";
+			//cout << "starting constructor.\n";
 			Monster temp(tID, tName, tDesc, tType, tMin, tStr, tDex, tCon, tIntel,
 				tWis, tAgi, tLuk, tStr_G, tDex_G, tCon_G, tIntel_G, tWis_G,
 				tAgi_G, tLuk_G, tPierceRes, tSlashRes, tBludgeonRes, tFireRes,
 				tIceRes, tWaterRes, tThunderRes, tWindRes, tEarthRes, tDarkRes, tLightRes, tTarget);
-			cout << "pushback\n";
+			//cout << "pushback\n";
 			Beastiary.push_back(temp);
 
 			cout << Beastiary[loopCount].m_Name << " loaded\n";
@@ -170,10 +184,21 @@ void Database::Load()
 	_getch();
 	system("CLS");
 }
-		
-			
-			
-			
-			
-			
-			
+
+void Database::DisplayBeastiary()
+{
+	vector<Monster>::iterator iter;
+	for (iter = Beastiary.begin(); iter != Beastiary.end(); iter++)
+	{
+		cout << endl << (*iter).m_Name << " - " << (*iter).m_Type << endl;
+		cout << (*iter).m_Desc << endl;
+		cout << endl;
+	}
+
+}
+
+
+
+
+
+

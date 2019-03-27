@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Weapon.h"
 #pragma once
 
 using namespace std;
@@ -11,8 +12,8 @@ public:
 	PlayerClass(string, int, int);
 	string name;
 	string Desc1 = "desc1", Desc2 = "desc2", Desc3 = "desc3", AbilityDesc = "Ability:";
-	int STR_BASE, DEX_BASE, CON_BASE, AGI_BASE, INT_BASE, PIE_BASE, LUK_BASE;
-	int STR_G, DEX_G, CON_G, AGI_G, INT_G, PIE_G, LUK_G;
+	int STR_BASE = 0, DEX_BASE = 0, CON_BASE = 0, AGI_BASE = 0, INT_BASE = 0, WIS_BASE = 0, LUK_BASE = 0;
+	int STR_G = 0, DEX_G = 0, CON_G = 0, AGI_G = 0, INT_G = 0, WIS_G = 0, LUK_G = 0;
 	bool Simple, Martial, Ranged, Magic, Staff;
 	enum BaseType {NonClass = 0, 
 		Knight, 
@@ -26,6 +27,7 @@ public:
 		Clergy};
 	BaseType Prerequisite = NonClass;
 	BaseType Current = NonClass;
+	Weapon StarterWeapon = Weapon();
 };
 PlayerClass::PlayerClass()
 {

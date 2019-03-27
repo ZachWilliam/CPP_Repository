@@ -18,6 +18,7 @@ public:
 	Stats CurrentStats = Stats();
 	PlayerClass Job = PlayerClass();
 	Backpack PlayerInventory = Backpack();
+	int Max_HP = 0;
 };
 Player::Player()
 {
