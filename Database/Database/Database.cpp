@@ -59,9 +59,10 @@ class Database
 public:
 	void Start();
 	void DisplayBeastiary();
-private:
 	vector<Monster>Beastiary;
 	vector<Dialogue>Scenes;
+private:
+	
 	void Load();//loads all data from CSV and puts information into Beastiary/Item/Diaglogue vector
 };
 int main()
