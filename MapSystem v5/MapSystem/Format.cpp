@@ -34,6 +34,7 @@ void OutputSpeech(vector <string> p_vSpeech, const string &p_npcName, const int 
 }
 
 void OutputSpeech(string p_speech, const string &p_npcName, const int p_screenWidth, const int p_bottomStartRow) {
+	SetColorAndBackground();
 	const int SPEECH_WIDTH = p_screenWidth - 2;
 	const int LINES_PER_PANE = 5;
 	const int START_POINT = 0;
@@ -135,12 +136,14 @@ void SetColorAndBackground(int backC, int textC) {
 
 int GetColorValue(char displayChar) {
 	if (displayChar == 'W' || displayChar == 'w') return BLUE;
+	else if (displayChar == 'l' || displayChar == 'L') return LIGHTBLUE;
 	else if (displayChar == 'B' || displayChar == 'b') return BROWN;
-	else if (displayChar == ' ') return LIGHTGREEN;
 	else if (displayChar == 'T' || displayChar == 't') return GREEN;
 	else if (displayChar == 'd' || displayChar == 'D' || displayChar == '?') return BLACK;
 	else if (displayChar == 'g' || displayChar == 'G') return LIGHTGRAY;
 	else if (displayChar == 'r' || displayChar == 'R') return DARKGRAY;
 	else if (displayChar == 'P') return RED;
+	else if (displayChar == '=') return YELLOW;
+	else if (displayChar == '#') return LIGHTMAGENTA;
 	else return BLACK;
 }
