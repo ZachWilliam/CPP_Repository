@@ -20,7 +20,7 @@ int main()
 	srand(static_cast<unsigned int>(time(0)));
 
 	Backpack PlayerOne(5, 5, false, 1, 2, 10, 1, 2, 10, 12);
-	Backpack PlayerTwo;
+	//Backpack PlayerTwo;
 	Backpack PlayerThree(0, 10, false, 0, 3, 10, 2, 2, 10, 12);
 	Backpack PlayerFour(5, 5, false, 3, 2, 10, 1, 2, 10, 12);
 
@@ -64,14 +64,14 @@ int main()
 	cout << endl;
 	cout << endl;
 
-	cout << "Player Two:\n";
+/*cout << "Player Two:\n";
 	PlayerTwo.m_Weapon.Status();
 	cout << endl;
 	PlayerTwo.m_Armor.Status();
 	cout << endl;
 	PlayerTwo.m_Purse.Status();
 	cout << endl;
-	cout << endl;
+	cout << endl;*/
 
 	cout << "Player Three:\n";
 	PlayerThree.m_Weapon.Status();
