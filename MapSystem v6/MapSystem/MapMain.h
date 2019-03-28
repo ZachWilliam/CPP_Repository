@@ -53,7 +53,7 @@ public:
 
 
 	MapManager mapManager;
-	Map curMap = mapManager.mapList[0];
+	Map curMap = mapManager.mapList[1];
 
 	//Player Info
 	enum eDirection { LEFT = -1, RIGHT = 1, UP = -1, DOWN = 1, NEUTRAL = 0 };

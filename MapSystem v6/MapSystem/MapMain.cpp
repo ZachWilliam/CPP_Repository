@@ -128,7 +128,6 @@ void MapMain::DoInteraction() {
 			charRow = playerR; charCol = playerC + 1;
 		}
 	}
-	cout << interactChar;
 
 	//Chest
 	if (interactChar == '=') {
@@ -217,7 +216,7 @@ void MapMain::DoInteraction() {
 			}
 			else if (interactChar == '&') {
 				//Call Inn Function and stuff
-				OutputSpeech("Welcome to the inn, inn stuff would happen here", "Inn Keeper", SCREEN_WIDTH, BOT_START_ROW);
+				OutputSpeech("Welcome to the inn, inn stuff would happen here.", "Inn Keeper", SCREEN_WIDTH, BOT_START_ROW);
 			}
 			else if (interactChar == '+') {
 				//Call Weapon shop function and stuff
@@ -225,11 +224,11 @@ void MapMain::DoInteraction() {
 			}
 			else if (interactChar == '%') {
 				//Call Armor shop function and stuff
-				OutputSpeech("Armor shop function call would be here", "Armor Shop", SCREEN_WIDTH, BOT_START_ROW);
+				OutputSpeech("Armor shop function call would be here.", "Armor Shop", SCREEN_WIDTH, BOT_START_ROW);
 			}
 		}
 		else
-			OutputSpeech("Could not find NPC associated with these coordinates", "ERROR", SCREEN_WIDTH, BOT_START_ROW);
+			OutputSpeech("Could not find NPC associated with these coordinates.", "ERROR", SCREEN_WIDTH, BOT_START_ROW);
 	}
 
 	interactChar = ' ';

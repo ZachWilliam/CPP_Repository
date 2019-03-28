@@ -165,7 +165,7 @@ vector<NPC> MapManager::GetNPCs(const string &p_line) {
 			v_curInfo.push_back(num);
 			if (p_line[posInLine] != 'e' && p_line[posInLine] != ' ') posInLine++;
 		}
-		NPC newNPC(v_curInfo[0], v_curInfo[1], v_curInfo[2]);
+		NPC newNPC(v_curInfo[0], v_curInfo[1], v_curInfo[2], v_curInfo[3], v_curInfo[4]);
 		v_tempNPCs.push_back(newNPC);
 		if (p_line[posInLine] != 'e') posInLine++;
 	}
