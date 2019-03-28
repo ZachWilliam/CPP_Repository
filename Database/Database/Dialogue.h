@@ -5,8 +5,10 @@ using namespace std;
 class Dialogue
 {
 public:
-	Dialogue(int ID, string text, string speaker);
-	const int m_ID;
+	Dialogue(int mapID, int speakerID, int textID, string text, string speaker);
+	const int m_MapID;
+	const int m_SpeakerID;
+	const int m_TextID;
 	const string m_Text;
 	const string m_Speaker;
 };
