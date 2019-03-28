@@ -15,9 +15,9 @@ WWWWWWWWWWW           RGGGGGGGGGbbGGGGGGR      RbbbGbbbbbGGGGGGGGbbGGGGGGGGbbbbb
 WWWWWWWWWWW           RbbbbbbbbbbbbbbbbbR  TT  RbbbTbbbbbbbbbbbbbbbbbbbbbbbbbbbbbTbbR        WWWW     LLLLLLLLL        TT        TTRR
 WWWWWWWWWWW           RbbbbbbbbbbbbbbbbbR      RbbbGbbbbGTGbbbbbbbbbbbbbbGTGbbbbbGbbR        WWWW     LLLLLLLLL         TTT  TTTTT RR
 WWWWWWWWWWW           RbbbbbbbbbbbbbbbbbR  TT  RbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbR        WWWW     LLLLLLLLL                    RR
-WWWWWWWWWWW           RbbbbbbbbbbbbbbbbbR      RbbbbbbbRRRRRRRRRRRbbRRRRRRRRRbbbbbbbR        WWWW      LLLLL                       RR
+WWWWWWWWWWW           RbbbbbbbbbbbbbbbbbR      RbbbbbbbRRRRRRRRRRRggRRRRRRRRRbbbbbbbR        WWWW      LLLLL                       RR
 WWWWWWWWWWW           RTTbbTTbbbbbTTbbTTR  TT  RbbbbbbbR         gggg       RbbbbbbbR        WWWW                                  RR
-WWWWWWWWWWW           RRRRRRRRbbRRRRRRRRR      RTbbbbbbR  TTTT   gggg  TTT  RbbbbbbTR        WWWW        LLLLLLL                   RR
+WWWWWWWWWWW           RRRRRRRRRggRRRRRRRR      RTbbbbbbR  TTTT   gggg  TTT  RbbbbbbTR        WWWW        LLLLLLL                   RR
 WWWWWWWWWWW                    gg              RTTbbbbbR  TTTT   gggg  TTT  RbbbbbTTR        WWWW       LLLLLLLLLLLLLL             RR
 WWWWWWWWWWW                    gg              RRRRRRRRR         gggg       RRRRRRRRR        WWWW       LLLLLLLLLLLLLLLLLLLLL      RR
 WWWWWWWWWWW                TT  gg  TT                       TT   gggg   TT                   WWWW       LLLLLLLLLLLLLLLLLLLLLL     RR
@@ -31,12 +31,12 @@ WWWWWWBBBBBBBB    TT       TT   TT   TT   TT   TT   TT       gggggggggggg       
 WWWWWWBBBBBBBB    TT                                             gggg       TTTTggTTTT       WWWW   TT      gg gggg            TT  RR
 WWWWWWWWWWW                       RRRRRRRRRRRRRRRRRRRRR          gggg      T    gg    T      WWWW           ggggTTgggggg           RR
 WWWWWWWWWWW                       RTTbbbTTbbbbbbbbbbTTR      T   gggg     T  TTTggTTT  T     WWWW              gggg   gg           RR
-WWWWWWWWWWW     LLLLL             RTbbbbbbbbbbbbbbbbbTR    TTT   gggg     T T  gggg  T T     WWWW   TT   RRRRRRRRRRRRRbbRRRR   TT  RR
+WWWWWWWWWWW     LLLLL             RTbbbbbbbbbbbbbbbbbTR    TTT   gggg     T T  gggg  T T     WWWW   TT   RRRRRRRRRRRRRggRRRR   TT  RR
 WWWWWWWWWWW    LLLLLLL            RbbbbbbGGGGGbbbbbbbbR          gggg     T T gT  Tg T T     WWWW        RbbbbbbbbbbbbbbbbbR       RR
-WWWWWWWWWWW    LLLLLLL       RRRRRRbbbbbbGGTGGbbbbbbbbbgggggggggggggggggggggggg LL g         WWWW        RbbbbbbbbbbbbbbbbbR       RR
-WWWWWWWWWWW    LLLLLLL       R    RbbbbbbGGGGGbbbbbbbbbgggggggggggggggggggggggg LL g         WWWW   TT   RbbbbbbbbbbbbbbbbbR   TT  RR
+WWWWWWWWWWW    LLLLLLL       RRRRRRbbbbbbGGTGGbbbbbbbbggggggggggggggggggggggggg LL g         WWWW        RbbbbbbbbbbbbbbbbbR       RR
+WWWWWWWWWWW    LLLLLLL       R    RbbbbbbGGGGGbbbbbbbbggggggggggggggggggggggggg LL g         WWWW   TT   RbbbbbbbbbbbbbbbbbR   TT  RR
 WWWWWWWWWWW   LLLLLLLL       R    RbbbbbbbbbbbbbbbbbbbR          gggg     T T gT  Tg T T     WWWW        RbbbGGbbGGbbbbbbbbR       RR
-WWWWWWWWWWW   LLLLLLLL       R    bbbbbbbbbbbbbbbbbbbTR    TTT   gggg     T T  gggg  T T     WWWW        Rbbbbbbbbbbbbb%bbbR       RR
+WWWWWWWWWWW   LLLLLLLL       R    gbbbbbbbbbbbbbbbbbbTR    TTT   gggg     T T  gggg  T T     WWWW        Rbbbbbbbbbbbbb%bbbR       RR
 WWWWWWWWWWWLLLLLLLLLLL       R    RbbbbbbbbbbTTbbbbbTTR      T   gggg     T  TTT  TTT  T     WWWW   TT   RTbbGGbbGGbbbbbbbTR   TT  RR
 WWWWWWWWWWW   LLLLLLL        RRRRRRRRRRRRRRRRRRRRRRRRRR          gggg      T          T      WWWW        RTTbbbbbbbbbbbbTTTR       RR
 WWWWWWWWWWW    LLLLL                                             gggg       TTTT  TTTT       WWWW        RRRRRRRRRRRRRRRRRRR       RR
