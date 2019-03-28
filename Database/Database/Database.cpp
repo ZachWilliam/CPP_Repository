@@ -89,7 +89,7 @@ void Database::LoadMonsters()
 			//cout << "pushback\n";
 			Beastiary.push_back(temp);
 
-			cout << Beastiary[loopCount].m_Name << " loaded\n";
+			//cout << Beastiary[loopCount].m_Name << " loaded\n";
 			loopCount++;
 		}
 
@@ -100,16 +100,18 @@ void Database::LoadMonsters()
 	}
 	myFile.close();
 
-
-	_getch();
-	system("CLS");
+	cout << "Monsters loaded.\n\n";
+	//_getch();
+	//system("CLS");
 }
 
 void Database::LoadText()
 {
 	cout << "Loading story and dialogue\n";
 	//dialogue exclusive variables
-	int tID;
+	int tMapID;
+	int tSpeakerID;
+	int tTextID;
 	string tText;
 	string tSpeaker;
 
@@ -118,11 +120,11 @@ void Database::LoadText()
 	ifstream myFile("Database_Text.csv");
 	if (myFile.is_open())
 	{
-		cout << "Inside if";
+		//cout << "Inside if";
 		//getline(myFile, line);
 		while (getline(myFile, line))
 		{
-			string data[3];
+			string data[5];
 			int count = 0;
 			for (unsigned int i = 0; i < line.length(); i++)
 			{
@@ -134,13 +136,15 @@ void Database::LoadText()
 				data[count] += line[i];
 			}
 
-			tID = stoi(data[0]);
-			tText = data[1];
-			tSpeaker = data[2];
+			tMapID = stoi(data[0]);
+			tSpeakerID = stoi(data[1]);
+			tTextID = stoi(data[2]);
+			tText = data[3];
+			tSpeaker = data[4];
 
-			Dialogue temp(tID, tText, tSpeaker);
+			Dialogue temp(tMapID,tSpeakerID,tTextID, tText, tSpeaker);
 			Scenes.push_back(temp);
-			cout << "line: " << Scenes[loopCount].m_ID << " loaded\n";
+			//cout << "line: " << Scenes[loopCount].m_MapID << Scenes[loopCount].m_SpeakerID << Scenes[loopCount].m_TextID << " loaded\n";
 			loopCount++;
 		}
 	}
@@ -149,9 +153,9 @@ void Database::LoadText()
 		cout << "Story broke Jim.\n";
 	}
 	myFile.close();
-
-	_getch();
-	system("CLS");
+	cout << "Text and Dialogue loaded\n";
+	//_getch();
+	//system("CLS");
 }
 
 void Database::DisplayBeastiary()
@@ -171,8 +175,41 @@ void Database::DisplayText()
 	vector<Dialogue>::iterator iter;
 	for (iter = Scenes.begin(); iter != Scenes.end(); iter++)
 	{
-		cout << (*iter).m_ID << ":\n";
+		cout << (*iter).m_MapID << (*iter).m_SpeakerID << (*iter).m_TextID << ":\n";
 		cout << (*iter).m_Text << endl;
 		cout << (*iter).m_Speaker << endl;
 	}
+}
+
+string Database::ReturnName(int speakerID)
+{
+	vector<Dialogue>::iterator iter;
+
+	for (iter = Scenes.begin();iter != Scenes.end(); iter++)
+	{
+		if ((*iter).m_SpeakerID == speakerID)
+		{
+			return (*iter).m_Speaker;
+		}
+	}
+	cout << "Name not found.\n";
+
+	return "";
+}
+
+string Database::ReturnDialogue(int sceneID, int speakerID, int textID)
+{
+	vector<Dialogue>::iterator iter;
+
+	for (iter = Scenes.begin(); iter != Scenes.end(); iter++)
+	{
+		if ((*iter).m_MapID == sceneID,
+			(*iter).m_SpeakerID == speakerID,
+			(*iter).m_TextID == textID)
+		{
+			return (*iter).m_Text;
+		}
+	}
+	cout << "Information missing.\n";
+	return "";
 }

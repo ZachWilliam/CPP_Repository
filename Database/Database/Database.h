@@ -19,6 +19,7 @@ public:
 	vector<Dialogue>Scenes;
 	void LoadMonsters();//loads all data from CSV and puts information into Beastiary/Item/Diaglogue vector
 	void LoadText();
-	
+	string ReturnName(int speakerID);
+	string ReturnDialogue(int sceneID, int speakerID, int textID);
 };
 
