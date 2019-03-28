@@ -4,7 +4,7 @@ Maple Grove
 5,125,26,52,5e //Transition Coords
 6,126
 10
-e //5,14,2NPC data
+4,28,2e //NPC data Row/Col/MapID/NameID/TextID
 e //Chest data
 WWWWWWWWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 WWWWWWWWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
@@ -35,7 +35,7 @@ WWWWWWWWWWW     LLLLL             RTbbbbbbbbbbbbbbbbbTR    TTT   gggg     T T  g
 WWWWWWWWWWW    LLLLLLL            RbbbbbbGGGGGbbbbbbbbR          gggg     T T gT  Tg T T     WWWW        RbbbbbbbbbbbbbbbbbR       RR
 WWWWWWWWWWW    LLLLLLL       RRRRRRbbbbbbGGTGGbbbbbbbbggggggggggggggggggggggggg LL g         WWWW        RbbbbbbbbbbbbbbbbbR       RR
 WWWWWWWWWWW    LLLLLLL       R    RbbbbbbGGGGGbbbbbbbbggggggggggggggggggggggggg LL g         WWWW   TT   RbbbbbbbbbbbbbbbbbR   TT  RR
-WWWWWWWWWWW   LLLLLLLL       R    RbbbbbbbbbbbbbbbbbbbR          gggg     T T gT  Tg T T     WWWW        RbbbGGbbGGbbbbbbbbR       RR
+WWWWWWWWWWW   LLLLLLLL       R #  RbbbbbbbbbbbbbbbbbbbR          gggg     T T gT  Tg T T     WWWW        RbbbGGbbGGbbbbbbbbR       RR
 WWWWWWWWWWW   LLLLLLLL       R    gbbbbbbbbbbbbbbbbbbTR    TTT   gggg     T T  gggg  T T     WWWW        Rbbbbbbbbbbbbb%bbbR       RR
 WWWWWWWWWWWLLLLLLLLLLL       R    RbbbbbbbbbbTTbbbbbTTR      T   gggg     T  TTT  TTT  T     WWWW   TT   RTbbGGbbGGbbbbbbbTR   TT  RR
 WWWWWWWWWWW   LLLLLLL        RRRRRRRRRRRRRRRRRRRRRRRRRR          gggg      T          T      WWWW        RTTbbbbbbbbbbbbTTTR       RR

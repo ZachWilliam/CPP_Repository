@@ -7,10 +7,12 @@ using namespace std;
 class NPC
 {
 public:
-	NPC(int p_row, int p_col, int p_dID);
+	NPC(int p_row, int p_col, int p_mapID, int p_nameID, int p_dID);
 	
 	int row;
 	int col;
+	int mapID;
+	int nameID;
 	int dialogueID;
 };
 

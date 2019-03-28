@@ -13,8 +13,6 @@ int MapMain::main() {
 	DrawRight();
 
 	while (true) {
-		//cout << curMap.v_chests[0].row << " " << curMap.v_chests[0].col;
-		cout << curMap.v_chests.size();
 		DrawScreen();
 		Input();
 		Logic();
@@ -155,7 +153,7 @@ void MapMain::DoInteraction() {
 					//string name
 					tempText = "You have picked up a " + newItem.DisplayNameText();
 
-					//Push item into inventory
+					//Call AddWeapon(?,?,?) instead of set weapon
 
 				}
 				else if (curMap.v_chests[locInChestVec].itemID == 2) {
@@ -166,7 +164,7 @@ void MapMain::DoInteraction() {
 					//string name
 					tempText = "You have picked up a " + newItem.DisplayNameText();
 
-					//Push item into inventory
+					//Call AddArmor(?,?,?) instead of set weapon
 
 				}
 
@@ -192,7 +190,7 @@ void MapMain::DoInteraction() {
 	}
 
 	//NPC
-	if (interactChar == '#') {
+	if (interactChar == '#' || interactChar == '+' || interactChar == '*' || interactChar == '&' || interactChar == '%') {
 		//Find npc
 		int locInNPCVec = -1;
 		for (int i = 0; i < curMap.v_npcs.size(); i++)
@@ -203,14 +201,32 @@ void MapMain::DoInteraction() {
 
 		//If we found the npc
 		if (locInNPCVec != -1) {
-			//Find dialogue by ID
+			if (interactChar == '#' || interactChar == '*') {
 
-			//string name = Dialogue[curMap.v_npcs[locInNPCVec].dialogueID;
-			//string speech;
+				//Find dialogue by ID
 
-			//OutputSpeech(speech, name, SCREEN_WIDTH, BOT_START_ROW);
+				//string name = Dialogue[curMap.v_npcs[locInNPCVec].dialogueID;
+				//string speech;
 
-			OutputSpeech("This is where the text for npc would be.", "Dummy Text", SCREEN_WIDTH, BOT_START_ROW);
+				//OutputSpeech(speech, name, SCREEN_WIDTH, BOT_START_ROW);
+
+				OutputSpeech("This is where the text for npc and quest npc would be.", "NPC & Quest NPC", SCREEN_WIDTH, BOT_START_ROW);
+				if (interactChar == '*') {
+					//Do quest stuff
+				}
+			}
+			else if (interactChar == '&') {
+				//Call Inn Function and stuff
+				OutputSpeech("Welcome to the inn, inn stuff would happen here", "Inn Keeper", SCREEN_WIDTH, BOT_START_ROW);
+			}
+			else if (interactChar == '+') {
+				//Call Weapon shop function and stuff
+				OutputSpeech("Weapon shop function call would be here.", "Weapon Shop", SCREEN_WIDTH, BOT_START_ROW);
+			}
+			else if (interactChar == '%') {
+				//Call Armor shop function and stuff
+				OutputSpeech("Armor shop function call would be here", "Armor Shop", SCREEN_WIDTH, BOT_START_ROW);
+			}
 		}
 		else
 			OutputSpeech("Could not find NPC associated with these coordinates", "ERROR", SCREEN_WIDTH, BOT_START_ROW);
