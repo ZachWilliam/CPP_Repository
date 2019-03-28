@@ -8,5 +8,5 @@
 303;You approach the mechanism holding the drawbrdge upright, setting the crank. With a swift kick, you send the crank spinning as the draw bridge drops. With a mighty slam and a rush of wind the drawbridge is opened and you know you're ready to face destiny.;Narrator
 311;"""Hello friend! However did you get here?""The odd man cries out in delight, cutting you off before you can answer."" Our island has been cut off from the mainland by a kraken and we haven't had new visitors in  a while."" He grabs the lapel of his jacket and puffs out his chest.""Mayor Exposition, at your service."" ";Mayor Exposition
 312;"I would love to stay and chat but as you can see, he says with a sweeping gesture around himself,""I am a very busy man, and you need a quest. I've chosen to hire you to fight that kraken but first you need to get the crank to lower the draw bridge."" He looks at the shadow of the statue. ""Oh my! Look at the time. Yes you best be off. Use the East gate. You'll find a /*quest item area*/ where the crank was taken.""";Mayor Exposition
-401;;
-501;/*what is final area? Harbor fits with original idea.*/;
+401; ; 
+501;/*what is final area? Harbor fits with original idea.*/; 

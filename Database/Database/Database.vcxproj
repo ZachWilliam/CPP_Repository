@@ -18,6 +18,17 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Database.cpp" />
+    <ClCompile Include="Dialogue.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Monster.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Database.h" />
+    <ClInclude Include="Dialogue.h" />
+    <ClInclude Include="Monster.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{8BB85FD1-6B2F-4F44-9818-7D7277D3C4ED}</ProjectGuid>
@@ -114,9 +125,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Database.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
