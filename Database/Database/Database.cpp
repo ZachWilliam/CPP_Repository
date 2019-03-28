@@ -1,86 +1,11 @@
-#include <iostream>
-#include <conio.h>
-#include <string>
-#include <vector>
-#include <cctype>
-#include <algorithm>
-#include <fstream>
-
-using namespace std;
-
-class Monster
-{
-public:
-
-	Monster(int ID, string name, string desc, string type, int min, int str, int dex, int con, int intel, int wis, int agi, int luk,
-		int str_G, int dex_G, int con_G, int intel_G, int wis_G, int agi_G, int luk_G, float pierce, float slash, float bludgeon,
-		float fire, float ice, float water, float thunder, float wind, float earth, float dark, float light, int target);
-	const int m_ID;
-	const string m_Name;
-	const string m_Desc;
-	const string m_Type;
-	const int m_Min;
-	const int m_Str, m_Dex, m_Con, m_Intel, m_Wis, m_Agi, m_Luk, m_Str_G,
-		m_Dex_G, m_Con_G, m_Intel_G, m_Wis_G, m_Agi_G, m_Luk_G;
-	const float m_PierceRes, m_SlashRes, m_BludgeonRes, m_FireRes, m_IceRes, m_WaterRes,
-		m_ThunderRes, m_WindRes, m_EarthRes, m_DarkRes, m_LightRes;
-	const int m_Target;
-};
-
-/*
-class Item
-{
-
-};
-*/
-class Dialogue
-{
-public:
-	Dialogue(int ID, string text, string speaker);
-	const int m_ID;
-	const string m_Text;
-	const string m_Speaker;
-};
-
-class Database
-{
-public:
-	void DisplayBeastiary();
-	void DisplayText();
-	vector<Monster>Beastiary;
-	vector<Dialogue>Scenes;
-	void LoadMonsters();//loads all data from CSV and puts information into Beastiary/Item/Diaglogue vector
-	void LoadText();
-private:
-
-};
-
-int main()
-{
-	Database beast;
-	Database scene;
-	beast.LoadMonsters();
-	scene.LoadText();
+#include "Database.h"
 
 
-	beast.DisplayBeastiary();
-	_getch();
-	scene.DisplayText();
-	_getch();
-	return 0;
-}
 
-Monster::Monster(int ID, string name, string desc, string type, int min, int str, int dex, int con, int intel, int wis, int agi, int luk,
-	int str_G, int dex_G, int con_G, int intel_G, int wis_G, int agi_G, int luk_G, float pierce, float slash, float bludgeon,
-	float fire, float ice, float water, float thunder, float wind, float earth, float dark, float light,
-	int target) :
-	m_ID(ID), m_Name(name), m_Desc(desc), m_Type(type), m_Min(min), m_Str(str), m_Dex(dex), m_Con(con), m_Intel(intel),
-	m_Wis(wis), m_Agi(agi), m_Luk(luk), m_Str_G(str_G), m_Dex_G(dex_G), m_Con_G(con_G), m_Intel_G(intel_G), m_Wis_G(wis_G),
-	m_Agi_G(agi_G), m_Luk_G(luk_G), m_PierceRes(pierce), m_SlashRes(slash), m_BludgeonRes(bludgeon), m_FireRes(fire), m_IceRes(ice), m_WaterRes(water),
-	m_ThunderRes(thunder), m_WindRes(wind), m_EarthRes(earth), m_DarkRes(dark), m_LightRes(light), m_Target(target) {}
 
-Dialogue::Dialogue(int ID, string text, string speaker) :
-	m_ID(ID), m_Text(text), m_Speaker(speaker) {}
+Database::Database()
+{}
+
 
 void Database::LoadMonsters()
 {
@@ -179,6 +104,7 @@ void Database::LoadMonsters()
 	_getch();
 	system("CLS");
 }
+
 void Database::LoadText()
 {
 	cout << "Loading story and dialogue\n";
@@ -227,6 +153,7 @@ void Database::LoadText()
 	_getch();
 	system("CLS");
 }
+
 void Database::DisplayBeastiary()
 {
 	vector<Monster>::iterator iter;
@@ -249,9 +176,3 @@ void Database::DisplayText()
 		cout << (*iter).m_Speaker << endl;
 	}
 }
-
-
-
-
-
-
