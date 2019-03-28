@@ -40,8 +40,17 @@ int main()
 	cout << endl;
 	cout << endl;
 
-	cout << "swap inventory item to equiped.";
+	cout << "swap inventory item to equiped.\n";
 	PlayerOne.m_Weapon = inStorage.INV_WEAPON[0];
+	cout << "Player One:\n\n";
+	PlayerOne.Status();
+	cout << endl;
+	cout << endl;
+	cout << "drop inventory item.\n";
+	inStorage.DropWeapon();
+	inStorage.DisplayPartyInventory();
+	//inStorage.AddWeapon(-1,-1,-1);
+	//inStorage.DisplayPartyInventory();
 	cout << "Player One:\n\n";
 	PlayerOne.Status();
 	cout << endl;
