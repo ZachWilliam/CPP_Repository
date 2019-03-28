@@ -64,8 +64,8 @@ public:
 	char lastChar = curMap.map[playerR][playerC];
 	bool interact = false;
 
-	vector<char> v_collisionChars = { 'W', 'T', 'B', 'D', 'G', 'R', 'U', 'L', '=', '#'};
-	vector<char> v_interactChars = { '=','#' };
+	vector<char> v_collisionChars = { 'W', 'T', 'B', 'D', 'G', 'R', 'U', 'L', '=', '#', '&', '+', '*', '%'};
+	vector<char> v_interactChars = { '=','#' ,'&', '+', '*', '%' };
 
 	//Input
 	bool aKey = false;

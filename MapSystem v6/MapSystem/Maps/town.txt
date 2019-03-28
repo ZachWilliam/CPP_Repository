@@ -1,45 +1,47 @@
 6
 Maple Grove
 0
-4,125,26,52,5e //Transition Coords
-16,66
+5,125,26,52,5e //Transition Coords
+6,126
 10
-5,14,2e //NPC data
+e //5,14,2NPC data
 e //Chest data
-WWWWWWWWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-WWWWWWWWWWW                                                                                  WWWW                      TT        TTR
-WWWWWWWWWWW            RRRRRRRRRRRRRRRRRRR     RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR        WWWW                      TT   GGG  TTR 
-WWWWWWWWWWW            R                 R  T  R                                    R        WWWW                      TT  GGGGG TTR
-WWWWWWWWWWW            R                 R     R                                    R        WWWW                      TT  GG?GG TTR
-WWWWWWWWWWW   #        R                 R  T  R                                    R        WWWW                      TT        TTR
-WWWWWWWWWWW            R                 R     R                                    R        WWWW                       TTT  TTTTT R
-WWWWWWWWWWW            R                 R  T  R                                    R        WWWW                                  R
-WWWWWWWWWWW            R                 R     R       RRRRRRRRRRR  RRRRRRRRR       R        WWWW                                  R
-WWWWWWWWWWW            R                 R  T  R       R         gggg       R       R        WWWW                                  R
-WWWWWWWWWWW            RRRRRRRR  RRRRRRRRR     R       R         gggg       R       R        WWWW                                  R
-WWWWWWWWWWW                                    R       R         gggg       R       R        WWWW                                  R
-WWWWWWWWWWW                                    RRRRRRRRR         gggg       RRRRRRRRR        WWWW                                  R
-WWWWWWWWWWW                                                      gggg                        WWWW                                  R
-WWWWWWWBBBBBBBB                                                  gggg                        WWWW                                  R
-WWWWWWWBBBBBBBB                                              gggggggggggg                    WWWW                                  R
-WWWWWWWBBBBBBBB                                      # =    gggggggggggggg                   WWWW                                  R
-WWWBBBBBBBBBBBBgggggggggggggggggggggggggggggggggggggggggggggggggggTTgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
-WWWBBBBBBBBBBBBgggggggggggggggggggggggggggggggggggggggggggggggggggTTgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
-WWWWWWWBBBBBBBB                                             gggggggggggggg                   WWWW                                  R
-WWWWWWWBBBBBBBB                                              gggggggggggg                    WWWW                                  R
-WWWWWWWBBBBBBBB                                                  gggg                        WWWW                                  R
-WWWWWWWWWWW                       RRRRRRRRRRRRRRRRRRRRR          gggg                        WWWW                                  R
-WWWWWWWWWWW                       R                   R          gggg                        WWWW                                  R
-WWWWWWWWWWW                       R                   R          gggg                        WWWW                                  R
-WWWWWWWWWWW                       R                   R          gggg                        WWWW                                  R
-WWWWWWWWWWW                  RRRRRG                    gggggggggggggg                        WWWW                                  R
-WWWWWWWWWWW                  R    R                    gggggggggggggg                        WWWW                                  R
-WWWWWWWWWWW                  R    R                   R          gggg                        WWWW                                  R
-WWWWWWWWWWW                  R                        R          gggg                        WWWW                                  R
-WWWWWWWWWWW                  R    R                   R          gggg                        WWWW                                  R
-WWWWWWWWWWW                  RRRRRRRRRRRRRRRRRRRRRRRRRR          gggg                        WWWW                                  R
-WWWWWWWWWWW                                                      gggg                        WWWW                                  R
-WWWWWWWWWWW                                                      gggg                        WWWW                                  R
-WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRBBBBRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+WWWWWWWWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+WWWWWWWWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+WWWWWWWWWWW                                                                                  WWWW                      TT        TTRR
+WWWWWWWWWWW           RRRRRRRRRRRRRRRRRRR      RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR        WWWW                      TT   GGG  TTRR
+WWWWWWWWWWW           Rbbbbb+bbbbbbbbbbbR  TT  RTbbbbbTTbGbbbbb&bbbbbbbbbbGbTTbbbbbTR        WWWW      LLLLLLL         TT  GGGGG TTRR
+WWWWWWWWWWW           RGGGGGGGGGbbGGGGGGR      RbbbGbbbbbGGGGGGGGbbGGGGGGGGbbbbbbGbbR        WWWW     LLLLLLLLL        TT  GG?GG TTRR
+WWWWWWWWWWW           RbbbbbbbbbbbbbbbbbR  TT  RbbbTbbbbbbbbbbbbbbbbbbbbbbbbbbbbbTbbR        WWWW     LLLLLLLLL        TT        TTRR
+WWWWWWWWWWW           RbbbbbbbbbbbbbbbbbR      RbbbGbbbbGTGbbbbbbbbbbbbbbGTGbbbbbGbbR        WWWW     LLLLLLLLL         TTT  TTTTT RR
+WWWWWWWWWWW           RbbbbbbbbbbbbbbbbbR  TT  RbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbR        WWWW     LLLLLLLLL                    RR
+WWWWWWWWWWW           RbbbbbbbbbbbbbbbbbR      RbbbbbbbRRRRRRRRRRRbbRRRRRRRRRbbbbbbbR        WWWW      LLLLL                       RR
+WWWWWWWWWWW           RTTbbTTbbbbbTTbbTTR  TT  RbbbbbbbR         gggg       RbbbbbbbR        WWWW                                  RR
+WWWWWWWWWWW           RRRRRRRRbbRRRRRRRRR      RTbbbbbbR  TTTT   gggg  TTT  RbbbbbbTR        WWWW        LLLLLLL                   RR
+WWWWWWWWWWW                    gg              RTTbbbbbR  TTTT   gggg  TTT  RbbbbbTTR        WWWW       LLLLLLLLLLLLLL             RR
+WWWWWWWWWWW                    gg              RRRRRRRRR         gggg       RRRRRRRRR        WWWW       LLLLLLLLLLLLLLLLLLLLL      RR
+WWWWWWWWWWW                TT  gg  TT                       TT   gggg   TT                   WWWW       LLLLLLLLLLLLLLLLLLLLLL     RR
+WWWWWWBBBBBBBB    TT           gg                          T     gggg     T                  WWWW        LLLLLLLLLLLLLLLLLLLL      RR
+WWWWWWBBBBBBBB    TT       TT  gg  TT     TT   TT   TT       gggggggggggg        TT   TT     WWWW             LLLLLLLL             RR
+WWWWWWBBBBBBBB                 gg                           gggggggggggggg                   WWWW                                  RR
+WBBBBBBBBBBBBBggggggggggggggggggggggggggggggggggggggggggggggggggggLL*gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+WBBBBBBBBBBBBBggggggggggggggggggggggggggggggggggggggggggggggggggggLLggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+WWWWWWBBBBBBBB                                              gggggggggggggg      gg           WWWW           gg                     RR
+WWWWWWBBBBBBBB    TT       TT   TT   TT   TT   TT   TT       gggggggggggg       gg           WWWW           gg                     RR
+WWWWWWBBBBBBBB    TT                                             gggg       TTTTggTTTT       WWWW   TT      gg gggg            TT  RR
+WWWWWWWWWWW                       RRRRRRRRRRRRRRRRRRRRR          gggg      T    gg    T      WWWW           ggggTTgggggg           RR
+WWWWWWWWWWW                       RTTbbbTTbbbbbbbbbbTTR      T   gggg     T  TTTggTTT  T     WWWW              gggg   gg           RR
+WWWWWWWWWWW     LLLLL             RTbbbbbbbbbbbbbbbbbTR    TTT   gggg     T T  gggg  T T     WWWW   TT   RRRRRRRRRRRRRbbRRRR   TT  RR
+WWWWWWWWWWW    LLLLLLL            RbbbbbbGGGGGbbbbbbbbR          gggg     T T gT  Tg T T     WWWW        RbbbbbbbbbbbbbbbbbR       RR
+WWWWWWWWWWW    LLLLLLL       RRRRRRbbbbbbGGTGGbbbbbbbbbgggggggggggggggggggggggg LL g         WWWW        RbbbbbbbbbbbbbbbbbR       RR
+WWWWWWWWWWW    LLLLLLL       R    RbbbbbbGGGGGbbbbbbbbbgggggggggggggggggggggggg LL g         WWWW   TT   RbbbbbbbbbbbbbbbbbR   TT  RR
+WWWWWWWWWWW   LLLLLLLL       R    RbbbbbbbbbbbbbbbbbbbR          gggg     T T gT  Tg T T     WWWW        RbbbGGbbGGbbbbbbbbR       RR
+WWWWWWWWWWW   LLLLLLLL       R    bbbbbbbbbbbbbbbbbbbTR    TTT   gggg     T T  gggg  T T     WWWW        Rbbbbbbbbbbbbb%bbbR       RR
+WWWWWWWWWWWLLLLLLLLLLL       R    RbbbbbbbbbbTTbbbbbTTR      T   gggg     T  TTT  TTT  T     WWWW   TT   RTbbGGbbGGbbbbbbbTR   TT  RR
+WWWWWWWWWWW   LLLLLLL        RRRRRRRRRRRRRRRRRRRRRRRRRR          gggg      T          T      WWWW        RTTbbbbbbbbbbbbTTTR       RR
+WWWWWWWWWWW    LLLLL                                             gggg       TTTT  TTTT       WWWW        RRRRRRRRRRRRRRRRRRR       RR
+WWWWWWWWWWW                                                      gggg                        WWWW                                  RR
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRBBBBRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRBBBBRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
