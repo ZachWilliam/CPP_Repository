@@ -36,6 +36,7 @@ Weapon::Weapon(int WeaponChoice, int prefix_name)
 	m_DamageMIN = WEAPON_TYPES[WeaponChoice].m_DamageMIN;
 	m_DamageMAX = WEAPON_TYPES[WeaponChoice].m_DamageMAX;
 	GetName(prefix_name);
+	ID = Item::uniqueID++;
 }
 
 

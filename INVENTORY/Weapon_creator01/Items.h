@@ -9,6 +9,13 @@
 
 using namespace std;
 
+static class Item
+{
+public:
+	static int uniqueID;
+};
+
+
 class Purse
 {
 public:
