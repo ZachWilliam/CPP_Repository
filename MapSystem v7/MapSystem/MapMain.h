@@ -1,6 +1,8 @@
 #pragma once
 #ifndef MAP_MAIN_H
 #define MAP_MAIN_H
+#include <cstdlib>
+#include <time.h>
 #include "Format.h"
 #include "MapManager.h"
 #include <vector>
@@ -53,7 +55,7 @@ public:
 
 
 	MapManager mapManager;
-	Map curMap = mapManager.mapList[1];
+	Map curMap = mapManager.mapList[0];
 
 	//Player Info
 	enum eDirection { LEFT = -1, RIGHT = 1, UP = -1, DOWN = 1, NEUTRAL = 0 };
@@ -63,6 +65,15 @@ public:
 	int playerC = curMap.defaultPC;
 	char lastChar = curMap.map[playerR][playerC];
 	bool interact = false;
+
+	//Battle Info
+	const int CHECK_EVERY_STEPS = 4;
+	const int MIN_ENCOUNTER_CHANCE = 2;
+	const int MAX_ENCOUNTER_CHANCE = 12;
+	int curEncounterChance = MAX_ENCOUNTER_CHANCE;
+	int stepCount = 0;
+
+	
 
 	vector<char> v_collisionChars = { 'W', 'T', 'B', 'D', 'G', 'R', 'U', 'L', '=', '#', '&', '+', '*', '%'};
 	vector<char> v_interactChars = { '=','#' ,'&', '+', '*', '%' };
@@ -77,6 +88,7 @@ public:
 
 	//Protoypes
 	int main();
+	void Setup(int p_mapID, int p_row = 0, int p_col = 0);
 	void Input();
 	void Logic();
 
@@ -84,6 +96,8 @@ public:
 	void SetMap(int p_pRow, int p_pCol, int p_mapID);
 	void DoInteraction();
 	void PlayMapTransEffect(bool p_close);
+	void CheckForBattle();
+	void PlayBattleTransEffect();
 
 	void DrawGUI();
 	void DrawScreen();

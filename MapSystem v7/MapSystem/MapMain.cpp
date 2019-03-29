@@ -6,13 +6,14 @@ MapMain::MapMain()
 
 int MapMain::main() {
 	SetColorAndBackground();
-	curMap.map[playerR][playerC] = 'P'; curMap.map[playerR][playerC] = 'P';
+	curMap.map[playerR][playerC] = 'P'; //curMap.map[playerR][playerC] = 'P';
 
-	//Setup();
+
 	DrawGUI();
 	DrawRight();
 
 	while (true) {
+		
 		DrawScreen();
 		Input();
 		Logic();
@@ -20,6 +21,40 @@ int MapMain::main() {
 	}
 
 	_getch();
+}
+
+void MapMain::Setup(int p_mapID, int p_row, int p_col) {
+	bool mapFound = false;
+	for (int i = 0; i < mapManager.mapList.size(); i++)
+	{
+		if (mapManager.mapList[i].mapID == p_mapID) {
+			curMap = mapManager.mapList[i];
+			mapFound = true;
+			break;
+		}
+	}
+	//If we didnt find the map then set it to the town map
+	if (!mapFound) {
+		for (int i = 0; i < mapManager.mapList.size(); i++)
+		{
+			if (mapManager.mapList[i].mapID == 6) {
+				curMap = mapManager.mapList[i];
+				break;
+			}
+		}
+	}
+
+	if (p_row == 0 || p_col == 0) {
+		playerR = curMap.defaultPR;
+		 playerC = curMap.defaultPC;
+	}
+	else {
+		playerR = p_row;
+		playerC = p_col;
+	}
+
+	char lastChar = curMap.map[playerR][playerC];
+
 }
 
 void MapMain::Input() {
@@ -95,13 +130,20 @@ void MapMain::Logic() {
 		}
 	}
 
-	
+	//Check for battle if the player moved in a battle area
+	if (curMap.canBattle) {
+		if (rDir != NEUTRAL || cDir != NEUTRAL) {
+			stepCount++;
+			if (stepCount % CHECK_EVERY_STEPS == 0) CheckForBattle();
+		}
+	}
+
 	//Update Screen vector
 	if (playerC - DIST_FROM_MID_C >= 0 && curMap.map[0].size() - playerC >= DIST_FROM_MID_C) columnMove = playerC - DIST_FROM_MID_C;
-	else if (curMap.map[0].size() - playerC < DIST_FROM_MID_C) columnMove = curMap.map[0].size() - screen[0].size();
+	else if (curMap.map[0].size() - playerC < DIST_FROM_MID_C) columnMove = curMap.map[0].size() - SCREEN_WIDTH;
 
 	if (playerR - DIST_FROM_MID_R >= 0 && curMap.map.size() - playerR >= DIST_FROM_MID_R) rowMove = playerR - DIST_FROM_MID_R;
-	else if (curMap.map.size() - playerR < DIST_FROM_MID_R) rowMove = curMap.map.size() - screen.size();
+	else if (curMap.map.size() - playerR < DIST_FROM_MID_R) rowMove = curMap.map.size() - SCREEN_HEIGHT;
 }
 
 
@@ -248,6 +290,68 @@ bool MapMain::CheckCollision(char p_nextChar) {
 	return isColliding;
 }
 
+void MapMain::CheckForBattle() {
+	const int BATTLE_NUMBER = 1;
+	int num = rand() % curEncounterChance + 1;
+
+	cout << num;
+	cout << curEncounterChance;
+	//Trigger battle
+	if (num == BATTLE_NUMBER) {
+		//Reset battle variables
+		curEncounterChance = MAX_ENCOUNTER_CHANCE;
+		stepCount = 0;
+
+		PlayBattleTransEffect();
+		//Send for battle 
+	}
+	else {
+		//Make it more likely to get a encounter next battle check
+		if (curEncounterChance > MIN_ENCOUNTER_CHANCE)
+			curEncounterChance--;
+	}
+}
+
+void MapMain::PlayBattleTransEffect() {
+	SetColorAndBackground(CYAN);
+
+	int width = SCREEN_WIDTH;
+	int height = SCREEN_HEIGHT;
+	int i = 1, j = 1;
+	for (int k = 0; k < 4; k++)
+	{
+		for (; i < width ; i++)
+		{
+			GoToXY(j + k, i);
+			cout << " ";
+			Sleep(50);
+		}
+		for (; j < height ; j++)
+		{
+			GoToXY(j, i+k);
+			cout << " ";
+			Sleep(10);
+		}
+		width -= 1;
+		int leftStop = i - width;
+		for (; i > leftStop; i--)
+		{
+			GoToXY(j + k, i);
+			cout << " ";
+			Sleep(10);
+		}
+		height -= 1;
+		int topStop = j - height;
+		for (; j > topStop; j--) {
+			GoToXY(j,i + k);
+			cout << " ";
+			Sleep(10);
+		}
+		width -= 1;
+		height -= 1;
+	}
+}
+
 void MapMain::SetMap(int p_pRow, int p_pCol, int p_mapID) {
 	PlaySound("Sound/trans_sfx.wav", NULL, SND_FILENAME | SND_ASYNC);
 	PlayMapTransEffect(true);
@@ -273,14 +377,14 @@ void MapMain::SetMap(int p_pRow, int p_pCol, int p_mapID) {
 	else if (curMap.map.size() - playerR < DIST_FROM_MID_R) rowMove = curMap.map.size() - SCREEN_HEIGHT;
 	else {
 		if (playerR - DIST_FROM_MID_R >= 0 && curMap.map.size() - playerR >= DIST_FROM_MID_R) rowMove = playerR - DIST_FROM_MID_R;
-		else if (curMap.map.size() - playerR < DIST_FROM_MID_R) rowMove = curMap.map.size() - screen.size();
+		else if (curMap.map.size() - playerR < DIST_FROM_MID_R) rowMove = curMap.map.size() - SCREEN_HEIGHT;
 	}
 	//Column
 	if (playerC - DIST_FROM_MID_C < 0) columnMove = 0;
 	else if (curMap.map[0].size() - playerC < DIST_FROM_MID_C) columnMove = curMap.map[0].size() - SCREEN_WIDTH;
 	else {
 		if (playerC - DIST_FROM_MID_C >= 0 && curMap.map[0].size() - playerC >= DIST_FROM_MID_C) columnMove = playerC - DIST_FROM_MID_C;
-		else if (curMap.map[0].size() - playerC < DIST_FROM_MID_C) columnMove = curMap.map[0].size() - screen[0].size();
+		else if (curMap.map[0].size() - playerC < DIST_FROM_MID_C) columnMove = curMap.map[0].size() - SCREEN_WIDTH;
 	}
 	PlaySound("Sound/trans_sfx2.wav", NULL, SND_FILENAME | SND_ASYNC);
 	PlayMapTransEffect(false);
@@ -292,7 +396,7 @@ void MapMain::SetMap(int p_pRow, int p_pCol, int p_mapID) {
 void MapMain::PlayMapTransEffect(bool p_close) {
 	if (p_close) {
 		//Play map transition effect function Close
-		SetColorAndBackground(DARKGRAY);
+		SetColorAndBackground(LIGHTGRAY);
 		for (int i = 0; i <= SCREEN_HEIGHT / 2; i++)
 		{
 			for (size_t j = 0; j < SCREEN_WIDTH; j++)
