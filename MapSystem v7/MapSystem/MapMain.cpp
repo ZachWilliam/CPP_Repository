@@ -138,6 +138,7 @@ void MapMain::Logic() {
 		}
 	}
 
+
 	//Update Screen vector
 	if (playerC - DIST_FROM_MID_C >= 0 && curMap.map[0].size() - playerC >= DIST_FROM_MID_C) columnMove = playerC - DIST_FROM_MID_C;
 	else if (curMap.map[0].size() - playerC < DIST_FROM_MID_C) columnMove = curMap.map[0].size() - SCREEN_WIDTH;
@@ -273,6 +274,18 @@ void MapMain::DoInteraction() {
 			OutputSpeech("Could not find NPC associated with these coordinates.", "ERROR", SCREEN_WIDTH, BOT_START_ROW);
 	}
 
+	//Enemy
+	if (interactChar == '!') {
+
+	}
+
+	//Save Point
+	if (interactChar == '$') {
+		//Call save function
+
+		OutputSpeech("Call the save function here.", "Save Point", SCREEN_WIDTH, BOT_START_ROW);
+	}
+
 	interactChar = ' ';
 	interact = false;
 }
@@ -294,15 +307,15 @@ void MapMain::CheckForBattle() {
 	const int BATTLE_NUMBER = 1;
 	int num = rand() % curEncounterChance + 1;
 
-	cout << num;
-	cout << curEncounterChance;
 	//Trigger battle
 	if (num == BATTLE_NUMBER) {
 		//Reset battle variables
 		curEncounterChance = MAX_ENCOUNTER_CHANCE;
 		stepCount = 0;
 
+
 		PlayBattleTransEffect();
+		OutputSpeech("This is where the battle would take place", "The Battle", SCREEN_WIDTH, BOT_START_ROW);
 		//Send for battle 
 	}
 	else {
@@ -313,42 +326,89 @@ void MapMain::CheckForBattle() {
 }
 
 void MapMain::PlayBattleTransEffect() {
-	SetColorAndBackground(CYAN);
+	SetColorAndBackground(LIGHTGRAY);
+	int leftBorder = 1;
+	int topBorder = 1;
+	int rightBorder = SCREEN_WIDTH;
+	int bottomBorder = SCREEN_HEIGHT;
 
-	int width = SCREEN_WIDTH;
-	int height = SCREEN_HEIGHT;
-	int i = 1, j = 1;
-	for (int k = 0; k < 4; k++)
+	PlaySound("Sound/battle_intro.wav", NULL, SND_FILENAME | SND_ASYNC);
+
+	//1seems perfect for home computer, but 2 is prolly better for school, adjust as needed
+	/*for (int k = 0; k < 13; k++)
 	{
-		for (; i < width ; i++)
+		for (int i = leftBorder; i <= rightBorder; i++)
 		{
-			GoToXY(j + k, i);
+			GoToXY(topBorder, i);
 			cout << " ";
-			Sleep(50);
+			Sleep(2);
 		}
-		for (; j < height ; j++)
+		topBorder++;
+		for (int i = topBorder; i <= bottomBorder; i++)
 		{
-			GoToXY(j, i+k);
+			GoToXY(i, rightBorder);
 			cout << " ";
-			Sleep(10);
+			Sleep(2);
 		}
-		width -= 1;
-		int leftStop = i - width;
-		for (; i > leftStop; i--)
+		rightBorder--;
+		for (int i = rightBorder; i >= leftBorder; i--) {
+			GoToXY(bottomBorder, i);
+			cout << " ";
+			Sleep(2);
+		}
+		bottomBorder--;
+		for (int i = bottomBorder; i >= topBorder; i--) {
+			GoToXY(i, leftBorder);
+			cout << " ";
+			Sleep(2);
+		}
+		leftBorder++;
+	}
+
+	for (int i = leftBorder; i <= rightBorder; i++)
+	{
+		GoToXY(topBorder, i);
+		cout << " ";
+		Sleep(2);
+	}*/
+
+	//Sleep 3 seems perfect on home pc, 4 prolly better for school one. Adjust as needed
+	for (int k = 0; k < 7; k++)
+	{
+		for (int i = leftBorder; i <= rightBorder; i++)
 		{
-			GoToXY(j + k, i);
+			GoToXY(topBorder, i);
 			cout << " ";
-			Sleep(10);
-		}
-		height -= 1;
-		int topStop = j - height;
-		for (; j > topStop; j--) {
-			GoToXY(j,i + k);
+			GoToXY(topBorder + 1, i);
 			cout << " ";
-			Sleep(10);
+			Sleep(4);
 		}
-		width -= 1;
-		height -= 1;
+		topBorder+=2;
+		for (int i = topBorder; i <= bottomBorder; i++)
+		{
+			GoToXY(i, rightBorder);
+			cout << " ";
+			GoToXY(i, rightBorder - 1);
+			cout << " ";
+			Sleep(4);
+		}
+		rightBorder-= 2;
+		for (int i = rightBorder; i >= leftBorder; i--) {
+			GoToXY(bottomBorder, i);
+			cout << " ";
+			GoToXY(bottomBorder - 1, i);
+			cout << " ";
+			Sleep(4);
+		}
+		bottomBorder -= 2;
+		for (int i = bottomBorder; i >= topBorder; i--) {
+			GoToXY(i, leftBorder);
+			cout << " ";
+			GoToXY(i, leftBorder + 1);
+			cout << " ";
+			Sleep(4);
+		}
+		leftBorder+= 2;
 	}
 }
 
@@ -497,6 +557,15 @@ void MapMain::DrawRight() {
 		cout << "           ";
 		SetColorAndBackground(LIGHTMAGENTA); cout << " ";
 		SetColorAndBackground(); cout << " NPC";
+	GoToXY(15, RIGHT_START_COL + 1);
+		cout << "        ";
+		SetColorAndBackground(LIGHTCYAN); cout << " ";
+		SetColorAndBackground(); cout << " Save Point";
+	GoToXY(16, RIGHT_START_COL + 1);
+		cout << "          ";
+		SetColorAndBackground(LIGHTRED); cout << " ";
+		SetColorAndBackground(); cout << " Enemy";
+	
 	
 	//Controls
 	GoToXY(22, RIGHT_START_COL + 1); cout << CenterPhrase("Controls", SIDE_WIDTH - 2);

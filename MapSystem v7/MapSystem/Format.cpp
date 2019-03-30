@@ -145,5 +145,7 @@ int GetColorValue(char displayChar) {
 	else if (displayChar == 'P') return RED;
 	else if (displayChar == '=') return YELLOW;
 	else if (displayChar == '#' || displayChar == '&' || displayChar == '+' || displayChar == '*' || displayChar == '%') return LIGHTMAGENTA;
+	else if (displayChar == '$') return LIGHTCYAN;
+	else if (displayChar == '!') return LIGHTRED;
 	else return BLACK;
 }
