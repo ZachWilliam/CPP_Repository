@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include "Items.h"
 #include <ctime>
 
 using namespace std;
@@ -43,6 +44,7 @@ public:
 class Armor
 {
 public:
+	int ID;
 	Armor(int ArmorChoice = 0, int prefix_name = -1);
 	void Status();
 	string GetName(int Choice);

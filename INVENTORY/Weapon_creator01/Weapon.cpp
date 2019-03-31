@@ -30,6 +30,7 @@ string DamageType::ToString(bool magic)
 	}
 	return temp;
 }
+
 Weapon::Weapon(int WeaponChoice, int prefix_name)
 {
 	m_Weapon_Type = WEAPON_TYPES[WeaponChoice];

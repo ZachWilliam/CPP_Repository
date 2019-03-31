@@ -5,9 +5,9 @@
 #include <cstdlib>
 #include <ctime>
 #include "Backpack.h"
-//#include "Weapon.h"
-//#include "Armor.h"
-//#include "Items.h"
+#include "Weapon.h"
+#include "Armor.h"
+#include "Items.h"
 #include "PartyInventory.h"
 
 //#include <cctype>
@@ -46,8 +46,16 @@ int main()
 	PlayerOne.Status();
 	cout << endl;
 	cout << endl;
-	cout << "drop inventory item.\n";
-	inStorage.DropWeapon();
+
+	//not working below
+	cout << "\nAdding three random armor and weapons to inventory.\n\n";
+	inStorage.SetWeaponsRandom();
+	inStorage.SetWeaponsRandom();
+	inStorage.SetWeaponsRandom();
+
+	inStorage.SetArmorRandom();
+	inStorage.SetArmorRandom();
+	inStorage.SetArmorRandom();
 	inStorage.DisplayPartyInventory();
 	//inStorage.AddWeapon(-1,-1,-1);
 	//inStorage.DisplayPartyInventory();

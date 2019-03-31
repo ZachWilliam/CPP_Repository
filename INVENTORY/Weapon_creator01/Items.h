@@ -12,6 +12,7 @@ using namespace std;
 static class Item
 {
 public:
+	//Item();
 	static int uniqueID;
 };
 
