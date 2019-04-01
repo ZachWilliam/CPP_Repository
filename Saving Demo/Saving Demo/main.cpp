@@ -27,32 +27,20 @@ int main()
 {
 	ClassRoom myClassRm(11, "Paolo", "no one");
 	myClassRm.AddStudent(Student("Sebastian", 'M', 38));
-	myClassRm.AddStudent(Student("Bobbettea", "F", "21"));
+	myClassRm.AddStudent(Student("Bobbetta", "F", "21"));
 	string serializedClassRoom = myClassRm.Serialized() + "\n";
 	cout << serializedClassRoom << endl;
 	_getch();
 
-
-
-	//cout << serializedClassRoom.find("name",75);
-
-
-
-
-	size_t iterFront = 0;
-	size_t iterEnd = 0;
-
+	//size_t iterFront = 0;
+	//size_t iterEnd = 0;
+	//
 	//while ((iterFront = serializedClassRoom.find(":", iterFront)) != string::npos )
 	//{
 	//	iterEnd = serializedClassRoom.find(",", ++iterFront);
 	//	string temp = serializedClassRoom.substr(iterFront, iterEnd-iterFront);
 	//	cout << temp << " ";
 	//}
-
-
-
-
-	//cout << endl << serializedClassRoom.size() << endl;
 
 	{
 	//size_t iterX = 0;
@@ -64,7 +52,7 @@ int main()
 	//	{
 	//		iterEnd = serializedClassRoom.find("\n", iterFront);
 	//	}
-
+	//
 	//	size_t iterArrayFront = 0;
 	//	string mySubString = serializedClassRoom.substr(iterX, iterEnd - iterX);
 	//	//cout << mySubString.find("[", iterArrayFront);
@@ -72,10 +60,10 @@ int main()
 	//	{
 	//		cout << endl << "Array/Vector found" << endl;
 	//	}
-
+	//
 	//	string temp = serializedClassRoom.substr(iterFront, iterEnd - iterFront);
 	//	cout << temp << " ";
-
+	//
 	//	iterX = iterEnd;
 	//}
 	}
