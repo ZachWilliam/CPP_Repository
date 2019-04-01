@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <time.h>
 #include "Format.h"
+#include "Database.h"
 #include "MapManager.h"
 #include "SoundManager.h"
 #include <vector>
@@ -13,7 +14,7 @@ using namespace std;
 class MapMain
 {
 public:
-	MapMain();
+	MapMain(Database &p_database);
 
 	vector<vector<char> > screen = {
 	{ ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
@@ -57,6 +58,8 @@ public:
 
 	MapManager mapManager;
 	Map curMap = mapManager.mapList[0];
+
+	Database database;
 
 	//Player Info
 	enum eDirection { LEFT = -1, RIGHT = 1, UP = -1, DOWN = 1, NEUTRAL = 0 };

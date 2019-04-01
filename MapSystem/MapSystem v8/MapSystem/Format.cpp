@@ -36,7 +36,7 @@ void OutputSpeech(vector <string> p_vSpeech, const string &p_npcName, const int 
 void OutputSpeech(string p_speech, const string &p_npcName, const int p_screenWidth, const int p_bottomStartRow) {
 	SetColorAndBackground();
 	const int SPEECH_WIDTH = p_screenWidth - 2;
-	const int LINES_PER_PANE = 5;
+	const int LINES_PER_PANE = 4;
 	const int START_POINT = 0;
 	int endPoint = SPEECH_WIDTH;
 	vector<string> v_speech;

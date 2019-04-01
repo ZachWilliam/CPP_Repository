@@ -18,11 +18,11 @@ int main()
 	*/
 	//beast.DisplayBeastiary();
 	//scene.DisplayText();
-	/*
+	
 	cout << scene.ReturnDialogue(3, 0, 1) << endl;
 	cout << scene.ReturnDialogue(3, 0, 2) << endl;
-	cout << scene.ReturnDialogue(6, 1, 2) << endl;
-	*/
+	cout << scene.ReturnDialogue(6, 1, 1) << endl;
+	
 
 	_getch();
 	return 0;
