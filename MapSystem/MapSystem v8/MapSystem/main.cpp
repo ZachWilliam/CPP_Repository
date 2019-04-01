@@ -24,7 +24,13 @@ void Setup() {
 int main() {
 	srand(static_cast<unsigned int>(time(0)));
 	Setup();
-	MapMain mapMain;
+
+	Database beast;
+	Database dialogue;
+	beast.LoadMonsters();
+	dialogue.LoadText();
+
+	MapMain mapMain(dialogue);
 	mapMain.Setup(6,0,0);
 	mapMain.main();
 

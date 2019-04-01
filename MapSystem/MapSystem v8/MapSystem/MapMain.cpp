@@ -1,6 +1,7 @@
 #include "MapMain.h"
 
-MapMain::MapMain()
+MapMain::MapMain(Database &p_database):
+	database(p_database)
 {}
 
 
@@ -245,14 +246,12 @@ void MapMain::DoInteraction() {
 		if (locInNPCVec != -1) {
 			if (interactChar == '#' || interactChar == '*') {
 
-				//Find dialogue by ID
+				string name = database.ReturnName(curMap.v_npcs[locInNPCVec].nameID);
+				string speech = database.ReturnDialogue(curMap.mapID, curMap.v_npcs[locInNPCVec].nameID, curMap.v_npcs[locInNPCVec].dialogueID);
 
-				//string name = Dialogue[curMap.v_npcs[locInNPCVec].dialogueID;
-				//string speech;
+				OutputSpeech(speech, name, SCREEN_WIDTH, BOT_START_ROW);
 
-				//OutputSpeech(speech, name, SCREEN_WIDTH, BOT_START_ROW);
-
-				OutputSpeech("This is where the text for npc and quest npc would be.", "NPC & Quest NPC", SCREEN_WIDTH, BOT_START_ROW);
+				//OutputSpeech("This is where the text for npc and quest npc would be.", "NPC & Quest NPC", SCREEN_WIDTH, BOT_START_ROW);
 				if (interactChar == '*') {
 					//Do quest stuff
 				}
