@@ -28,6 +28,11 @@ public:
 	void AddWeapon(int, int, int);
 	void AddArmor(int, int, int);
 
+	int GetID();
+	void SwapEquipedWeapon();
+
+	//void SwapEquipedArmor();
+
 	//void DropWeapon(int);
 
 	void DisplayPartyInventory();
