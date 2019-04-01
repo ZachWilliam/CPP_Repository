@@ -30,15 +30,14 @@ part 4 -- return to town with the son(100% complete) "obtain boat part" (1/3)
 ________________________________________________________________________________________________
 Quest 3 - Boat Part 2
 search for and capture the one who stole the sacred treasure of town(story stuff?)
-(hint it's dark out tonight might need a light source)
+talk to "NPC" for quest
 
-part 1 -- find a light source to go out into the woods(20% complete)
-part 2 -- explore the woods and find the bandit camp(40% complete)(lots of random battles along the way)
-part 3 -- thinking a choose your own way kinda thing here(either charge into the bandit camp and attack them
-or sneak into camp and take treasure back(also leads to battle because you get caught but either way))(60% complete
-part 4 -- defeat the band of bandits (0/12)(80% complete)
 
-part 5 -- return to town with captured bandit leader and the treasure(100% complete)
+part 1 -- explore the woods and find the bandit camp(25% complete)(lots of random battles along the way)
+part 2 -- charge the bandit camp and take treasure back)(50% complete
+part 3 -- defeat the band of bandits (0/8)(100% complete)
+
+part 4 -- return to town with captured bandit leader and the treasure(100% complete)
 "obtain boat part" (2/3)
 
 
