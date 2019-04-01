@@ -203,8 +203,8 @@ string Database::ReturnDialogue(int sceneID, int speakerID, int textID)
 
 	for (iter = Scenes.begin(); iter != Scenes.end(); iter++)
 	{
-		if ((*iter).m_MapID == sceneID,
-			(*iter).m_SpeakerID == speakerID,
+		if ((*iter).m_MapID == sceneID && 
+			(*iter).m_SpeakerID == speakerID &&
 			(*iter).m_TextID == textID)
 		{
 			return (*iter).m_Text;
