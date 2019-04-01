@@ -449,7 +449,7 @@ void MapMain::PlayBossBattleTransEffect(bool p_isFinalBoss) {
 				cout << " ";
 				GoToXY(topBorder + 1, i);
 				cout << " ";
-				Sleep(1);
+				Sleep(2);
 			}
 			topBorder += 2;
 			for (int i = topBorder; i <= bottomBorder; i++)
@@ -458,7 +458,7 @@ void MapMain::PlayBossBattleTransEffect(bool p_isFinalBoss) {
 				cout << " ";
 				GoToXY(i, rightBorder - 1);
 				cout << " ";
-				Sleep(1);
+				Sleep(2);
 			}
 			rightBorder -= 2;
 			for (int i = rightBorder; i >= leftBorder; i--) {
@@ -466,7 +466,7 @@ void MapMain::PlayBossBattleTransEffect(bool p_isFinalBoss) {
 				cout << " ";
 				GoToXY(bottomBorder - 1, i);
 				cout << " ";
-				Sleep(1);
+				Sleep(2);
 			}
 			bottomBorder -= 2;
 			for (int i = bottomBorder; i >= topBorder; i--) {
@@ -474,7 +474,7 @@ void MapMain::PlayBossBattleTransEffect(bool p_isFinalBoss) {
 				cout << " ";
 				GoToXY(i, leftBorder + 1);
 				cout << " ";
-				Sleep(1);
+				Sleep(2);
 			}
 			leftBorder += 2;
 		}
