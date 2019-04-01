@@ -25,7 +25,17 @@ void Menu()
 	int menuChoice = 0;
 	bool gameOver = false;
 
-	cout << R"(
+
+
+	string Menu[4] = { "Continue", "New Game", "Credits", "Quit" };
+	int pointer = 0;
+
+	while (true)
+	{
+		system("cls");
+
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+		cout << R"(
    ____     ________   ________     ____       ____    __   ___       
   (    )   (___  ___) (___  ___)   (    )     / ___)  () ) / __)      
   / /\ \       ) )        ) )      / /\ \    / /      ( (_/ /         
@@ -52,36 +62,69 @@ void Menu()
                                                                       
 )" << endl;
 
+		for (int i = 0; i < 4; ++i)
+		{
+			if (i == pointer)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+				cout << Menu[i] << endl;
+			}
+			else
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+				cout << Menu[i] << endl;
+			}
+		}
+		while (true)
+		{
+			if (GetAsyncKeyState(VK_UP) != 0)
+			{
+				pointer -= 1;
+				if (pointer == -1)
+				{
+					pointer = 3;
+				}
+				break;
+			}
+			else if (GetAsyncKeyState(VK_DOWN) != 0)
+			{
+				pointer += 1;
+				if (pointer == 4)
+				{
+					pointer = 0;
+				}
+				break;
+			}
+			else if (GetAsyncKeyState(VK_RETURN) != 0)
+			{
 
 
-	cout << "1.Continue" << endl;
-	cout << "2.New Game" << endl;
-	cout << "3.Credits" << endl;
-	cout << "4.Quit" << endl;
-	cin >> menuChoice;
 
+				switch (pointer)
+				{
+				case 0:
+				{
 
-
-	switch (menuChoice)
-	{
-	case 1:
-		system("cls");
-		cout << "you continue your journey" << endl;
-		//load save 
-		break;
-
-	case 2:
-		system("cls");
-		cout << "you start new journey" << endl;
-		//start from begining
-		//erase save file
-		break;
-
-	case 3:
-		system("cls");
-		cout << "Created By VGDD Class of 2019" << endl;
-		cout << endl;
-		cout << R"(
+					system("cls");
+					cout << "you continue your journey" << endl;
+					//load save 
+					Setup();
+					Sleep(1000);
+				}break;
+				case 1:
+				{
+					system("cls");
+					cout << "you start new journey" << endl;
+					//start from begining
+					//erase save file
+					Sleep(1000);
+				}break;
+				case 2:
+				{
+					system("cls");
+					cout << "Created By VGDD Class of 2019" << endl;
+					cout << endl;
+					cout << R"(
  +-+-+-+-+-+
  |S|c|o|t|t|
  +-+-+-+-+-+
@@ -111,29 +154,29 @@ void Menu()
  |A|a|r|o|n|
  +-+-+-+-+-+
 )" << endl;
-		cout << "1.Back" << endl;
 
-		cin >> menuChoice;
+					Sleep(1000);
+				}break;
+				case 3:
+				{
 
-		switch (menuChoice)
-		{
-		case 1:
-			system("cls");
-			Menu();
-			break;
+					system("cls");
+					cout << "thank you for playing" << endl;
+					exit;
+					//exit game
+
+
+
+				}break;
+
+				}
+				break;
+			}
 		}
-		break;
-
-	case 4:
-		system("cls");
-		cout << "thank you for playing" << endl;
-		exit;
-		//exit game
-
-
-
+		Sleep(150);
 	}
 
+	_getch();
 }
 
 

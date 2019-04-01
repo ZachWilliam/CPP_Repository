@@ -41,7 +41,7 @@ Armor::Armor(int ArmorChoice, int prefix_name)
 	m_MagicResist = ARMOR_TYPES[ArmorChoice].m_MagicResist;
 	m_Avoidance = ARMOR_TYPES[ArmorChoice].m_Avoidance;
 	GetName(prefix_name);
-	ID = Item::uniqueID++;
+	ID = uniqueID++;
 }
 
 const string Armor::PREFIX_NAMES[NUM_PREFIX_NAMES] = { "legendarily bad", "bad", "basic", "good", "great", "legendary", "Super Fantastic" };

@@ -23,25 +23,27 @@ void PartyInventory::AddArmor(int x, int y, int z)
 	tempArmor.SetArmor(x, y, z);
 	INV_ARMOR.push_back(tempArmor);
 }
-/*
-void PartyInventory::DropWeapon(int discardChoice = 0)
-{
-	vector<Weapon>::iterator iter;
-	Weapon weaponToDelete;
-	weaponToDelete = INV_WEAPON[discardChoice];
-	iter = find(INV_WEAPON.begin(), INV_WEAPON.end(), weaponToDelete);
-	cout << INV_WEAPON.size();
 
-	if (iter != INV_WEAPON.end())
-	{
-		INV_WEAPON.erase(iter);
-	}
-	else
-	{
-		cout << "\nThat weapon was not found.\n";
-	}
+int PartyInventory::GetID()
+{
+	
+	int ID = Backpack::m_Weapon.ID;
+	return ID;
 }
-*/
+void PartyInventory::SwapEquipedWeapon()
+{
+	int x;
+	int y;
+	int z;
+
+	Weapon tempWeapon;
+	tempWeapon.SetWeapon(x, y, z);
+
+	Backpack PlayerOne(int, int, bool, int, int, int, int, int, int, int);
+	PlayerOne.m_Weapon = INV_WEAPON[0];
+	//Backpack::m_Weapon;
+}
+
 void PartyInventory::DisplayPartyInventory()
 {
 	cout << "\nWeapons:\n";
