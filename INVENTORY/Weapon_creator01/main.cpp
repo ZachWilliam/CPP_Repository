@@ -8,7 +8,7 @@
 #include "Weapon.h"
 #include "Armor.h"
 #include "Items.h"
-#include "PartyInventory.h"
+//#include "PartyInventory.h"
 
 //#include <cctype>
 //#include <algorithm>
@@ -27,27 +27,37 @@ int main()
 
 	PartyInventory inStorage;
 	//inStorage.SetPartyInventory();
+	inStorage.EQUIPED_WEAPON = PlayerOne.m_Weapon;
+	inStorage.INV_WEAPON.insert(inStorage.INV_WEAPON.begin(), (inStorage.EQUIPED_WEAPON));
+	
+	inStorage.EQUIPED_ARMOR = PlayerOne.m_Armor;
+	inStorage.INV_ARMOR.insert(inStorage.INV_ARMOR.begin(), (inStorage.EQUIPED_ARMOR));
+	
 	inStorage.DisplayPartyInventory();
 	cout << endl;
-	cout << "Random\n";
-	inStorage.SetArmorRandom();
-	inStorage.SetWeaponsRandom();
-	inStorage.DisplayPartyInventory();
-
+	cout << endl;
+	//cout << "Random\n";
+	//inStorage.SetArmorRandom();
+	//inStorage.SetWeaponsRandom();
+	//inStorage.DisplayPartyInventory();
 
 	cout << "Player One:\n\n";
 	PlayerOne.Status();
 	cout << endl;
 	cout << endl;
-
+/*
 	cout << "swap inventory item to equiped.\n";
-	PlayerOne.m_Weapon = inStorage.INV_WEAPON[0];
+	inStorage.EQUIPED_WEAPON = PlayerOne.m_Weapon;
+	//PlayerOne.m_Weapon = inStorage.INV_WEAPON[0];
+	inStorage.INV_WEAPON.insert(inStorage.INV_WEAPON.begin(), (inStorage.EQUIPED_WEAPON));
+	inStorage.DisplayPartyInventory();
+
 	cout << "Player One:\n\n";
 	PlayerOne.Status();
 	cout << endl;
 	cout << endl;
+*/
 
-	//not working below
 	cout << "\nAdding three random armor and weapons to inventory.\n\n";
 	inStorage.SetWeaponsRandom();
 	inStorage.SetWeaponsRandom();
@@ -57,6 +67,10 @@ int main()
 	inStorage.SetArmorRandom();
 	inStorage.SetArmorRandom();
 	inStorage.DisplayPartyInventory();
+
+	cout << "\nSelecting the third weapon and armor as equiped.\n\n";
+	PlayerOne.m_Weapon = inStorage.INV_WEAPON[2];
+	PlayerOne.m_Armor = inStorage.INV_ARMOR[2];
 	//inStorage.AddWeapon(-1,-1,-1);
 	//inStorage.DisplayPartyInventory();
 	cout << "Player One:\n\n";
@@ -65,7 +79,7 @@ int main()
 	cout << endl;
 
 	cout << endl;
-
+/*
 	//cout << "Changing Player One's weapon to legendary(5) warhammer(4) of darkness(7).\n";
 	//PlayerOne.m_Weapon.SetWeapon(4, 5, 7);// legendary warhammer of darkness
 	cout << "changing Player One's weapon to random.\n";
@@ -89,14 +103,14 @@ int main()
 	cout << endl;
 	cout << endl;
 
-/*cout << "Player Two:\n";
+	cout << "Player Two:\n";
 	PlayerTwo.m_Weapon.Status();
 	cout << endl;
 	PlayerTwo.m_Armor.Status();
 	cout << endl;
 	PlayerTwo.m_Purse.Status();
 	cout << endl;
-	cout << endl;*/
+	cout << endl;
 
 	cout << "Player Three:\n";
 	PlayerThree.m_Weapon.Status();
@@ -115,7 +129,7 @@ int main()
 	PlayerFour.m_Purse.Status();
 	cout << endl;
 	cout << endl;
-
+*/
 
 
 /*

@@ -25,5 +25,28 @@ public:
 	void Status();
 };
 
+class PartyInventory
+{
+public:
+	PartyInventory();
+	vector<Weapon> INV_WEAPON;
+	vector<Armor> INV_ARMOR;
+	Weapon EQUIPED_WEAPON;
+	Armor EQUIPED_ARMOR;
+
+	void SetWeaponsRandom();
+	void SetArmorRandom();
+
+	void AddWeapon(int, int, int);
+	void AddArmor(int, int, int);
+
+	//int GetID();
+	//void SwapEquipedWeapon(int);
+
+	//void SwapEquipedArmor();
+	//void DropWeapon(int);
+
+	void DisplayPartyInventory();
+};
 
 #endif

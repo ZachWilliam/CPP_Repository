@@ -119,14 +119,12 @@
     <ClCompile Include="Backpack.cpp" />
     <ClCompile Include="Items.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PartyInventory.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Armor.h" />
     <ClInclude Include="Backpack.h" />
     <ClInclude Include="Items.h" />
-    <ClInclude Include="PartyInventory.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
