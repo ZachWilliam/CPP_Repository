@@ -125,6 +125,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Armor.h" />
+    <ClInclude Include="Attack.h" />
+    <ClInclude Include="AttackManager.h" />
     <ClInclude Include="Backpack.h" />
     <ClInclude Include="BattleManager.h" />
     <ClInclude Include="CharacterCreator.h" />

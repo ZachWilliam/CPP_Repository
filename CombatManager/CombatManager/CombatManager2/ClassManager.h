@@ -44,6 +44,7 @@ void ClassManager::GenerateClasses()
 	AllClasses[0].INT_BASE = 1;
 	AllClasses[0].WIS_BASE = 2;
 	AllClasses[0].LUK_BASE = 2;
+	AllClasses[0].RStat = 0;
 	AllClasses[0].StarterWeapon.SetWeapon(1,2,10);
 	AllClasses[0].AbilityDesc = "Ability - Swordsman: Gives + 2 Damage to Swords.";
 	AllClasses[1] = PlayerClass("Wizard", NonClass, Wizard);
@@ -57,6 +58,7 @@ void ClassManager::GenerateClasses()
 	AllClasses[1].INT_BASE = 3;
 	AllClasses[1].WIS_BASE = 3;
 	AllClasses[1].LUK_BASE = 2;
+	AllClasses[1].RStat = 2;
 	AllClasses[1].StarterWeapon.SetWeapon(9, 2, 1);
 	AllClasses[1].AbilityDesc = "Ability - Spellweaver: Gives +2 Damage to Wands.";
 	AllClasses[2] = PlayerClass("Archer", NonClass, Archer);
@@ -70,6 +72,7 @@ void ClassManager::GenerateClasses()
 	AllClasses[2].INT_BASE = 1;
 	AllClasses[2].WIS_BASE = 2;
 	AllClasses[2].LUK_BASE = 2;
+	AllClasses[2].RStat = 1;
 	AllClasses[2].StarterWeapon.SetWeapon(15, 2, 10);
 	AllClasses[2].AbilityDesc = "Ability - Bowslinger: Gives +2 Damage to Bows.";
 	AllClasses[3] = PlayerClass("Lancer", NonClass, Lancer);
@@ -83,6 +86,7 @@ void ClassManager::GenerateClasses()
 	AllClasses[3].INT_BASE = 1;
 	AllClasses[3].WIS_BASE = 1;
 	AllClasses[3].LUK_BASE = 2;
+	AllClasses[3].RStat = 0;
 	AllClasses[3].StarterWeapon.SetWeapon(7, 2, 10);
 	AllClasses[3].AbilityDesc = "Ability - Polearm Master: Gives +2 Damage to Lances.";
 	AllClasses[4] = PlayerClass("Fighter", NonClass, Fighter);
@@ -96,6 +100,7 @@ void ClassManager::GenerateClasses()
 	AllClasses[4].INT_BASE = 1;
 	AllClasses[4].WIS_BASE = 1;
 	AllClasses[4].LUK_BASE = 3;
+	AllClasses[4].RStat = 0;
 	AllClasses[4].StarterWeapon.SetWeapon(3, 2, 10);
 	AllClasses[4].AbilityDesc = "Ability - Headsplitter: Gives +2 Damage to Axes.";
 	AllClasses[5] = PlayerClass("Brawler", NonClass, Brawler);
@@ -109,6 +114,7 @@ void ClassManager::GenerateClasses()
 	AllClasses[5].INT_BASE = 1;
 	AllClasses[5].WIS_BASE = 1;
 	AllClasses[5].LUK_BASE = 1;
+	AllClasses[5].RStat = 0;
 	AllClasses[5].StarterWeapon.SetWeapon(0, 2, 10);
 	AllClasses[5].AbilityDesc = "Ability - Iron Fist: Gives +2 Damage to Fists.";
 	AllClasses[6] = PlayerClass("Rogue", NonClass, Rogue);
@@ -122,6 +128,7 @@ void ClassManager::GenerateClasses()
 	AllClasses[6].INT_BASE = 2;
 	AllClasses[6].WIS_BASE = 1;
 	AllClasses[6].LUK_BASE = 3;
+	AllClasses[6].RStat = 1;
 	AllClasses[6].StarterWeapon.SetWeapon(14, 2, 10);
 	AllClasses[6].AbilityDesc = "Ability - Dagger Adept: Gives +2 Damage to Daggers.";
 	AllClasses[7] = PlayerClass("Mage", NonClass, Mage);
@@ -135,6 +142,7 @@ void ClassManager::GenerateClasses()
 	AllClasses[7].INT_BASE = 3;
 	AllClasses[7].WIS_BASE = 1;
 	AllClasses[7].LUK_BASE = 2;
+	AllClasses[7].RStat = 2;
 	AllClasses[7].StarterWeapon.SetWeapon(10, 2, 1);
 	AllClasses[7].AbilityDesc = "Ability - Avid Reader: Gives +2 Damage to Tomes.";
 	AllClasses[8] = PlayerClass("Clergy", NonClass, Clergy);
@@ -148,6 +156,7 @@ void ClassManager::GenerateClasses()
 	AllClasses[8].INT_BASE = 2;
 	AllClasses[8].WIS_BASE = 3;
 	AllClasses[8].LUK_BASE = 2;
+	AllClasses[8].RStat = 3;
 	AllClasses[8].StarterWeapon.SetWeapon(12, 2, 10);
 	AllClasses[8].AbilityDesc = "Ability - Serene Grace: Gives +2 Healing to Staves.";
 	// PROMOTION ---------------------------------------------------------------------------------
