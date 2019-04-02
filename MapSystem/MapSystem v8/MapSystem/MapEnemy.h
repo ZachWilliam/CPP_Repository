@@ -11,5 +11,7 @@ public:
 	bool isFinalBoss = false;
 
 	//Some sort of ID
+
+	void TriggerBattle();
 };
 

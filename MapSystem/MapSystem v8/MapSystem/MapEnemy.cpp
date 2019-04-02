@@ -11,4 +11,8 @@ MapEnemy::MapEnemy(int p_row, int p_col, bool p_isDefeated, int p_isBoss, int p_
 {
 }
 
+void MapEnemy::TriggerBattle() {
+
+}
+
 

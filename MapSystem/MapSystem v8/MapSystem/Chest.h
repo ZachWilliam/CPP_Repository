@@ -7,6 +7,6 @@ public:
 	int row, col;
 	bool opened = false;
 	int id1, id2, id3;
-	int itemID;
+	int itemType;
 };
 

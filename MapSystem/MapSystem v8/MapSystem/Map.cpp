@@ -17,7 +17,10 @@ Map::Map(const string &p_name, const vector<vector<char> > &p_map, int p_mapID, 
 	spaceColor(p_spaceColor),
 	mapMusic(p_mapMusic)
 {
+	playedFlavorTxt = false;
 }
+
+
 
 
 
