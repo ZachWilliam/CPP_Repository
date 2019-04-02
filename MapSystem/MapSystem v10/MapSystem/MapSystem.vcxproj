@@ -130,6 +130,8 @@
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="Quest.cpp" />
+    <ClCompile Include="QuestManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Transitions.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -149,6 +151,8 @@
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="NPC.h" />
+    <ClInclude Include="Quest.h" />
+    <ClInclude Include="QuestManager.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Transitions.h" />
     <ClInclude Include="Weapon.h" />

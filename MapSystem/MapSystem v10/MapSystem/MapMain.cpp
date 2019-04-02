@@ -9,7 +9,6 @@ int MapMain::main() {
 	//SetColorAndBackground();
 	//curMap.map[playerR][playerC] = 'P'; 
 	
-	
 	//DrawGUI();
 	//DrawRight();
 	
@@ -53,7 +52,8 @@ void MapMain::Setup(int p_mapID, int p_row, int p_col) {
 		playerC = p_col;
 	}
 
-	char lastChar = curMap.map[playerR][playerC];
+	
+	lastChar = curMap.map[playerR][playerC];
 
 	//Prep screen
 	Logic();
