@@ -50,7 +50,7 @@ public:
 	void GenerateAttack(Combatant&, Attack, int);
 	void DoAttack(Combatant, Enemy&);
 	void DoAttack(Enemy);
-	
+	void DoHeal(Combatant, Combatant&);
 	vector<int> AllEnemies = { -1,-1,-1,-1,-1,-1 };
 	Party PlayerParty;
 	vector<Enemy> FrontRow = { Enemy(AllEnemies[0]), Enemy(AllEnemies[1]), Enemy(AllEnemies[2]) };
@@ -186,69 +186,126 @@ void Encounter::GenerateAttack(Combatant &User, Attack Used, int Choice)
 		}
 		_getch();
 	}
+	else
+	{
+		if (Used.target == 7)
+		{
+			DoHeal(User, PlayerParty.Container[Selection]);
+		}
+		if (Used.target == 8)
+		{
+			for (size_t i = 0; i < PlayerParty.Container.size(); i++)
+			{
+				if (PlayerParty.Container[i].name != "NULL_NAME")
+				{
+					DoHeal(User, PlayerParty.Container[i]);
+				}
+			}
+		}
+	}
 }
 void Encounter::DoAttack(Combatant User, Enemy& Target)
 {
-	Damage = User.PlayerInventory.m_Weapon.Attack();
-	Damage += User.CurrentStats.ValueFromStatIn(User.PlayerInventory.m_Weapon.m_Weapon_Type.m_StatUsed);
-	if (User.PlayerInventory.m_Weapon.m_Weapon_Type.magic)
+	int HitChance = ((User.BattleStats[6] - Target.BattleStats[7]) * 5) + 10;
+
+	if (rand() % 100 > HitChance)
 	{
-		Damage -= Target.BattleStats[RESISTANCE];
-	}
-	else
-	{
-		Damage -= Target.BattleStats[DEFENSE];
-	}
-	if (User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement > 0 && User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement < 9)
-	{
-		if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 0)
+		Damage = User.PlayerInventory.m_Weapon.Attack();
+		Damage += User.CurrentStats.ValueFromStatIn(User.PlayerInventory.m_Weapon.m_Weapon_Type.m_StatUsed);
+		Damage = float(Damage) * (float(AttackUsed.power) / float(100));
+		if (User.PlayerInventory.m_Weapon.m_Weapon_Type.magic)
 		{
-			Damage *= Target.Resistances[User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement + 2];
-			if (Target.Resistances[User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement + 2] > 1)
-			{
-				Effect = "It's super effective!";
-			}
-			else if (Target.Resistances[User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement + 2] < 1)
-			{
-				Effect = "It's not very effective!";
-			}
+			Damage -= Target.BattleStats[RESISTANCE];
 		}
 		else
 		{
-			Damage *= (Target.Resistances[User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement + 2] / float(2));
-			if (Target.Resistances[User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement + 2] > 1)
-			{
-				Effect = "It's super effective!";
-			}
-			else if (Target.Resistances[User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement + 2] < 1)
-			{
-				Effect = "It's not very effective!";
-			}
+			Damage -= Target.BattleStats[DEFENSE];
 		}
-		
+		if (User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement > 0 && User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement < 9)
+		{
+			if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 0)
+			{
+				Damage *= Target.Resistances[User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement + 2];
+				if (Target.Resistances[User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement + 2] > 1)
+				{
+					Effect = "It's super effective!";
+				}
+				else if (Target.Resistances[User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement + 2] < 1)
+				{
+					Effect = "It's not very effective!";
+				}
+			}
+			else
+			{
+				Damage *= (Target.Resistances[User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement + 2] / float(2));
+				if (Target.Resistances[User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement + 2] > 1)
+				{
+					Effect = "It's super effective!";
+				}
+				else if (Target.Resistances[User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement + 2] < 1)
+				{
+					Effect = "It's not very effective!";
+				}
+			}
+
+		}
+		if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 1)
+		{
+			Damage *= Target.Resistances[0];
+		}
+		if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 2)
+		{
+			Damage *= Target.Resistances[1];
+		}
+		if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 3 || User.PlayerInventory.m_Weapon.m_Weapon_Type.staff)
+		{
+			Damage *= Target.Resistances[2];
+		}
+		Damage = _Max_value(Damage, 1);
+		Target.CurrentHP -= Damage;
+		Target.CurrentHP = _Max_value(0, Target.CurrentHP);
+		cout << Target.name << " took " << Damage << " damage! ";
+		cout << Effect << endl;
 	}
-	if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 1)
+	else
 	{
-		Damage *= Target.Resistances[0];
+		cout << Target.name << " avoided the attack!";
 	}
-	if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 2)
-	{
-		Damage *= Target.Resistances[1];
-	}
-	if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 3 || User.PlayerInventory.m_Weapon.m_Weapon_Type.staff)
-	{
-		Damage *= Target.Resistances[2];
-	}
-	Target.CurrentHP -= Damage;
-	Target.CurrentHP = _Max_value(0, Target.CurrentHP);
-	cout << Target.name << " took " << Damage << " damage! ";
-	cout << Effect << endl;
+	
 	_getch();
 	Effect = "";
 
 }
+
+void Encounter::DoHeal(Combatant User, Combatant & Target)
+{
+	
+	Damage = User.PlayerInventory.m_Weapon.Attack();
+	Damage += User.CurrentStats.ValueFromStatIn(User.PlayerInventory.m_Weapon.m_Weapon_Type.m_StatUsed);
+	Target.CurrentHP += Damage;
+	Target.CurrentHP = _Min_value(Target.MaxHP, Target.CurrentHP);
+	cout << Target.name << " healed " << Damage << " health! " << endl;
+	if (AttackUsed.effect == 1 && Target.OFFENSE < Target.UP || AttackUsed.effect == 7 && Target.OFFENSE < Target.UP)
+	{
+		Target.OFFENSE = Target.UP;
+		cout << Target.name << "'s attack power has been raised!" << endl;
+	}
+	if (AttackUsed.effect == 3 && Target.DEFENSE < Target.UP || AttackUsed.effect == 7 && Target.DEFENSE < Target.UP)
+	{
+		Target.DEFENSE = Target.UP;
+		cout << Target.name << "'s defenses have been raised!" << endl;
+	}
+	if (AttackUsed.effect == 5 && Target.MOBILITY < Target.UP || AttackUsed.effect == 7 && Target.MOBILITY < Target.UP)
+	{
+		Target.MOBILITY = Target.UP;
+		cout << Target.name << "'s mobility has been raised!" << endl;
+	}
+	_getch();
+}
+
 void Encounter::DoAttack(Enemy User)
 {
+	
 	Damage = 1;
 	Damage += User.BattleStats[0];
 	cout << Damage;
@@ -259,14 +316,22 @@ void Encounter::DoAttack(Enemy User)
 			int dir = rand() % 6;
 			if (PlayerParty.Container[dir].name != "NULL_NAME" && PlayerParty.Container[dir].CurrentHP > 0)
 			{
-				Damage -= PlayerParty.Container[dir].BattleStats[1];
-				Damage = _Max_value(Damage, 0);
-				cout << PlayerParty.Container[dir].name << " takes " << Damage << " damage!" << endl;
-				PlayerParty.Container[dir].CurrentHP -= Damage;
-				if (PlayerParty.Container[dir].CurrentHP <= 0)
+				int HitChance = ((User.BattleStats[6] - (PlayerParty.Container[dir].BattleStats[7] + PlayerParty.Container[dir].PlayerInventory.m_Armor.m_Avoidance)) * 5) + 10;
+				if (rand() % 100 > HitChance)
 				{
-					PlayerParty.Container[dir].CurrentHP = 0;
-					cout << PlayerParty.Container[dir].name << " has been knocked unconcious!";
+					Damage -= PlayerParty.Container[dir].BattleStats[1];
+					Damage = _Max_value(Damage, 0);
+					cout << PlayerParty.Container[dir].name << " takes " << Damage << " damage!" << endl;
+					PlayerParty.Container[dir].CurrentHP -= Damage;
+					if (PlayerParty.Container[dir].CurrentHP <= 0)
+					{
+						PlayerParty.Container[dir].CurrentHP = 0;
+						cout << PlayerParty.Container[dir].name << " has been knocked unconcious!";
+					}
+				}
+				else
+				{
+					cout << PlayerParty.Container[dir].name << " avoided the attack!";
 				}
 
 				break;
@@ -324,6 +389,16 @@ void Encounter::TakeTurn()
 	}
 	if (!Battling)
 	{
+		if (Victory)
+		{
+			for (size_t i = 0; i < PlayerParty.Container.size(); i++)
+			{
+				if (PlayerParty.Container[i].CurrentHP == 0)
+				{
+					PlayerParty.Container[i].CurrentHP = 1;
+				}
+			}
+		}
 		return;
 	}
 	//if (Order[InitiativeOrder].combatantValue.name == "")
@@ -334,7 +409,7 @@ void Encounter::TakeTurn()
 	{
 		if (!FrontRow[i].NullEnemy && FrontRow[i].CurrentHP > 0)
 		{
-			gotoxy(9 + (23 * i),10);
+			gotoxy(3 + (23 * i),11);
 			cout << FrontRow[i].name;
 			for (size_t e = 0; e < 19; e++)
 			{
@@ -343,11 +418,11 @@ void Encounter::TakeTurn()
 					cout << ".";
 				}
 			}
-			gotoxy(9 + (23 * i), 11);
-			int chunk = FrontRow[i].MAX_HP / (17 - (i % 2));
+			gotoxy(3 + (23 * i), 12);
+			float chunk = float(FrontRow[i].MAX_HP) / float(17);
 			for (size_t e = 0; e < 18; e++)
 			{
-				if (FrontRow[i].CurrentHP >= chunk * e)
+				if (float(FrontRow[i].CurrentHP) >= chunk * float(e))
 				{
 					SetColorAndBackground(10,0);
 				}
@@ -369,10 +444,10 @@ void Encounter::TakeTurn()
 	{
 		if (PlayerParty.Container[i].name != "NULL_NAME")
 		{
-			gotoxy(14 + (18 * (i % 3)), 26 + 3 * (i / 3));
+			gotoxy(9 + (18 * (i % 3)), 21 + 3 * (i / 3));
 			cout << PlayerParty.Container[i].name;
 			cout << " " << PlayerParty.Container[i].CurrentHP << "/" << PlayerParty.Container[i].Max_HP;
-			gotoxy(14 + (18 * (i % 3)), 27 + 3 * (i / 3));
+			gotoxy(9 + (18 * (i % 3)), 22 + 3 * (i / 3));
 			float chunk = float(PlayerParty.Container[i].Max_HP) / float(17);
 			
 			for (size_t e = 0; e < 17; e++)
@@ -394,7 +469,7 @@ void Encounter::TakeTurn()
 	{
 		if (!BackRow[i].NullEnemy && BackRow[i].CurrentHP > 0)
 		{
-			gotoxy(9 + (23 * i), 10);
+			gotoxy(3 + (23 * i), 11);
 			cout << BackRow[i].name;
 			for (size_t e = 0; e < 19; e++)
 			{
@@ -403,7 +478,7 @@ void Encounter::TakeTurn()
 					cout << ".";
 				}
 			}
-			gotoxy(9 + (23 * i), 11);
+			gotoxy(3 + (23 * i), 12);
 			int chunk = BackRow[i].MAX_HP / 17;
 			for (size_t e = 0; e < 18; e++)
 			{
@@ -427,12 +502,12 @@ void Encounter::TakeTurn()
 	}
 	for (size_t i = 0; i < Order.size(); i++)
 	{
-		gotoxy(84, 2 + i);
+		gotoxy(73, 2 + i);
 		if (i == InitiativeOrder) {
 			SetColorAndBackground(15, 0);
 		}
 		cout << Order[i].combatantValue.name;
-		for (size_t e = 0; e < 29; e++)
+		for (size_t e = 0; e < 27; e++)
 		{
 			if (e > Order[i].combatantValue.name.size())
 			{
@@ -451,14 +526,17 @@ void Encounter::TakeTurn()
 		Flee = false;
 		while (true)
 		{
-			gotoxy(0, 33);
+			gotoxy(0, 30);
 			cout << "                                                                                        " << endl;
 			cout << "                                                                                        " << endl;
 			cout << "                                                                                        " << endl;
 			cout << "                                                                                        " << endl;
 			cout << "                                                                                        " << endl;
 			cout << "                                                                                        " << endl;
-			gotoxy(0, 33);
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			gotoxy(0, 30);
 			if (TopMenu)
 			{
 				cout << Order[InitiativeOrder].combatantValue.name << "'s turn! Select your action:                                     " << endl;
@@ -648,13 +726,6 @@ void Encounter::TakeTurn()
 
 				cout << "|" << endl;
 			}
-			else if (Report)
-			{
-				if (Selection <= 2)
-				{
-					cout << FrontRow[Selection].name << " took " << Damage << " damage!";
-				}
-			}
 			NextMove = _getch();
 			int temp = 0;
 			for (size_t i = 0; i < Order[InitiativeOrder].combatantValue.CurrentMoves.size(); i++)
@@ -782,33 +853,45 @@ void Encounter::TakeTurn()
 				}
 				else if (ChooseTarget)
 				{
-					if (Selection <= 2)
+					if (AttackUsed.target < 7)
 					{
-						if (FrontRow[Selection].NullEnemy != true)
+						if (Selection <= 2)
+						{
+							if (FrontRow[Selection].NullEnemy != true)
+							{
+								GenerateAttack(Order[InitiativeOrder].combatantValue, AttackUsed, Selection);
+								ChooseTarget = false;
+								Selection = 0;
+								Damage = 0;
+								break;
+							}
+						}
+						else if (Selection <= 5)
+						{
+							if (BackRow[Selection - 3].NullEnemy != true)
+							{
+								GenerateAttack(Order[InitiativeOrder].combatantValue, AttackUsed, Selection);
+								ChooseTarget = false;
+								Selection = 0;
+								Damage = 0;
+								break;
+							}
+						}
+					}
+					else
+					{
+						if (PlayerParty.Container[Selection].name != "NULL_NAME")
 						{
 							GenerateAttack(Order[InitiativeOrder].combatantValue, AttackUsed, Selection);
 							ChooseTarget = false;
-							Report = true;
+							Selection = 0;
+							Damage = 0;
+							break;
 						}
 					}
-					else if (Selection <= 5)
-					{
-						if (BackRow[Selection - 3].NullEnemy != true)
-						{
-							GenerateAttack(Order[InitiativeOrder].combatantValue, AttackUsed, Selection);
-							ChooseTarget = false;
-							Report = true;
-						}
-					}
+
 					
 					
-				}
-				else if (Report)
-				{
-					Report = false;
-					Selection = 0;
-					Damage = 0;
-					break;
 				}
 
 

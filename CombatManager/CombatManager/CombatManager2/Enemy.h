@@ -176,6 +176,7 @@ void Enemy::SpawnAtLevel(int level)
 	BattleStats = stats.BattleStats(0);
 	MAX_HP = 8 + Level * (stats.CONSTITUTION / 2);
 	SetHP(MAX_HP);
+	MaxHP = MAX_HP;
 }
 void Enemy::toString()
 {

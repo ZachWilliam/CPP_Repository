@@ -19,41 +19,9 @@ using namespace std;
 
 void gotoxy(int x, int y);
 
-void DrawScreen()
-{
-	{cout << "|--------------------------------------------------------------------------------" << "|" << "------------------------------" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|                                                                                |" << endl;
-	cout << "|--------------------------------------------------------------------------------" << "|" << "------------------------------" << endl;}
-}
+void GoToXY(int y, int x);
+
+void DrawGUI();
 
 void CharacterPromotion(Player &self)
 {
@@ -71,24 +39,24 @@ void CharacterPromotion(Player &self)
 			Selection.push_back(Man.AllClasses[i]);
 		}
 	}
-	DrawScreen();
+	DrawGUI();
 	while (Promotion)
 	{
 		if (Selection.size() == 2)
 		{
-			gotoxy(84, 1);
+			gotoxy(72, 1);
 			cout << "You have been promoted";
 			counter = 0;
 			for (size_t i = 0; i < 27; i++)
 			{
 				if (Selection[1].name == Man.AllClasses[i].name)
 				{
-					gotoxy(84, 2 + counter);
+					gotoxy(72, 2 + counter);
 					if (choice == 1)
 					{
 						SetColorAndBackground(15, 0);
 						cout << " > " << Selection[1].name;
-						for (size_t i = 0; i < 27; i++)
+						for (size_t i = 0; i < 25; i++)
 						{
 							if (i > Selection[1].name.size())
 							{
@@ -100,7 +68,7 @@ void CharacterPromotion(Player &self)
 					else
 					{
 						cout << " " << Selection[1].name;
-						for (size_t i = 0; i < 29; i++)
+						for (size_t i = 0; i < 27; i++)
 						{
 							if (i > Selection[1].name.size())
 							{
@@ -113,12 +81,12 @@ void CharacterPromotion(Player &self)
 				}
 				else if (Selection[0].name == Man.AllClasses[i].name)
 				{
-					gotoxy(84, 2 + counter);
+					gotoxy(72, 2 + counter);
 					if (choice == 0)
 					{
 						SetColorAndBackground(15, 0);
 						cout << " > " << Selection[0].name;
-						for (size_t i = 0; i < 29; i++)
+						for (size_t i = 0; i < 25; i++)
 						{
 							if (i > Selection[0].name.size())
 							{
@@ -130,7 +98,7 @@ void CharacterPromotion(Player &self)
 					else
 					{
 						cout << " " << Selection[0].name;
-						for (size_t i = 0; i < 29; i++)
+						for (size_t i = 0; i < 27; i++)
 						{
 							if (i > Selection[0].name.size())
 							{
@@ -143,7 +111,17 @@ void CharacterPromotion(Player &self)
 				}
 			}
 
-			gotoxy(0, 32);
+			gotoxy(0, 30);
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			gotoxy(0, 30);
 			
 			cout << Selection[choice].name;
 			for (size_t i = 0; i < 82; i++)
@@ -249,7 +227,8 @@ void CharacterCreator(Player &self)
 	int NextMove;
 	vector<int> PointBought = { 0,0,0,0,0,0,0 };
 	char space = '.';
-	DrawScreen();
+	DrawGUI();
+
 	while (Building)
 	{
 		if (self.name == "")
@@ -264,18 +243,18 @@ void CharacterCreator(Player &self)
 		}
 		else if (self.Job.Current == self.Job.NonClass)
 		{
-			gotoxy(83, 1);
+			gotoxy(72, 1);
 			cout << " Choose your Class!" << endl;
 			for (size_t i = 0; i < 27; i++)
 			{
-				gotoxy(83, 2 + i);
+				gotoxy(72, 2 + i);
 				if (i < Selection.size())
 				{
 					if (choice == i)
 					{
 						SetColorAndBackground(15, 0);
 						cout << " > " << Selection[i].name;
-						for (size_t e = 0; e < 27; e++)
+						for (size_t e = 0; e < 25; e++)
 						{
 							if (e > Selection[i].name.size())
 							{
@@ -288,7 +267,7 @@ void CharacterCreator(Player &self)
 					else
 					{
 						cout << " " << Selection[i].name;
-						for (size_t e = 0; e < 29; e++)
+						for (size_t e = 0; e < 27; e++)
 						{
 							if (e > Selection[i].name.size())
 							{
@@ -299,7 +278,17 @@ void CharacterCreator(Player &self)
 					}
 				}
 			}
-			gotoxy(0, 32);
+			gotoxy(0, 30);
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			gotoxy(0, 30);
 			cout << Selection[choice].name;
 			for (size_t i = 0; i < 82; i++)
 			{
@@ -384,7 +373,7 @@ void CharacterCreator(Player &self)
 				self.PlayerInventory.m_Weapon = Man.AllClasses[choice].StarterWeapon;
 				system("cls");
 				choice = 0;
-				DrawScreen();
+				DrawGUI();
 			}
 			else
 			{
@@ -404,11 +393,11 @@ void CharacterCreator(Player &self)
 			// | v | | v | | v | | v | | v | | v | | v |
 			//  | |   | |   | |   | |   | |   | |   | |
 			//   |     |     |     |     |     |     |
-			gotoxy(20, 3);
+			gotoxy(15, 3);
 			cout << " ___   ___   ___   ___   ___   ___   ___ ";
-			gotoxy(20, 4);
+			gotoxy(15, 4);
 			cout << "| ^ | | ^ | | ^ | | ^ | | ^ | | ^ | | ^ |";
-			gotoxy(20, 5);
+			gotoxy(15, 5);
 			cout << "|";
 
 			if (choice == 0)
@@ -460,7 +449,7 @@ void CharacterCreator(Player &self)
 			cout << "LUK";
 			SetColorAndBackground(0, 15);
 			cout << "|";
-			gotoxy(20, 6);
+			gotoxy(15, 6);
 
 			cout << "|";
 			SetColorAndBackground(15, 0);
@@ -506,15 +495,15 @@ void CharacterCreator(Player &self)
 			SetColorAndBackground(0, 15);
 			cout << "|";
 
-			gotoxy(20, 7);
+			gotoxy(15, 7);
 
 			cout << "| v | | v | | v | | v | | v | | v | | v |";
 
-			gotoxy(20, 8);
+			gotoxy(15, 8);
 
 			cout << " | |   | |   | |   | |   | |   | |   | |";
 
-			gotoxy(20, 9);
+			gotoxy(15, 9);
 
 			cout << "  |     |     |     |     |     |     |";
 
@@ -528,7 +517,17 @@ void CharacterCreator(Player &self)
 										"Influences your Accuracy, Evasion, and Critical Hit chance."};
 			
 
-			gotoxy(0, 32);
+			gotoxy(0, 30);
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			gotoxy(0, 30);
 			cout << StatNames[choice];
 			for (size_t i = 0; i < 82; i++)
 			{
@@ -616,6 +615,7 @@ void CharacterCreator(Player &self)
 					self.CurrentStats.LUCK += PointBought[6];
 					self.Max_HP = 8 + self.CurrentStats.CONSTITUTION;
 					self.CurrentHP = self.Max_HP;
+					self.MaxHP = self.Max_HP;
 					self.BattleStats = self.CurrentStats.BattleStats(self.Job.RStat);
 					self.RStat = self.Job.RStat;
 					system("cls");
@@ -631,6 +631,7 @@ void CharacterCreator(Player &self)
 		}
 		else 
 		{
+			//CharacterPromotion(self);
 			Building = false;
 		}
 		

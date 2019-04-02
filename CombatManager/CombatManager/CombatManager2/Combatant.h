@@ -28,6 +28,7 @@ public:
 	vector<float> Resistances = { 1,1,1,1,1,1,1,1,1,1,1 };
 	int initiative;
 	int CurrentHP = 0;
+	int MaxHP = 0;
 	int CurrentMana = 0;
 	bool PlayerControl = false;
 	vector<Attack> CurrentMoves = vector<Attack>(4);

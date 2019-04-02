@@ -240,7 +240,7 @@ void AttackManager::GenerateAttacks()
 	PhysMoves.push_back(Attack("Bash", 100, 0));
 	PhysMoves.push_back(Attack("Multiattack", 50, 1));
 	PhysMoves.push_back(Attack("Shoot", 100, 2));
-	PhysMoves.push_back(Attack("Multistrike", 50, 0));
+	PhysMoves.push_back(Attack("Multistrike", 50, 3));
 	PhysMoves.push_back(Attack("Heal", 100, 7));
 	PhysMoves.push_back(Attack("Cure Ailment", 100, 7));
 	PhysMoves.push_back(Attack("Heal More", 100, 7));
@@ -250,68 +250,87 @@ void AttackManager::GenerateAttacks()
 						 Attack("Collapse", 100, 2),
 						 Attack("Panta Rei", 100, 2),
 						 Attack("Debilitate", 100, 2) });
+	SpellBook[0][5].effect = 8;
 	SpellBook.push_back({Attack("Fireball", 100, 2),
 						 Attack("Firewall", 100, 2),
 						 Attack("Hellfire", 100, 2),
 						 Attack("Lava Plume", 100, 2),
 						 Attack("Ashenheit", 100, 2),
-						 Attack("Aggro", 100, 2),
-						 Attack("Hearthfire", 100, 2),
-						 Attack("Blazing Soul", 100, 2)});
+						 Attack("Aggro", 0, 7),
+						 Attack("Hearthfire", 100, 8),
+						 Attack("Blazing Soul", 100, 7)});
+	SpellBook[1][5].effect = 1;
+	SpellBook[1][7].effect = 1;
 	SpellBook.push_back({ Attack("Ice Shard", 100, 2),
 						 Attack("Blizzard", 100, 2),
 						 Attack("Cryosphere", 100, 2),
 						 Attack("Glaciate", 100, 2),
 						 Attack("Aurora", 100, 2),
-						 Attack("Winterveil", 100, 2),
-						 Attack("Cool Breeze", 100, 2),
-						 Attack("Ice Palace", 100, 2) });
+						 Attack("Winterveil", 0, 7),
+						 Attack("Cool Breeze", 100, 8),
+						 Attack("Ice Palace", 100, 7) });
+	SpellBook[2][5].effect = 3;
+	SpellBook[2][7].effect = 3;
 	SpellBook.push_back({ Attack("Bubble", 100, 2),
 						 Attack("Riptide", 100, 2),
 						 Attack("Geyser", 100, 2),
 						 Attack("Water Cannon", 100, 2),
 						 Attack("Bloodburst", 100, 2),
-						 Attack("Oegis", 100, 2),
-						 Attack("Fountain", 100, 2),
-						 Attack("Wishing Well", 100, 2) });
+						 Attack("Oegis", 100, 7),
+						 Attack("Fountain", 100, 8),
+						 Attack("Wishing Well", 100, 8) });
+	SpellBook[3][5].effect = 3;
+	SpellBook[3][7].effect = 3;
 	SpellBook.push_back({ Attack("Shock", 100, 2),
 						 Attack("Plasma Burst", 100, 2),
 						 Attack("Thunderbolt", 100, 2),
 						 Attack("Discharge", 100, 2),
 						 Attack("Thunderhead", 100, 2),
-						 Attack("Excite", 100, 2),
-						 Attack("Charge", 100, 2),
-						 Attack("Supersedence", 100, 2) });
+						 Attack("Excite", 0, 7),
+						 Attack("Charge", 0, 7),
+						 Attack("Supersedence", 0, 7) });
+	SpellBook[4][5].effect = 5;
+	SpellBook[4][6].effect = 1;
+	SpellBook[4][7].effect = 7;
 	SpellBook.push_back({ Attack("Gust", 100, 2),
 						 Attack("Vorpal Wind", 100, 2),
 						 Attack("Tornado", 100, 2),
 						 Attack("Hurricane", 100, 2),
 						 Attack("Miasmaime", 100, 2),
-						 Attack("Stormguard", 100, 2),
-						 Attack("Storm Song", 100, 2),
-						 Attack("Lunar Rondo", 100, 2) });
+						 Attack("Stormguard", 100, 7),
+						 Attack("Storm Song", 100, 8),
+						 Attack("Lunar Rondo", 100, 8) });
+	SpellBook[5][5].effect = 5;
+	SpellBook[5][6].effect = 5;
+	SpellBook[5][7].effect = 1;
 	SpellBook.push_back({ Attack("Venom Sting", 100, 2),
 						 Attack("Vine Grip", 100, 2),
 						 Attack("Virus Wave", 100, 2),
 						 Attack("Earthquake", 100, 2),
 						 Attack("Blightstorm", 100, 2),
-						 Attack("Poison Cloud", 100, 2),
-						 Attack("Healing Sap", 100, 2),
-						 Attack("Resonance", 100, 2) });
+						 Attack("Poison Cloud", 30, 6),
+						 Attack("Healing Sap", 100, 7),
+						 Attack("Resonance", 100, 8) });
+	SpellBook[6][7].effect = 3;
 	SpellBook.push_back({ Attack("Life Drain", 100, 2),
 						 Attack("Decay Wave", 100, 2),
 						 Attack("Nosferatu", 100, 2),
 						 Attack("Netherrend", 100, 2),
 						 Attack("Hel Vertigo", 100, 2),
 						 Attack("Hex Vex", 100, 2),
-						 Attack("Nethergate", 100, 2),
-						 Attack("Sacred Poetry", 100, 2) });
+						 Attack("Nethergate", 100, 7),
+						 Attack("Sacred Poetry", 100, 6) });
+	SpellBook[7][6].effect = 3;
+	SpellBook[7][7].effect = 9;
 	SpellBook.push_back({ Attack("Purge", 100, 2),
 						 Attack("Radiance", 100, 2),
 						 Attack("Smite", 100, 2),
 						 Attack("God's Hand", 100, 2),
 						 Attack("Edenbeam", 100, 2),
-						 Attack("Purify", 100, 2),
-						 Attack("Revive", 100, 2),
-						 Attack("Heavensend", 100, 2) });
+						 Attack("Purify", 100, 7),
+						 Attack("Restore", 100, 7),
+						 Attack("Heavensend", 100, 8) });
+	SpellBook[8][5].effect = 3;
+	SpellBook[8][6].effect = 7;
+	SpellBook[8][7].effect = 7;
 }

@@ -31,16 +31,19 @@ Player PartyManager::GetPartyMember(int PC)
 		if (choice < 60)
 		{
 			AllPresets[3 * PC].CurrentHP = AllPresets[3 * PC].Max_HP;
+			AllPresets[3 * PC].MaxHP = AllPresets[3 * PC].Max_HP;
 			return AllPresets[3 * PC];
 		}
 		else if (choice < 90)
 		{
 			AllPresets[3 * PC + 1].CurrentHP = AllPresets[3 * PC + 1].Max_HP;
+			AllPresets[3 * PC + 1].MaxHP = AllPresets[3 * PC + 1].Max_HP;
 			return AllPresets[3 * PC + 1];
 		}
 		else
 		{
 			AllPresets[3 * PC + 2].CurrentHP = AllPresets[3 * PC + 2].Max_HP;
+			AllPresets[3 * PC + 2].MaxHP = AllPresets[3 * PC + 2].Max_HP;
 			return AllPresets[3 * PC + 2];
 		}
 	}
@@ -49,31 +52,37 @@ Player PartyManager::GetPartyMember(int PC)
 		if (choice < 40)
 		{
 			AllPresets[24].CurrentHP = AllPresets[24].Max_HP;
+			AllPresets[24].MaxHP = AllPresets[24].Max_HP;
 			return AllPresets[24];
 		}
 		else if (choice < 65)
 		{
-			AllPresets[25].CurrentHP = AllPresets[24].Max_HP;
+			AllPresets[25].CurrentHP = AllPresets[25].Max_HP;
+			AllPresets[25].MaxHP = AllPresets[25].Max_HP;
 			return AllPresets[25];
 		}
 		else if (choice < 80)
 		{
-			AllPresets[26].CurrentHP = AllPresets[24].Max_HP;
+			AllPresets[26].CurrentHP = AllPresets[26].Max_HP;
+			AllPresets[26].MaxHP = AllPresets[26].Max_HP;
 			return AllPresets[26];
 		}
 		else if (choice < 90)
 		{
-			AllPresets[27].CurrentHP = AllPresets[24].Max_HP;
+			AllPresets[27].CurrentHP = AllPresets[27].Max_HP;
+			AllPresets[27].MaxHP = AllPresets[27].Max_HP;
 			return AllPresets[27];
 		}
 		else if (choice < 95)
 		{
-			AllPresets[28].CurrentHP = AllPresets[24].Max_HP;
+			AllPresets[28].CurrentHP = AllPresets[28].Max_HP;
+			AllPresets[28].MaxHP = AllPresets[28].Max_HP;
 			return AllPresets[28];
 		}
 		else
 		{
-			AllPresets[29].CurrentHP = AllPresets[24].Max_HP;
+			AllPresets[29].CurrentHP = AllPresets[29].Max_HP;
+			AllPresets[29].MaxHP = AllPresets[29].Max_HP;
 			return AllPresets[29];
 		}
 	}
