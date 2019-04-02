@@ -27,32 +27,32 @@ Stats::Stats(int str = 0, int dex = 0, int con = 0, int agi = 0, int in = 0, int
 vector<int> Stats::BattleStats(int Relevant)
 {
 	vector<int> RetVal(10);
-	if (Relevant = STR) 
+	if (Relevant == STR) 
 	{
 		RetVal[ATTACK] = STRENGTH;
 	}
-	else if (Relevant = DEX)
+	else if (Relevant == DEX)
 	{
 		RetVal[ATTACK] = DEXTERITY;
 	}
 	else
 	{
-		RetVal[ATTACK] = _Max_value(STRENGTH, DEXTERITY);
+		RetVal[ATTACK] = STRENGTH;
 	}
 
 	RetVal[DEFENSE] = CONSTITUTION;
 
-	if (Relevant = INT)
+	if (Relevant == INT)
 	{
 		RetVal[MAGIC] = INTELLIGENCE;
 	}
-	else if (Relevant = WIS)
+	else if (Relevant == WIS)
 	{
 		RetVal[MAGIC] = WISDOM;
 	}
 	else
 	{
-		RetVal[MAGIC] = _Max_value(INTELLIGENCE, WISDOM);
+		RetVal[MAGIC] = INTELLIGENCE;
 	}
 	
 	RetVal[RESISTANCE] = WISDOM;

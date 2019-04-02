@@ -20,10 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{37F3148A-5660-4E8A-961F-BEC5DA6C3C89}</ProjectGuid>
-    <RootNamespace>CombatManager2</RootNamespace>
+    <ProjectGuid>{1C5514EE-5D05-4A9B-966D-692CC6C84FB6}</ProjectGuid>
+    <RootNamespace>Project9</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
-    <ProjectName>CombatManager</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -116,33 +115,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Armor.cpp" />
-    <ClCompile Include="Backpack.cpp" />
-    <ClCompile Include="CombatManager.cpp" />
-    <ClCompile Include="Items.cpp" />
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Armor.h" />
-    <ClInclude Include="Attack.h" />
-    <ClInclude Include="AttackManager.h" />
-    <ClInclude Include="Backpack.h" />
-    <ClInclude Include="BattleManager.h" />
-    <ClInclude Include="CharacterCreator.h" />
-    <ClInclude Include="ClassManager.h" />
-    <ClInclude Include="Combatant.h" />
-    <ClInclude Include="Encounter.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Items.h" />
-    <ClInclude Include="Party.h" />
-    <ClInclude Include="PartyManager.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerClass.h" />
-    <ClInclude Include="SetColorAndBackground.h" />
-    <ClInclude Include="Stats.h" />
-    <ClInclude Include="Weapon.h" />
+    <ClInclude Include="Quest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -20,16 +20,17 @@ public:
 	Stats stats;
 	Stats StatGrows;
 	int Level;
-	int MAX_HP;
+	int MAX_HP = 0;
 	enum BStats { ATTACK = 0, DEFENSE, MAGIC, RESISTANCE, SPEED, HIT, AVOID, CRIT };
 	bool NullEnemy = false;
+	int AI = 0;
+	enum Target {RANDOM = 0, WEAKEST, STRONGEST, LEADER};
 
 
 };
 Enemy::Enemy(int ID) : Combatant()
 {
 	GenerateEnemy(ID);
-	this->SetHP(MAX_HP);
 }
 
 void Enemy::GenerateEnemy(int ID)
@@ -40,13 +41,13 @@ void Enemy::GenerateEnemy(int ID)
 	{
 		Species = "Slime";
 		name = Species;
-		stats = Stats(1, 1, 1, 1, 1, 1, 1);
+		stats = Stats(5, 1, 1, 1, 1, 1, 1);
 		StatGrows = Stats(50, 10, 120, 10, 10, 20, 70);
 		Level = 5;
 		
 		SpawnAtLevel(Level);
 		MAX_HP = 8 + Level * (stats.CONSTITUTION / 2);
-		CurrentHP = MAX_HP;
+		SetHP(MAX_HP);
 	}
 	else
 	{
@@ -173,6 +174,8 @@ void Enemy::SpawnAtLevel(int level)
 		}
 	}
 	BattleStats = stats.BattleStats(0);
+	MAX_HP = 8 + Level * (stats.CONSTITUTION / 2);
+	SetHP(MAX_HP);
 }
 void Enemy::toString()
 {

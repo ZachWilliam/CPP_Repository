@@ -3,6 +3,8 @@
 #include "Combatant.h"
 #include "PlayerClass.h"
 #include "Backpack.h"
+#include "Attack.h"
+#include "AttackManager.h"
 #pragma once
 
 using namespace std;
@@ -13,12 +15,16 @@ public:
 	Player();
 	Player(string call);
 	void GeneratePlayer();
+	void GenerateAttacks();
 	string name;
 	int Level;
-	Stats CurrentStats = Stats();
+	int RStat;
+	
 	PlayerClass Job = PlayerClass();
-	Backpack PlayerInventory = Backpack(0,0,false,0,0,0,0,0,0,0);
+	
 	int Max_HP = 0;
+	
+	bool operator==(const Player &che) { return name == che.name; };
 };
 Player::Player()
 {
@@ -34,4 +40,9 @@ Player::Player(string call)
 void Player::GeneratePlayer()
 {
 	PlayerControl = true;
+}
+void Player::GenerateAttacks()
+{
+	AttackManager Man = AttackManager();
+	CurrentMoves = Man.GenerateMovesFromWeapon(PlayerInventory.m_Weapon);
 }

@@ -616,6 +616,8 @@ void CharacterCreator(Player &self)
 					self.CurrentStats.LUCK += PointBought[6];
 					self.Max_HP = 8 + self.CurrentStats.CONSTITUTION;
 					self.CurrentHP = self.Max_HP;
+					self.BattleStats = self.CurrentStats.BattleStats(self.Job.RStat);
+					self.RStat = self.Job.RStat;
 					system("cls");
 					StatedIn = true;
 				}

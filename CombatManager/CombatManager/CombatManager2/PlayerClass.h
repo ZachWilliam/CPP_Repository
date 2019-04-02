@@ -15,6 +15,7 @@ public:
 	int STR_BASE = 0, DEX_BASE = 0, CON_BASE = 0, AGI_BASE = 0, INT_BASE = 0, WIS_BASE = 0, LUK_BASE = 0;
 	int STR_G = 0, DEX_G = 0, CON_G = 0, AGI_G = 0, INT_G = 0, WIS_G = 0, LUK_G = 0;
 	bool Simple, Martial, Ranged, Magic, Staff;
+	int RStat; //STR = 0, DEX = 1, INT = 2, WIS = 3
 	enum BaseType {NonClass = 0, 
 		Knight, 
 		Wizard, 
