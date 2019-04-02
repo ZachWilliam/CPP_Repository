@@ -41,13 +41,13 @@ void DrawCombatScreen()
 	cout << "|                                                                                |" << endl;
 	cout << "|                                                                                |" << endl;
 	cout << "|                                                                                |" << endl;
-	cout << "|-------------I----------------I-----------------I-----------------I-------------|" << endl;
-	cout << "|             |                |                 |                 |             |" << endl;
-	cout << "|             |                |                 |                 |             |" << endl;
-	cout << "|-------------I----------------I-----------------I-----------------I-------------|" << endl;
-	cout << "|             |                |                 |                 |             |" << endl;
-	cout << "|             |                |                 |                 |             |" << endl;
-	cout << "|-------------I----------------I-----------------I-----------------I-------------" << "|" << "------------------------------" << endl;
+	cout << "|------------I-----------------I-----------------I-----------------I-------------|" << endl;
+	cout << "|            |                 |                 |                 |             |" << endl;
+	cout << "|            |                 |                 |                 |             |" << endl;
+	cout << "|------------I-----------------I-----------------I-----------------I-------------|" << endl;
+	cout << "|            |                 |                 |                 |             |" << endl;
+	cout << "|            |                 |                 |                 |             |" << endl;
+	cout << "|------------I-----------------I-----------------I-----------------I-------------" << "|" << "------------------------------" << endl;
 }
 
 void gotoxy(int x, int y);
@@ -68,8 +68,20 @@ int main()
 	Foe.toString();
 	_getch();
 	system("cls");
-	Encounter FirstBattle(-1,0,-1,-1,-1,-1);
+
+	for (size_t i = 0; i < TheGroup.Container.size(); i++)
+	{
+		if (TheGroup.Container[i].name != "NULL_NAME")
+		{
+			TheGroup.Container[i].GenerateAttacks();
+		}
+	}
+	
+
+	Encounter FirstBattle(0,-1,0,-1,-1,-1);
 	FirstBattle.GenerateEncounter(TheGroup);
+
+
 
 	while (inBattle)
 	{
@@ -80,6 +92,7 @@ int main()
 		{
 			inBattle = false;
 		}
+		
 		system("cls");
 	}
 }
