@@ -22,9 +22,30 @@ int main()
 
 	Backpack PlayerOne(5, 5, false, 1, 2, 10, 1, 2, 10, 12);
 	//Backpack PlayerTwo;
-	Backpack PlayerThree(0, 10, false, 0, 3, 10, 2, 2, 10, 12);
-	Backpack PlayerFour(5, 5, false, 3, 2, 10, 1, 2, 10, 12);
+	//Backpack PlayerThree(0, 10, false, 0, 3, 10, 2, 2, 10, 12);
+	//Backpack PlayerFour(5, 5, false, 3, 2, 10, 1, 2, 10, 12);
 
+	PartyInventory inStorage(PlayerOne);
+	//PartyInventory(&PlayerOne) inStorage;
+	cout << "should show equiped item\n";
+	inStorage.DisplayPartyInventory();
+
+	cout << "Add 3 weapons and armor to list\n";
+	inStorage.SetWeaponsRandom();
+	inStorage.SetWeaponsRandom();
+	inStorage.SetWeaponsRandom();
+
+	inStorage.SetArmorRandom();
+	inStorage.SetArmorRandom();
+	inStorage.SetArmorRandom();
+	inStorage.DisplayPartyInventory();
+
+	cout << "Attempt to swap\n";
+	inStorage.SwapEquipedWeapon(PlayerOne);
+	PlayerOne.Status();
+	inStorage.DisplayPartyInventory();
+
+	/*
 	PartyInventory inStorage;
 	//inStorage.SetPartyInventory();
 	inStorage.EQUIPED_WEAPON = PlayerOne.m_Weapon;
@@ -45,7 +66,7 @@ int main()
 	PlayerOne.Status();
 	cout << endl;
 	cout << endl;
-/*
+
 	cout << "swap inventory item to equiped.\n";
 	inStorage.EQUIPED_WEAPON = PlayerOne.m_Weapon;
 	//PlayerOne.m_Weapon = inStorage.INV_WEAPON[0];
@@ -56,7 +77,7 @@ int main()
 	PlayerOne.Status();
 	cout << endl;
 	cout << endl;
-*/
+
 
 	cout << "\nAdding three random armor and weapons to inventory.\n\n";
 	inStorage.SetWeaponsRandom();
@@ -78,7 +99,7 @@ int main()
 	cout << endl;
 	cout << endl;
 
-	cout << endl;
+	cout << endl;*/
 /*
 	//cout << "Changing Player One's weapon to legendary(5) warhammer(4) of darkness(7).\n";
 	//PlayerOne.m_Weapon.SetWeapon(4, 5, 7);// legendary warhammer of darkness
