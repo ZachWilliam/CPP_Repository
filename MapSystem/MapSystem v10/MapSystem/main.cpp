@@ -4,8 +4,10 @@
 #include <Windows.h>
 #include <vector>
 #include <conio.h>
+#include "QuestManager.h"
 #include "Format.h"
 #include "MapMain.h"
+
 
 using namespace std;
 
@@ -36,6 +38,10 @@ void Setup() {
 int main() {
 	srand(static_cast<unsigned int>(time(0)));
 	Setup();
+
+	QuestManager::Instance().questSetup();
+	cout << QuestManager::Instance().questList.size();
+	_getch();
 
 	Database beast;
 	Database dialogue;

@@ -11,10 +11,16 @@ using namespace std;
 class QuestManager
 {
 public:
-	QuestManager();
+	static QuestManager& Instance() {
+		static QuestManager instance_;
+		return instance_;
+	}
+
 
 	vector<Quest>questList;
+
 	void questSetup();
-	
+private:
+	QuestManager();
 };
 
