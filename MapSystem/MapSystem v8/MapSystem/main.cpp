@@ -43,7 +43,7 @@ int main() {
 	dialogue.LoadText();
 
 	MapMain mapMain(dialogue);
-	mapMain.Setup(5, 0, 0);
+	mapMain.Setup(1, 0, 0);
 	mapMain.main();
 
 

@@ -1,12 +1,12 @@
 6
 Maple Grove
 0
-5,125,26,52,5e //Transition Coords
-7,69
+5,125,26,52,5 18,132,18,1,7 19,132,19,1,7e //Transition Coords
+10,69
 10
-4,28,6,2,2 4,63,6,2,2 18,68,6,1,1 29,31,6,2,2 30,119,6,2,2e//NPC data Row/Col/MapID/NameID/TextID  //Weapon // Inn //Mayor //BottomLeft NPC // Armor
+-1,-1,6,0,1 4,28,6,2,2 4,63,6,2,2 18,68,6,1,1 29,31,6,2,2 30,119,6,2,2e//NPC data Row/Col/MapID/NameID/TextID  //Weapon // Inn //Mayor //BottomLeft NPC // Armor
 e //Chest data
-e
+e //Enemy Data
 Sound/town_music.wav
 WWWWWWWWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 WWWWWWWWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
@@ -26,8 +26,8 @@ WWWWWWWWWWW                TT  gg  TT                       TT   gggg   TT      
 WWWWWWBBBBBBBB    TT           gg                          T     gggg     T                  WWWW        LLLLLLLLLLLLLLLLLLLL      RR
 WWWWWWBBBBBBBB    TT       TT  gg  TT     TT   TT   TT       gggggggggggg        TT   TT     WWWW             LLLLLLLL             RR
 WWWWWWBBBBBBBB                 gg                           gggggggggggggg                   WWWW                                  RR
-WBBBBBBBBBBBBBggggggggggggggggggggggggggggggggggggggggggggggggggggLL*gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
-WBBBBBBBBBBBBBggggggggggggggggggggggggggggggggggggggggggggggggggggLLggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+WBBBBBBBBBBBBBggggggggggggggggggggggggggggggggggggggggggggggggggggLL*ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg?
+WBBBBBBBBBBBBBggggggggggggggggggggggggggggggggggggggggggggggggggggLLgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg?
 WWWWWWBBBBBBBB                                              gggggggggggggg      gg           WWWW           gg                     RR
 WWWWWWBBBBBBBB    TT       TT   TT   TT   TT   TT   TT       gggggggggggg       gg           WWWW           gg                     RR
 WWWWWWBBBBBBBB    TT                                             gggg       TTTTggTTTT       WWWW   TT      gg gggg            TT  RR

@@ -93,8 +93,8 @@ void OutputSpeech(string p_speech, const string &p_npcName, const int p_screenWi
 			vecSizeLeft--;
 		}
 
-		cout << "\n" << CenterPhrase("Press any key to continue...", p_screenWidth + 2);
-		_getch();
+		cout << "\n" << CenterPhrase("Press any Spacebar to continue...", p_screenWidth + 2);
+		while (_getch() != ' ');
 	}
 
 	ClearBottom(p_bottomStartRow, p_screenWidth);

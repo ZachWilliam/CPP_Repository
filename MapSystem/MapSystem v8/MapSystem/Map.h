@@ -26,6 +26,7 @@ public:
 	int defaultPR, defaultPC;
 	int spaceColor;
 	string mapMusic;
+	bool playedFlavorTxt = false;
 };
 
 #endif

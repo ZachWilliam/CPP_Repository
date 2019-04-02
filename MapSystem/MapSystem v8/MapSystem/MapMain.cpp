@@ -6,12 +6,12 @@ MapMain::MapMain(Database &p_database):
 
 
 int MapMain::main() {
-	SetColorAndBackground();
-	curMap.map[playerR][playerC] = 'P'; 
-	SoundManager::Instance().PlayMusic(curMap.mapMusic);
+	//SetColorAndBackground();
+	//curMap.map[playerR][playerC] = 'P'; 
 	
-	DrawGUI();
-	DrawRight();
+	
+	//DrawGUI();
+	//DrawRight();
 
 	while (true) {
 		
@@ -21,7 +21,7 @@ int MapMain::main() {
 		Sleep(1);
 	}
 
-	_getch();
+	//_getch();
 }
 
 void MapMain::Setup(int p_mapID, int p_row, int p_col) {
@@ -56,6 +56,56 @@ void MapMain::Setup(int p_mapID, int p_row, int p_col) {
 
 	char lastChar = curMap.map[playerR][playerC];
 
+	//Prep screen
+	Logic();
+	SetColorAndBackground();
+
+	//Put player on the map if its not the intro screen
+	if(curMap.mapID != 1) curMap.map[playerR][playerC] = 'P';
+
+	//Draw screens
+	DrawGUI();
+	if(curMap.mapID != 1) DrawScreen();
+	else {
+		SetColorAndBackground(LIGHTGRAY);
+		for (int i = 0; i < SCREEN_HEIGHT; i++)
+		{
+			GoToXY(1 + i, 1);
+			cout << string(SCREEN_WIDTH, ' ');
+		}
+		SetColorAndBackground();
+	}
+	DrawRight();
+
+	//If map is intro screen do trans effect
+	if (curMap.mapID == 1) {
+		PlaySound("Sound/trans_sfx2.wav", NULL, SND_FILENAME | SND_ASYNC);
+		PlayMapTransEffect(false);
+	}
+
+	SoundManager::Instance().PlayMusic(curMap.mapMusic);
+
+	//Play flavour text if it hasnt been played before
+	if (!curMap.playedFlavorTxt) {
+		string name = database.ReturnName(curMap.v_npcs[0].nameID);
+		string speech = database.ReturnDialogue(curMap.mapID, curMap.v_npcs[0].nameID, curMap.v_npcs[0].dialogueID);
+
+		OutputSpeech(speech, name, SCREEN_WIDTH, BOT_START_ROW);
+		curMap.playedFlavorTxt = true;
+
+		for (int i = 0; i < mapManager.mapList.size(); i++)
+		{
+			if (curMap.mapID == mapManager.mapList[i].mapID) {
+				mapManager.mapList[i].playedFlavorTxt = true;
+				break;
+			}
+		}
+	}
+
+	//Go straight to introIsland if map is the intro map
+	if (curMap.mapID == 1) {
+		SetMap(curMap.v_transitionPoints[0].nextMapR, curMap.v_transitionPoints[0].nextMapC, curMap.v_transitionPoints[0].nextMapID);
+	}
 }
 
 void MapMain::Input() {
@@ -100,6 +150,7 @@ void MapMain::Logic() {
 		else//Couldnt find the coords, send to default of the map
 		{
 			SetMap(curMap.defaultPR, curMap.defaultPC, curMap.mapID);
+			return;
 		}
 	}
 
@@ -188,7 +239,7 @@ void MapMain::DoInteraction() {
 			//Make sure chest isnt opened
 			if (!curMap.v_chests[locInChestVec].opened) {
 				string tempText = "If this displays something went wrong";
-				if (curMap.v_chests[locInChestVec].itemID == 1) {
+				if (curMap.v_chests[locInChestVec].itemType == 1) {
 					//Find item by ID
 					Weapon newItem;
 					newItem.SetWeapon(curMap.v_chests[locInChestVec].id1, curMap.v_chests[locInChestVec].id2, curMap.v_chests[locInChestVec].id3);
@@ -199,7 +250,7 @@ void MapMain::DoInteraction() {
 					//Call AddWeapon(?,?,?) instead of set weapon
 
 				}
-				else if (curMap.v_chests[locInChestVec].itemID == 2) {
+				else if (curMap.v_chests[locInChestVec].itemType == 2) {
 					//Find item by ID
 					Armor newItem;
 					newItem.SetArmor(curMap.v_chests[locInChestVec].id1, curMap.v_chests[locInChestVec].id2, curMap.v_chests[locInChestVec].id3);
@@ -244,20 +295,22 @@ void MapMain::DoInteraction() {
 
 		//If we found the npc
 		if (locInNPCVec != -1) {
-			if (interactChar == '#' || interactChar == '*') {
+			if (interactChar == '*') {
 
 				string name = database.ReturnName(curMap.v_npcs[locInNPCVec].nameID);
 				string speech = database.ReturnDialogue(curMap.mapID, curMap.v_npcs[locInNPCVec].nameID, curMap.v_npcs[locInNPCVec].dialogueID);
 
 				OutputSpeech(speech, name, SCREEN_WIDTH, BOT_START_ROW);
 
-				//OutputSpeech("This is where the text for npc and quest npc would be.", "NPC & Quest NPC", SCREEN_WIDTH, BOT_START_ROW);
+				
 				if (interactChar == '*') {
 					//Do quest stuff
 				}
 			}
+			else if (interactChar == '#') {
+				OutputSpeech("This is where the text for npc and quest npc would be.", "NPC & Quest NPC", SCREEN_WIDTH, BOT_START_ROW);
+			}
 			else if (interactChar == '&') {
-				PlaySound("Sound/rest_sfx.wav", NULL, SND_FILENAME | SND_ASYNC);
 				//Call Inn Function and stuff
 				OutputSpeech("Welcome to the inn, inn stuff would happen here.", "Inn Keeper", SCREEN_WIDTH, BOT_START_ROW);
 			}
@@ -293,10 +346,12 @@ void MapMain::DoInteraction() {
 
 			OutputSpeech("This is where the battle would take place", "The Battle", SCREEN_WIDTH, BOT_START_ROW);
 			//Send for battle with specific id's
+			SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		}
 		else {
 			PlayBattleTransEffect();
 			OutputSpeech("This is where the battle would take place, but we didn't find the targeted enemy so heres a random one", "The Battle", SCREEN_WIDTH, BOT_START_ROW);
+			SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		}
 
 		//Update Map based on win/lose
@@ -326,6 +381,7 @@ void MapMain::DoInteraction() {
 		PlaySound("Sound/save_music.wav", NULL, SND_FILENAME | SND_SYNC);
 		//Call save function
 
+		SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		OutputSpeech("Call the save function here.", "Save Point", SCREEN_WIDTH, BOT_START_ROW);
 	}
 
@@ -360,6 +416,7 @@ void MapMain::CheckForBattle() {
 		PlayBattleTransEffect();
 		OutputSpeech("This is where the battle would take place", "The Battle", SCREEN_WIDTH, BOT_START_ROW);
 		//Send for battle 
+		SoundManager::Instance().PlayMusic(curMap.mapMusic);
 	}
 	else {
 		//Make it more likely to get a encounter next battle check
@@ -401,7 +458,6 @@ void MapMain::PlayBossBattleTransEffect(bool p_isFinalBoss) {
 	if (p_isFinalBoss) {
 		PlaySound("Sound/final_boss_intro.wav", NULL, SND_FILENAME | SND_ASYNC);
 
-		//1seems perfect for home computer, but 2 is prolly better for school, adjust as needed
 		for (int k = 0; k < 13; k++)
 		{
 			for (int i = leftBorder; i <= rightBorder; i++)
@@ -518,8 +574,26 @@ void MapMain::SetMap(int p_pRow, int p_pCol, int p_mapID) {
 	PlaySound("Sound/trans_sfx2.wav", NULL, SND_FILENAME | SND_ASYNC);
 	PlayMapTransEffect(false);
 
+	SoundManager::Instance().PlayMusic(curMap.mapMusic);
 	DrawRight(); //So the map name gets updated
 	DrawScreen();
+
+	//Play flavour text if it hasnt been played before
+	if (!curMap.playedFlavorTxt) {
+		string name = database.ReturnName(curMap.v_npcs[0].nameID);
+		string speech = database.ReturnDialogue(curMap.mapID, curMap.v_npcs[0].nameID, curMap.v_npcs[0].dialogueID);
+
+		OutputSpeech(speech, name, SCREEN_WIDTH, BOT_START_ROW);
+		curMap.playedFlavorTxt = true;
+
+		for (int i = 0; i < mapManager.mapList.size(); i++)
+		{
+			if (curMap.mapID == mapManager.mapList[i].mapID) {
+				mapManager.mapList[i].playedFlavorTxt = true;
+				break;
+			}
+		}
+	}
 }
 
 void MapMain::PlayMapTransEffect(bool p_close) {
@@ -567,6 +641,7 @@ void MapMain::PlayMapTransEffect(bool p_close) {
 			u++;
 			Sleep(40);
 		}
+		Sleep(300);
 	}
 }
 

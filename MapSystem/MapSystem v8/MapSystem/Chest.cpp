@@ -9,7 +9,7 @@ Chest::Chest(int p_row, int p_col, bool p_opened, int p_id1, int p_id2, int p_id
 	id1(p_id1),
 	id2(p_id2),
 	id3(p_id3),
-	itemID(p_itemID)
+	itemType(p_itemID)
 {
 }
 
