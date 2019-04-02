@@ -45,7 +45,16 @@ void Backpack::Status()
 	}
 }
 
-PartyInventory::PartyInventory() {}
+PartyInventory::PartyInventory(Backpack &BPref)
+{
+	EQUIPED_WEAPON = BPref.m_Weapon;
+	//INV_WEAPON.insert(INV_WEAPON.begin(), EQUIPED_WEAPON);
+	INV_WEAPON.push_back(EQUIPED_WEAPON);
+
+	EQUIPED_ARMOR = BPref.m_Armor;
+	//INV_ARMOR.insert(INV_ARMOR.begin(), EQUIPED_ARMOR);
+	INV_ARMOR.push_back(EQUIPED_ARMOR);
+}
 
 void PartyInventory::SetWeaponsRandom()
 {
@@ -86,19 +95,46 @@ void PartyInventory::DisplayPartyInventory()
 	cout << endl;
 }
 
-/*
-int PartyInventory::GetID()
+void PartyInventory::DisplayPartyWeapons()
 {
-
-	int ID = Backpack::m_Weapon.ID;
-	return ID;
+	cout << "\nWeapons:\n";
+	for (int i = 0; i < INV_WEAPON.size(); ++i)
+	{
+		INV_WEAPON[i].DisplayName();
+		cout << endl;
+	}
+	cout << endl;
 }
 
-void PartyInventory::SwapEquipedWeapon(int choice)
+void PartyInventory::DisplayPartyArmor()
 {
-	Backpack Weapon() = EQUIPED_WEAPON;
-	INV_WEAPON.push_back(EQUIPED_WEAPON);
-	Backpack Weapon() = INV_WEAPON(choice);
-	//Weapon m_Weapon = PartyInventory::INV_WEAPON[choice];
+	cout << "\nArmor:\n";
+	for (int i = 0; i < INV_ARMOR.size(); ++i)
+	{
+		INV_ARMOR[i].DisplayName();
+		cout << endl;
+	}
+	cout << endl;
 }
-*/
+
+void PartyInventory::SwapEquipedWeapon(Backpack &BPref)
+{
+	//better to swap to scroll and select system
+	int choice;
+	DisplayPartyWeapons();
+	cout << "Select Weapon: ";
+	cin >> choice;
+	BPref.m_Weapon = INV_WEAPON[choice];
+	EQUIPED_WEAPON = BPref.m_Weapon;
+}
+
+void PartyInventory::SwapEquipedArmor(Backpack &BPref)
+{
+	//better to swap to scroll and select system
+	int choice;
+	DisplayPartyArmor();
+	cout << "Select Armor: ";
+	cin >> choice;
+	BPref.m_Armor = INV_ARMOR[choice];
+	EQUIPED_ARMOR = BPref.m_Armor;
+}

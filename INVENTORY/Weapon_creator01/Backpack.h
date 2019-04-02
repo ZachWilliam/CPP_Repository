@@ -7,6 +7,7 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <Windows.h>
 #include "Weapon.h"
 #include "Armor.h"
 #include "Items.h"
@@ -28,7 +29,7 @@ public:
 class PartyInventory
 {
 public:
-	PartyInventory();
+	PartyInventory(Backpack &BPref);
 	vector<Weapon> INV_WEAPON;
 	vector<Armor> INV_ARMOR;
 	Weapon EQUIPED_WEAPON;
@@ -40,13 +41,13 @@ public:
 	void AddWeapon(int, int, int);
 	void AddArmor(int, int, int);
 
-	//int GetID();
-	//void SwapEquipedWeapon(int);
-
-	//void SwapEquipedArmor();
-	//void DropWeapon(int);
+	void SwapEquipedWeapon(Backpack &BPref);
+	void SwapEquipedArmor(Backpack &BPref);
 
 	void DisplayPartyInventory();
+	void DisplayPartyWeapons();
+	void DisplayPartyArmor();
 };
+
 
 #endif
