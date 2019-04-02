@@ -45,15 +45,22 @@ void Backpack::Status()
 	}
 }
 
-PartyInventory::PartyInventory(Backpack &BPref)
+PartyInventory::PartyInventory(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref)
 {
-	EQUIPED_WEAPON = BPref.m_Weapon;
-	//INV_WEAPON.insert(INV_WEAPON.begin(), EQUIPED_WEAPON);
-	INV_WEAPON.push_back(EQUIPED_WEAPON);
+	EQUIPED_WEAPON1 = BP1ref.m_Weapon;
+	INV_WEAPON.push_back(EQUIPED_WEAPON1);
+	EQUIPED_ARMOR1 = BP1ref.m_Armor;
+	INV_ARMOR.push_back(EQUIPED_ARMOR1);
 
-	EQUIPED_ARMOR = BPref.m_Armor;
-	//INV_ARMOR.insert(INV_ARMOR.begin(), EQUIPED_ARMOR);
-	INV_ARMOR.push_back(EQUIPED_ARMOR);
+	EQUIPED_WEAPON2 = BP2ref.m_Weapon;
+	INV_WEAPON.push_back(EQUIPED_WEAPON2);
+	EQUIPED_ARMOR2 = BP2ref.m_Armor;
+	INV_ARMOR.push_back(EQUIPED_ARMOR2);
+
+	EQUIPED_WEAPON3 = BP3ref.m_Weapon;
+	INV_WEAPON.push_back(EQUIPED_WEAPON3);
+	EQUIPED_ARMOR3 = BP3ref.m_Armor;
+	INV_ARMOR.push_back(EQUIPED_ARMOR3);
 }
 
 void PartyInventory::SetWeaponsRandom()
@@ -117,24 +124,82 @@ void PartyInventory::DisplayPartyArmor()
 	cout << endl;
 }
 
-void PartyInventory::SwapEquipedWeapon(Backpack &BPref)
+void PartyInventory::SwapEquipedWeapon(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref)
 {
-	//better to swap to scroll and select system
+	int playerSelection;
 	int choice;
-	DisplayPartyWeapons();
-	cout << "Select Weapon: ";
-	cin >> choice;
-	BPref.m_Weapon = INV_WEAPON[choice];
-	EQUIPED_WEAPON = BPref.m_Weapon;
+	cout << "Select character: ";
+	cin >> playerSelection;
+	if (playerSelection <= 0 || playerSelection > 3)
+	{
+		cout << "Select character: ";
+		cin >> playerSelection;
+	}
+	else
+	{
+		switch (playerSelection)
+		{
+		case 1:
+			DisplayPartyWeapons();
+			cout << "Select Weapon: ";
+			cin >> choice;
+			BP1ref.m_Weapon = INV_WEAPON[choice];
+			EQUIPED_WEAPON1 = BP1ref.m_Weapon;
+			break;
+		case 2:
+			DisplayPartyWeapons();
+			cout << "Select Weapon: ";
+			cin >> choice;
+			BP2ref.m_Weapon = INV_WEAPON[choice];
+			EQUIPED_WEAPON2 = BP2ref.m_Weapon;
+			break;
+		case 3:
+			DisplayPartyWeapons();
+			cout << "Select Weapon: ";
+			cin >> choice;
+			BP3ref.m_Weapon = INV_WEAPON[choice];
+			EQUIPED_WEAPON3 = BP3ref.m_Weapon;
+			break;
+		}
+	}
 }
 
-void PartyInventory::SwapEquipedArmor(Backpack &BPref)
+void PartyInventory::SwapEquipedArmor(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref)
 {
-	//better to swap to scroll and select system
+	int playerSelection;
 	int choice;
-	DisplayPartyArmor();
-	cout << "Select Armor: ";
-	cin >> choice;
-	BPref.m_Armor = INV_ARMOR[choice];
-	EQUIPED_ARMOR = BPref.m_Armor;
+	cout << "Select character: ";
+	cin >> playerSelection;
+	if (playerSelection <= 0 || playerSelection > 3)
+	{
+		cout << "Select character: ";
+		cin >> playerSelection;
+	}
+	else
+	{
+		switch (playerSelection)
+		{
+		case 1:
+			DisplayPartyArmor();
+			cout << "Select Armor: ";
+			cin >> choice;
+			BP1ref.m_Armor = INV_ARMOR[choice];
+			EQUIPED_ARMOR1 = BP1ref.m_Armor;
+			break;
+		case 2:
+			DisplayPartyArmor();
+			cout << "Select Armor: ";
+			cin >> choice;
+			BP2ref.m_Armor = INV_ARMOR[choice];
+			EQUIPED_ARMOR2 = BP2ref.m_Armor;
+			break;
+		case 3:
+			DisplayPartyArmor();
+			cout << "Select Armor: ";
+			cin >> choice;
+			BP3ref.m_Armor = INV_ARMOR[choice];
+			EQUIPED_ARMOR3 = BP3ref.m_Armor;
+			break;
+		}
+	}
 }

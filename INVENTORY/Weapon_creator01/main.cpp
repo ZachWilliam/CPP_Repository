@@ -21,13 +21,11 @@ int main()
 	srand(static_cast<unsigned int>(time(0)));
 
 	Backpack PlayerOne(5, 5, false, 1, 2, 10, 1, 2, 10, 12);
-	//Backpack PlayerTwo;
-	//Backpack PlayerThree(0, 10, false, 0, 3, 10, 2, 2, 10, 12);
-	//Backpack PlayerFour(5, 5, false, 3, 2, 10, 1, 2, 10, 12);
+	Backpack PlayerTwo(0, 10, false, 0, 3, 10, 2, 2, 10, 12);
+	Backpack PlayerThree(5, 5, false, 3, 2, 10, 1, 2, 10, 12);
 
-	PartyInventory inStorage(PlayerOne);
-	//PartyInventory(&PlayerOne) inStorage;
-	cout << "should show equiped item\n";
+	PartyInventory inStorage(PlayerOne, PlayerTwo, PlayerThree);
+	cout << "should show equiped item for each character\n";
 	inStorage.DisplayPartyInventory();
 
 	cout << "Add 3 weapons and armor to list\n";
@@ -41,7 +39,8 @@ int main()
 	inStorage.DisplayPartyInventory();
 
 	cout << "Attempt to swap\n";
-	inStorage.SwapEquipedWeapon(PlayerOne);
+	inStorage.SwapEquipedWeapon(PlayerOne, PlayerTwo, PlayerThree);
+	inStorage.SwapEquipedArmor(PlayerOne, PlayerTwo, PlayerThree);
 	PlayerOne.Status();
 	inStorage.DisplayPartyInventory();
 

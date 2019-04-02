@@ -29,11 +29,18 @@ public:
 class PartyInventory
 {
 public:
-	PartyInventory(Backpack &BPref);
+	PartyInventory(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref);
 	vector<Weapon> INV_WEAPON;
 	vector<Armor> INV_ARMOR;
-	Weapon EQUIPED_WEAPON;
-	Armor EQUIPED_ARMOR;
+
+	Weapon EQUIPED_WEAPON1;
+	Armor EQUIPED_ARMOR1;
+
+	Weapon EQUIPED_WEAPON2;
+	Armor EQUIPED_ARMOR2;
+
+	Weapon EQUIPED_WEAPON3;
+	Armor EQUIPED_ARMOR3;
 
 	void SetWeaponsRandom();
 	void SetArmorRandom();
@@ -41,8 +48,8 @@ public:
 	void AddWeapon(int, int, int);
 	void AddArmor(int, int, int);
 
-	void SwapEquipedWeapon(Backpack &BPref);
-	void SwapEquipedArmor(Backpack &BPref);
+	void SwapEquipedWeapon(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref);
+	void SwapEquipedArmor(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref);
 
 	void DisplayPartyInventory();
 	void DisplayPartyWeapons();
