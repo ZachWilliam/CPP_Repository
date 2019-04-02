@@ -9,7 +9,7 @@ Database::Database()
 
 void Database::LoadMonsters()
 {
-	cout << "Loading monsters\n";
+	//cout << "Loading monsters\n";
 	int tID;//used in all
 	string tName;//used in Monsters and items
 	string tDesc;//used in Monsters and items
@@ -100,14 +100,14 @@ void Database::LoadMonsters()
 	}
 	myFile.close();
 
-	cout << "Monsters loaded.\n\n";
+	//cout << "Monsters loaded.\n\n";
 	//_getch();
 	//system("CLS");
 }
 
 void Database::LoadText()
 {
-	cout << "Loading story and dialogue\n";
+	//cout << "Loading story and dialogue\n";
 	//dialogue exclusive variables
 	int tMapID;
 	int tSpeakerID;
@@ -153,7 +153,7 @@ void Database::LoadText()
 		cout << "Story broke Jim.\n";
 	}
 	myFile.close();
-	cout << "Text and Dialogue loaded\n";
+	//cout << "Text and Dialogue loaded\n";
 	//_getch();
 	//system("CLS");
 }
