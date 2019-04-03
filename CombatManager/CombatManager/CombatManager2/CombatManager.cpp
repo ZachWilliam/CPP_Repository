@@ -2,8 +2,6 @@
 //
 
 #include "pch.h"
-//#include "BattleManager.h"
-//#include "Combatant.h"
 #include "CharacterCreator.h"
 #include <iostream>
 #include <conio.h>
@@ -110,6 +108,11 @@ int main()
 	Party TheGroup = Party(PC);
 	TheGroup.GenPartyFromClass(PC);
 	TheGroup.DisplayParty();
+	cout << endl;
+
+	PartyInventory Inventory(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
+
+	Inventory.DisplayPartyInventory();
 	_getch();
 	system("cls");
 	Enemy Foe(0);

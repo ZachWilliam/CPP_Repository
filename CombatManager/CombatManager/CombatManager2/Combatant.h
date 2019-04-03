@@ -32,7 +32,7 @@ public:
 	int CurrentMana = 0;
 	bool PlayerControl = false;
 	vector<Attack> CurrentMoves = vector<Attack>(4);
-	Backpack PlayerInventory = Backpack(0, 0, false, 0, 0, 0, 0, 0, 0, 0);
+	Backpack PlayerInventory = Backpack(0, 0, false, 0, 1, 10, 0, 1, 10, 0);
 
 	bool operator==(const Combatant &che) { return name == che.name; };
 };

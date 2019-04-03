@@ -252,31 +252,31 @@ void AttackManager::GenerateAttacks()
 						 Attack("Debilitate", 100, 2) });
 	SpellBook[0][5].effect = 8;
 	SpellBook.push_back({Attack("Fireball", 100, 2),
-						 Attack("Firewall", 100, 2),
-						 Attack("Hellfire", 100, 2),
-						 Attack("Lava Plume", 100, 2),
-						 Attack("Ashenheit", 100, 2),
+						 Attack("Firewall", 75, 4),
+						 Attack("Hellfire", 150, 2),
+						 Attack("Lava Plume", 80, 6),
+						 Attack("Ashenheit", 150, 6),
 						 Attack("Aggro", 0, 7),
 						 Attack("Hearthfire", 100, 8),
 						 Attack("Blazing Soul", 100, 7)});
 	SpellBook[1][5].effect = 1;
 	SpellBook[1][7].effect = 1;
 	SpellBook.push_back({ Attack("Ice Shard", 100, 2),
-						 Attack("Blizzard", 100, 2),
-						 Attack("Cryosphere", 100, 2),
-						 Attack("Glaciate", 100, 2),
-						 Attack("Aurora", 100, 2),
+						 Attack("Blizzard", 75, 4),
+						 Attack("Cryosphere", 150, 2),
+						 Attack("Glaciate", 75, 4),
+						 Attack("Aurora", 150, 6),
 						 Attack("Winterveil", 0, 7),
 						 Attack("Cool Breeze", 100, 8),
 						 Attack("Ice Palace", 100, 7) });
 	SpellBook[2][5].effect = 3;
 	SpellBook[2][7].effect = 3;
 	SpellBook.push_back({ Attack("Bubble", 100, 2),
-						 Attack("Riptide", 100, 2),
-						 Attack("Geyser", 100, 2),
-						 Attack("Water Cannon", 100, 2),
-						 Attack("Bloodburst", 100, 2),
-						 Attack("Oegis", 100, 7),
+						 Attack("Riptide", 75, 4),
+						 Attack("Geyser", 150, 2),
+						 Attack("Water Cannon", 100, 5),
+						 Attack("Bloodburst", 250, 2),
+						 Attack("Oegis", 0, 7),
 						 Attack("Fountain", 100, 8),
 						 Attack("Wishing Well", 100, 8) });
 	SpellBook[3][5].effect = 3;

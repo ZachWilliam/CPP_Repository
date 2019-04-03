@@ -5,8 +5,8 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include "Items.h"
 #include <ctime>
-#include "pch.h"
 
 using namespace std;
 
@@ -44,6 +44,7 @@ public:
 class Armor
 {
 public:
+	int ID;
 	Armor(int ArmorChoice = 0, int prefix_name = -1);
 	void Status();
 	string GetName(int Choice);
@@ -81,6 +82,7 @@ public:
 
 	void SetArmor(int, int, int);
 	void SetSuperArmor(int);
+	void SetRandomArmor();
 
 	static const int NUM_PREFIX_NAMES = 7;
 	static const string PREFIX_NAMES[NUM_PREFIX_NAMES];
