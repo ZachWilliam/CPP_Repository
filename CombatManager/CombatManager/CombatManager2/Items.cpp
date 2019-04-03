@@ -1,5 +1,12 @@
 #include "Items.h"
 
+/*
+Item::Item()
+{
+	uniqueID = 0;
+}
+*/
+
 Purse::Purse(int gold, int buildingMaterials, bool questItem)
 {
 	m_Gold = gold;

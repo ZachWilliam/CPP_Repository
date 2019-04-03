@@ -16,6 +16,7 @@ public:
 	vector<Player> Container;
 	PartyManager Par = PartyManager();
 	void DisplayParty();
+	Backpack GetPartyBackpacks(int);
 	bool isBank;
 
 };
@@ -119,4 +120,16 @@ void Party::DisplayParty()
 			cout << endl;
 		}
 	}
+}
+Backpack Party::GetPartyBackpacks(int which)
+{
+	vector<Backpack> RetVals;
+	for (size_t i = 0; i < Container.size(); i++)
+	{
+		if (Container[i].name != "NULL_NAME")
+		{
+			RetVals.push_back(Container[i].PlayerInventory);
+		}
+	}
+	return RetVals[which];
 }
