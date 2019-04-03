@@ -8,6 +8,15 @@
 #include <ctime>
 
 using namespace std;
+/*
+static class Item
+{
+public:
+	//Item();
+	static int uniqueID;
+};
+*/
+static int uniqueID;
 
 class Purse
 {

@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include "Items.h"
 #include <ctime>
 
 using namespace std;
@@ -41,6 +42,7 @@ public:
 class Weapon
 {
 public:
+	int ID;
 	Weapon(int WeaponChoice = 0, int prefix_name = -1);
 	void Status();
 	int Attack();
@@ -78,6 +80,7 @@ public:
 
 	void SetWeapon(int, int, int);
 	void SetSuperWeapon(int);
+	void SetRandomWeapon();
 
 	static const int NUM_PREFIX_NAMES = 7;
 	static const string PREFIX_NAMES[NUM_PREFIX_NAMES];
