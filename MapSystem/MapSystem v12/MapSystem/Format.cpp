@@ -102,8 +102,8 @@ void OutputSpeech(string p_speech, const string &p_npcName) {
 			vecSizeLeft--;
 		}
 
-		cout << "\n" << CenterPhrase("Press any Spacebar to continue...", GameManager::instance().SCREEN_WIDTH + 2);
-		while (_getch() != ' ');
+		cout << "\n" << CenterPhrase("Press any 'Z' to continue...", GameManager::instance().SCREEN_WIDTH + 2);
+		while (_getch() != 'z');
 	}
 
 	ClearBottom();

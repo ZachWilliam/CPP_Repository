@@ -9,7 +9,7 @@ public:
     Attack()
     {
         name = "NULL_ATTACK";
-        power = 0;
+        power = 100;
         target = 0;
     }
     Attack(string nama, int powa, int targa)

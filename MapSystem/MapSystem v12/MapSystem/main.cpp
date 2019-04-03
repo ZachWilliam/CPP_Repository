@@ -53,6 +53,14 @@ int main()
 	_getch();
 	system("cls");
 
+	for (size_t i = 0; i < TheGroup.Container.size(); i++)
+	{
+		if (TheGroup.Container[i].name != "NULL_NAME")
+		{
+			TheGroup.Container[i].GenerateAttacks();
+		}
+	}
+
 	QuestManager::Instance().questSetup();
 
 	Database beast;
@@ -65,7 +73,7 @@ int main()
 
 
 	MapMain mapMain(dialogue, TheGroup);
-	mapMain.Setup(3, 0, 0);
+	mapMain.Setup(5, 0, 0);
 	mapMain.main();
 
 

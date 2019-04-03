@@ -213,7 +213,7 @@ public:
             Damage = User.PlayerInventory.m_Weapon.Attack();
             Damage += User.CurrentStats.ValueFromStatIn(User.PlayerInventory.m_Weapon.m_Weapon_Type.m_StatUsed);
             Damage = float(Damage) * (float(AttackUsed.power) / float(100));
-            if (User.PlayerInventory.m_Weapon.m_Weapon_Type.magic)
+            if (User.PlayerInventory.m_Weapon.m_Weapon_Type.magic && User.PlayerInventory.m_Weapon.m_Weapon_Type.m_Name != "staff")
             {
                 Damage -= Target.BattleStats[RESISTANCE];
             }
@@ -262,6 +262,7 @@ public:
                 Damage *= Target.Resistances[2];
             }
             Damage = _Max_value(Damage, 1);
+			
             Target.CurrentHP -= Damage;
             Target.CurrentHP = _Max_value(0, Target.CurrentHP);
             cout << Target.name << " took " << Damage << " damage! ";
@@ -269,7 +270,7 @@ public:
         }
         else
         {
-            cout << Target.name << " avoided the attack!";
+            cout << Target.name << " avoided the attack!" << endl;
         }
 
         _getch();
@@ -308,7 +309,6 @@ public:
 
         Damage = 1;
         Damage += User.BattleStats[0];
-        cout << Damage;
         if (User.AI == 0)
         {
             while (true)
@@ -316,7 +316,8 @@ public:
                 int dir = rand() % 6;
                 if (PlayerParty.Container[dir].name != "NULL_NAME" && PlayerParty.Container[dir].CurrentHP > 0)
                 {
-                    int HitChance = ((User.BattleStats[6] - (PlayerParty.Container[dir].BattleStats[7] + PlayerParty.Container[dir].PlayerInventory.m_Armor.m_Avoidance)) * 5) + 10;
+                    int HitChance = ((((PlayerParty.Container[dir].BattleStats[7] * 5 + PlayerParty.Container[dir].PlayerInventory.m_Armor.m_Avoidance)) - User.BattleStats[6] * 5)) + 10;
+					cout << HitChance << endl;
                     if (rand() % 100 > HitChance)
                     {
                         Damage -= PlayerParty.Container[dir].BattleStats[1];
@@ -570,7 +571,7 @@ public:
                 }
                 else if (AtkMenu)
                 {
-                    cout << "Select your attack:                                                                   " << endl;
+                    cout << Order[InitiativeOrder].combatantValue.name << " attacks with " << Order[InitiativeOrder].combatantValue.PlayerInventory.m_Weapon.DisplayNameText() << endl;
                     for (size_t i = 0; i < Order[InitiativeOrder].combatantValue.CurrentMoves.size(); i++)
                     {
 

@@ -12,6 +12,5 @@ public:
 
 	//Some sort of ID
 
-	void TriggerBattle();
 };
 

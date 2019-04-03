@@ -313,7 +313,7 @@ void MapMain::DoInteraction() {
 	if (interactChar == '!') {
 		//Find enemy
 		int locInEnemyVec = -1;
-		bool isDefeated = true;
+		bool isVictorious = true;
 		for (int i = 0; i < curMap.v_mapEnemies.size(); i++)
 		{
 			if (curMap.v_mapEnemies[i].row == charRow && curMap.v_mapEnemies[i].col == charCol)
@@ -328,6 +328,7 @@ void MapMain::DoInteraction() {
 
 			bool inBattle = true;
 			Encounter FirstBattle(0, -1, 0, -1, -1, -1);
+			// FirstBattle = EncounterManager::GetEncounter(int)
 			FirstBattle.GenerateEncounter(TheGroup);
 			while (inBattle) {
 				DrawCombatScreen();
@@ -337,6 +338,9 @@ void MapMain::DoInteraction() {
 				}
 				system("cls");
 			}
+			isVictorious = FirstBattle.Victory;
+			DrawGUI();
+			DrawRight();
 
 			SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		}
@@ -347,7 +351,7 @@ void MapMain::DoInteraction() {
 		}
 
 		//Update Map based on win/lose
-		if (isDefeated) {
+		if (isVictorious) {
 			if (locInEnemyVec != -1) {
 				curMap.map[charRow][charCol] = ' ';
 				curMap.v_mapEnemies[locInEnemyVec].isDefeated = true;
@@ -397,7 +401,7 @@ bool MapMain::CheckCollision(char p_nextChar) {
 void MapMain::CheckForBattle() {
 	const int BATTLE_NUMBER = 1;
 	int num = rand() % curEncounterChance + 1;
-
+	bool isVictorious = false;
 	//Trigger battle
 	if (num == BATTLE_NUMBER) {
 		//Reset battle variables
@@ -406,8 +410,22 @@ void MapMain::CheckForBattle() {
 
 
 		PlayBattleTransEffect();
-		OutputSpeech("This is where the battle would take place", "The Battle");
-		//Send for battle 
+		bool inBattle = true;
+		Encounter FirstBattle(0, -1, 0, -1, -1, -1);
+		// FirstBattle = EncounterManager::GetEncounter(int)
+		FirstBattle.GenerateEncounter(TheGroup);
+		while (inBattle) {
+			DrawCombatScreen();
+			FirstBattle.TakeTurn();
+			if (!FirstBattle.Battling) {
+				inBattle = false;
+			}
+			system("cls");
+		}
+		isVictorious = FirstBattle.Victory;
+		DrawGUI();
+		DrawRight();
+
 		SoundManager::Instance().PlayMusic(curMap.mapMusic);
 	}
 	else {
@@ -539,6 +557,7 @@ void MapMain::DrawRight() {
 
 void MapMain::DrawCombatScreen()
 {
+	SetColorAndBackground();
 	DrawGUI();
 	gotoxy(1, 4);
 	cout << "  __________________     __________________     __________________";
