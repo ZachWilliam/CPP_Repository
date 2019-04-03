@@ -19,6 +19,7 @@ public:
 	string name;
 	int Level;
 	int RStat;
+	int CurrentEXP = 0;
 	
 	PlayerClass Job = PlayerClass();
 	

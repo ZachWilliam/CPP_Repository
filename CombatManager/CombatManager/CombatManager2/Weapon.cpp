@@ -1,6 +1,5 @@
 #include "Weapon.h"
 
-
 WeaponType::WeaponType(string weapon_type, int damageMIN, int damageMAX, int statUsed, int wielded)
 {
 	m_Name = weapon_type;
@@ -31,12 +30,14 @@ string DamageType::ToString(bool magic)
 	}
 	return temp;
 }
+
 Weapon::Weapon(int WeaponChoice, int prefix_name)
 {
 	m_Weapon_Type = WEAPON_TYPES[WeaponChoice];
 	m_DamageMIN = WEAPON_TYPES[WeaponChoice].m_DamageMIN;
 	m_DamageMAX = WEAPON_TYPES[WeaponChoice].m_DamageMAX;
 	GetName(prefix_name);
+	ID = uniqueID++;
 }
 
 
@@ -527,4 +528,10 @@ void Weapon::SetSuperWeapon(int setType = 0)
 	GetType(x);
 	GetName(666);
 	SetDamageType(666);
+}
+void Weapon::SetRandomWeapon()
+{
+	GetType(-1);
+	GetName(-1);
+	SetDamageType(-1);
 }

@@ -807,9 +807,13 @@ void Encounter::TakeTurn()
 				{
 					Selection++;
 
-					if (Selection > 2)
+					if (Selection == 3)
 					{
 						Selection = 0;
+					}
+					if (Selection == 6)
+					{
+						Selection = 3;
 					}
 
 					continue;
@@ -818,10 +822,13 @@ void Encounter::TakeTurn()
 			}
 			else if (NextMove == KEY_UP || NextMove == KEY_DOWN)
 			{
-				Selection += 3;
-				if (Selection > 5)
+				if (ChooseTarget)
 				{
-					Selection = Selection - 6;
+					Selection += 3;
+					if (Selection > 5)
+					{
+						Selection = Selection - 6;
+					}
 				}
 			}
 			else if (NextMove == 122)
