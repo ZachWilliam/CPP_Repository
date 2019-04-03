@@ -320,6 +320,7 @@ void Encounter::DoAttack(Enemy User)
 				if (rand() % 100 > HitChance)
 				{
 					Damage -= PlayerParty.Container[dir].BattleStats[1];
+					Damage -= PlayerParty.Container[dir].PlayerInventory.m_Armor.m_DamageResist;
 					Damage = _Max_value(Damage, 0);
 					cout << PlayerParty.Container[dir].name << " takes " << Damage << " damage!" << endl;
 					PlayerParty.Container[dir].CurrentHP -= Damage;

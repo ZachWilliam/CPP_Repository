@@ -2,8 +2,6 @@
 //
 
 #include "pch.h"
-//#include "BattleManager.h"
-//#include "Combatant.h"
 #include "CharacterCreator.h"
 #include <iostream>
 #include <conio.h>

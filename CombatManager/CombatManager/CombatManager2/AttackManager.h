@@ -276,7 +276,7 @@ void AttackManager::GenerateAttacks()
 						 Attack("Geyser", 150, 2),
 						 Attack("Water Cannon", 100, 5),
 						 Attack("Bloodburst", 250, 2),
-						 Attack("Oegis", 100, 7),
+						 Attack("Oegis", 0, 7),
 						 Attack("Fountain", 100, 8),
 						 Attack("Wishing Well", 100, 8) });
 	SpellBook[3][5].effect = 3;
