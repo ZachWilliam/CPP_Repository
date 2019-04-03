@@ -12,10 +12,27 @@ using namespace std;
 class Player : public Combatant
 {
 public:
-	Player();
-	Player(string call);
-	void GeneratePlayer();
-	void GenerateAttacks();
+    Player()
+    {
+        name = "";
+        GeneratePlayer();
+    }
+    Player(string call)
+    {
+        name = call;
+        Combatant::name = name;
+        GeneratePlayer();
+    }
+    void GeneratePlayer()
+    {
+        PlayerControl = true;
+    }
+    void GenerateAttacks()
+    {
+        AttackManager Man = AttackManager();
+        CurrentMoves = Man.GenerateMovesFromWeapon(PlayerInventory.m_Weapon);
+    }
+
 	string name;
 	int Level;
 	int RStat;
@@ -27,23 +44,3 @@ public:
 	
 	bool operator==(const Player &che) { return name == che.name; };
 };
-Player::Player()
-{
-	name = "";
-	GeneratePlayer();
-}
-Player::Player(string call)
-{
-	name = call;
-	Combatant::name = name;
-	GeneratePlayer();
-}
-void Player::GeneratePlayer()
-{
-	PlayerControl = true;
-}
-void Player::GenerateAttacks()
-{
-	AttackManager Man = AttackManager();
-	CurrentMoves = Man.GenerateMovesFromWeapon(PlayerInventory.m_Weapon);
-}

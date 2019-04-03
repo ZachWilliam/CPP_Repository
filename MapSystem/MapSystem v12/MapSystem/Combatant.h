@@ -12,10 +12,23 @@ using namespace std;
 class Combatant
 {
 public:
-	Combatant();
-	void SetHP(int);
-	void StartCombat(int);
-	void EndCombat();
+    Combatant()
+    {
+        name = "";
+        initiative = 0;
+    }
+    void StartCombat(int in)
+    {
+        initiative = in;
+    }
+    void EndCombat()
+    {
+        initiative = 0;
+    }
+    void SetHP(int MAX_HP)
+    {
+        CurrentHP = MAX_HP;
+    }
 	string name;
 	enum Status {OK, POI, PAR, VEX, CUR, SLP, UNC};
 	enum Stat_Change {UP = 1, NON = 0, DOWN = -1};
@@ -36,20 +49,3 @@ public:
 
 	bool operator==(const Combatant &che) { return name == che.name; };
 };
-Combatant::Combatant()
-{
-	name = "";
-	initiative = 0;
-}
-void Combatant::StartCombat(int in)
-{
-	initiative = in;
-}
-void Combatant::EndCombat()
-{
-	initiative = 0;
-}
-void Combatant::SetHP(int MAX_HP)
-{
-	CurrentHP = MAX_HP;
-}

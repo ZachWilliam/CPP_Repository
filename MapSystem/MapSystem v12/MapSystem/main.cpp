@@ -35,7 +35,8 @@ void Setup() {
 
 
 
-int main() {
+int main() 
+{
 	srand(static_cast<unsigned int>(time(0)));
 	Setup();
 	bool inBattle = false;

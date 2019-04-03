@@ -7,9 +7,22 @@ using namespace std;
 class PlayerClass
 {
 public:
-	PlayerClass();
-	PlayerClass(string, int);
-	PlayerClass(string, int, int);
+    PlayerClass()
+    {
+        name = "";
+        Current = NonClass;
+    }
+    PlayerClass(string n, int p)
+    {
+        name = n;
+        Prerequisite = BaseType(p);
+    }
+    PlayerClass(string n, int p, int c)
+    {
+        name = n;
+        Prerequisite = BaseType(p);
+        Current = BaseType(c);
+    }
 	string name;
 	string Desc1 = "desc1", Desc2 = "desc2", Desc3 = "desc3", AbilityDesc = "Ability:";
 	int STR_BASE = 0, DEX_BASE = 0, CON_BASE = 0, AGI_BASE = 0, INT_BASE = 0, WIS_BASE = 0, LUK_BASE = 0;
@@ -30,19 +43,3 @@ public:
 	BaseType Current = NonClass;
 	Weapon StarterWeapon = Weapon();
 };
-PlayerClass::PlayerClass()
-{
-	name = "";
-	Current = NonClass;
-}
-PlayerClass::PlayerClass(string n, int p)
-{
-	name = n;
-	Prerequisite = BaseType(p);
-}
-PlayerClass::PlayerClass(string n, int p, int c)
-{
-	name = n;
-	Prerequisite = BaseType(p);
-	Current = BaseType(c);
-}
