@@ -122,6 +122,7 @@
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="Dialogue.cpp" />
     <ClCompile Include="Format.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Items.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Database.h" />
     <ClInclude Include="Dialogue.h" />
     <ClInclude Include="Format.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="Items.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapEnemy.h" />

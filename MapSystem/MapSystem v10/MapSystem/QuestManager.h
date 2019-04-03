@@ -12,8 +12,8 @@ class QuestManager
 {
 public:
 	static QuestManager& Instance() {
-		static QuestManager instance_;
-		return instance_;
+		static QuestManager instance;
+		return instance;
 	}
 
 

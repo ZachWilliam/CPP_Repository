@@ -6,12 +6,7 @@ MapMain::MapMain(Database &p_database):
 
 
 int MapMain::main() {
-	//SetColorAndBackground();
-	//curMap.map[playerR][playerC] = 'P'; 
-	
-	//DrawGUI();
-	//DrawRight();
-	
+
 	while (true) {
 		DrawScreen();
 		Input();
@@ -19,7 +14,6 @@ int MapMain::main() {
 		Sleep(1);
 	}
 
-	//_getch();
 }
 
 void MapMain::Setup(int p_mapID, int p_row, int p_col) {
@@ -265,10 +259,9 @@ void MapMain::DoInteraction() {
 
 				OutputSpeech(speech, name, SCREEN_WIDTH, BOT_START_ROW);
 
-				
-				if (interactChar == '*') {
-					//Do quest stuff
-				}
+				//Do quest stuff
+				QuestManager::Instance().questList[0].isQuestActive = true;
+
 			}
 			else if (interactChar == '#') {
 				OutputSpeech("This is where the text for npc and quest npc would be.", "NPC & Quest NPC", SCREEN_WIDTH, BOT_START_ROW);

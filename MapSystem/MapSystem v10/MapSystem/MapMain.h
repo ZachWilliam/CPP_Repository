@@ -8,6 +8,7 @@
 #include "MapManager.h"
 #include "SoundManager.h"
 #include "Transitions.h"
+#include "QuestManager.h"
 #include <vector>
 #include <conio.h>
 using namespace std;
