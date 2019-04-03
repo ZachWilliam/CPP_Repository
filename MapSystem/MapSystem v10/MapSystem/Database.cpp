@@ -132,7 +132,7 @@ void Database::LoadText()
 				{
 					i += 2;
 				}
-				if (line[i] == '"' && line[i + 1] == '"')
+				else if (line[i] == '"' && line[i + 1] == '"')
 				{
 					i += 1;
 				}
