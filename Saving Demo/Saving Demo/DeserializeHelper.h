@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <algorithm>
 
 class DeserializeHelper
 {
@@ -27,6 +28,7 @@ private:
 	size_t m_iterClassEnd;
 	bool m_isCollection;
 	bool m_isCollectionFinalPiece;
+	bool m_flagClass;
 
 	int m_loopCounter;
 

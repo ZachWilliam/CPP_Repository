@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "college_classes.h"//m_RoomNumber = serialString.substr(iterMiddle, iterEnd - iterMiddle); 
+#include "college_classes.h"
 
 #include <conio.h>
 #include <regex>
@@ -28,9 +28,12 @@ int main()
 	ClassRoom myClassRm(11, "Paolo", "no one");
 	myClassRm.AddStudent(Student("Sebastian", 'M', 38));
 	myClassRm.AddStudent(Student("Bobbetta", "F", "21"));
-	string serializedClassRoom = myClassRm.Serialized() + "\n";
+	myClassRm.AddStudent(Student("Charlie", "?", "24"));
+	string serializedClassRoom = myClassRm.Serialized();
+
+	//string serializedClassRoom = myClassRm.Serialized() + "xxx:yyy,";
 	cout << serializedClassRoom << endl;
-	_getch();
+	//_getch();
 
 	//size_t iterFront = 0;
 	//size_t iterEnd = 0;

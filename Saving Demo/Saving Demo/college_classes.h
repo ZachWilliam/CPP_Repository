@@ -53,9 +53,9 @@ std::string Student::Serialized()
 {
 	std::string serialString = "";
 
-	serialString += "name:" + m_Name;
-	serialString += ",gender:"; serialString += m_Gender;
-	serialString += ",age:" + std::to_string(m_Age);
+	serialString += "name:" + m_Name + ",";
+	serialString += "gender:"; serialString += m_Gender; serialString += ",";
+	serialString += "age:" + std::to_string(m_Age) + ",";
 
 	return serialString;
 }
@@ -105,7 +105,7 @@ ClassRoom::ClassRoom(std::string serialString)
 		case 2: m_AfternoonInstructor = deserHelper.ParsedValue(); break;
 		//case 3: m_Students.push_back(Student(deserHelper.ParsedClassSString())); break;
 		//case 3: m_Students.push_back(Student("name:Sebastian,gender:M,age:38")); break;
-		case 3: m_Students.push_back(Student("Sebastian","M","38")); break;
+		case 3: m_Students.push_back(Student(deserHelper.ParsedClassSString())); break;
 		default: break;
 		}
 	}
@@ -118,28 +118,28 @@ std::string ClassRoom::Serialized()
 {
 	std::string serialString = "";
 
-	serialString += "room:" + std::to_string(m_RoomNumber);		// a single variable
-	serialString += ",morning:" + m_MorningInstructor;			// a single variable
-	serialString += ",afternoon:" + m_AfternoonInstructor;		// a single variable
+	serialString += "room:" + std::to_string(m_RoomNumber) + ",";		// a single variable
+	serialString += "morning:" + m_MorningInstructor + ",";			// a single variable
+	serialString += "afternoon:" + m_AfternoonInstructor + ",";		// a single variable
 
 	{															// a vector of a class type of Student
-		serialString += ",student[";	// [ to open array-vector
+		serialString += "student[";	// [ to open array-vector
 
 		if (m_Students.size() > 0)
 		{
 			for (rsize_t i = 0; i < m_Students.size(); ++i)
 			{
-				if (i == 0)
+				//if (i == 0)
 					serialString += "{";			// { to open the first class in the list
-				else
-					serialString += ",{";			// ,{ to open a class after the first class in the list
+				//else
+				//	serialString += ",{";			// ,{ to open a class after the first class in the list
 
 				serialString += m_Students[i].Serialized();			// class serialized data derived from class serializing member function
 
-				serialString += "}";				// } to close a class
+				serialString += "},";				// } to close a class
 			}
 		}
-		serialString += "]";			// ] to close array-vector
+		serialString += "],";			// ] to close array-vector
 
 	}
 

@@ -15,6 +15,7 @@ DeserializeHelper::DeserializeHelper(std::string serialString) :
 	m_iterClassEnd = 0;
 	m_isCollection = false;
 	m_isCollectionFinalPiece = false;
+	m_flagClass = false;
 
 	m_loopCounter = 0;
 }
@@ -41,7 +42,12 @@ void DeserializeHelper::NextParse()
 			m_loopCounter++;
 		}
 
-		m_iterFront = m_iterMiddle = m_iterCollectionFront = m_iterCollectionEnd = m_iterClassFront = m_iterClassEnd = m_iterEnd + 1;
+		if (m_flagClass)
+		{
+			m_iterEnd = ++m_iterClassEnd;
+			m_flagClass = false;
+		}
+		m_iterFront = m_iterMiddle = m_iterCollectionFront = m_iterCollectionEnd = m_iterClassFront = m_iterClassEnd = ++m_iterEnd;
 	}
 
 	// true starting point of the method
@@ -51,28 +57,59 @@ void DeserializeHelper::NextParse()
 		// this replaces the original while loop that checks to see if the parser reached the end of the serialized string
 		// : while ((<middleIterator> = serialString.find(":", <middleIterator>)) != string::npos)
 		isActive = false;
+		m_parsedValue = "";
+		m_parsedClassSString = "";
 	}
 	else
 	{
 		// find the end point for the value to load from
 		++m_iterMiddle;
-		m_iterEnd = m_serialString.find(",", m_iterMiddle);
+		m_iterEnd = m_serialString.find(",", m_iterFront);
 		if (m_iterEnd > m_serialString.size())
 		{
-			m_iterEnd = m_serialString.find("\n", m_iterMiddle);
+			//m_iterEnd = m_serialString.find("\n", m_iterMiddle);
+			m_iterEnd = m_serialString.size() - 1;
+		}
+
+		if (m_iterMiddle > m_iterEnd)
+		{
+			m_iterMiddle = m_iterEnd;
+		}
+
+		//std::string subStringA = m_serialString.substr(m_iterFront, m_iterMiddle - m_iterFront);
+		std::string subStringA = m_serialString.substr(m_iterFront, m_iterEnd - m_iterFront);
+
+		// check to see if another set of class/object data is present within the current one
+		if ((m_iterClassFront = subStringA.find("{", 0)+m_iterFront) == std::string::npos)
+		{
+			m_iterClassFront = m_iterClassEnd;
+		}
+		else if (m_serialString[m_iterClassFront] == '{')
+		{
+			m_flagClass = true;
+			m_iterClassEnd = m_serialString.find("}", m_iterClassEnd);
+
+			// NOTE - create a tempClass that takes a substring from serialString between iterClassFront and iterClassEnd and call the class constructor accepting one string
+
+			m_iterEnd = m_serialString.find(",", m_iterClassEnd);
 		}
 
 		// check to see if a collection of data is present (vector) and set a 'isCollection' flag to true if yes
 		// NOTE - TODO - this version isn't built for array type collection of data, will have to come back to this if needed
-		std::string subString = m_serialString.substr(m_iterFront, m_iterMiddle);
-		if ((m_iterCollectionFront = subString.find("[", 0)) == std::string::npos)
+		if ((m_iterCollectionFront = subStringA.find("[", 0) /*+ m_iterFront*/) == std::string::npos)
 		{
 			m_iterCollectionFront = m_iterCollectionEnd;
 		}
-		else if (m_serialString[m_iterCollectionFront] == '[')
+		else
+		{
+			m_iterCollectionFront += m_iterFront;
+		}
+
+		if (m_serialString[m_iterCollectionFront] == '[')
 		{
 			m_isCollection = true;
-			size_t emptyCollection = m_serialString.find("[]", m_iterCollectionFront, m_iterCollectionFront + 2);//TODO - QUESTION - will +1 work instead? perhaps make 3rd paramater 'iterEnd'.  Create a text to check
+			//size_t emptyCollection = m_serialString.find("[]", m_iterCollectionFront, m_iterCollectionFront + 2);//TODO - QUESTION - will +1 work instead? perhaps make 3rd paramater 'iterEnd'.  Create a text to check
+			size_t emptyCollection = subStringA.find("[]", 0) + m_iterFront; // NOTE - QUESTION - is there need for this safety measure?  up for debate for another day.
 			if (m_iterCollectionFront == emptyCollection)
 			{
 				m_isCollectionFinalPiece = true;
@@ -81,7 +118,10 @@ void DeserializeHelper::NextParse()
 		// if there is a '[' for a collectin, there has to be a ']' to indicate the end of a collection
 		if (m_isCollection /*&& !isCollectionFinalPiece*/)//TODO - QUESTION: is the second if paramater needed?
 		{
-			m_iterCollectionEnd = m_serialString.find("]", m_iterMiddle, m_iterEnd);
+			std::string subStringB = m_serialString.substr(m_iterMiddle, m_iterEnd - m_iterMiddle + 2);
+			//m_iterCollectionEnd = m_serialString.find("]", m_iterMiddle, m_iterEnd - m_iterMiddle);
+			//m_iterCollectionEnd = subStringA.find("]", 0) + m_iterCollectionFront;
+			m_iterCollectionEnd = subStringB.find("]", 0) + m_iterMiddle;
 			if (m_serialString[m_iterCollectionEnd] == ']')
 			{
 				// flag to identify the last value to be passed into a collection of data (vector/list/etc.)
@@ -89,23 +129,10 @@ void DeserializeHelper::NextParse()
 			}
 		}
 
-		// check to see if another set of class/object data is present within the current one
-		if ((m_iterClassFront = subString.find("{", 0)) == std::string::npos)
-		{
-			m_iterClassFront = m_iterClassEnd;
-		}
-		else if (m_serialString[m_iterClassFront] == '{')
-		{
-			m_iterClassEnd = m_serialString.find("}", m_iterClassFront);
-
-			// NOTE - create a tempClass that takes a substring from serialString between iterClassFront and iterClassEnd and call the class constructor accepting one string
-
-			m_iterEnd = m_serialString.find(",", m_iterClassEnd);
-		}
 
 		m_parsedValue = m_serialString.substr(m_iterMiddle, m_iterEnd - m_iterMiddle);
 
-		m_parsedClassSString = m_serialString.substr(m_iterClassFront, m_iterClassEnd - m_iterClassFront);
+		m_parsedClassSString = m_serialString.substr(m_iterClassFront+1, m_iterClassEnd - m_iterClassFront-1);
 	}
 }
 
