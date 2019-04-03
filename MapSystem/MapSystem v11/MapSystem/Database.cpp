@@ -36,14 +36,6 @@ void Database::LoadMonsters()
 			int count = 0;
 			for (unsigned int i = 0; i < line.length(); i++)
 			{
-				if (line[i] == '"' && line[i + 1] == '"' && line[i + 2] == '"')
-				{
-					i += 2;
-				}
-				else if (line[i] == '"' && line[i + 1] == '"')
-				{
-					i += 1;
-				}
 				//cout << "Inside for loop\n";
 				if (line[i] == ',')
 				{
@@ -136,6 +128,14 @@ void Database::LoadText()
 			int count = 0;
 			for (unsigned int i = 0; i < line.length(); i++)
 			{
+				if (line[i] == '"' && line[i + 1] == '"' && line[i + 2] == '"')
+				{
+					i += 2;
+				}
+				else if (line[i] == '"' && line[i + 1] == '"')
+				{
+					i += 1;
+				}
 				if (line[i] == ';')
 				{
 					count++;
