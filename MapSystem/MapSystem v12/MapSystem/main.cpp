@@ -37,8 +37,10 @@ void Setup() {
 
 int main() 
 {
-	srand(static_cast<unsigned int>(time(0)));
-	Setup();
+	SetColorAndBackground();//Default to black/white
+	srand(static_cast<unsigned int>(time(0)));//Seed
+	Setup();//Set up window and cursor
+
 	bool inBattle = false;
 	Player PC = Player();
 	CharacterCreator(PC);
@@ -67,11 +69,7 @@ int main()
 	Database dialogue;
 	beast.LoadMonsters();
 	dialogue.LoadText();
-
-
-
-
-
+	   	  
 	MapMain mapMain(dialogue, TheGroup);
 	mapMain.Setup(5, 0, 0);
 	mapMain.main();

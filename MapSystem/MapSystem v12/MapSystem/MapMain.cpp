@@ -283,8 +283,15 @@ void MapMain::DoInteraction() {
 				}
 
 				
+				/*if (questFinished = true)
+				questActive = false;
+				loc = 3
 
+				outputspeech
 
+				if (loc == 1 && questfinished == false) questactive = true
+				if (loc == 3) loc = 2;
+				if (loc < 2 && questFinished == false) loc++*/
 			}
 			else if (interactChar == '#') {
 				string name = database.ReturnName(curMap.v_NPCs[locInNPCVec].nameID);
