@@ -80,13 +80,14 @@ public:
     Encounter(int FL_E, int FC_E, int FR_E, int BL_E, int BC_E, int BR_E)
     {
         AllEnemies = { FL_E,FC_E,FR_E,BL_E,BC_E,BR_E };
-        FrontRow = { Enemy(AllEnemies[0]), Enemy(AllEnemies[1]), Enemy(AllEnemies[2]) };
-        BackRow = { Enemy(AllEnemies[3]), Enemy(AllEnemies[4]), Enemy(AllEnemies[5]) };
+
     }
     void GenerateEncounter(Party Players)
     {
         PlayerParty = Players;
         CalculateInitiative();
+		FrontRow = { Enemy(AllEnemies[0]), Enemy(AllEnemies[1]), Enemy(AllEnemies[2]) };
+		BackRow = { Enemy(AllEnemies[3]), Enemy(AllEnemies[4]), Enemy(AllEnemies[5]) };
     }
     void CalculateInitiative()
     {

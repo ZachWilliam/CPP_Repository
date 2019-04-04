@@ -4,6 +4,7 @@
 #include <string>
 #include "Combatant.h"
 #include "Stats.h"
+#include "Monster.h"
 #include <time.h>
 #pragma once
 using namespace std;

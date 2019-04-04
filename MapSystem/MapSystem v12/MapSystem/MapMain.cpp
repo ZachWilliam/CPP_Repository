@@ -1,7 +1,8 @@
 #include "MapMain.h"
 
-MapMain::MapMain(Database &p_database, Party &p_party) :
-	database(p_database),
+MapMain::MapMain(Database &p_database,Database &p_beastiary, Party &p_party) :
+	database_text(p_database),
+	database_monsters(p_beastiary),
 	TheGroup(p_party)
 {}
 
@@ -81,8 +82,8 @@ void MapMain::Setup(int p_mapID, int p_row, int p_col) {
 
 	//Play flavour text if it hasnt been played before
 	if (!curMap.playedFlavorTxt) {
-		string name = database.ReturnName(curMap.v_NPCs[0].nameID);
-		string speech = database.ReturnDialogue(curMap.mapID, curMap.v_NPCs[0].nameID, curMap.v_NPCs[0].dialogueID);
+		string name = database_text.ReturnName(curMap.v_NPCs[0].nameID);
+		string speech = database_text.ReturnDialogue(curMap.mapID, curMap.v_NPCs[0].nameID, curMap.v_NPCs[0].dialogueID);
 
 		OutputSpeech(speech, name);
 		curMap.playedFlavorTxt = true;
@@ -221,7 +222,7 @@ void MapMain::DoInteraction() {
 	//Chest
 	if (interactChar == '=') {
 		
-		int locInChestVec = curMap.OpenChest(charRow, charCol, database);
+		int locInChestVec = curMap.OpenChest(charRow, charCol, database_text);
 		if (locInChestVec != -1) {
 			//Change data in local map copy
 			curMap.map[charRow][charCol] = ' ';
@@ -268,8 +269,8 @@ void MapMain::DoInteraction() {
 					curMap.v_questNPCs[locInNPCVec].locInDialogueVec = 2;
 				}
 
-				string name = database.ReturnName(curMap.v_questNPCs[locInNPCVec].nameID);
-				string speech = database.ReturnDialogue(curMap.mapID, curMap.v_questNPCs[locInNPCVec].nameID, curMap.v_questNPCs[locInNPCVec].dialogueIDs[curMap.v_questNPCs[locInNPCVec].locInDialogueVec]);
+				string name = database_text.ReturnName(curMap.v_questNPCs[locInNPCVec].nameID);
+				string speech = database_text.ReturnDialogue(curMap.mapID, curMap.v_questNPCs[locInNPCVec].nameID, curMap.v_questNPCs[locInNPCVec].dialogueIDs[curMap.v_questNPCs[locInNPCVec].locInDialogueVec]);
 
 				OutputSpeech(speech, name);
 
@@ -294,8 +295,8 @@ void MapMain::DoInteraction() {
 				if (loc < 2 && questFinished == false) loc++*/
 			}
 			else if (interactChar == '#') {
-				string name = database.ReturnName(curMap.v_NPCs[locInNPCVec].nameID);
-				string speech = database.ReturnDialogue(curMap.mapID, curMap.v_NPCs[locInNPCVec].nameID, curMap.v_NPCs[locInNPCVec].dialogueID);
+				string name = database_text.ReturnName(curMap.v_NPCs[locInNPCVec].nameID);
+				string speech = database_text.ReturnDialogue(curMap.mapID, curMap.v_NPCs[locInNPCVec].nameID, curMap.v_NPCs[locInNPCVec].dialogueID);
 
 				OutputSpeech(speech, name);
 			}
@@ -487,8 +488,8 @@ void MapMain::SetMap(int p_pRow, int p_pCol, int p_mapID) {
 
 	//Play flavour text if it hasnt been played before
 	if (!curMap.playedFlavorTxt) {
-		string name = database.ReturnName(curMap.v_NPCs[0].nameID);
-		string speech = database.ReturnDialogue(curMap.mapID, curMap.v_NPCs[0].nameID, curMap.v_NPCs[0].dialogueID);
+		string name = database_text.ReturnName(curMap.v_NPCs[0].nameID);
+		string speech = database_text.ReturnDialogue(curMap.mapID, curMap.v_NPCs[0].nameID, curMap.v_NPCs[0].dialogueID);
 
 		OutputSpeech(speech, name);
 		curMap.playedFlavorTxt = true;

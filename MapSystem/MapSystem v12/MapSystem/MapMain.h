@@ -18,7 +18,7 @@ using namespace std;
 class MapMain
 {
 public:
-	MapMain(Database &p_database, Party &p_party);
+	MapMain(Database &p_database, Database &p_beastiary, Party &p_party);
 
 	const int border = GameManager::instance().BORDER;
 	const int screen_width = GameManager::instance().SCREEN_WIDTH;
@@ -33,7 +33,8 @@ public:
 	MapManager mapManager;
 	Map curMap = mapManager.mapList[0];
 
-	Database database;
+	Database database_monsters;
+	Database database_text;
 	Party TheGroup;
 
 	//Player Info

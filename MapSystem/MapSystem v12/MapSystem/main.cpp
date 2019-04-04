@@ -70,7 +70,7 @@ int main()
 	beast.LoadMonsters();
 	dialogue.LoadText();
 	   	  
-	MapMain mapMain(dialogue, TheGroup);
+	MapMain mapMain(dialogue, beast, TheGroup);
 	mapMain.Setup(5, 0, 0);
 	mapMain.main();
 
