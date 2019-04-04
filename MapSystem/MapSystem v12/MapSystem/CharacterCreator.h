@@ -239,7 +239,7 @@ void CharacterCreator(Player &self)
 			cin >> temp;
 			self.name = temp;
 			self.Combatant::name = temp;
-			_getch();
+			//_getch();
 		}
 		else if (self.Job.Current == self.Job.NonClass)
 		{

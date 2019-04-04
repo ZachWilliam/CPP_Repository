@@ -9,16 +9,17 @@ using namespace std;
 class Party
 {
 public:
-    Party(Player MC = Player("NULL_NAME"))
-    {
-
-        Container.push_back(Player("NULL_NAME"));
-        Container.push_back(Player(MC));
-        Container.push_back(Player("NULL_NAME"));
-        Container.push_back(Player("NULL_NAME"));
-        Container.push_back(Player("NULL_NAME"));
-        Container.push_back(Player("NULL_NAME"));
-    }
+	Player Leader;
+	Party(Player MC = Player("NULL_NAME"))
+	{
+		Leader = MC;
+		Container.push_back(Player("NULL_NAME"));
+		Container.push_back(Player(MC));
+		Container.push_back(Player("NULL_NAME"));
+		Container.push_back(Player("NULL_NAME"));
+		Container.push_back(Player("NULL_NAME"));
+		Container.push_back(Player("NULL_NAME"));
+	}
     void AddToParty(Player PM, int Pos)
     {
         if (Container[Pos].name == "NULL_NAME")
@@ -125,5 +126,6 @@ public:
 	vector<Player> Container;
 	PartyManager Par = PartyManager();
 	bool isBank;
+	
 
 };

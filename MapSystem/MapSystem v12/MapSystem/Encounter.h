@@ -50,10 +50,10 @@ public:
 	//void DoAttack(Combatant, Enemy&);
 	//void DoAttack(Enemy);
 	//void DoHeal(Combatant, Combatant&);
-	vector<int> AllEnemies = { -1,-1,-1,-1,-1,-1 };
+	vector<Monster> AllEnemies = {};
 	Party PlayerParty;
-	vector<Enemy> FrontRow = { Enemy(AllEnemies[0]), Enemy(AllEnemies[1]), Enemy(AllEnemies[2]) };
-	vector<Enemy> BackRow = { Enemy(AllEnemies[3]), Enemy(AllEnemies[4]), Enemy(AllEnemies[5]) };
+	vector<Enemy> FrontRow = { Enemy(-1), Enemy(-1), Enemy(-1) };
+	vector<Enemy> BackRow = { Enemy(-1), Enemy(-1), Enemy(-1) };
 	vector<MyStruct> Order;
 	AttackManager Man = AttackManager();
 	Attack AttackUsed = Attack();
@@ -74,20 +74,38 @@ public:
 	bool Flee = false;
 	bool Report = false;
 	bool Victory = false;
+	int TotalXP;
 	enum BattleStats { ATTACK = 0, DEFENSE, MAGIC, RESISTANCE, SPEED, HIT, AVOID, CRIT };
 
 
-    Encounter(int FL_E, int FC_E, int FR_E, int BL_E, int BC_E, int BR_E)
+	Encounter(int lvl, Monster FL_E, Monster FC_E, Monster FR_E, Monster BL_E, Monster BC_E, Monster BR_E)
     {
-        AllEnemies = { FL_E,FC_E,FR_E,BL_E,BC_E,BR_E };
+		Level = lvl;
+		AllEnemies.push_back(FL_E);
+		AllEnemies.push_back(FC_E);
+		AllEnemies.push_back(FR_E);
+		AllEnemies.push_back(BL_E);
+		AllEnemies.push_back(BC_E);
+		AllEnemies.push_back(BR_E);
 
     }
     void GenerateEncounter(Party Players)
     {
         PlayerParty = Players;
         CalculateInitiative();
-		FrontRow = { Enemy(AllEnemies[0]), Enemy(AllEnemies[1]), Enemy(AllEnemies[2]) };
-		BackRow = { Enemy(AllEnemies[3]), Enemy(AllEnemies[4]), Enemy(AllEnemies[5]) };
+		FrontRow = { Enemy(AllEnemies[0],Level), Enemy(AllEnemies[1],Level), Enemy(AllEnemies[2],Level) };
+		BackRow = { Enemy(AllEnemies[3],Level), Enemy(AllEnemies[4],Level), Enemy(AllEnemies[5],Level) };
+		for (size_t i = 0; i < 3; i++)
+		{
+			if (!FrontRow[i].NullEnemy)
+			{
+				TotalXP += FrontRow[i].GetXP();
+			}
+			if (!BackRow[i].NullEnemy)
+			{
+				TotalXP += BackRow[i].GetXP();
+			}
+		}
     }
     void CalculateInitiative()
     {
@@ -318,7 +336,6 @@ public:
                 if (PlayerParty.Container[dir].name != "NULL_NAME" && PlayerParty.Container[dir].CurrentHP > 0)
                 {
                     int HitChance = ((((PlayerParty.Container[dir].BattleStats[7] * 5 + PlayerParty.Container[dir].PlayerInventory.m_Armor.m_Avoidance)) - User.BattleStats[6] * 5)) + 10;
-					cout << HitChance << endl;
                     if (rand() % 100 > HitChance)
                     {
                         Damage -= PlayerParty.Container[dir].BattleStats[1];
@@ -375,6 +392,34 @@ public:
                 Battling = true;
             }
         }
+		if (!Battling && Victory)
+		{
+			gotoxy(0, 30);
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			gotoxy(0, 30);
+			int temp = 0;
+			for (size_t i = 0; i < 3; i++)
+			{
+				
+			}
+			for (size_t i = 0; i < PlayerParty.Container.size(); i++)
+			{
+				if (PlayerParty.Container[i].name != "NULL_NAME" && PlayerParty.Container[i].CurrentHP != 0)
+				{
+					cout << PlayerParty.Container[i].name << " gained " << TotalXP << " experience points!" << endl;
+					PlayerParty.Container[i].CurrentEXP += TotalXP;
+				}
+			}
+			_getch();
+		}
         if (Battling)
         {
             Battling = false;
@@ -947,7 +992,7 @@ public:
         else
         {
             gotoxy(0, 33);
-            cout << "Slime attacks!                                                                     " << endl;
+            cout << Order[InitiativeOrder].combatantValue.name << " attacks!                                                                     " << endl;
             bool done = false;
             for (size_t i = 0; i < FrontRow.size(); i++)
             {

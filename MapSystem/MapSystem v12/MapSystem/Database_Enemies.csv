@@ -75,3 +75,4 @@ ID,Name,Description,Type,MIN,STR,DEX,CON,INT,WIS,AGI,LUK,STR_Growth,DEX_Growth,C
 73,Beholder,A floating eyeball with tentacles for reasons.,Amorph,20,25,25,25,30,25,25,25,28,28,28,33,28,28,28,1,1,0.5,0,0,0,1,1,1,0,1,1
 74,Kraken,More tentacles.,Amorph,20,25,25,30,25,25,25,25,28,28,33,28,28,28,28,0.5,1,0.5,1,2,0,2,0.5,1,1,1,0
 75,Air Kraken,See previous  but with stupid little wings.,Amorph,20,25,20,20,20,20,20,25,33,27,27,27,27,27,33,0.5,1,0.5,2,2,0,2,2,1,1,1,0
+-1,NULL_ENEMY,Placeholder,Amorph,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
