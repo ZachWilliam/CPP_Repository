@@ -332,7 +332,7 @@ void MapMain::DoInteraction() {
 			else PlayBattleTransEffect();
 
 			bool inBattle = true;
-			Encounter FirstBattle(0, -1, 0, -1, -1, -1);
+			Encounter FirstBattle(4, database_monsters.GetMonster(-1), database_monsters.GetMonster(2), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
 			// FirstBattle = EncounterManager::GetEncounter(int)
 			FirstBattle.GenerateEncounter(TheGroup);
 			while (inBattle) {
@@ -416,7 +416,7 @@ void MapMain::CheckForBattle() {
 
 		PlayBattleTransEffect();
 		bool inBattle = true;
-		Encounter FirstBattle(0, -1, 0, -1, -1, -1);
+		Encounter FirstBattle(1, database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
 		// FirstBattle = EncounterManager::GetEncounter(int)
 		FirstBattle.GenerateEncounter(TheGroup);
 		while (inBattle) {

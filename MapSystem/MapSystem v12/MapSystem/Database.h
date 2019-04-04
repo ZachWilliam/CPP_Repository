@@ -21,5 +21,6 @@ public:
 	void LoadText();
 	string ReturnName(int speakerID);
 	string ReturnDialogue(int sceneID, int speakerID, int textID);
+	Monster GetMonster(int ID);
 };
 

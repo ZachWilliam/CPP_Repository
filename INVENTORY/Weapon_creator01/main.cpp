@@ -28,19 +28,19 @@ int main()
 	cout << "should show equiped item for each character\n";
 	inStorage.DisplayPartyInventory();
 
-	cout << "Add 3 weapons and armor to list\n";
-	inStorage.SetWeaponsRandom();
-	inStorage.SetWeaponsRandom();
-	inStorage.SetWeaponsRandom();
+	cout << "Add 3 super weapons and super armor to list\n";
+	inStorage.AddSuperWeapon(5);
+	inStorage.AddSuperWeapon(8);
+	inStorage.AddSuperWeapon(12);
 
-	inStorage.SetArmorRandom();
-	inStorage.SetArmorRandom();
-	inStorage.SetArmorRandom();
+	inStorage.AddSuperArmor(5);
+	inStorage.AddSuperArmor(8);
+	inStorage.AddSuperArmor(12);
 	inStorage.DisplayPartyInventory();
 
 	cout << "Attempt to swap\n";
 	inStorage.SwapEquipedWeapon(PlayerOne, PlayerTwo, PlayerThree);
-	inStorage.SwapEquipedArmor(PlayerOne, PlayerTwo, PlayerThree);
+	//inStorage.SwapEquipedArmor(PlayerOne, PlayerTwo, PlayerThree);
 	PlayerOne.Status();
 	inStorage.DisplayPartyInventory();
 

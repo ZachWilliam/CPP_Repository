@@ -221,3 +221,14 @@ string Database::ReturnDialogue(int sceneID, int speakerID, int textID)
 	cout << "Information missing.\n";
 	return "";
 }
+Monster Database::GetMonster(int ID)
+{
+	for (size_t i = 0; i < Beastiary.size(); i++)
+	{
+		if (Beastiary[i].m_ID == ID)
+		{
+			return Beastiary[i];
+		}
+	}
+	return Beastiary[Beastiary.size()];
+}

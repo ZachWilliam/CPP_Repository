@@ -63,11 +63,11 @@ PartyInventory::PartyInventory(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3
 	INV_ARMOR.push_back(EQUIPED_ARMOR3);
 }
 
-void PartyInventory::SetWeaponsRandom()
+void PartyInventory::AddWeaponsRandom()
 {
 	AddWeapon(-1, -1, -1);
 }
-void PartyInventory::SetArmorRandom()
+void PartyInventory::AddArmorRandom()
 {
 	AddArmor(-1, -1, -1);
 }
@@ -82,6 +82,18 @@ void PartyInventory::AddArmor(int x, int y, int z)
 {
 	Armor tempArmor;
 	tempArmor.SetArmor(x, y, z);
+	INV_ARMOR.push_back(tempArmor);
+}
+void PartyInventory::AddSuperWeapon(int x)
+{
+	Weapon tempWeapon;
+	tempWeapon.SetSuperWeapon(x);
+	INV_WEAPON.push_back(tempWeapon);
+}
+void PartyInventory::AddSuperArmor(int x)
+{
+	Armor tempArmor;
+	tempArmor.SetSuperArmor(x);
 	INV_ARMOR.push_back(tempArmor);
 }
 
@@ -144,6 +156,8 @@ void PartyInventory::SwapEquipedWeapon(Backpack &BP1ref, Backpack &BP2ref, Backp
 			cout << "Select Weapon: ";
 			cin >> choice;
 			BP1ref.m_Weapon = INV_WEAPON[choice];
+			INV_WEAPON.insert(INV_WEAPON.end(), INV_WEAPON[choice]);
+			INV_WEAPON.pop_back();
 			EQUIPED_WEAPON1 = BP1ref.m_Weapon;
 			break;
 		case 2:
@@ -151,6 +165,8 @@ void PartyInventory::SwapEquipedWeapon(Backpack &BP1ref, Backpack &BP2ref, Backp
 			cout << "Select Weapon: ";
 			cin >> choice;
 			BP2ref.m_Weapon = INV_WEAPON[choice];
+			INV_WEAPON.insert(INV_WEAPON.end(), INV_WEAPON[choice]);
+			INV_WEAPON.pop_back();
 			EQUIPED_WEAPON2 = BP2ref.m_Weapon;
 			break;
 		case 3:
@@ -158,6 +174,8 @@ void PartyInventory::SwapEquipedWeapon(Backpack &BP1ref, Backpack &BP2ref, Backp
 			cout << "Select Weapon: ";
 			cin >> choice;
 			BP3ref.m_Weapon = INV_WEAPON[choice];
+			INV_WEAPON.insert(INV_WEAPON.end(), INV_WEAPON[choice]);
+			INV_WEAPON.pop_back();
 			EQUIPED_WEAPON3 = BP3ref.m_Weapon;
 			break;
 		}
@@ -184,6 +202,8 @@ void PartyInventory::SwapEquipedArmor(Backpack &BP1ref, Backpack &BP2ref, Backpa
 			cout << "Select Armor: ";
 			cin >> choice;
 			BP1ref.m_Armor = INV_ARMOR[choice];
+			INV_ARMOR.insert(INV_ARMOR.end(), INV_ARMOR[choice]);
+			INV_ARMOR.pop_back();
 			EQUIPED_ARMOR1 = BP1ref.m_Armor;
 			break;
 		case 2:
@@ -191,6 +211,8 @@ void PartyInventory::SwapEquipedArmor(Backpack &BP1ref, Backpack &BP2ref, Backpa
 			cout << "Select Armor: ";
 			cin >> choice;
 			BP2ref.m_Armor = INV_ARMOR[choice];
+			INV_ARMOR.insert(INV_ARMOR.end(), INV_ARMOR[choice]);
+			INV_ARMOR.pop_back();
 			EQUIPED_ARMOR2 = BP2ref.m_Armor;
 			break;
 		case 3:
@@ -198,6 +220,8 @@ void PartyInventory::SwapEquipedArmor(Backpack &BP1ref, Backpack &BP2ref, Backpa
 			cout << "Select Armor: ";
 			cin >> choice;
 			BP3ref.m_Armor = INV_ARMOR[choice];
+			INV_ARMOR.insert(INV_ARMOR.end(), INV_ARMOR[choice]);
+			INV_ARMOR.pop_back();
 			EQUIPED_ARMOR3 = BP3ref.m_Armor;
 			break;
 		}
