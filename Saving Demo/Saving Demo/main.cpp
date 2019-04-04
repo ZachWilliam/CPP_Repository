@@ -45,7 +45,7 @@ int main()
 	_getch();
 
 	Campus triOS_Lnd(triOS_London.Serialized());
-	//cout << triOS_Lnd.Serialized() << endl << endl;
+	cout << triOS_Lnd.Serialized() << endl << endl;
 
 	_getch();
 	return 0;
