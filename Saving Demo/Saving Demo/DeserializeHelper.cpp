@@ -131,7 +131,7 @@ void DeserializeHelper::NextParse()
 			size_t tempFCount = 0, tempECount = 0;
 			while ((tempFCount = std::count(tempSerSubStr.begin(),tempSerSubStr.end(),'{')) != (tempECount = std::count(tempSerSubStr.begin(), tempSerSubStr.end(), '}')))
 			{
-				m_iterClassEnd = m_serialString.find("}", m_iterClassEnd);
+				m_iterClassEnd = m_serialString.find("}", m_iterClassEnd + 1);
 				tempSerSubStr = m_serialString.substr(m_iterClassFront, m_iterClassEnd - m_iterClassFront + 2);
 			}
 
