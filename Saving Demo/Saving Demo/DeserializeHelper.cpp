@@ -25,7 +25,42 @@ DeserializeHelper::~DeserializeHelper()
 {
 }
 
-// allign string parser iterators to locate data and identify collections of data and classes
+/* INSTRUCTIONS -	1) In the class objects constructor taking in a "one-line" serialized string, create a instance of the
+					DeserializedHelper, and a 'while' loop that runs while the helper instance's 'isActive()' returns true (bool).
+					2) At the start of each loop iteration call the helpers 'NextParse()' method and it will store the approprate
+					data value in its 'parsedValue()' (string) to assign to a data member variable or a subString
+					'parsedClassSString()' (string) to run a different class type's constructor that accepts a serialized string.
+					3) Finally, create a 'switch' if statement checking the helper instances 'ParseCount()' method (int) and assign
+					data provided by the helper to the correct member variables.
+
+					IMPORTANT: make sure the constructor assigns values to variables in the same order as the classes 'Serialized()'
+					method builds and returns a serialString from its variables
+					
+					Example:	(serialString:		room:11,morning:Paolo,afternoon:no one,student[{name:Sebastian,gender:M,age:38,},{name:Bobbetta,gender:F,age:21,},{name:Charlie,gender:?,age:24,},],		)
+
+					// Deserializer Constructor - accepts a 'one-line' serialized string filled with data
+					ClassRoom::ClassRoom(std::string serialString)
+					{
+						DeserializeHelper deserHelper(serialString);
+
+						while (deserHelper.isActive)
+						{
+							deserHelper.NextParse();
+
+							switch (deserHelper.ParseCount())
+							{
+							case 0: m_RoomNumber = std::stoi(deserHelper.ParsedValue()); break;
+							case 1: m_MorningInstructor = deserHelper.ParsedValue(); break;
+							case 2: m_AfternoonInstructor = deserHelper.ParsedValue(); break;
+							case 3: m_Students.push_back(Student(deserHelper.ParsedClassSString())); break;
+							default: break;
+							}
+						}
+					}
+
+					*/
+
+// A Method to allign string parser iterators to locate data and identify collections of data values and classes
 void DeserializeHelper::NextParse()
 {
 	// cannot make use of a 'do while' loop so this code will acieve the desired behaviour
@@ -88,6 +123,17 @@ void DeserializeHelper::NextParse()
 		{
 			m_flagClass = true;
 			m_iterClassEnd = m_serialString.find("}", m_iterClassEnd);
+
+			// temporary serialized subString
+			std::string tempSerSubStr = m_serialString.substr(m_iterClassFront, m_iterClassEnd - m_iterClassFront + 2);
+
+			// make sure the m_iterClassEnd is pointing to the correct class closing char tag by ensuring the count of '{' matches the count of '}' (this is where algorithm from the header file comes into play)
+			size_t tempFCount = 0, tempECount = 0;
+			while ((tempFCount = std::count(tempSerSubStr.begin(),tempSerSubStr.end(),'{')) != (tempECount = std::count(tempSerSubStr.begin(), tempSerSubStr.end(), '}')))
+			{
+				m_iterClassEnd = m_serialString.find("}", m_iterClassEnd);
+				tempSerSubStr = m_serialString.substr(m_iterClassFront, m_iterClassEnd - m_iterClassFront + 2);
+			}
 
 			// NOTE - create a tempClass that takes a substring from serialString between iterClassFront and iterClassEnd and call the class constructor accepting one string
 

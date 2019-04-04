@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="college_classes.cpp" />
     <ClCompile Include="DeserializeHelper.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

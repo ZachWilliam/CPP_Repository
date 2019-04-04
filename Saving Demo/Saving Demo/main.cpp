@@ -31,48 +31,21 @@ int main()
 	myClassRm.AddStudent(Student("Charlie", "?", "24"));
 	string serializedClassRoom = myClassRm.Serialized();
 
-	//string serializedClassRoom = myClassRm.Serialized() + "xxx:yyy,";
 	cout << serializedClassRoom << endl;
-	//_getch();
-
-	//size_t iterFront = 0;
-	//size_t iterEnd = 0;
-	//
-	//while ((iterFront = serializedClassRoom.find(":", iterFront)) != string::npos )
-	//{
-	//	iterEnd = serializedClassRoom.find(",", ++iterFront);
-	//	string temp = serializedClassRoom.substr(iterFront, iterEnd-iterFront);
-	//	cout << temp << " ";
-	//}
-
-	{
-	//size_t iterX = 0;
-	//while ((iterFront = serializedClassRoom.find(":", iterFront)) != string::npos)
-	//{
-	//	++iterFront;
-	//	iterEnd = serializedClassRoom.find(",", iterFront);
-	//	if (iterEnd > serializedClassRoom.size())
-	//	{
-	//		iterEnd = serializedClassRoom.find("\n", iterFront);
-	//	}
-	//
-	//	size_t iterArrayFront = 0;
-	//	string mySubString = serializedClassRoom.substr(iterX, iterEnd - iterX);
-	//	//cout << mySubString.find("[", iterArrayFront);
-	//	if ((iterArrayFront = mySubString.find("[", 0)) != string::npos)
-	//	{
-	//		cout << endl << "Array/Vector found" << endl;
-	//	}
-	//
-	//	string temp = serializedClassRoom.substr(iterFront, iterEnd - iterFront);
-	//	cout << temp << " ";
-	//
-	//	iterX = iterEnd;
-	//}
-	}
+	_getch();
 
 	ClassRoom myClassTwo(serializedClassRoom);
-	cout << myClassTwo.Serialized() << endl;
+	cout << myClassTwo.Serialized() << endl << endl;
+	_getch();
+
+	ClassRoom classX(1, "Mr. A", "Mr. B");
+	classX.AddStudent(Student("Dave", "M", "20"));
+	Campus triOS_London("CA", "ON", "London", classX, 2019);
+	cout << triOS_London.Serialized() << endl;
+	_getch();
+
+	Campus triOS_Lnd(triOS_London.Serialized());
+	//cout << triOS_Lnd.Serialized() << endl << endl;
 
 	_getch();
 	return 0;

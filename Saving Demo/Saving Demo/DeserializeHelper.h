@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <algorithm>
+#include <algorithm>	// used in defenition file (DeserializeHelper.cpp)
 
 class DeserializeHelper
 {
@@ -36,4 +36,3 @@ private:
 	std::string m_parsedClassSString;
 
 };
-
