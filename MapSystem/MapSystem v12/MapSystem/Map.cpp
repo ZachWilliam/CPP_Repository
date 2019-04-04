@@ -65,6 +65,7 @@ int Map::OpenChest(int p_row, int p_col, Database &p_database) {
 			}
 			OutputSpeech(tempText, "Chest");
 		}
+
 	}
 
 	return locInChestVec;

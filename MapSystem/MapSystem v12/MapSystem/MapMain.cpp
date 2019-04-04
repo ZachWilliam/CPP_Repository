@@ -266,9 +266,10 @@ void MapMain::DoInteraction() {
 		if (locInNPCVec != -1) {
 			if (interactChar == '*') {
 
+				//Quest is finished, play finish text once
 				if (QuestManager::Instance().questList[0].isQuestFinished && QuestManager::Instance().questList[0].isQuestActive) {
 					QuestManager::Instance().questList[0].isQuestActive = false;
-					curMap.v_questNPCs[locInNPCVec].locInDialogueVec = 2;
+					curMap.v_questNPCs[locInNPCVec].locInDialogueVec = 3;
 				}
 
 				string name = database_text.ReturnName(curMap.v_questNPCs[locInNPCVec].nameID);
@@ -276,19 +277,31 @@ void MapMain::DoInteraction() {
 
 				OutputSpeech(speech, name);
 
-				
+				//Activate quest on speech dialogue 2
+				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec == 1 && !QuestManager::Instance().questList[0].isQuestFinished) {
+					//Activate quest
+					QuestManager::Instance().questList[0].isQuestActive = true;
 
-				
-				/*if (questFinished = true && questActive = true)
-				questActive = false;
-				loc = 3
+					//Update town map to open gate (we can safely assume were on the town map and can use curMap
+					curMap.map[18][131] = 'g';
+					curMap.map[19][131] = 'g';
 
-				outputspeech
+					for (size_t i = 0; i < mapManager.mapList.size(); i++)
+					{
+						if (curMap.mapID == mapManager.mapList[i].mapID) {
+							mapManager.mapList[i].map[18][131] = 'g';
+							mapManager.mapList[i].map[19][131] = 'g';
+							break;
+						}
+					}
+				}
+				//Change dialogue to perm stay 2 after its 3
+				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec == 3) 
+					curMap.v_questNPCs[locInNPCVec].locInDialogueVec = 2;
 
-				if (loc == 1 && questfinished == false) questactive = true
-				if (loc == 3) loc = 2;
-				if (loc < 2 && questFinished == false) loc++*/
-
+				//Increment locInDialogueVec if less than 2
+				if(curMap.v_questNPCs[locInNPCVec].locInDialogueVec < 2 && !QuestManager::Instance().questList[0].isQuestFinished)
+					curMap.v_questNPCs[locInNPCVec].locInDialogueVec++;
 
 			}
 			else if (interactChar == '#') {
@@ -384,6 +397,35 @@ void MapMain::DoInteraction() {
 
 		SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		OutputSpeech("Call the save function here.", "Save Point");
+	}
+
+	//Interactable Object (can safely assume its just the crank spot for the bridge in town
+	if (interactChar == '@') {
+		if (QuestManager::Instance().questList[0].isQuestFinished) {
+			string tempName = database_text.ReturnName(0);
+			string tempText = database_text.ReturnDialogue(6, 0, 3);//change 3 to 4
+			OutputSpeech(tempText, tempName);
+
+			curMap.map[35][65] = 'b';
+			curMap.map[35][66] = 'b';
+			curMap.map[35][67] = 'b';
+			curMap.map[35][68] = 'b';
+
+			curMap.map[36][65] = 'b';
+			curMap.map[36][66] = 'b';
+			curMap.map[36][67] = 'b';
+			curMap.map[36][68] = 'b';
+
+			curMap.map[37][65] = 'g';
+			curMap.map[37][66] = 'g';
+			curMap.map[37][67] = 'g';
+			curMap.map[37][68] = 'g';
+		}
+		else {
+			string tempName = database_text.ReturnName(0);
+			string tempText = database_text.ReturnDialogue(6, 0, 3);//change 3 to 4
+			OutputSpeech(tempText, tempName);
+		}
 	}
 
 	interactChar = ' ';
