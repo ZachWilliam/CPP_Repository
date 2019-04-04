@@ -104,20 +104,21 @@ void MapMain::Setup(int p_mapID, int p_row, int p_col) {
 }
 
 void MapMain::Input() {
-	aKey = GetKeyState('A') & 0x8000;
-	sKey = GetKeyState('S') & 0x8000;
-	dKey = GetKeyState('D') & 0x8000;
-	wKey = GetKeyState('W') & 0x8000;
 
-	if (aKey) cDir = LEFT;	if (dKey) cDir = RIGHT;
-	if ((aKey && dKey) || (!aKey && !dKey)) cDir = NEUTRAL;
+	leftKey = GetAsyncKeyState(VK_LEFT);
+	downKey = GetAsyncKeyState(VK_DOWN);
+	rightKey = GetAsyncKeyState(VK_RIGHT);
+	upKey = GetAsyncKeyState(VK_UP);
 
-	if (wKey) rDir = UP; if (sKey) rDir = RIGHT;
-	if ((wKey && sKey) || (!wKey && !sKey)) rDir = NEUTRAL;
+	if (leftKey) cDir = LEFT;	if (rightKey) cDir = RIGHT;
+	if ((leftKey && rightKey) || (!leftKey && !rightKey)) cDir = NEUTRAL;
+
+	if (upKey) rDir = UP; if (downKey) rDir = RIGHT;
+	if ((upKey && downKey) || (!upKey && !downKey)) rDir = NEUTRAL;
 
 	if (_kbhit()) {
 		switch (_getch()) {
-		case ' ':
+		case 'z':
 			interact = true;
 			break;
 		}
@@ -265,7 +266,8 @@ void MapMain::DoInteraction() {
 		if (locInNPCVec != -1) {
 			if (interactChar == '*') {
 
-				if (QuestManager::Instance().questList[0].isQuestFinished) {
+				if (QuestManager::Instance().questList[0].isQuestFinished && QuestManager::Instance().questList[0].isQuestActive) {
+					QuestManager::Instance().questList[0].isQuestActive = false;
 					curMap.v_questNPCs[locInNPCVec].locInDialogueVec = 2;
 				}
 
@@ -274,17 +276,10 @@ void MapMain::DoInteraction() {
 
 				OutputSpeech(speech, name);
 
-				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec == 1) {
-					if(QuestManager::Instance().questList[0].isQuestFinished != true)
-						QuestManager::Instance().questList[0].isQuestActive = true;
-				}
-
-				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec == 0) {
-					curMap.v_questNPCs[locInNPCVec].locInDialogueVec = 1;
-				}
+				
 
 				
-				/*if (questFinished = true)
+				/*if (questFinished = true && questActive = true)
 				questActive = false;
 				loc = 3
 
@@ -293,6 +288,8 @@ void MapMain::DoInteraction() {
 				if (loc == 1 && questfinished == false) questactive = true
 				if (loc == 3) loc = 2;
 				if (loc < 2 && questFinished == false) loc++*/
+
+
 			}
 			else if (interactChar == '#') {
 				string name = database_text.ReturnName(curMap.v_NPCs[locInNPCVec].nameID);
@@ -559,8 +556,8 @@ void MapMain::DrawRight() {
 	//Controls
 	GoToXY(22, right_start_col + 1); cout << CenterPhrase("Controls", side_width - 2);
 	GoToXY(23, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
-	GoToXY(24, right_start_col + 1); cout << CenterPhrase("ASDW = Move", side_width - 2);
-	GoToXY(25, right_start_col + 1); cout << CenterPhrase("Spacebar = Interact", side_width - 2);
+	GoToXY(24, right_start_col + 1); cout << CenterPhrase("Arrow Keys = Move", side_width - 2);
+	GoToXY(25, right_start_col + 1); cout << CenterPhrase("z = Interact", side_width - 2);
 }
 
 void MapMain::DrawCombatScreen()

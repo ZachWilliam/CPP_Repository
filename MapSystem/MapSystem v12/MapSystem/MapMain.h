@@ -15,10 +15,13 @@
 #include <conio.h>
 using namespace std;
 
+
+
 class MapMain
 {
 public:
 	MapMain(Database &p_database, Database &p_beastiary, Party &p_party);
+
 
 	const int border = GameManager::instance().BORDER;
 	const int screen_width = GameManager::instance().SCREEN_WIDTH;
@@ -59,10 +62,10 @@ public:
 	vector<char> v_interactChars = { '=','#' ,'&', '+', '*', '%','!','$'};
 
 	//Input
-	bool aKey = false;
-	bool sKey = false;
-	bool dKey = false;
-	bool wKey = false;
+	bool leftKey = false;
+	bool downKey = false;
+	bool rightKey = false;
+	bool upKey = false;
 	int columnMove = 0, rowMove = 0;
 
 

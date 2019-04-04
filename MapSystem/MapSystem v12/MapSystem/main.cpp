@@ -55,6 +55,7 @@ int main()
 	_getch();
 	system("cls");
 
+
 	for (size_t i = 0; i < TheGroup.Container.size(); i++)
 	{
 		if (TheGroup.Container[i].name != "NULL_NAME")
