@@ -403,7 +403,7 @@ void MapMain::DoInteraction() {
 	if (interactChar == '@') {
 		if (QuestManager::Instance().questList[0].isQuestFinished) {
 			string tempName = database_text.ReturnName(0);
-			string tempText = database_text.ReturnDialogue(6, 0, 3);//change 3 to 4
+			string tempText = database_text.ReturnDialogue(6, 0, 4);
 			OutputSpeech(tempText, tempName);
 
 			curMap.map[35][65] = 'b';
@@ -423,7 +423,7 @@ void MapMain::DoInteraction() {
 		}
 		else {
 			string tempName = database_text.ReturnName(0);
-			string tempText = database_text.ReturnDialogue(6, 0, 3);//change 3 to 4
+			string tempText = database_text.ReturnDialogue(6, 0, 3);
 			OutputSpeech(tempText, tempName);
 		}
 	}
@@ -599,7 +599,7 @@ void MapMain::DrawRight() {
 	GoToXY(22, right_start_col + 1); cout << CenterPhrase("Controls", side_width - 2);
 	GoToXY(23, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
 	GoToXY(24, right_start_col + 1); cout << CenterPhrase("Arrow Keys = Move", side_width - 2);
-	GoToXY(25, right_start_col + 1); cout << CenterPhrase("z = Interact", side_width - 2);
+	GoToXY(25, right_start_col + 1); cout << CenterPhrase("Z = Interact", side_width - 2);
 }
 
 void MapMain::DrawCombatScreen()
