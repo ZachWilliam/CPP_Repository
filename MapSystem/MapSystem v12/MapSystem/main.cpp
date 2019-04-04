@@ -55,7 +55,6 @@ int main()
 	_getch();
 	system("cls");
 
-
 	for (size_t i = 0; i < TheGroup.Container.size(); i++)
 	{
 		if (TheGroup.Container[i].name != "NULL_NAME")
@@ -72,7 +71,7 @@ int main()
 	dialogue.LoadText();
 	   	  
 	MapMain mapMain(dialogue, beast, TheGroup);
-	mapMain.Setup(6, 0, 0);
+	mapMain.Setup(5, 0, 0);
 	mapMain.main();
 
 

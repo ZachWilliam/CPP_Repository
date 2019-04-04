@@ -152,6 +152,7 @@
     <ClInclude Include="Database.h" />
     <ClInclude Include="Dialogue.h" />
     <ClInclude Include="Encounter.h" />
+    <ClInclude Include="EncounterManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Format.h" />
     <ClInclude Include="GameManager.h" />
