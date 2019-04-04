@@ -8,21 +8,6 @@
 
 using namespace std;
 
-//class College
-//{
-//public:
-//	College();
-//	~College();
-//	//Save();
-//
-//private:
-//	string m_Name;
-//	string campus;
-//
-//	Serialize();
-//	
-//};
-
 int main()
 {
 	ClassRoom myClassRm(11, "Paolo", "no one");
