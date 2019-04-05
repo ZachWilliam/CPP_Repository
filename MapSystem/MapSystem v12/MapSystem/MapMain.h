@@ -55,14 +55,14 @@ public:
 
 	
 
-	vector<char> v_collisionChars = { 'W', 'T', 'B', 'D', 'G', 'R', 'U', 'L','=', '#', '&', '+', '*', '%', '!', '$'};
-	vector<char> v_interactChars = { '=','#' ,'&', '+', '*', '%','!','$'};
+	vector<char> v_collisionChars = { 'W', 'T', 'B', 'D', 'G', 'R', 'U', 'L','=', '#', '&', '+', '*', '%', '!', '$','@'};
+	vector<char> v_interactChars = { '=','#' ,'&', '+', '*', '%','!','$','@' };
 
 	//Input
-	bool aKey = false;
-	bool sKey = false;
-	bool dKey = false;
-	bool wKey = false;
+	bool leftKey = false;
+	bool downKey = false;
+	bool rightKey = false;
+	bool upKey = false;
 	int columnMove = 0, rowMove = 0;
 
 

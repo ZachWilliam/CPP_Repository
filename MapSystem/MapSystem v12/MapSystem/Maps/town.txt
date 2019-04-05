@@ -8,7 +8,7 @@ Maple Grove
 e //Chest data
 e //Enemy Data
 Sound/town_music.wav
-18,68,6,0,1,1,2,3e //row,col,mapid,locinvec,nameid,textid1,textid2 and so on
+18,68,6,0,1,1,2,3,4e //row,col,mapid,locinvec,nameid,textid1,textid2 and so on
 WWWWWWWWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 WWWWWWWWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRWWWWRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 WWWWWWWWWWW                                                                                  WWWW                      TT        TTRR
@@ -27,8 +27,8 @@ WWWWWWWWWWW                TT  gg  TT                       TT   gggg   TT      
 WWWWWWBBBBBBBB    TT           gg                          T     gggg     T                  WWWW        LLLLLLLLLLLLLLLLLLLL      RR
 WWWWWWBBBBBBBB    TT       TT  gg  TT     TT   TT   TT       gggggggggggg        TT   TT     WWWW             LLLLLLLL             RR
 WWWWWWBBBBBBBB                 gg                           gggggggggggggg                   WWWW                                  RR
-WBBBBBBBBBBBBBggggggggggggggggggggggggggggggggggggggggggggggggggggLL*ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg?
-WBBBBBBBBBBBBBggggggggggggggggggggggggggggggggggggggggggggggggggggLLgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg?
+WBBBBBBBBBBBBBggggggggggggggggggggggggggggggggggggggggggggggggggggLL*ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggR?
+WBBBBBBBBBBBBBggggggggggggggggggggggggggggggggggggggggggggggggggggLLgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggR?
 WWWWWWBBBBBBBB                                              gggggggggggggg      gg           WWWW           gg                     RR
 WWWWWWBBBBBBBB    TT       TT   TT   TT   TT   TT   TT       gggggggggggg       gg           WWWW           gg                     RR
 WWWWWWBBBBBBBB    TT                                             gggg       TTTTggTTTT       WWWW   TT      gg gggg            TT  RR
@@ -43,8 +43,8 @@ WWWWWWWWWWW   LLLLLLLL       R    gbbbbbbbbbbbbbbbbbbTR    TTT   gggg     T T  g
 WWWWWWWWWWWLLLLLLLLLLL       R    RbbbbbbbbbbTTbbbbbTTR      T   gggg     T  TTT  TTT  T     WWWW   TT   RTbbGGbbGGbbbbbbbTR   TT  RR
 WWWWWWWWWWW   LLLLLLL        RRRRRRRRRRRRRRRRRRRRRRRRRR          gggg      T          T      WWWW        RTTbbbbbbbbbbbbTTTR       RR
 WWWWWWWWWWW    LLLLL                                             gggg       TTTT  TTTT       WWWW        RRRRRRRRRRRRRRRRRRR       RR
-WWWWWWWWWWW                                                      gggg                        WWWW                                  RR
+WWWWWWWWWWW                                                     @gggg                        WWWW                                  RR
 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRBBBBRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRBBBBRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRggggRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR

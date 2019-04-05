@@ -1,6 +1,6 @@
 7
 Ruins of Maple Grove
-1
+0
 18,0,18,131,6 19,0,19,131,6e //Transition Coords
 18,1
 10
