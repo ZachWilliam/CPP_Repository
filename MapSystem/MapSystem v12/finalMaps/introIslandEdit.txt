@@ -1,0 +1,44 @@
+2
+Abandoned Island
+0
+21,6,21,6,2 16,40,5,48,3e //Transition Coords (curMapR, curMapC, nextMapR,NextMapC, nextMapID)
+21,6
+10
+-1,-1,2,0,2e //NPCs
+e //Chests
+e
+Sound/overworld_music.wav
+e
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbWWWWWWW
+WWWWWbbbbbbbbbbbbbbbbbbbbb   bbbbbbb      bbbbbbbbbb    bbbbbbbbbbbbbbbbbbbbbbbbWWWWW
+WWWWbbbbbbb               TTT                                       bbbbbbbbbbbbbWWWW
+WWWWbbbb             TTTTTTTTTTTT   TTTTTTT      TTTT            TTT     TTbbbbbbWWWW
+WWWWbbbb           TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT              TTTTbbbbbbWWWW
+WWWWbbbbb         TTTTT      TT  TTT       TTTTTTTTT    TT               T  bbbbbWWWW
+WWWWbbbbb        TTTTTT TTT                    TT  TT     TT               bbbbbbWWWW
+WWWWbbbb         TTTTT   T                    TTT TTTTT    TT              bbbbbbWWWW
+WWWWbbbb         TT  TT                              TTT   TT        TT    bbbbbbWWWW
+WWWWbbbb        TTTT                           TTT TTTTTT   TT       TTT    bbbbbWWWW
+WWWWbbbb         TT        TTT         GGG          T       TT        TTTT   bbbbWWWW
+WWWWbbb         TTT      TT T         GGGGG         TTT    TT                bbbbWWWW
+WWWWbbb       TTTTT                   GG?GG                 TT     TT       bbbbbWWWW
+WWWWbbb        TTT                             TTT         TT    TTT        bbbbbWWWW
+WWWWbbb         TT                              TT          TT             TTbbbbWWWW
+WWWWbbbb        TT          TT                             TTTTT            TTbbbWWWW
+WWWWbbbb        TT          TT                              TT                bbbWWWW
+WWWWbbbbb       TT           TTT                   TT      TT      TT        bbbbWWWW
+WWWWbbbb      TTTT           TT    TTT                     TT    TTTT      TT bbbWWWW
+WWWWbbb     TT  TT            TT TTTTTTTT    TTTTTT TT TTTTT             TTTTTbbbWWWW
+WWWWbbb         TT              TTTTTTTTTTTTTTTTTTTTTTTTTT     TTT         TTTbbbWWWW
+WWWWbbb         TTb                         TTT                         TTTTTbbbbWWWW
+WWWWbbbb        bTTTT                bbbbbbbb                  TTT        bbTTbbbWWWW
+WWWWWbbbbbbbbbbbbbGGTTTTbbbb     bbbbbbbbbbbbbbbbbbbbbb      bbbbTbbbbTTTTTbbbbbWWWWW
+WWWWWWWbbbbbbbbbbbbGGbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
