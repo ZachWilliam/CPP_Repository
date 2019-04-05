@@ -339,9 +339,18 @@ void MapMain::DoInteraction() {
 
 		//Trigger Battle
 		if (locInEnemyVec != -1) {
-			if(curMap.v_mapEnemies[locInEnemyVec].isBoss) PlayBossBattleTransEffect(false);
-			else if (curMap.v_mapEnemies[locInEnemyVec].isFinalBoss) PlayBossBattleTransEffect(true);
-			else PlayBattleTransEffect();
+			if (curMap.v_mapEnemies[locInEnemyVec].isBoss) {
+				PlayBossBattleTransEffect(false);
+				PlaySound("Sound/boss_theme.wav", NULL, SND_LOOP | SND_ASYNC);
+			}
+			else if (curMap.v_mapEnemies[locInEnemyVec].isFinalBoss) {
+				PlayBossBattleTransEffect(true);
+				PlaySound("Sound/last_battle.wav", NULL, SND_LOOP | SND_ASYNC);
+			}
+			else {
+				PlayBattleTransEffect();
+				PlaySound("Sound/battle_theme.wav", NULL, SND_LOOP | SND_ASYNC);
+			}
 
 			bool inBattle = true;
 			Encounter FirstBattle(4, database_monsters.GetMonster(-1), database_monsters.GetMonster(2), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
@@ -359,14 +368,12 @@ void MapMain::DoInteraction() {
 			DrawGUI();
 			DrawRight();
 
-			SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		}
 		else {
 			PlayBattleTransEffect();
 			OutputSpeech("This is where the battle would take place, but we didn't find the targeted enemy so heres a random one", "The Battle");
-			SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		}
-
+		SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		//Update Map based on win/lose
 		if (isVictorious) {
 			if (locInEnemyVec != -1) {
@@ -482,6 +489,7 @@ void MapMain::CheckForBattle() {
 
 
 		PlayBattleTransEffect();
+		PlaySound("Sound/battle_theme.wav", NULL, SND_LOOP | SND_ASYNC);
 		bool inBattle = true;
 		Encounter FirstBattle(1, database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
 		// FirstBattle = EncounterManager::GetEncounter(int)
@@ -497,7 +505,6 @@ void MapMain::CheckForBattle() {
 		isVictorious = FirstBattle.Victory;
 		DrawGUI();
 		DrawRight();
-
 		SoundManager::Instance().PlayMusic(curMap.mapMusic);
 	}
 	else {

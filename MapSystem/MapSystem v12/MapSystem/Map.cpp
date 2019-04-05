@@ -60,7 +60,8 @@ int Map::OpenChest(int p_row, int p_col, Database &p_database) {
 			}
 			else if (v_chests[locInChestVec].itemType == 3) {//Quest item
 				QuestManager::Instance().questList[0].isQuestFinished = true;
-
+				PlaySound("Sound/chest_fanfare.wav", NULL, SND_LOOP | SND_SYNC);
+				SoundManager::Instance().PlayMusic(mapMusic);
 				tempText = p_database.ReturnDialogue(7, 0, 2);
 			}
 			OutputSpeech(tempText, "Chest");
