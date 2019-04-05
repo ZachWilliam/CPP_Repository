@@ -89,7 +89,7 @@ public:
 		AllEnemies.push_back(BR_E);
 
     }
-    void GenerateEncounter(Party Players)
+    void GenerateEncounter(Party& Players)
     {
         PlayerParty = Players;
         CalculateInitiative();
@@ -416,6 +416,33 @@ public:
 				{
 					cout << PlayerParty.Container[i].name << " gained " << TotalXP << " experience points!" << endl;
 					PlayerParty.Container[i].CurrentEXP += TotalXP;
+					while (true)
+					{
+						if (PlayerParty.Container[i].OnTheLevel[PlayerParty.Container[i].Level] < PlayerParty.Container[i].CurrentEXP)
+						{
+							cout << "Level Up! " << PlayerParty.Container[i].name << " has reached level " << PlayerParty.Container[i].Level << "!" << endl;
+							PlayerParty.Container[i].LevelUp();
+							
+
+						}
+						else
+						{
+							break;
+						}
+						_getch();
+						gotoxy(0, 30);
+						cout << "                                                                                        " << endl;
+						cout << "                                                                                        " << endl;
+						cout << "                                                                                        " << endl;
+						cout << "                                                                                        " << endl;
+						cout << "                                                                                        " << endl;
+						cout << "                                                                                        " << endl;
+						cout << "                                                                                        " << endl;
+						cout << "                                                                                        " << endl;
+						cout << "                                                                                        " << endl;
+						gotoxy(0, 30);
+					}
+					
 				}
 			}
 			_getch();

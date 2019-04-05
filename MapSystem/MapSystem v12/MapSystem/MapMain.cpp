@@ -104,7 +104,6 @@ void MapMain::Setup(int p_mapID, int p_row, int p_col) {
 }
 
 void MapMain::Input() {
-
 	leftKey = GetAsyncKeyState(VK_LEFT);
 	downKey = GetAsyncKeyState(VK_DOWN);
 	rightKey = GetAsyncKeyState(VK_RIGHT);
@@ -296,11 +295,11 @@ void MapMain::DoInteraction() {
 					}
 				}
 				//Change dialogue to perm stay 2 after its 3
-				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec == 3) 
+				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec == 3)
 					curMap.v_questNPCs[locInNPCVec].locInDialogueVec = 2;
 
 				//Increment locInDialogueVec if less than 2
-				if(curMap.v_questNPCs[locInNPCVec].locInDialogueVec < 2 && !QuestManager::Instance().questList[0].isQuestFinished)
+				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec < 2 && !QuestManager::Instance().questList[0].isQuestFinished)
 					curMap.v_questNPCs[locInNPCVec].locInDialogueVec++;
 
 			}
@@ -401,11 +400,12 @@ void MapMain::DoInteraction() {
 
 	//Interactable Object (can safely assume its just the crank spot for the bridge in town
 	if (interactChar == '@') {
-		if (QuestManager::Instance().questList[0].isQuestFinished) {
+		if (QuestManager::Instance().questList[0].isQuestFinished && curMap.map[35][65] != 'b') {
 			string tempName = database_text.ReturnName(0);
 			string tempText = database_text.ReturnDialogue(6, 0, 4);
 			OutputSpeech(tempText, tempName);
 
+			//Update town map to open gate (we can safely assume were on the town map and can use curMap
 			curMap.map[35][65] = 'b';
 			curMap.map[35][66] = 'b';
 			curMap.map[35][67] = 'b';
@@ -420,6 +420,31 @@ void MapMain::DoInteraction() {
 			curMap.map[37][66] = 'g';
 			curMap.map[37][67] = 'g';
 			curMap.map[37][68] = 'g';
+
+			for (size_t i = 0; i < mapManager.mapList.size(); i++)
+			{
+				if (curMap.mapID == mapManager.mapList[i].mapID) {
+					mapManager.mapList[i].map[35][65] = 'b';
+					mapManager.mapList[i].map[35][66] = 'b';
+					mapManager.mapList[i].map[35][67] = 'b';
+					mapManager.mapList[i].map[35][68] = 'b';
+
+					mapManager.mapList[i].map[36][65] = 'b';
+					mapManager.mapList[i].map[36][66] = 'b';
+					mapManager.mapList[i].map[36][67] = 'b';
+					mapManager.mapList[i].map[36][68] = 'b';
+
+					mapManager.mapList[i].map[37][65] = 'g';
+					mapManager.mapList[i].map[37][66] = 'g';
+					mapManager.mapList[i].map[37][67] = 'g';
+					mapManager.mapList[i].map[37][68] = 'g';
+					break;
+				}
+			}
+
+		}
+		else if (QuestManager::Instance().questList[0].isQuestFinished && curMap.map[35][65] == 'b') {
+			OutputSpeech("The bridge is lowered, destiny awaits.", "Narrator");
 		}
 		else {
 			string tempName = database_text.ReturnName(0);
@@ -596,10 +621,11 @@ void MapMain::DrawRight() {
 	
 	
 	//Controls
-	GoToXY(22, right_start_col + 1); cout << CenterPhrase("Controls", side_width - 2);
-	GoToXY(23, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
-	GoToXY(24, right_start_col + 1); cout << CenterPhrase("Arrow Keys = Move", side_width - 2);
-	GoToXY(25, right_start_col + 1); cout << CenterPhrase("Z = Interact", side_width - 2);
+	GoToXY(21, right_start_col + 1); cout << CenterPhrase("Controls", side_width - 2);
+	GoToXY(22, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
+	GoToXY(23, right_start_col + 1); cout << CenterPhrase("Arrow Keys = Move", side_width - 2);
+	GoToXY(24, right_start_col + 1); cout << CenterPhrase("Z = Interact", side_width - 2);
+	GoToXY(25, right_start_col + 1); cout << CenterPhrase("X = Back", side_width - 2);
 }
 
 void MapMain::DrawCombatScreen()
