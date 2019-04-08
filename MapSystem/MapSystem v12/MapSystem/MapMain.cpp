@@ -210,9 +210,6 @@ void MapMain::PauseMenu() {
 	SetColorAndBackground();
 	GoToXY(GManager.BOT_START_ROW, 0);
 
-
-
-
 	char again = 'y';
 	while (again != 'n')
 	{
@@ -220,12 +217,13 @@ void MapMain::PauseMenu() {
 		int choice;
 		cout << "Make a selection:\n\n";
 		cout << "1.     Display Inventory\n";
-		cout << "2.     Swap Weapon\n";
-		cout << "3.     Swap Armor\n";
-		cout << "4.     Display Beastiary\n";
+		cout << "2.     Display Equiped Weapons and Armor\n";
+		cout << "3.     Swap Weapon\n";
+		cout << "4.     Swap Armor\n";
+		cout << "5.     Display Beastiary\n";
 		cout << "Choice: ";
 		cin >> choice;
-		if ((choice <= 0) || (choice > 4))
+		if ((choice <= 0) || (choice > 5))
 		{
 			cout << "Invalid selection. Reselect:\n";
 			cin >> choice;
@@ -239,18 +237,27 @@ void MapMain::PauseMenu() {
 				Inventory.DisplayPartyInventory();
 				break;
 			case 2:
+				TheGroup.Container[1].PlayerInventory.EquipedWeapon();
+				TheGroup.Container[1].PlayerInventory.EquipedArmor();
+				TheGroup.Container[3].PlayerInventory.EquipedWeapon();
+				TheGroup.Container[3].PlayerInventory.EquipedArmor();
+				TheGroup.Container[5].PlayerInventory.EquipedWeapon();
+				TheGroup.Container[5].PlayerInventory.EquipedArmor();
+				break;
+			case 3:
 				//cout << "Swap Weapon\n";
 				//display characters
 				Inventory.SwapEquipedWeapon(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
 				break;
-			case 3:
+			case 4:
 				//cout << "Swap Armor\n";
 				//display characters
 				Inventory.SwapEquipedArmor(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
 				break;
-			case 4:
-				cout << "Display Beastiary\n";
+			case 5:
+				//cout << "Display Beastiary\n";
 				//this is where beastiary goes
+				database_monsters.DisplayBeastiary();
 				break;
 			}
 		}
@@ -258,8 +265,7 @@ void MapMain::PauseMenu() {
 		cin >> again;
 	};
 
-
-	
+	ClearBottom();
 
 }
 

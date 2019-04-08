@@ -37,26 +37,10 @@ int Map::OpenChest(int p_row, int p_col, Database &p_database, QuestManager& p_q
 		if (!v_chests[locInChestVec].opened) {
 			string tempText = "If this displays something went wrong";
 			if (v_chests[locInChestVec].itemType == 1) {
-				//Find item by ID
-				Weapon newItem;
-				newItem.SetWeapon(v_chests[locInChestVec].id1, v_chests[locInChestVec].id2, v_chests[locInChestVec].id3);
-
-				//string name
-				tempText = "You have picked up a " + newItem.DisplayNameText();
-
-				p_inventory.AddWeapon(v_chests[locInChestVec].id1, v_chests[locInChestVec].id2, v_chests[locInChestVec].id3);
-
+				tempText = p_inventory.AddWeapon(v_chests[locInChestVec].id1, v_chests[locInChestVec].id2, v_chests[locInChestVec].id3);
 			}
 			else if (v_chests[locInChestVec].itemType == 2) {
-				//Find item by ID
-				Armor newItem;
-				newItem.SetArmor(v_chests[locInChestVec].id1, v_chests[locInChestVec].id2, v_chests[locInChestVec].id3);
-
-				//string name
-				tempText = "You have picked up a " + newItem.DisplayNameText();
-
-				p_inventory.AddArmor(v_chests[locInChestVec].id1, v_chests[locInChestVec].id2, v_chests[locInChestVec].id3);
-
+				tempText = p_inventory.AddArmor(v_chests[locInChestVec].id1, v_chests[locInChestVec].id2, v_chests[locInChestVec].id3);
 			}
 			else if (v_chests[locInChestVec].itemType == 3) {//Quest item
 				p_qManager.questList[0].isQuestFinished = true;

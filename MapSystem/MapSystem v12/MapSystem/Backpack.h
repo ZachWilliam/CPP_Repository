@@ -24,6 +24,8 @@ public:
 	Armor m_Armor = Armor();
 	Potion m_Potion = Potion();
 	void Status();
+	void EquipedWeapon();
+	void EquipedArmor();
 };
 
 class PartyInventory
@@ -45,8 +47,8 @@ public:
 	void AddWeaponsRandom();
 	void AddArmorRandom();
 
-	void AddWeapon(int, int, int);
-	void AddArmor(int, int, int);
+	string AddWeapon(int, int, int);
+	string AddArmor(int, int, int);
 
 	void AddSuperWeapon(int);
 	void AddSuperArmor(int);

@@ -44,6 +44,16 @@ void Backpack::Status()
 		cout << endl;
 	}
 }
+void Backpack::EquipedWeapon()
+{
+	m_Weapon.Status();
+	cout << endl;
+}
+void Backpack::EquipedArmor()
+{
+	m_Armor.Status();
+	cout << endl;
+}
 
 PartyInventory::PartyInventory(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref)
 {
@@ -72,17 +82,19 @@ void PartyInventory::AddArmorRandom()
 	AddArmor(-1, -1, -1);
 }
 
-void PartyInventory::AddWeapon(int x, int y, int z)
+string PartyInventory::AddWeapon(int x, int y, int z)
 {
 	Weapon tempWeapon;
 	tempWeapon.SetWeapon(x, y, z);
 	INV_WEAPON.push_back(tempWeapon);
+	return tempWeapon.DisplayNameText();
 }
-void PartyInventory::AddArmor(int x, int y, int z)
+string PartyInventory::AddArmor(int x, int y, int z)
 {
 	Armor tempArmor;
 	tempArmor.SetArmor(x, y, z);
 	INV_ARMOR.push_back(tempArmor);
+	return tempArmor.DisplayNameText();
 }
 void PartyInventory::AddSuperWeapon(int x)
 {
