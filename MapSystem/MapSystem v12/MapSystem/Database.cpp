@@ -171,11 +171,30 @@ void Database::DisplayBeastiary()
 	vector<Monster>::iterator iter;
 	for (iter = Beastiary.begin(); iter != Beastiary.end(); iter++)
 	{
-		cout << endl << (*iter).m_Name << " - " << (*iter).m_Type << endl;
-		cout << (*iter).m_Desc << endl;
+		cout << (*iter).m_ID << ". ";
+		if ((*iter).m_Seen == true)
+		{
+			cout << (*iter).m_Name << " - "<< (*iter).m_Type;
+			//cout << (*iter).m_Desc << endl;
+		}
+		else if ((*iter).m_Seen == false)
+		{
+			cout << "???????";
+		}
 		cout << endl;
 	}
 
+}
+void Database::UpdateMonster(int monsterID)
+{
+	vector<Monster>::iterator iter;
+	for (iter = Beastiary.begin(); iter != Beastiary.end(); iter++)
+	{
+		if (monsterID == (*iter).m_ID)
+		{
+			(*iter).m_Seen = true;
+		}
+	}
 }
 
 void Database::DisplayText()
