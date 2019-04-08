@@ -42,11 +42,14 @@ public:
 	Weapon EQUIPED_WEAPON3;
 	Armor EQUIPED_ARMOR3;
 
-	void SetWeaponsRandom();
-	void SetArmorRandom();
+	void AddWeaponsRandom();
+	void AddArmorRandom();
 
 	void AddWeapon(int, int, int);
 	void AddArmor(int, int, int);
+
+	void AddSuperWeapon(int);
+	void AddSuperArmor(int);
 
 	void SwapEquipedWeapon(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref);
 	void SwapEquipedArmor(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref);
@@ -54,6 +57,7 @@ public:
 	void DisplayPartyInventory();
 	void DisplayPartyWeapons();
 	void DisplayPartyArmor();
+
 };
 
 
