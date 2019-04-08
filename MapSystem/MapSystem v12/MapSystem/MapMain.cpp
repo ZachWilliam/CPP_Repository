@@ -4,11 +4,12 @@ MapMain::MapMain(Database &p_database,Database &p_beastiary, Party &p_party) :
 	database_text(p_database),
 	database_monsters(p_beastiary),
 	TheGroup(p_party)
+
 {}
 
 
 int MapMain::main() {
-
+	
 	while (GManager.gameState != GManager.GAME_OVER && GManager.gameState != GManager.GAME_WON) {
 		DrawScreen();
 		Input();
@@ -359,7 +360,7 @@ void MapMain::DoInteraction() {
 			FirstBattle.GenerateEncounter(TheGroup);
 			while (inBattle) {
 				DrawCombatScreen();
-				FirstBattle.TakeTurn();
+				TheGroup = FirstBattle.TakeTurn();
 				if (!FirstBattle.Battling) {
 					inBattle = false;
 				}
@@ -498,11 +499,12 @@ void MapMain::CheckForBattle() {
 		PlaySound("Sound/battle_theme.wav", NULL, SND_LOOP | SND_ASYNC);
 		bool inBattle = true;
 		Encounter FirstBattle(1, database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
+		FirstBattle = RandomSpawn.GenerateEncounter(TheGroup.Leader.Level);
 		// FirstBattle = EncounterManager::GetEncounter(int)
 		FirstBattle.GenerateEncounter(TheGroup);
 		while (inBattle) {
 			DrawCombatScreen();
-			FirstBattle.TakeTurn();
+			TheGroup = FirstBattle.TakeTurn();
 			if (!FirstBattle.Battling) {
 				inBattle = false;
 			}

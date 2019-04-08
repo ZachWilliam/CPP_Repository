@@ -11,6 +11,7 @@
 #include "QuestManager.h"
 #include "GameManager.h"
 #include "Encounter.h"
+#include "EncounterManager.h"
 #include <vector>
 #include <conio.h>
 using namespace std;
@@ -36,6 +37,8 @@ public:
 	Database database_monsters;
 	Database database_text;
 	Party TheGroup;
+	EncounterManager RandomSpawn = EncounterManager();
+	
 
 	//Player Info
 	enum eDirection { LEFT = -1, RIGHT = 1, UP = -1, DOWN = 1, NEUTRAL = 0 };
