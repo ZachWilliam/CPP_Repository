@@ -121,6 +121,9 @@ void MapMain::Input() {
 		case 'z':
 			interact = true;
 			break;
+		case 'p':
+			openInventory = true;
+			break;
 		}
 	}
 }
@@ -154,6 +157,11 @@ void MapMain::Logic() {
 	//Interact
 	if (interact) {
 		DoInteraction();
+	}
+
+	//Inventory
+	if (openInventory) {
+		PauseMenu();
 	}
 
 	//Move
@@ -195,7 +203,32 @@ void MapMain::Logic() {
 	else if (curMap.map.size() - playerR < dist_from_mid_r) rowMove = curMap.map.size() - screen_height;
 }
 
+void PauseMenu() {
 
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 void MapMain::DoInteraction() {
 	char interactChar = ' ';

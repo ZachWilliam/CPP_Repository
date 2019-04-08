@@ -47,6 +47,7 @@ public:
 	int playerC = curMap.defaultPC;
 	char lastChar = curMap.map[playerR][playerC];
 	bool interact = false;
+	bool openInventory = false;
 
 	//Battle Info
 	const int CHECK_EVERY_STEPS = 4;
@@ -78,6 +79,7 @@ public:
 	void SetMap(int p_pRow, int p_pCol, int p_mapID);
 	void DoInteraction();
 	void CheckForBattle();
+	void PauseMenu();
 
 	void DrawScreen();
 	void DrawRight();
