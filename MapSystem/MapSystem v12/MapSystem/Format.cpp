@@ -112,13 +112,12 @@ void OutputSpeech(string p_speech, const string &p_npcName) {
 void ClearBottom() {
 	const int LINES_TO_CLEAR = 14;
 
-	GoToXY(GameManager::instance().BOT_START_ROW, 0);
-
 	string line(GameManager::instance().SCREEN_WIDTH + 2, ' ');
 
 	for (size_t i = 0; i < LINES_TO_CLEAR; i++)
 	{
-		cout << line << endl;
+		GoToXY(GameManager::instance().BOT_START_ROW + i, 0);
+		cout << line;
 	}
 }
 
