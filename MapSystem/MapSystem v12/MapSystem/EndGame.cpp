@@ -42,7 +42,6 @@ void EndGame::GameOver() {
 	SetColorAndBackground();
 	DrawGUI();
 	DrawRight();
-	FadeToBlack();
 
 	AnimateBigText(gameOver);
 
@@ -54,7 +53,6 @@ void EndGame::PlayEnding() {
 	SetColorAndBackground();
 	DrawGUI();
 	DrawRight();
-	FadeToBlack();
 
 	OutputSpeech(endingText, "Narrator");
 
