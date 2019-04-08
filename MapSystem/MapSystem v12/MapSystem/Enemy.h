@@ -34,7 +34,7 @@ public:
             Level = 5;
 
             SpawnAtLevel(Level);
-            MAX_HP = 8 + stats.CONSTITUTION * 2;
+            MAX_HP = 8 + Level * (stats.CONSTITUTION / 2);
             SetHP(MAX_HP);
         }
         else

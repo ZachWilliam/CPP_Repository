@@ -78,7 +78,6 @@ int main()
 	Database dialogue;
 	beast.LoadMonsters();
 	dialogue.LoadText();
-	
 	   	  
 	//Create and start game loop
 	GManager.gameState = GManager.PLAY;

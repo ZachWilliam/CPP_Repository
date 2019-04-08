@@ -75,13 +75,10 @@ public:
 	bool Flee = false;
 	bool Report = false;
 	bool Victory = false;
-	int TotalXP = 0;
+	int TotalXP;
 	enum BattleStats { ATTACK = 0, DEFENSE, MAGIC, RESISTANCE, SPEED, HIT, AVOID, CRIT };
 
-	Encounter()
-	{
 
-	}
 	Encounter(int lvl, Monster FL_E, Monster FC_E, Monster FR_E, Monster BL_E, Monster BC_E, Monster BR_E)
     {
 		Level = lvl;
@@ -103,18 +100,11 @@ public:
 		{
 			if (!FrontRow[i].NullEnemy)
 			{
-				if (FrontRow[i].GetXP() > 0)
-				{
-					TotalXP += FrontRow[i].GetXP();
-				}
-				
+				TotalXP += FrontRow[i].GetXP();
 			}
 			if (!BackRow[i].NullEnemy)
 			{
-				if (BackRow[i].GetXP() > 0)
-				{
-					TotalXP += BackRow[i].GetXP();
-				}
+				TotalXP += BackRow[i].GetXP();
 			}
 		}
     }
@@ -236,7 +226,7 @@ public:
     }
     void DoAttack(Combatant User, Enemy& Target)
     {
-        int HitChance = ((Target.BattleStats[7] - User.BattleStats[6]) * 5);
+        int HitChance = ((User.BattleStats[6] - Target.BattleStats[7]) * 5) + 10;
 
         if (rand() % 100 > HitChance)
         {
@@ -279,15 +269,15 @@ public:
                 }
 
             }
-            if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 1 && Target.Level > 3)
+            if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 1)
             {
                 Damage *= Target.Resistances[0];
             }
-            if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 2 && Target.Level > 3)
+            if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 2)
             {
                 Damage *= Target.Resistances[1];
             }
-            if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 3 && Target.Level > 3 || User.PlayerInventory.m_Weapon.m_Weapon_Type.staff && Target.Level > 3)
+            if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 3 || User.PlayerInventory.m_Weapon.m_Weapon_Type.staff)
             {
                 Damage *= Target.Resistances[2];
             }
@@ -295,12 +285,8 @@ public:
 			
             Target.CurrentHP -= Damage;
             Target.CurrentHP = _Max_value(0, Target.CurrentHP);
-			if (!Target.NullEnemy)
-			{
-				cout << Target.name << " took " << Damage << " damage! ";
-				cout << Effect << endl;
-			}
-            
+            cout << Target.name << " took " << Damage << " damage! ";
+            cout << Effect << endl;
         }
         else
         {
@@ -374,7 +360,7 @@ public:
             }
         }
     }
-    Party TakeTurn()
+    void TakeTurn()
     {
         Order.clear();
         CalculateInitiative();
@@ -426,19 +412,6 @@ public:
 			{
 				
 			}
-			PlayerParty.Leader.CurrentEXP += TotalXP;
-			while (true)
-			{
-				if (PlayerParty.Leader.OnTheLevel[PlayerParty.Leader.Level] <= PlayerParty.Leader.CurrentEXP)
-				{
-					PlayerParty.Leader.Level++;
-				}
-				else 
-				{
-					break;
-				}
-			}
-			
 			for (size_t i = 0; i < PlayerParty.Container.size(); i++)
 			{
 				if (PlayerParty.Container[i].name != "NULL_NAME" && PlayerParty.Container[i].CurrentHP != 0)
@@ -447,7 +420,7 @@ public:
 					PlayerParty.Container[i].CurrentEXP += TotalXP;
 					while (true)
 					{
-						if (PlayerParty.Container[i].OnTheLevel[PlayerParty.Container[i].Level] <= PlayerParty.Container[i].CurrentEXP)
+						if (PlayerParty.Container[i].OnTheLevel[PlayerParty.Container[i].Level] < PlayerParty.Container[i].CurrentEXP)
 						{
 							cout << "Level Up! " << PlayerParty.Container[i].name << " has reached level " << PlayerParty.Container[i].Level << "!" << endl;
 							PlayerParty.Container[i].LevelUp();
@@ -503,7 +476,7 @@ public:
                     }
                 }
             }
-            return PlayerParty;
+            return;
         }
         //if (Order[InitiativeOrder].combatantValue.name == "")
         //{
@@ -573,7 +546,7 @@ public:
         {
             if (!BackRow[i].NullEnemy && BackRow[i].CurrentHP > 0)
             {
-                gotoxy(3 + (23 * i), 5);
+                gotoxy(3 + (23 * i), 11);
                 cout << BackRow[i].name;
                 for (size_t e = 0; e < 19; e++)
                 {
@@ -582,11 +555,11 @@ public:
                         cout << ".";
                     }
                 }
-                gotoxy(3 + (23 * i), 6);
-				float chunk = float(BackRow[i].MAX_HP) / float(17);
+                gotoxy(3 + (23 * i), 12);
+                int chunk = BackRow[i].MAX_HP / 17;
                 for (size_t e = 0; e < 18; e++)
                 {
-					if (float(BackRow[i].CurrentHP) >= chunk * float(e))
+                    if (BackRow[i].CurrentHP >= chunk * e)
                     {
                         SetColorAndBackground(10, 0);
                     }
@@ -689,7 +662,7 @@ public:
                                 SetColorAndBackground(0, 15);
                             }
                             cout << Order[InitiativeOrder].combatantValue.CurrentMoves[i].name;
-                            for (size_t e = 0; e < 22; e++)
+                            for (size_t e = 0; e < 27; e++)
                             {
                                 if (e > Order[InitiativeOrder].combatantValue.CurrentMoves[i].name.size())
                                 {
@@ -1073,6 +1046,5 @@ public:
                 InitiativeOrder = 0;
             }
         }
-		return PlayerParty;
     }
 };
