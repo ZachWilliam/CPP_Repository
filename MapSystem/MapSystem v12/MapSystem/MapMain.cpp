@@ -204,7 +204,8 @@ void MapMain::Logic() {
 }
 
 void MapMain::PauseMenu() {
-
+	SetColorAndBackground();
+	GoToXY(GManager.BOT_START_ROW, 0);
 
 
 
