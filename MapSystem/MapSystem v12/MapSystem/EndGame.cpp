@@ -2,8 +2,10 @@
 
 
 
-EndGame::EndGame()
+EndGame::EndGame(Database p_textDatabase):
+	textDatabase(p_textDatabase)
 {
+	endingText = textDatabase.ReturnDialogue(9, 0, 1);
 	if (GManager.gameState == GManager.GAME_OVER) GameOver();
 	else if (GManager.gameState == GManager.GAME_WON) PlayEnding();
 	else GameOver();

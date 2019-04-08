@@ -1,9 +1,10 @@
 #include "MapMain.h"
 
-MapMain::MapMain(Database &p_database,Database &p_beastiary, Party &p_party) :
+MapMain::MapMain(Database &p_database, Database &p_beastiary, Party &p_party, PartyInventory &p_inventory) :
 	database_text(p_database),
 	database_monsters(p_beastiary),
-	TheGroup(p_party)
+	TheGroup(p_party),
+	Inventory(p_inventory)
 {}
 
 
@@ -121,6 +122,9 @@ void MapMain::Input() {
 		case 'z':
 			interact = true;
 			break;
+		case 'p':
+			openInventory = true;
+			break;
 		}
 	}
 }
@@ -154,6 +158,12 @@ void MapMain::Logic() {
 	//Interact
 	if (interact) {
 		DoInteraction();
+	}
+
+	//Inventory
+	if (openInventory) {
+		openInventory = false;
+		PauseMenu();
 	}
 
 	//Move
@@ -195,7 +205,63 @@ void MapMain::Logic() {
 	else if (curMap.map.size() - playerR < dist_from_mid_r) rowMove = curMap.map.size() - screen_height;
 }
 
+void MapMain::PauseMenu() {
 
+	SetColorAndBackground();
+	GoToXY(GManager.BOT_START_ROW, 0);
+
+
+
+
+	char again = 'y';
+	while (again != 'n')
+	{
+		ClearBottom();
+		int choice;
+		cout << "Make a selection:\n\n";
+		cout << "1.     Display Inventory\n";
+		cout << "2.     Swap Weapon\n";
+		cout << "3.     Swap Armor\n";
+		cout << "4.     Display Beastiary\n";
+		cout << "Choice: ";
+		cin >> choice;
+		if ((choice <= 0) || (choice > 4))
+		{
+			cout << "Invalid selection. Reselect:\n";
+			cin >> choice;
+		}
+		else
+		{
+			switch (choice)
+			{
+			case 1:
+				//cout << "Display Inventory\n";
+				Inventory.DisplayPartyInventory();
+				break;
+			case 2:
+				//cout << "Swap Weapon\n";
+				//display characters
+				Inventory.SwapEquipedWeapon(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
+				break;
+			case 3:
+				//cout << "Swap Armor\n";
+				//display characters
+				Inventory.SwapEquipedArmor(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
+				break;
+			case 4:
+				cout << "Display Beastiary\n";
+				//this is where beastiary goes
+				break;
+			}
+		}
+		cout << "More? (y/n): ";
+		cin >> again;
+	};
+
+
+	
+
+}
 
 void MapMain::DoInteraction() {
 	char interactChar = ' ';
@@ -223,7 +289,7 @@ void MapMain::DoInteraction() {
 	//Chest
 	if (interactChar == '=') {
 		
-		int locInChestVec = curMap.OpenChest(charRow, charCol, database_text);
+		int locInChestVec = curMap.OpenChest(charRow, charCol, database_text, questManager, Inventory);
 		if (locInChestVec != -1) {
 			//Change data in local map copy
 			curMap.map[charRow][charCol] = ' ';
@@ -267,8 +333,8 @@ void MapMain::DoInteraction() {
 			if (interactChar == '*') {
 
 				//Quest is finished, play finish text once
-				if (QuestManager::Instance().questList[0].isQuestFinished && QuestManager::Instance().questList[0].isQuestActive) {
-					QuestManager::Instance().questList[0].isQuestActive = false;
+				if (questManager.questList[0].isQuestFinished && questManager.questList[0].isQuestActive) {
+					questManager.questList[0].isQuestActive = false;
 					curMap.v_questNPCs[locInNPCVec].locInDialogueVec = 3;
 				}
 
@@ -278,9 +344,9 @@ void MapMain::DoInteraction() {
 				OutputSpeech(speech, name);
 
 				//Activate quest on speech dialogue 2
-				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec == 1 && !QuestManager::Instance().questList[0].isQuestFinished) {
+				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec == 1 && !questManager.questList[0].isQuestFinished) {
 					//Activate quest
-					QuestManager::Instance().questList[0].isQuestActive = true;
+					questManager.questList[0].isQuestActive = true;
 
 					//Update town map to open gate (we can safely assume were on the town map and can use curMap
 					curMap.map[18][131] = 'g';
@@ -300,7 +366,7 @@ void MapMain::DoInteraction() {
 					curMap.v_questNPCs[locInNPCVec].locInDialogueVec = 2;
 
 				//Increment locInDialogueVec if less than 2
-				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec < 2 && !QuestManager::Instance().questList[0].isQuestFinished)
+				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec < 2 && !questManager.questList[0].isQuestFinished)
 					curMap.v_questNPCs[locInNPCVec].locInDialogueVec++;
 
 			}
@@ -367,7 +433,7 @@ void MapMain::DoInteraction() {
 			}
 			isVictorious = FirstBattle.Victory;
 			//if (!isVictorious) GManager.gameState = GManager.GAME_OVER;
-			//if (!isVictorious  && curMap.mapID == 5) GManager.gameState = GManager.GAME_WON;
+			if (!isVictorious  && curMap.mapID == 5) GManager.gameState = GManager.GAME_WON;
 			if (isVictorious && curMap.mapID == 8) GManager.gameState = GManager.GAME_WON;
 			FadeToBlack();
 			ClearBottom();
@@ -413,7 +479,7 @@ void MapMain::DoInteraction() {
 
 	//Interactable Object (can safely assume its just the crank spot for the bridge in town
 	if (interactChar == '@') {
-		if (QuestManager::Instance().questList[0].isQuestFinished && curMap.map[35][65] != 'b') {
+		if (questManager.questList[0].isQuestFinished && curMap.map[35][65] != 'b') {
 			string tempName = database_text.ReturnName(0);
 			string tempText = database_text.ReturnDialogue(6, 0, 4);
 			OutputSpeech(tempText, tempName);
@@ -456,7 +522,7 @@ void MapMain::DoInteraction() {
 			}
 
 		}
-		else if (QuestManager::Instance().questList[0].isQuestFinished && curMap.map[35][65] == 'b') {
+		else if (questManager.questList[0].isQuestFinished && curMap.map[35][65] == 'b') {
 			OutputSpeech("The bridge is lowered, destiny awaits.", "Narrator");
 		}
 		else {

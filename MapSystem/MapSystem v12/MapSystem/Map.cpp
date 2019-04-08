@@ -22,7 +22,7 @@ Map::Map(const string &p_name, const vector<vector<char> > &p_map, int p_mapID, 
 }
 
 
-int Map::OpenChest(int p_row, int p_col, Database &p_database) {
+int Map::OpenChest(int p_row, int p_col, Database &p_database, QuestManager& p_qManager, PartyInventory& p_inventory) {
 	//Find chest
 	int locInChestVec = -1;
 	for (int i = 0; i < v_chests.size(); i++)
@@ -44,7 +44,7 @@ int Map::OpenChest(int p_row, int p_col, Database &p_database) {
 				//string name
 				tempText = "You have picked up a " + newItem.DisplayNameText();
 
-				//Call AddWeapon(?,?,?) instead of set weapon
+				p_inventory.AddWeapon(v_chests[locInChestVec].id1, v_chests[locInChestVec].id2, v_chests[locInChestVec].id3);
 
 			}
 			else if (v_chests[locInChestVec].itemType == 2) {
@@ -55,11 +55,11 @@ int Map::OpenChest(int p_row, int p_col, Database &p_database) {
 				//string name
 				tempText = "You have picked up a " + newItem.DisplayNameText();
 
-				//Call AddArmor(?,?,?) instead of set weapon
+				p_inventory.AddArmor(v_chests[locInChestVec].id1, v_chests[locInChestVec].id2, v_chests[locInChestVec].id3);
 
 			}
 			else if (v_chests[locInChestVec].itemType == 3) {//Quest item
-				QuestManager::Instance().questList[0].isQuestFinished = true;
+				p_qManager.questList[0].isQuestFinished = true;
 				PlaySound("Sound/chest_fanfare.wav", NULL, SND_LOOP | SND_SYNC);
 				SoundManager::Instance().PlayMusic(mapMusic);
 				tempText = p_database.ReturnDialogue(7, 0, 2);
