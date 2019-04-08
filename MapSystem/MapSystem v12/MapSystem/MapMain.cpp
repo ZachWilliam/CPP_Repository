@@ -421,7 +421,7 @@ void MapMain::DoInteraction() {
 			}
 			isVictorious = FirstBattle.Victory;
 			//if (!isVictorious) GManager.gameState = GManager.GAME_OVER;
-			//if (!isVictorious  && curMap.mapID == 5) GManager.gameState = GManager.GAME_WON;
+			if (!isVictorious  && curMap.mapID == 5) GManager.gameState = GManager.GAME_WON;
 			if (isVictorious && curMap.mapID == 8) GManager.gameState = GManager.GAME_WON;
 			FadeToBlack();
 			ClearBottom();

@@ -90,7 +90,7 @@ int main()
 	//Game Loop
 
 	//Play either game over or the game ending
-	EndGame endGame;
+	EndGame endGame(dialogue);
 	
 
 	return 0;

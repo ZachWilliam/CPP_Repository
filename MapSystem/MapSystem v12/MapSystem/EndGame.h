@@ -2,12 +2,15 @@
 #include <vector>
 #include <string>
 #include "Format.h"
+#include "Database.h"
 using namespace std;
 
 class EndGame
 {
 public:
-	EndGame();
+	EndGame(Database p_textDatabase);
+
+	Database textDatabase;
 
 	vector<string>gameOver{
 		 "  _____   ___  ___  ___ _____  ",
