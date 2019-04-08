@@ -18,7 +18,7 @@ using namespace std;
 class MapMain
 {
 public:
-	MapMain(Database &p_database, Database &p_beastiary, Party &p_party);
+	MapMain(Database &p_database, Database &p_beastiary, Party &p_party, PartyInventory &p_inventory);
 
 	const int border = GameManager::instance().BORDER;
 	const int screen_width = GameManager::instance().SCREEN_WIDTH;
@@ -38,6 +38,7 @@ public:
 	Database database_monsters;
 	Database database_text;
 	Party TheGroup;
+	PartyInventory Inventory;
 
 	//Player Info
 	enum eDirection { LEFT = -1, RIGHT = 1, UP = -1, DOWN = 1, NEUTRAL = 0 };

@@ -1,9 +1,10 @@
 #include "MapMain.h"
 
-MapMain::MapMain(Database &p_database,Database &p_beastiary, Party &p_party) :
+MapMain::MapMain(Database &p_database, Database &p_beastiary, Party &p_party, PartyInventory &p_inventory) :
 	database_text(p_database),
 	database_monsters(p_beastiary),
-	TheGroup(p_party)
+	TheGroup(p_party),
+	Inventory(p_inventory)
 {}
 
 
@@ -204,30 +205,49 @@ void MapMain::Logic() {
 }
 
 void MapMain::PauseMenu() {
+
 	SetColorAndBackground();
 	GoToXY(GManager.BOT_START_ROW, 0);
 
 
+	int choice;
+	cout << "Make a selection:\n\n";
+	cout << "1.     Display Inventory\n";
+	cout << "2.     Swap Weapon\n";
+	cout << "3.     Swap Armor\n";
+	cout << "4.     Display Beastiary\n";
+	cout << "Choice: ";
+	cin >> choice;
 
+	if ((choice <= 0) || (choice > 4))
+	{
+		cout << "Invalid selection. Reselect:\n";
+		cin >> choice;
+	}
+	else
+	{
+		switch (choice)
+		{
+		case 1:
+			//cout << "Display Inventory\n";
+			Inventory.DisplayPartyInventory();
+			break;
+		case 2:
+			//cout << "Swap Weapon\n";
+			Inventory.SwapEquipedWeapon(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
+			break;
+		case 3:
+			//cout << "Swap Armor\n";
+			Inventory.SwapEquipedArmor(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
+			break;
+		case 4:
+			cout << "Display Beastiary\n";
+			//this is where beastiary goes
+			break;
+		}
+	}
 
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	ClearBottom();
 
 }
 
