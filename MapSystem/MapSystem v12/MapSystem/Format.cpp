@@ -113,7 +113,7 @@ void ClearBottom() {
 	const int LINES_TO_CLEAR = 17;
 
 	string line(GameManager::instance().SCREEN_WIDTH + 2, ' ');
-
+	
 	for (size_t i = 0; i < LINES_TO_CLEAR; i++)
 	{
 		GoToXY(GameManager::instance().BOT_START_ROW + i, 0);

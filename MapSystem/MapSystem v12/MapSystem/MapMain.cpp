@@ -289,7 +289,7 @@ void MapMain::DoInteraction() {
 	//Chest
 	if (interactChar == '=') {
 		
-		int locInChestVec = curMap.OpenChest(charRow, charCol, database_text, questManager);
+		int locInChestVec = curMap.OpenChest(charRow, charCol, database_text, questManager, Inventory);
 		if (locInChestVec != -1) {
 			//Change data in local map copy
 			curMap.map[charRow][charCol] = ' ';
