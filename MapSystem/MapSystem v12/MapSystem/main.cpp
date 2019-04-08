@@ -70,9 +70,6 @@ int main()
 		}
 	}
 
-	//Setup Quests
-	//QuestManager::Instance().questSetup();
-
 	//Create and load beast and dialogue databases
 	Database beast;
 	Database dialogue;

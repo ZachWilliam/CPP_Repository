@@ -36,7 +36,7 @@ public:
 	string mapMusic;
 	bool playedFlavorTxt = false;
 
-	int OpenChest(int p_row, int p_col, Database &p_database);
+	int OpenChest(int p_row, int p_col, Database &p_database, QuestManager &p_qManager);
 };
 
 #endif

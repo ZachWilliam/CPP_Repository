@@ -223,7 +223,7 @@ void MapMain::DoInteraction() {
 	//Chest
 	if (interactChar == '=') {
 		
-		int locInChestVec = curMap.OpenChest(charRow, charCol, database_text);
+		int locInChestVec = curMap.OpenChest(charRow, charCol, database_text, questManager);
 		if (locInChestVec != -1) {
 			//Change data in local map copy
 			curMap.map[charRow][charCol] = ' ';
@@ -267,8 +267,8 @@ void MapMain::DoInteraction() {
 			if (interactChar == '*') {
 
 				//Quest is finished, play finish text once
-				if (QuestManager::Instance().questList[0].isQuestFinished && QuestManager::Instance().questList[0].isQuestActive) {
-					QuestManager::Instance().questList[0].isQuestActive = false;
+				if (questManager.questList[0].isQuestFinished && questManager.questList[0].isQuestActive) {
+					questManager.questList[0].isQuestActive = false;
 					curMap.v_questNPCs[locInNPCVec].locInDialogueVec = 3;
 				}
 
@@ -278,9 +278,9 @@ void MapMain::DoInteraction() {
 				OutputSpeech(speech, name);
 
 				//Activate quest on speech dialogue 2
-				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec == 1 && !QuestManager::Instance().questList[0].isQuestFinished) {
+				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec == 1 && !questManager.questList[0].isQuestFinished) {
 					//Activate quest
-					QuestManager::Instance().questList[0].isQuestActive = true;
+					questManager.questList[0].isQuestActive = true;
 
 					//Update town map to open gate (we can safely assume were on the town map and can use curMap
 					curMap.map[18][131] = 'g';
@@ -300,7 +300,7 @@ void MapMain::DoInteraction() {
 					curMap.v_questNPCs[locInNPCVec].locInDialogueVec = 2;
 
 				//Increment locInDialogueVec if less than 2
-				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec < 2 && !QuestManager::Instance().questList[0].isQuestFinished)
+				if (curMap.v_questNPCs[locInNPCVec].locInDialogueVec < 2 && !questManager.questList[0].isQuestFinished)
 					curMap.v_questNPCs[locInNPCVec].locInDialogueVec++;
 
 			}
@@ -413,7 +413,7 @@ void MapMain::DoInteraction() {
 
 	//Interactable Object (can safely assume its just the crank spot for the bridge in town
 	if (interactChar == '@') {
-		if (QuestManager::Instance().questList[0].isQuestFinished && curMap.map[35][65] != 'b') {
+		if (questManager.questList[0].isQuestFinished && curMap.map[35][65] != 'b') {
 			string tempName = database_text.ReturnName(0);
 			string tempText = database_text.ReturnDialogue(6, 0, 4);
 			OutputSpeech(tempText, tempName);
@@ -456,7 +456,7 @@ void MapMain::DoInteraction() {
 			}
 
 		}
-		else if (QuestManager::Instance().questList[0].isQuestFinished && curMap.map[35][65] == 'b') {
+		else if (questManager.questList[0].isQuestFinished && curMap.map[35][65] == 'b') {
 			OutputSpeech("The bridge is lowered, destiny awaits.", "Narrator");
 		}
 		else {

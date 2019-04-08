@@ -33,6 +33,8 @@ public:
 	MapManager mapManager;
 	Map curMap = mapManager.mapList[0];
 
+	QuestManager questManager;
+	
 	Database database_monsters;
 	Database database_text;
 	Party TheGroup;

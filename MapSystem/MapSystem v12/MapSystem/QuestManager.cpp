@@ -4,7 +4,7 @@
 
 QuestManager::QuestManager()
 {
-	//questSetup();
+	questSetup();
 }
 
 void QuestManager::questSetup()
