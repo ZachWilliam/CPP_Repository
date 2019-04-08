@@ -81,6 +81,9 @@
     <ClCompile Include="QuestNPC.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EndGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Coord.h">
@@ -186,6 +189,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EncounterManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EndGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

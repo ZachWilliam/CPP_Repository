@@ -2,11 +2,12 @@
 
 void PlayMapTransEffect(const Map &p_map, int rowMove, int rowCol, bool p_close) {
 	if (p_close) {
+		PlaySound("Sound/trans_sfx.wav", NULL, SND_FILENAME | SND_ASYNC);
 		//Play map transition effect function Close
 		SetColorAndBackground(LIGHTGRAY);
 		for (int i = 0; i <= GameManager::instance().SCREEN_HEIGHT / 2; i++)
 		{
-			for (size_t j = 0; j < GameManager::instance().SCREEN_WIDTH; j++)
+			for (int j = 0; j < GameManager::instance().SCREEN_WIDTH; j++)
 			{
 				GoToXY(i + 1, 1 + j); //+1 to account for the border
 				cout << ' ';
@@ -18,12 +19,13 @@ void PlayMapTransEffect(const Map &p_map, int rowMove, int rowCol, bool p_close)
 		}
 	}
 	else {
+		PlaySound("Sound/trans_sfx2.wav", NULL, SND_FILENAME | SND_ASYNC);
 		//Play map transition effect function open
 		int u = GameManager::instance().SCREEN_HEIGHT / 2;
 		for (int i = GameManager::instance().SCREEN_HEIGHT / 2; i >= 0; i--)
 		{
 			//int u = 1;
-			for (size_t j = 0; j < GameManager::instance().SCREEN_WIDTH; j++)
+			for (int j = 0; j < GameManager::instance().SCREEN_WIDTH; j++)
 			{
 				GoToXY(i + 1, 1 + j); //+1 to account for the border
 				if (p_map.map[rowMove + i][rowCol + j] == ' ')

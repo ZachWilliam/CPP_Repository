@@ -9,6 +9,7 @@
 #include "Format.h"
 #include "Attack.h"
 #include "AttackManager.h"
+#include "Transitions.h"
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -394,6 +395,7 @@ public:
         }
 		if (!Battling && Victory)
 		{
+			PlaySound("Sound/fanfare_theme.wav", NULL, SND_FILENAME | SND_ASYNC);
 			gotoxy(0, 30);
 			cout << "                                                                                        " << endl;
 			cout << "                                                                                        " << endl;
@@ -429,7 +431,7 @@ public:
 						{
 							break;
 						}
-						_getch();
+						_getch(); 
 						gotoxy(0, 30);
 						cout << "                                                                                        " << endl;
 						cout << "                                                                                        " << endl;

@@ -121,6 +121,7 @@
     <ClCompile Include="Coord.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="Dialogue.cpp" />
+    <ClCompile Include="EndGame.cpp" />
     <ClCompile Include="Format.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Items.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Dialogue.h" />
     <ClInclude Include="Encounter.h" />
     <ClInclude Include="EncounterManager.h" />
+    <ClInclude Include="EndGame.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Format.h" />
     <ClInclude Include="GameManager.h" />

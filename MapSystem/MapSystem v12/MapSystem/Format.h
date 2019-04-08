@@ -29,6 +29,7 @@ using namespace std;
 
 string CenterPhrase(string p_phrase, const int p_maxSize);
 void ClearBottom();
+void ClearRight();
 void GoToXY(int line, int column);
 void gotoxy(int x, int y);
 void OutputSpeech(vector <string> p_vSpeech, const string &p_npcName);
@@ -36,6 +37,7 @@ void OutputSpeech(string p_speech, const string &p_npcName);
 void SetColorAndBackground(int backC = BLACK, int textC = WHITE);
 int GetColorValue(char displayChar);
 void DrawGUI();
+void FadeToBlack();
 
 #endif // !FORMAT_H
 

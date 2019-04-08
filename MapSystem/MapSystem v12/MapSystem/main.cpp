@@ -8,6 +8,7 @@
 #include "Format.h"
 #include "MapMain.h"
 #include "CharacterCreator.h"
+#include "EndGame.h"
 
 using namespace std;
 
@@ -41,20 +42,26 @@ int main()
 	srand(static_cast<unsigned int>(time(0)));//Seed
 	Setup();//Set up window and cursor
 
+	//Create character
 	bool inBattle = false;
 	Player PC = Player();
 	CharacterCreator(PC);
 	system("cls");
+	//Set up party and inventory
 	Party TheGroup = Party(PC);
 	TheGroup.GenPartyFromClass(PC);
 	TheGroup.DisplayParty();
-
 	PartyInventory Inventory(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
 
+	//Show party overview
 	Inventory.DisplayPartyInventory();
 	_getch();
 	system("cls");
 
+
+
+
+	//Generate Attacks?
 	for (size_t i = 0; i < TheGroup.Container.size(); i++)
 	{
 		if (TheGroup.Container[i].name != "NULL_NAME")
@@ -63,20 +70,26 @@ int main()
 		}
 	}
 
+	//Setup Quests
 	QuestManager::Instance().questSetup();
 
+	//Create and load beast and dialogue databases
 	Database beast;
 	Database dialogue;
 	beast.LoadMonsters();
 	dialogue.LoadText();
 	   	  
+	//Create and start game loop
+	GManager.gameState = GManager.PLAY;
 	MapMain mapMain(dialogue, beast, TheGroup);
-	mapMain.Setup(1, 0, 0);
+	mapMain.Setup(6, 0, 0);
 	mapMain.main();
 
+	system("cls");
 
-
-
+	//Play either game over or the game ending
+	EndGame endGame;
+	
 
 	return 0;
 }

@@ -9,13 +9,14 @@ MapMain::MapMain(Database &p_database,Database &p_beastiary, Party &p_party) :
 
 int MapMain::main() {
 
-	while (true) {
+	while (GManager.gameState != GManager.GAME_OVER && GManager.gameState != GManager.GAME_WON) {
 		DrawScreen();
 		Input();
 		Logic();
 		Sleep(1);
 	}
 
+	return 0;
 }
 
 void MapMain::Setup(int p_mapID, int p_row, int p_col) {
@@ -362,16 +363,21 @@ void MapMain::DoInteraction() {
 				if (!FirstBattle.Battling) {
 					inBattle = false;
 				}
-				system("cls");
+				//system("cls");
 			}
 			isVictorious = FirstBattle.Victory;
-			DrawGUI();
+			//if (!isVictorious) GManager.gameState = GManager.GAME_OVER;
+			//if (!isVictorious  && curMap.mapID == 5) GManager.gameState = GManager.GAME_WON;
+			if (isVictorious && curMap.mapID == 8) GManager.gameState = GManager.GAME_WON;
+			FadeToBlack();
+			ClearBottom();
+			ClearRight();
 			DrawRight();
-
+			
 		}
 		else {
 			PlayBattleTransEffect();
-			OutputSpeech("This is where the battle would take place, but we didn't find the targeted enemy so heres a random one", "The Battle");
+			OutputSpeech("This is where the battle would take place, but we didn't find the targeted enemy.", "The Battle");
 		}
 		SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		//Update Map based on win/lose
@@ -482,7 +488,7 @@ void MapMain::CheckForBattle() {
 	int num = rand() % curEncounterChance + 1;
 	bool isVictorious = false;
 	//Trigger battle
-	if (num == BATTLE_NUMBER) {
+	if (num == BATTLE_NUMBER && stepCount > CHECK_EVERY_STEPS * 2) {
 		//Reset battle variables
 		curEncounterChance = MAX_ENCOUNTER_CHANCE;
 		stepCount = 0;
@@ -500,11 +506,15 @@ void MapMain::CheckForBattle() {
 			if (!FirstBattle.Battling) {
 				inBattle = false;
 			}
-			system("cls");
+			//system("cls");
 		}
 		isVictorious = FirstBattle.Victory;
-		DrawGUI();
+		//if (!isVictorious) GManager.gameState = GManager.GAME_OVER;
+		FadeToBlack();
+		ClearBottom();
+		ClearRight();
 		DrawRight();
+		
 		SoundManager::Instance().PlayMusic(curMap.mapMusic);
 	}
 	else {
@@ -517,7 +527,6 @@ void MapMain::CheckForBattle() {
 
 
 void MapMain::SetMap(int p_pRow, int p_pCol, int p_mapID) {
-	PlaySound("Sound/trans_sfx.wav", NULL, SND_FILENAME | SND_ASYNC);
 	PlayMapTransEffect(curMap,rowMove, columnMove, true);
 	   	
 
@@ -550,7 +559,7 @@ void MapMain::SetMap(int p_pRow, int p_pCol, int p_mapID) {
 		if (playerC - dist_from_mid_c >= 0 && curMap.map[0].size() - playerC >= dist_from_mid_c) columnMove = playerC - dist_from_mid_c;
 		else if (curMap.map[0].size() - playerC < dist_from_mid_c) columnMove = curMap.map[0].size() - screen_width;
 	}
-	PlaySound("Sound/trans_sfx2.wav", NULL, SND_FILENAME | SND_ASYNC);
+	
 	PlayMapTransEffect(curMap, rowMove, columnMove, false);
 
 	SoundManager::Instance().PlayMusic(curMap.mapMusic);

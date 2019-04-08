@@ -102,7 +102,7 @@ void OutputSpeech(string p_speech, const string &p_npcName) {
 			vecSizeLeft--;
 		}
 
-		cout << "\n" << CenterPhrase("Press any 'Z' to continue...", GameManager::instance().SCREEN_WIDTH + 2);
+		cout << "\n" << CenterPhrase("Press 'Z' to continue...", GameManager::instance().SCREEN_WIDTH + 2);
 		while (_getch() != 'z');
 	}
 
@@ -119,6 +119,16 @@ void ClearBottom() {
 	for (size_t i = 0; i < LINES_TO_CLEAR; i++)
 	{
 		cout << line << endl;
+	}
+}
+
+void ClearRight() {
+	string line (GManager.SIDE_WIDTH, ' ');
+
+	for (int i = 0; i < GManager.SCREEN_HEIGHT; i++)
+	{
+		GoToXY(i + 1, GManager.RIGHT_START_COL);
+		cout << line;
 	}
 }
 
@@ -164,17 +174,35 @@ void DrawGUI() {
 	system("CLS");
 	GoToXY(0, 0);
 	//Draw screen border
-	cout << string(GameManager::instance().SCREEN_WIDTH + GameManager::instance().BORDER, '#') << endl;
-	for (size_t i = 0; i < GameManager::instance().SCREEN_HEIGHT; i++)
-		cout << "#" << string(GameManager::instance().SCREEN_WIDTH, ' ') << "#" << endl;
-	cout << string(GameManager::instance().SCREEN_WIDTH + GameManager::instance().BORDER, '#') << endl;
+	cout << string(GManager.SCREEN_WIDTH + GManager.BORDER, '#') << endl;
+	for (size_t i = 0; i < GManager.SCREEN_HEIGHT; i++)
+		cout << "#" << string(GManager.SCREEN_WIDTH, ' ') << "#" << endl;
+	cout << string(GManager.SCREEN_WIDTH + GManager.BORDER, '#') << endl;
 
 	//Draw right border
-	GoToXY(0, GameManager::instance().RIGHT_START_COL); cout << string(GameManager::instance().SIDE_WIDTH, '#') << endl;
-	for (size_t i = 0; i < GameManager::instance().SCREEN_HEIGHT; i++) {
-		GoToXY(i + 1, GameManager::instance().RIGHT_START_COL);
-		cout << "#" << string(GameManager::instance().SIDE_WIDTH - GameManager::instance().BORDER, ' ') << "#" << endl;
+	GoToXY(0, GManager.RIGHT_START_COL); cout << string(GManager.SIDE_WIDTH, '#') << endl;
+	for (size_t i = 0; i < GManager.SCREEN_HEIGHT; i++) {
+		GoToXY(i + 1, GManager.RIGHT_START_COL);
+		cout << "#" << string(GManager.SIDE_WIDTH - GManager.BORDER, ' ') << "#" << endl;
 	}
-	GoToXY(GameManager::instance().SCREEN_HEIGHT + 1, GameManager::instance().RIGHT_START_COL); cout << string(GameManager::instance().SIDE_WIDTH, '#') << endl;
+	GoToXY(GManager.SCREEN_HEIGHT + 1, GManager.RIGHT_START_COL); cout << string(GManager.SIDE_WIDTH, '#') << endl;
 	gotoxy(0, 30);
 }
+
+void FadeToBlack() {
+	for (int i = 0; i < 3; i++)
+	{
+		if (i == 0) SetColorAndBackground(LIGHTGRAY);
+		else if (i == 1) SetColorAndBackground(DARKGRAY);
+		else if (i == 2) SetColorAndBackground(BLACK);
+
+		for (int j = 0; j < GManager.SCREEN_HEIGHT; j++)
+		{
+			GoToXY(j + 1, 1);
+			cout << string(GManager.SCREEN_WIDTH, ' ');
+		}
+		Sleep(300);
+	}
+}
+
+

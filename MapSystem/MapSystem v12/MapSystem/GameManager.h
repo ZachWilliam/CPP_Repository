@@ -1,4 +1,6 @@
 #pragma once
+#define GManager GameManager::instance()
+
 class GameManager
 {
 public:
@@ -6,6 +8,9 @@ public:
 		static GameManager instance;
 		return instance;
 	}
+	enum eGameState{MENU, PLAY, GAME_OVER, GAME_WON };
+	eGameState gameState = MENU;
+
 	const int BORDER = 2;
 	const int SCREEN_WIDTH = 69;
 	const int SCREEN_HEIGHT = 27;
@@ -14,6 +19,8 @@ public:
 	const int BOT_START_ROW = SCREEN_HEIGHT + BORDER;
 	const int RIGHT_START_COL = SCREEN_WIDTH + BORDER;
 	const int SIDE_WIDTH = 30;
+
+
 private:
 	GameManager() {}
 };
