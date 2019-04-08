@@ -162,6 +162,7 @@ void MapMain::Logic() {
 
 	//Inventory
 	if (openInventory) {
+		openInventory = false;
 		PauseMenu();
 	}
 
@@ -210,44 +211,55 @@ void MapMain::PauseMenu() {
 	GoToXY(GManager.BOT_START_ROW, 0);
 
 
-	int choice;
-	cout << "Make a selection:\n\n";
-	cout << "1.     Display Inventory\n";
-	cout << "2.     Swap Weapon\n";
-	cout << "3.     Swap Armor\n";
-	cout << "4.     Display Beastiary\n";
-	cout << "Choice: ";
-	cin >> choice;
 
-	if ((choice <= 0) || (choice > 4))
+
+	char again = 'y';
+	while (again != 'n')
 	{
-		cout << "Invalid selection. Reselect:\n";
+		ClearBottom();
+		int choice;
+		cout << "Make a selection:\n\n";
+		cout << "1.     Display Inventory\n";
+		cout << "2.     Swap Weapon\n";
+		cout << "3.     Swap Armor\n";
+		cout << "4.     Display Beastiary\n";
+		cout << "Choice: ";
 		cin >> choice;
-	}
-	else
-	{
-		switch (choice)
+		if ((choice <= 0) || (choice > 4))
 		{
-		case 1:
-			//cout << "Display Inventory\n";
-			Inventory.DisplayPartyInventory();
-			break;
-		case 2:
-			//cout << "Swap Weapon\n";
-			Inventory.SwapEquipedWeapon(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
-			break;
-		case 3:
-			//cout << "Swap Armor\n";
-			Inventory.SwapEquipedArmor(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
-			break;
-		case 4:
-			cout << "Display Beastiary\n";
-			//this is where beastiary goes
-			break;
+			cout << "Invalid selection. Reselect:\n";
+			cin >> choice;
 		}
-	}
+		else
+		{
+			switch (choice)
+			{
+			case 1:
+				//cout << "Display Inventory\n";
+				Inventory.DisplayPartyInventory();
+				break;
+			case 2:
+				//cout << "Swap Weapon\n";
+				//display characters
+				Inventory.SwapEquipedWeapon(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
+				break;
+			case 3:
+				//cout << "Swap Armor\n";
+				//display characters
+				Inventory.SwapEquipedArmor(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
+				break;
+			case 4:
+				cout << "Display Beastiary\n";
+				//this is where beastiary goes
+				break;
+			}
+		}
+		cout << "More? (y/n): ";
+		cin >> again;
+	};
 
-	ClearBottom();
+
+	
 
 }
 

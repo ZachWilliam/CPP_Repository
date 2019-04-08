@@ -110,7 +110,7 @@ void OutputSpeech(string p_speech, const string &p_npcName) {
 }
 
 void ClearBottom() {
-	const int LINES_TO_CLEAR = 14;
+	const int LINES_TO_CLEAR = 17;
 
 	string line(GameManager::instance().SCREEN_WIDTH + 2, ' ');
 
@@ -119,6 +119,8 @@ void ClearBottom() {
 		GoToXY(GameManager::instance().BOT_START_ROW + i, 0);
 		cout << line;
 	}
+
+	GoToXY(GManager.BOT_START_ROW, 0);
 }
 
 void ClearRight() {
