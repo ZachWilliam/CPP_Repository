@@ -203,7 +203,7 @@ void MapMain::Logic() {
 	else if (curMap.map.size() - playerR < dist_from_mid_r) rowMove = curMap.map.size() - screen_height;
 }
 
-void PauseMenu() {
+void MapMain::PauseMenu() {
 
 
 

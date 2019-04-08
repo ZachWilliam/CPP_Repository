@@ -42,6 +42,13 @@ int main()
 	srand(static_cast<unsigned int>(time(0)));//Seed
 	Setup();//Set up window and cursor
 
+	//Create and load beast and dialogue databases
+	Database beast;
+	Database dialogue;
+	beast.LoadMonsters();
+	dialogue.LoadText();
+
+	//New GAME
 	//Create character
 	bool inBattle = false;
 	Player PC = Player();
@@ -52,16 +59,12 @@ int main()
 	TheGroup.GenPartyFromClass(PC);
 	TheGroup.DisplayParty();
 	PartyInventory Inventory(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
-
 	//Show party overview
 	Inventory.DisplayPartyInventory();
 	_getch();
 	system("cls");
 
-
-
-
-	//Generate Attacks?
+	//Generate Attacks
 	for (size_t i = 0; i < TheGroup.Container.size(); i++)
 	{
 		if (TheGroup.Container[i].name != "NULL_NAME")
@@ -69,13 +72,13 @@ int main()
 			TheGroup.Container[i].GenerateAttacks();
 		}
 	}
+	//NEW GAME
 
-	//Create and load beast and dialogue databases
-	Database beast;
-	Database dialogue;
-	beast.LoadMonsters();
-	dialogue.LoadText();
-	   	  
+	   	 
+
+	//Game Loop
+
+
 	//Create and start game loop
 	GManager.gameState = GManager.PLAY;
 	MapMain mapMain(dialogue, beast, TheGroup);
@@ -83,6 +86,8 @@ int main()
 	mapMain.main();
 
 	system("cls");
+
+	//Game Loop
 
 	//Play either game over or the game ending
 	EndGame endGame;

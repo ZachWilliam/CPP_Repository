@@ -24,32 +24,18 @@ void Menu()
 {
 	Setup();
 	int menuChoice = 0;
-
-
-	
-
+	   
 	HANDLE hConsole;
-
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
-
 	const string menu[4] = { "Continue", "New Game", "Credits", "Quit" };
 	int pointer = 0;
 
-
-
-
-
+	   	 
 	while (true)
 	{
-
-
-
 		system("cls");
 
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-
-
 
 		HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE); //just once
 		SetConsoleTextAttribute(color,11);
@@ -80,12 +66,6 @@ void Menu()
  
           <~~~~~Press Space On One Of The Following~~~~~>                                                                     
 )" << endl;
-
-
-
-
-
-
 
 		for (int i = 0; i < 4; ++i)
 		{
@@ -123,30 +103,17 @@ void Menu()
 			}
 			else if (GetAsyncKeyState(VK_SPACE) != 0)
 			{
-
-
-
-
-
 				switch (pointer)
 				{
 				case 0:
 				{
-
 					system("cls");
-					
-					
-
-
+				
 				}break;
 				case 1:
 				{
 					system("cls");
-
-					
 					Sleep(1000);
-					
-
 				}break;
 				case 2:
 				{
