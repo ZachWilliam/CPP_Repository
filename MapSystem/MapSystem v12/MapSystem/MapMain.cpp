@@ -441,7 +441,14 @@ void MapMain::DoInteraction() {
 
 			bool inBattle = true;
 			Encounter FirstBattle(4, database_monsters.GetMonster(-1), database_monsters.GetMonster(2), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
-			
+			if (curMap.mapID == 5)
+			{
+				Encounter FirstBattle(4, database_monsters.GetMonster(-1), database_monsters.GetMonster(2), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
+			}
+			if (curMap.mapID == 8)
+			{
+				Encounter FirstBattle(4, database_monsters.GetMonster(-1), database_monsters.GetMonster(74), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
+			}
 			// FirstBattle = EncounterManager::GetEncounter(int)
 			FirstBattle.GenerateEncounter(TheGroup);
 			while (inBattle) {
