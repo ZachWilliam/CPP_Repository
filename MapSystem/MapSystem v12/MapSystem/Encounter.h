@@ -307,7 +307,7 @@ public:
             cout << Target.name << " avoided the attack!" << endl;
         }
 
-        _getch();
+       // _getch();
         Effect = "";
 
     }
@@ -377,10 +377,10 @@ public:
     Party TakeTurn()
     {
         Order.clear();
-        CalculateInitiative();
+		CalculateInitiative();
         if (InitiativeOrder > Order.size())
         {
-            InitiativeOrder--;
+            InitiativeOrder = 0;
         }
         for (int i = Order.size() - 1; i >= 0; i--)
         {
@@ -389,11 +389,11 @@ public:
 
                 if (Order[i].combatantValue.CurrentHP <= 0)
                 {
-                    _getch();
+                    //_getch();
                     Order.erase(Order.begin() + i);
                     if (i <= InitiativeOrder)
                     {
-                        InitiativeOrder--;
+                        InitiativeOrder = 0;
                     }
                 }
             }

@@ -215,65 +215,69 @@ void MapMain::PauseMenu() {
 	GoToXY(GManager.BOT_START_ROW, 0);
 
 	char again = 'y';
-	while (again != 'n')
+	while ((again != 'n') && (again != 'p'))
 	{
 		ClearBottom();
-		int choice;
+		int choice = 0;
+		string wordChoice;
+
 		cout << "Make a selection:\n\n";
 		cout << "1.     Display Inventory\n";
 		cout << "2.     Display Equiped Weapons and Armor\n";
 		cout << "3.     Swap Weapon\n";
 		cout << "4.     Swap Armor\n";
 		cout << "5.     Display Beastiary\n";
+		cout << "6.     Exit\n";
 		cout << "Choice: ";
-		cin >> choice;
-		if ((choice <= 0) || (choice > 5))
+		cin >> wordChoice;
+		choice = wordChoice[0] - 48;
+
+		while ((choice <= 0) || (choice > 6))
 		{
 			cout << "Invalid selection. Reselect:\n";
-			cin >> choice;
-		}
-		else
+			cin >> wordChoice;
+			choice = wordChoice[0] - 48;
+		};
+		switch (choice)
 		{
-			switch (choice)
+		case 1:
+			Inventory.DisplayPartyInventory();
+			break;
+		case 2:
+			TheGroup.Container[1].PlayerInventory.EquipedWeapon();
+			TheGroup.Container[1].PlayerInventory.EquipedArmor();
+			TheGroup.Container[3].PlayerInventory.EquipedWeapon();
+			TheGroup.Container[3].PlayerInventory.EquipedArmor();
+			TheGroup.Container[5].PlayerInventory.EquipedWeapon();
+			TheGroup.Container[5].PlayerInventory.EquipedArmor();
+			break;
+		case 3:
+			for (int i = 0; i < 6; ++i)
 			{
-			case 1:
-				//cout << "Display Inventory\n";
-				Inventory.DisplayPartyInventory();
-				break;
-			case 2:
-				TheGroup.Container[1].PlayerInventory.EquipedWeapon();
-				TheGroup.Container[1].PlayerInventory.EquipedArmor();
-				TheGroup.Container[3].PlayerInventory.EquipedWeapon();
-				TheGroup.Container[3].PlayerInventory.EquipedArmor();
-				TheGroup.Container[5].PlayerInventory.EquipedWeapon();
-				TheGroup.Container[5].PlayerInventory.EquipedArmor();
-				break;
-			case 3:
-				for (int i = 0; i < 6; ++i)
+				if (TheGroup.Container[i].name != "NULL_NAME")
 				{
-					if (TheGroup.Container[i].name != "NULL_NAME")
-					{
-						cout << TheGroup.Container[i].name;
-						cout << endl;
-					}
+					cout << TheGroup.Container[i].name;
+					cout << endl;
 				}
-				Inventory.SwapEquipedWeapon(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
-				break;
-			case 4:
-				for (int i = 0; i < 6; ++i)
-				{
-					if (TheGroup.Container[i].name != "NULL_NAME")
-					{
-						cout << TheGroup.Container[i].name;
-						cout << endl;
-					}
-				}
-				Inventory.SwapEquipedArmor(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
-				break;
-			case 5:
-				database_monsters.DisplayBeastiary();
-				break;
 			}
+			Inventory.SwapEquipedWeapon(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
+			break;
+		case 4:
+			for (int i = 0; i < 6; ++i)
+			{
+				if (TheGroup.Container[i].name != "NULL_NAME")
+				{
+					cout << TheGroup.Container[i].name;
+					cout << endl;
+				}
+			}
+			Inventory.SwapEquipedArmor(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
+			break;
+		case 5:
+			database_monsters.DisplayBeastiary();
+			break;
+		default:
+			break;
 		}
 		cout << "More? (y/n): ";
 		cin >> again;
