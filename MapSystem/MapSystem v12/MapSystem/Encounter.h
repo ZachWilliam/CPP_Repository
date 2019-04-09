@@ -378,7 +378,7 @@ public:
     {
         Order.clear();
 		CalculateInitiative();
-        if (InitiativeOrder > Order.size())
+        if (InitiativeOrder >= Order.size())
         {
             InitiativeOrder = 0;
         }
