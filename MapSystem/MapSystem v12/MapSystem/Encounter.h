@@ -18,7 +18,6 @@
 
 using namespace std;
 
-
 struct MyStruct
 {
 	int key;
@@ -117,6 +116,7 @@ public:
 				}
 			}
 		}
+		TotalXP = TotalXP * 4;
     }
     void CalculateInitiative()
     {
@@ -211,6 +211,16 @@ public:
                     DoAttack(User, BackRow[0]);
                     DoAttack(User, BackRow[1]);
                     DoAttack(User, BackRow[2]);
+					if (Used.effect == 10)
+					{
+						for (size_t i = 0; i < PlayerParty.Container.size(); i++)
+						{
+							if (PlayerParty.Container[i].name != "NULL_NAME")
+							{
+								DoHeal(User, PlayerParty.Container[i]);
+							}
+						}
+					}
                 }
                 cout << FrontRow[Choice].name << ": " << FrontRow[Choice].CurrentHP << "/" << FrontRow[Choice].MAX_HP;
             }
@@ -232,24 +242,40 @@ public:
                     }
                 }
             }
+			_getch();
         }
     }
-    void DoAttack(Combatant User, Enemy& Target)
+    void DoAttack(Combatant& User, Enemy& Target)
     {
         int HitChance = ((Target.BattleStats[7] - User.BattleStats[6]) * 5);
+		HitChance += HitChance / 2 * Target.MOBILITY;
+		HitChance -= HitChance / 2 * User.MOBILITY;
 
-        if (rand() % 100 > HitChance)
+        if (rand() % 100 > HitChance || AttackUsed.power == 0)
         {
             Damage = User.PlayerInventory.m_Weapon.Attack();
-            Damage += User.CurrentStats.ValueFromStatIn(User.PlayerInventory.m_Weapon.m_Weapon_Type.m_StatUsed);
+			if (AttackUsed.name == "Bash")
+			{
+				Damage += User.CurrentStats.STRENGTH;
+			}
+			else
+			{
+				Damage += User.CurrentStats.ValueFromStatIn(User.PlayerInventory.m_Weapon.m_Weapon_Type.m_StatUsed);
+			}
+			Damage += (Damage / 2) * User.OFFENSE;
             Damage = float(Damage) * (float(AttackUsed.power) / float(100));
-            if (User.PlayerInventory.m_Weapon.m_Weapon_Type.magic && User.PlayerInventory.m_Weapon.m_Weapon_Type.m_Name != "staff")
+			int Reduction;
+            if (User.PlayerInventory.m_Weapon.m_Weapon_Type.magic && AttackUsed.name != "Bash")
             {
-                Damage -= Target.BattleStats[RESISTANCE];
+				Reduction = Target.BattleStats[RESISTANCE];
+				Reduction += Reduction / 2 * Target.Combatant::DEFENSE;
+                Damage -= Reduction;
             }
             else
             {
-                Damage -= Target.BattleStats[DEFENSE];
+				Reduction = Target.BattleStats[DEFENSE];
+				Reduction += Reduction / 2 * Target.Combatant::DEFENSE;
+				Damage -= Reduction;
             }
             if (User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement > 0 && User.PlayerInventory.m_Weapon.m_DamageType.m_Enhancement < 9)
             {
@@ -279,26 +305,78 @@ public:
                 }
 
             }
-            if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 1 && Target.Level > 3)
+            if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 1 && Target.Level > 4)
             {
+				if (Target.Resistances[0] > 1)
+				{
+					if (Effect != "It's not very effective!") Effect = "It's super effective!";
+					else Effect = "";
+				}
+				if (Target.Resistances[0] < 1)
+				{
+					if (Effect != "It's super effective!") Effect = "It's not very effective!";
+					else Effect = "";
+				}
                 Damage *= Target.Resistances[0];
             }
-            if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 2 && Target.Level > 3)
+            if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 2 && Target.Level > 4)
             {
+				if (Target.Resistances[1] > 1)
+				{
+					if (Effect != "It's not very effective!") Effect = "It's super effective!";
+					else Effect = "";
+				}
+				if (Target.Resistances[1] < 1)
+				{
+					if (Effect != "It's super effective!") Effect = "It's not very effective!";
+					else Effect = "";
+				}
                 Damage *= Target.Resistances[1];
             }
-            if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 3 && Target.Level > 3 || User.PlayerInventory.m_Weapon.m_Weapon_Type.staff && Target.Level > 3)
+            if (User.PlayerInventory.m_Weapon.m_DamageType.m_Technique == 3 && Target.Level > 4 || AttackUsed.name == "Bash")
             {
+				if (Target.Resistances[2] > 1)
+				{
+					if (Effect != "It's not very effective!") Effect = "It's super effective!";
+					else Effect = "";
+				}
+				if (Target.Resistances[2] < 1)
+				{
+					if (Effect != "It's super effective!") Effect = "It's not very effective!";
+					else Effect = "";
+				}
                 Damage *= Target.Resistances[2];
             }
             Damage = _Max_value(Damage, 1);
 			
-            Target.CurrentHP -= Damage;
-            Target.CurrentHP = _Max_value(0, Target.CurrentHP);
-			if (!Target.NullEnemy)
+			if (AttackUsed.power != 0)
 			{
-				cout << Target.name << " took " << Damage << " damage! ";
-				cout << Effect << endl;
+				Target.CurrentHP -= Damage;
+				Target.CurrentHP = _Max_value(0, Target.CurrentHP);
+				if (!Target.NullEnemy)
+				{
+					cout << Target.name << " took " << Damage << " damage! ";
+					cout << Effect << endl;
+					if (AttackUsed.effect == 9)
+					{
+						DoHeal(User, Damage);
+					}
+				}
+			}
+			if (AttackUsed.effect == 2 && Target.Combatant::OFFENSE > Target.DOWN || AttackUsed.effect == 8 && Target.Combatant::OFFENSE > Target.DOWN)
+			{
+				Target.Combatant::OFFENSE = Target.DOWN;
+				cout << Target.name << "'s attack power has been lowered!" << endl;
+			}
+			if (AttackUsed.effect == 4 && Target.Combatant::DEFENSE > Target.DOWN || AttackUsed.effect == 8 && Target.Combatant::DEFENSE > Target.DOWN)
+			{
+				Target.Combatant::DEFENSE = Target.DOWN;
+				cout << Target.name << "'s defenses have been lowered!" << endl;
+			}
+			if (AttackUsed.effect == 6 && Target.Combatant::MOBILITY > Target.DOWN || AttackUsed.effect == 8 && Target.Combatant::MOBILITY > Target.DOWN)
+			{
+				Target.Combatant::MOBILITY = Target.DOWN;
+				cout << Target.name << "'s attack power has been lowered!" << endl;
 			}
             
         }
@@ -317,9 +395,15 @@ public:
 
         Damage = User.PlayerInventory.m_Weapon.Attack();
         Damage += User.CurrentStats.ValueFromStatIn(User.PlayerInventory.m_Weapon.m_Weapon_Type.m_StatUsed);
-        Target.CurrentHP += Damage;
-        Target.CurrentHP = _Min_value(Target.MaxHP, Target.CurrentHP);
-        cout << Target.name << " healed " << Damage << " health! " << endl;
+		Damage = float(float(Damage) * float(AttackUsed.power) / float(100));
+
+		if (Damage > 0)
+		{
+			Target.CurrentHP += Damage;
+			Target.CurrentHP = _Min_value(Target.MaxHP, Target.CurrentHP);
+			cout << Target.name << " healed " << Damage << " health! " << endl;
+		}
+		
         if (AttackUsed.effect == 1 && Target.OFFENSE < Target.UP || AttackUsed.effect == 7 && Target.OFFENSE < Target.UP)
         {
             Target.OFFENSE = Target.UP;
@@ -335,8 +419,16 @@ public:
             Target.MOBILITY = Target.UP;
             cout << Target.name << "'s mobility has been raised!" << endl;
         }
-        _getch();
+        //_getch();
     }
+	void DoHeal(Combatant & Target, int amount)
+	{
+
+		Target.CurrentHP += amount;
+		Target.CurrentHP = _Min_value(Target.MaxHP, Target.CurrentHP);
+		cout << Target.name << " healed " << amount << " health! " << endl;
+
+	}
 
     void DoAttack(Enemy User)
     {
@@ -374,6 +466,234 @@ public:
             }
         }
     }
+	void CharacterPromotion(Player &self)
+	{
+		ClassManager Man = ClassManager();
+		vector<PlayerClass> Selection;
+		bool Promotion = true;
+		int choice = 0;
+		int counter = 0;
+		int NextMove;
+		string space = ".";
+		for (int i = 0; i < int(Man.AllClasses.size()); i++)
+		{
+			if (Man.AllClasses[i].Prerequisite == self.Job.Current)
+			{
+				Selection.push_back(Man.AllClasses[i]);
+			}
+		}
+		//DrawGUI();
+		gotoxy(72, 1);
+		cout << "                            ";
+		gotoxy(72, 2);
+		cout << "                            ";
+		gotoxy(72, 3);
+		cout << "                            ";
+		gotoxy(0, 30);
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		gotoxy(0, 30);
+		while (Promotion)
+		{
+			if (Selection.size() == 2)
+			{
+				gotoxy(72, 1);
+				cout << self.name << " has been promoted";
+				counter = 0;
+				for (size_t i = 0; i < 27; i++)
+				{
+					if (Selection[1].name == Man.AllClasses[i].name)
+					{
+						gotoxy(72, 2 + counter);
+						if (choice == 1)
+						{
+							SetColorAndBackground(15, 0);
+							cout << " > " << Selection[1].name;
+							for (size_t i = 0; i < 25; i++)
+							{
+								if (i > Selection[1].name.size())
+								{
+									cout << space;
+								}
+							}
+							SetColorAndBackground(0, 15);
+						}
+						else
+						{
+							cout << " " << Selection[1].name;
+							for (size_t i = 0; i < 27; i++)
+							{
+								if (i > Selection[1].name.size())
+								{
+									cout << space;
+								}
+							}
+							cout << endl;
+						}
+						counter++;
+					}
+					else if (Selection[0].name == Man.AllClasses[i].name)
+					{
+						gotoxy(72, 2 + counter);
+						if (choice == 0)
+						{
+							SetColorAndBackground(15, 0);
+							cout << " > " << Selection[0].name;
+							for (size_t i = 0; i < 25; i++)
+							{
+								if (i > Selection[0].name.size())
+								{
+									cout << space;
+								}
+							}
+							SetColorAndBackground(0, 15);
+						}
+						else
+						{
+							cout << " " << Selection[0].name;
+							for (size_t i = 0; i < 27; i++)
+							{
+								if (i > Selection[0].name.size())
+								{
+									cout << space;
+								}
+							}
+							cout << endl;
+						}
+						counter++;
+					}
+				}
+
+				gotoxy(0, 30);
+				cout << "                                                                                        " << endl;
+				cout << "                                                                                        " << endl;
+				cout << "                                                                                        " << endl;
+				cout << "                                                                                        " << endl;
+				cout << "                                                                                        " << endl;
+				cout << "                                                                                        " << endl;
+				cout << "                                                                                        " << endl;
+				cout << "                                                                                        " << endl;
+				cout << "                                                                                        " << endl;
+				gotoxy(0, 30);
+
+				cout << Selection[choice].name;
+				for (size_t i = 0; i < 82; i++)
+				{
+					if (i > Selection[choice].name.size())
+					{
+						cout << ".";
+					}
+				}
+				cout << endl;
+				cout << Selection[choice].Desc1;
+				for (size_t i = 0; i < 82; i++)
+				{
+					if (i > Selection[choice].Desc1.size())
+					{
+						cout << " ";
+					}
+				}
+				cout << endl;
+				cout << Selection[choice].Desc2;
+				for (size_t i = 0; i < 82; i++)
+				{
+					if (i > Selection[choice].Desc2.size())
+					{
+						cout << " ";
+					}
+				}
+				cout << endl;
+				cout << Selection[choice].Desc3;
+				for (size_t i = 0; i < 82; i++)
+				{
+					if (i > Selection[choice].Desc3.size())
+					{
+						cout << " ";
+					}
+				}
+				cout << endl;
+				cout << endl;
+				cout << ".............................." << "Press [Z] to Continue" << ".............................." << endl;
+
+				NextMove = _getch();
+
+				if (NextMove == KEY_UP)
+				{
+					choice--;
+					if (choice < 0)
+					{
+						choice = 1;
+					}
+
+					continue;
+				}
+				else if (NextMove == KEY_DOWN)
+				{
+					choice++;
+
+					if (choice > 1)
+					{
+						choice = 0;
+					}
+
+					continue;
+
+				}
+				else if (NextMove == 122)
+				{
+					self.Job = Selection[choice];
+					self.CurrentStats.STRENGTH += Selection[choice].STR_BASE;
+					self.CurrentStats.DEXTERITY += Selection[choice].DEX_BASE;
+					self.CurrentStats.CONSTITUTION += Selection[choice].CON_BASE;
+					self.CurrentStats.AGILITY += Selection[choice].AGI_BASE;
+					self.CurrentStats.INTELLIGENCE += Selection[choice].INT_BASE;
+					self.CurrentStats.WISDOM += Selection[choice].WIS_BASE;
+					self.CurrentStats.LUCK += Selection[choice].LUK_BASE;
+					gotoxy(0, 30);
+					cout << "                                                                                        " << endl;
+					cout << "                                                                                        " << endl;
+					cout << "                                                                                        " << endl;
+					cout << "                                                                                        " << endl;
+					cout << "                                                                                        " << endl;
+					cout << "                                                                                        " << endl;
+					cout << "                                                                                        " << endl;
+					cout << "                                                                                        " << endl;
+					cout << "                                                                                        " << endl;
+					cout << "                                                                                        " << endl;
+					gotoxy(0, 30);
+					cout << self.name << " the " << self.Job.name << ":" << endl;
+					cout << self.CurrentStats.STRENGTH << " (+" << Selection[choice].STR_BASE << ")" << endl;
+					cout << self.CurrentStats.DEXTERITY << " (+" << Selection[choice].DEX_BASE << ")" << endl;
+					cout << self.CurrentStats.CONSTITUTION << " (+" << Selection[choice].CON_BASE << ")" << endl;
+					cout << self.CurrentStats.AGILITY << " (+" << Selection[choice].AGI_BASE << ")" << endl;
+					cout << self.CurrentStats.INTELLIGENCE << " (+" << Selection[choice].INT_BASE << ")" << endl;
+					cout << self.CurrentStats.WISDOM << " (+" << Selection[choice].WIS_BASE << ")" << endl;
+					cout << self.CurrentStats.LUCK << " (+" << Selection[choice].LUK_BASE << ")" << endl;
+					cout << endl;
+					cout << ".............................." << "Press [Z] to Continue" << ".............................." << endl;
+					gotoxy(72, 1);
+					cout << "                            ";
+					gotoxy(72, 2);
+					cout << "                            ";
+					gotoxy(72, 3);
+					cout << "                            ";
+					break;
+				}
+				else
+				{
+					NextMove = 0;
+					continue;
+				}
+			}
+		}
+	}
     Party TakeTurn()
     {
         Order.clear();
@@ -432,6 +752,7 @@ public:
 				if (PlayerParty.Leader.OnTheLevel[PlayerParty.Leader.Level] <= PlayerParty.Leader.CurrentEXP)
 				{
 					PlayerParty.Leader.Level++;
+					
 				}
 				else 
 				{
@@ -449,8 +770,13 @@ public:
 					{
 						if (PlayerParty.Container[i].OnTheLevel[PlayerParty.Container[i].Level] <= PlayerParty.Container[i].CurrentEXP)
 						{
-							cout << "Level Up! " << PlayerParty.Container[i].name << " has reached level " << PlayerParty.Container[i].Level << "!" << endl;
+							cout << "Level Up! " << PlayerParty.Container[i].name << " has reached level " << PlayerParty.Container[i].Level + 1 << "!" << endl;
 							PlayerParty.Container[i].LevelUp();
+							if (PlayerParty.Container[i].Level == 10)
+							{
+								_getch();
+								CharacterPromotion(PlayerParty.Container[i]);
+							}
 							
 
 						}
@@ -469,12 +795,13 @@ public:
 						cout << "                                                                                        " << endl;
 						cout << "                                                                                        " << endl;
 						cout << "                                                                                        " << endl;
+						cout << "                                                                                        " << endl;
 						gotoxy(0, 30);
 					}
 					
 				}
 			}
-			_getch();
+			//_getch();
 		}
         if (Battling)
         {
@@ -958,10 +1285,21 @@ public:
                     }
                     else if (AtkMenu)
                     {
-                        AtkMenu = false;
-                        ChooseTarget = true;
+                        
                         AttackUsed = Order[InitiativeOrder].combatantValue.CurrentMoves[Selection];
-                        Selection = 0;
+						Selection = 0;
+						if (AttackUsed.target == 4 || AttackUsed.target == 6 || AttackUsed.target == 6)
+						{
+							GenerateAttack(Order[InitiativeOrder].combatantValue, AttackUsed, Selection);
+							AtkMenu = false;
+							break;
+						}
+						else
+						{
+							AtkMenu = false;
+							ChooseTarget = true;
+						}
+						
                     }
                     else if (ChooseTarget)
                     {

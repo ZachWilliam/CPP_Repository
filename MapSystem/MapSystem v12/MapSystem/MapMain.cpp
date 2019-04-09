@@ -453,6 +453,13 @@ void MapMain::DoInteraction() {
 			{
 				Encounter FirstBattle(4, database_monsters.GetMonster(-1), database_monsters.GetMonster(74), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
 			}
+			for (size_t i = 0; i < TheGroup.Container.size(); i++)
+			{
+				if (TheGroup.Container[i].name != "NULL_NAME")
+				{
+					TheGroup.Container[i].GenerateAttacks();
+				}
+			}
 			// FirstBattle = EncounterManager::GetEncounter(int)
 			FirstBattle.GenerateEncounter(TheGroup);
 			while (inBattle) {
@@ -596,6 +603,13 @@ void MapMain::CheckForBattle() {
 		bool inBattle = true;
 		Encounter FirstBattle(1, database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
 		FirstBattle = RandomSpawn.GenerateEncounter(TheGroup.Leader.Level);
+		for (size_t i = 0; i < TheGroup.Container.size(); i++)
+		{
+			if (TheGroup.Container[i].name != "NULL_NAME")
+			{
+				TheGroup.Container[i].GenerateAttacks();
+			}
+		}
 		// FirstBattle = EncounterManager::GetEncounter(int)
 		FirstBattle.GenerateEncounter(TheGroup);
 		while (inBattle) {
@@ -614,6 +628,20 @@ void MapMain::CheckForBattle() {
 		DrawRight();
 		
 		SoundManager::Instance().PlayMusic(curMap.mapMusic);
+		string tempText = "";
+		int temp = rand() % 101;
+		if (temp > 40 && temp < 70)
+		{
+			tempText = Inventory.AddWeapon(-1, -1, -1);
+		}
+		else if (temp > 70)
+		{
+			tempText = Inventory.AddArmor(-1, -1, -1);
+		}
+		if (tempText != "")
+		{
+			OutputSpeech(tempText, "Enemy Drops:");
+		}
 	}
 	else {
 		//Make it more likely to get a encounter next battle check
