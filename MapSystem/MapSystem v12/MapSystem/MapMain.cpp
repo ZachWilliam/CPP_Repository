@@ -247,6 +247,9 @@ void MapMain::PauseMenu() {
 			case 3:
 				//cout << "Swap Weapon\n";
 				//display characters
+				TheGroup.Container[1].name;
+				TheGroup.Container[3].name;
+				TheGroup.Container[5].name;
 				Inventory.SwapEquipedWeapon(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
 				break;
 			case 4:
