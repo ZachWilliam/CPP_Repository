@@ -51,6 +51,7 @@ void Weapon::SetDamageType(int EleChoice = -1)
 		temp = 0;
 		int tempSpell;
 		tempSpell = (rand() % 10) + 1;
+		tempSpell = 9;
 		if (tempSpell < 7)
 		{
 			SpellSlot = 1;

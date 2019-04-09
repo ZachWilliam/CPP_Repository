@@ -1,6 +1,6 @@
 ID,Name,Description,Type,MIN,STR,DEX,CON,INT,WIS,AGI,LUK,STR_Growth,DEX_Growth,CON_Growth,INT_Growth,WIS_Growth,AGI_Growth,LUK_Growth,Pierce,Slash,Bludgeon,Fire,Ice,Water,Thunder,Wind,Earth,Dark,Light,Target AI
-0,Slime,A malevalent blob.,Amorph,1,5,1,15,1,1,1,1,40,8,120,8,8,8,8,0.5,0.5,0.5,1,2,2,1,2,1,1,1,0
-1,Clay Golem,An amalgamation of animated clay.,Amorph,3,8,1,17,1,1,1,1,53,7,113,7,7,7,7,0.5,0.5,1,0.5,1,2,0.5,2,0.5,1,1,0
+0,Slime,A malevalent blob.,Amorph,1,5,5,5,1,1,1,6,40,8,120,8,8,8,8,0.5,0.5,0.5,1,2,2,1,2,1,1,1,0
+1,Clay Golem,An amalgamation of animated clay.,Amorph,3,8,1,12,1,1,1,6,53,7,113,7,7,7,7,0.5,0.5,1,0.5,1,2,0.5,2,0.5,1,1,0
 2,Stone Golem,An amalgamation of animated rocks.,Amorph,5,10,1,20,1,1,1,1,57,6,114,6,6,6,6,0.5,0.5,1,0.5,1,2,1,1,0.5,1,1,0
 3,Obsidian Golem,An amalgamation of animated obsidian.,Amorph,10,16,5,25,1,10,3,10,46,14,71,3,29,9,29,0,0,1,0.5,1,2,1,0.5,0,1,1,0
 4,Gargoyle,A living statue with stone wings and sharp claws.,Amorph,15,15,8,18,3,7,9,10,43,23,51,9,20,26,29,0.5,0.5,1,0.5,2,2,2,0.5,0.5,1,1,0
