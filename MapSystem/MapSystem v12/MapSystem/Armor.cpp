@@ -443,9 +443,9 @@ string Armor::GetName(int Choice = -1)
 			break;
 		case 666://specific
 			m_Prefix_Name = PREFIX_NAMES[6];
-			m_DamageResist += 25;
-			m_MagicResist += 25;
-			m_Avoidance += 15;
+			m_DamageResist += 250;
+			m_MagicResist += 250;
+			m_Avoidance += 150;
 			namePick = Choice;
 			break;
 		}

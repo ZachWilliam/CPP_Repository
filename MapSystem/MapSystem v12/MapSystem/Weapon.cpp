@@ -451,8 +451,8 @@ string Weapon::GetName(int Choice = -1)
 			break;
 		case 666://specific
 			m_Prefix_Name = PREFIX_NAMES[6];
-			m_DamageMIN += 15;
-			m_DamageMAX += 25;
+			m_DamageMIN += 150;
+			m_DamageMAX += 250;
 			namePick = Choice;
 			break;
 		}
