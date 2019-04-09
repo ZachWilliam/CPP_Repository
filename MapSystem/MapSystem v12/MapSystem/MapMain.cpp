@@ -215,7 +215,7 @@ void MapMain::PauseMenu() {
 	GoToXY(GManager.BOT_START_ROW, 0);
 
 	char again = 'y';
-	while (again != 'n')
+	while ((again != 'n') && (again != 'p'))
 	{
 		ClearBottom();
 		int choice;

@@ -164,47 +164,74 @@ void PartyInventory::SwapEquipedWeapon(Backpack &BP1ref, Backpack &BP2ref, Backp
 		switch (playerSelection)
 		{
 		case 1:
-			DisplayPartyWeapons();
-			cout << "Select Weapon: ";
-			cin >> choice;
-			while ((EQUIPED_WEAPON1.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON2.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON3.ID == INV_WEAPON[choice].ID))
+			if (INV_WEAPON.size() <= 3)
 			{
-				cout << "Already in use. Reselect: ";
+				cout << "Nothing to swap.\n";
+				break;
+			}
+			else
+			{
+				DisplayPartyWeapons();
+				cout << "Select Weapon: ";
 				cin >> choice;
-			};
-			BP1ref.m_Weapon = INV_WEAPON[choice];
-			INV_WEAPON.insert(INV_WEAPON.end(), INV_WEAPON[choice]);
-			INV_WEAPON.pop_back();
-			EQUIPED_WEAPON1 = BP1ref.m_Weapon;
-			break;
+				while ((EQUIPED_WEAPON1.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON2.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON3.ID == INV_WEAPON[choice].ID))
+				{
+					cout << "Already in use. Reselect: ";
+					cin >> choice;
+				};
+				BP1ref.m_Weapon = INV_WEAPON[choice];
+				INV_WEAPON.insert(INV_WEAPON.end(), INV_WEAPON[choice]);
+				INV_WEAPON.pop_back();
+				EQUIPED_WEAPON1 = BP1ref.m_Weapon;
+				break;
+			}
+
 		case 2:
-			DisplayPartyWeapons();
-			cout << "Select Weapon: ";
-			cin >> choice;
-			while ((EQUIPED_WEAPON1.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON2.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON3.ID == INV_WEAPON[choice].ID))
+			if (INV_WEAPON.size() <= 3)
 			{
-				cout << "Already in use. Reselect: ";
+				cout << "Nothing to swap.\n";
+				break;
+			}
+			else
+			{
+				DisplayPartyWeapons();
+				cout << "Select Weapon: ";
 				cin >> choice;
-			};
-			BP2ref.m_Weapon = INV_WEAPON[choice];
-			INV_WEAPON.insert(INV_WEAPON.end(), INV_WEAPON[choice]);
-			INV_WEAPON.pop_back();
-			EQUIPED_WEAPON2 = BP2ref.m_Weapon;
-			break;
+				while ((EQUIPED_WEAPON1.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON2.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON3.ID == INV_WEAPON[choice].ID))
+				{
+					cout << "Already in use. Reselect: ";
+					cin >> choice;
+				};
+				BP2ref.m_Weapon = INV_WEAPON[choice];
+				INV_WEAPON.insert(INV_WEAPON.end(), INV_WEAPON[choice]);
+				INV_WEAPON.pop_back();
+				EQUIPED_WEAPON2 = BP2ref.m_Weapon;
+				break;
+			}
+
 		case 3:
-			DisplayPartyWeapons();
-			cout << "Select Weapon: ";
-			cin >> choice;
-			while ((EQUIPED_WEAPON1.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON2.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON3.ID == INV_WEAPON[choice].ID))
+			if (INV_WEAPON.size() <= 3)
 			{
-				cout << "Already in use. Reselect: ";
+				cout << "Nothing to swap.\n";
+				break;
+			}
+			else
+			{
+				DisplayPartyWeapons();
+				cout << "Select Weapon: ";
 				cin >> choice;
-			};
-			BP3ref.m_Weapon = INV_WEAPON[choice];
-			INV_WEAPON.insert(INV_WEAPON.end(), INV_WEAPON[choice]);
-			INV_WEAPON.pop_back();
-			EQUIPED_WEAPON3 = BP3ref.m_Weapon;
-			break;
+				while ((EQUIPED_WEAPON1.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON2.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON3.ID == INV_WEAPON[choice].ID))
+				{
+					cout << "Already in use. Reselect: ";
+					cin >> choice;
+				};
+				BP3ref.m_Weapon = INV_WEAPON[choice];
+				INV_WEAPON.insert(INV_WEAPON.end(), INV_WEAPON[choice]);
+				INV_WEAPON.pop_back();
+				EQUIPED_WEAPON3 = BP3ref.m_Weapon;
+				break;
+			}
+
 		}
 	}
 }
@@ -225,47 +252,74 @@ void PartyInventory::SwapEquipedArmor(Backpack &BP1ref, Backpack &BP2ref, Backpa
 		switch (playerSelection)
 		{
 		case 1:
-			DisplayPartyArmor();
-			cout << "Select Armor: ";
-			cin >> choice;
-			while ((EQUIPED_ARMOR1.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR2.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR3.ID == INV_ARMOR[choice].ID))
+			if (INV_ARMOR.size() <= 3)
 			{
-				cout << "Already in use. Reselect: ";
+				cout << "Nothing to swap.\n";
+				break;
+			}
+			else
+			{
+				DisplayPartyArmor();
+				cout << "Select Armor: ";
 				cin >> choice;
-			};
-			BP1ref.m_Armor = INV_ARMOR[choice];
-			INV_ARMOR.insert(INV_ARMOR.end(), INV_ARMOR[choice]);
-			INV_ARMOR.pop_back();
-			EQUIPED_ARMOR1 = BP1ref.m_Armor;
-			break;
+				while ((EQUIPED_ARMOR1.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR2.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR3.ID == INV_ARMOR[choice].ID))
+				{
+					cout << "Already in use. Reselect: ";
+					cin >> choice;
+				};
+				BP1ref.m_Armor = INV_ARMOR[choice];
+				INV_ARMOR.insert(INV_ARMOR.end(), INV_ARMOR[choice]);
+				INV_ARMOR.pop_back();
+				EQUIPED_ARMOR1 = BP1ref.m_Armor;
+				break;
+			}
+
 		case 2:
-			DisplayPartyArmor();
-			cout << "Select Armor: ";
-			cin >> choice;
-			while ((EQUIPED_ARMOR1.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR2.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR3.ID == INV_ARMOR[choice].ID))
+			if (INV_ARMOR.size() <= 3)
 			{
-				cout << "Already in use. Reselect: ";
+				cout << "Nothing to swap.\n";
+				break;
+			}
+			else
+			{
+				DisplayPartyArmor();
+				cout << "Select Armor: ";
 				cin >> choice;
-			};
-			BP2ref.m_Armor = INV_ARMOR[choice];
-			INV_ARMOR.insert(INV_ARMOR.end(), INV_ARMOR[choice]);
-			INV_ARMOR.pop_back();
-			EQUIPED_ARMOR2 = BP2ref.m_Armor;
-			break;
+				while ((EQUIPED_ARMOR1.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR2.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR3.ID == INV_ARMOR[choice].ID))
+				{
+					cout << "Already in use. Reselect: ";
+					cin >> choice;
+				};
+				BP2ref.m_Armor = INV_ARMOR[choice];
+				INV_ARMOR.insert(INV_ARMOR.end(), INV_ARMOR[choice]);
+				INV_ARMOR.pop_back();
+				EQUIPED_ARMOR2 = BP2ref.m_Armor;
+				break;
+			}
+
 		case 3:
-			DisplayPartyArmor();
-			cout << "Select Armor: ";
-			cin >> choice;
-			while ((EQUIPED_ARMOR1.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR2.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR3.ID == INV_ARMOR[choice].ID))
+			if (INV_ARMOR.size() <= 3)
 			{
-				cout << "Already in use. Reselect: ";
+				cout << "Nothing to swap.\n";
+				break;
+			}
+			else
+			{
+				DisplayPartyArmor();
+				cout << "Select Armor: ";
 				cin >> choice;
-			};
-			BP3ref.m_Armor = INV_ARMOR[choice];
-			INV_ARMOR.insert(INV_ARMOR.end(), INV_ARMOR[choice]);
-			INV_ARMOR.pop_back();
-			EQUIPED_ARMOR3 = BP3ref.m_Armor;
-			break;
+				while ((EQUIPED_ARMOR1.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR2.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR3.ID == INV_ARMOR[choice].ID))
+				{
+					cout << "Already in use. Reselect: ";
+					cin >> choice;
+				};
+				BP3ref.m_Armor = INV_ARMOR[choice];
+				INV_ARMOR.insert(INV_ARMOR.end(), INV_ARMOR[choice]);
+				INV_ARMOR.pop_back();
+				EQUIPED_ARMOR3 = BP3ref.m_Armor;
+				break;
+			}
+
 		}
 	}
 }
