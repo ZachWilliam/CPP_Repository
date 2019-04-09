@@ -152,7 +152,7 @@ void PartyInventory::SwapEquipedWeapon(Backpack &BP1ref, Backpack &BP2ref, Backp
 {
 	int playerSelection = 0;
 	string wordPlayerSelection;
-
+ 
 	int choice = 0;
 	string wordChoice;
 
