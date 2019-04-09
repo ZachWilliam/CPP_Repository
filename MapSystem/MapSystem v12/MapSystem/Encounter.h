@@ -307,7 +307,7 @@ public:
             cout << Target.name << " avoided the attack!" << endl;
         }
 
-        _getch();
+       // _getch();
         Effect = "";
 
     }
@@ -335,7 +335,7 @@ public:
             Target.MOBILITY = Target.UP;
             cout << Target.name << "'s mobility has been raised!" << endl;
         }
-        _getch();
+       // _getch();
     }
 
     void DoAttack(Enemy User)
@@ -389,7 +389,7 @@ public:
 
                 if (Order[i].combatantValue.CurrentHP <= 0)
                 {
-                    _getch();
+                    //_getch();
                     Order.erase(Order.begin() + i);
                     if (i <= InitiativeOrder)
                     {
