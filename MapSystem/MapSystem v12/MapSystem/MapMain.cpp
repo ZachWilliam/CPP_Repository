@@ -249,21 +249,28 @@ void MapMain::PauseMenu() {
 				TheGroup.Container[5].PlayerInventory.EquipedArmor();
 				break;
 			case 3:
-				//cout << "Swap Weapon\n";
-				//display characters
-				TheGroup.Container[1].name;
-				TheGroup.Container[3].name;
-				TheGroup.Container[5].name;
+				for (int i = 0; i < 6; ++i)
+				{
+					if (TheGroup.Container[i].name != "NULL_NAME")
+					{
+						cout << TheGroup.Container[i].name;
+						cout << endl;
+					}
+				}
 				Inventory.SwapEquipedWeapon(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
 				break;
 			case 4:
-				//cout << "Swap Armor\n";
-				//display characters
+				for (int i = 0; i < 6; ++i)
+				{
+					if (TheGroup.Container[i].name != "NULL_NAME")
+					{
+						cout << TheGroup.Container[i].name;
+						cout << endl;
+					}
+				}
 				Inventory.SwapEquipedArmor(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
 				break;
 			case 5:
-				//cout << "Display Beastiary\n";
-				//this is where beastiary goes
 				database_monsters.DisplayBeastiary();
 				break;
 			}

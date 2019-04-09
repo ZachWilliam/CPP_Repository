@@ -5,7 +5,7 @@ Abandoned Path F2
 3,6
 6
 -1,-1,4,0,1e //NPC
-19,5,0,6,6,6,2e //Chest
+19,5,0,-1,-1,-1,2e //Chest
 e
 Sound/cave_music.wav
 e
