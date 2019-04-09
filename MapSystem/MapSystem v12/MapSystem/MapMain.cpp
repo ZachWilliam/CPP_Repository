@@ -4,7 +4,8 @@ MapMain::MapMain(Database &p_database, Database &p_beastiary, Party &p_party, Pa
 	database_text(p_database),
 	database_monsters(p_beastiary),
 	TheGroup(p_party),
-	Inventory(p_inventory)
+	Inventory(p_inventory),
+	RandomSpawn()
 {}
 
 
@@ -22,6 +23,9 @@ int MapMain::main() {
 
 void MapMain::Setup(int p_mapID, int p_row, int p_col) {
 	bool mapFound = false;
+
+	RandomSpawn.GenerateRegions(database_monsters);
+
 	for (int i = 0; i < mapManager.mapList.size(); i++)
 	{
 		if (mapManager.mapList[i].mapID == p_mapID) {
@@ -430,11 +434,12 @@ void MapMain::DoInteraction() {
 
 			bool inBattle = true;
 			Encounter FirstBattle(4, database_monsters.GetMonster(-1), database_monsters.GetMonster(2), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
+			
 			// FirstBattle = EncounterManager::GetEncounter(int)
 			FirstBattle.GenerateEncounter(TheGroup);
 			while (inBattle) {
 				DrawCombatScreen();
-				FirstBattle.TakeTurn();
+				TheGroup = FirstBattle.TakeTurn();
 				if (!FirstBattle.Battling) {
 					inBattle = false;
 				}
@@ -573,11 +578,12 @@ void MapMain::CheckForBattle() {
 		PlaySound("Sound/battle_theme.wav", NULL, SND_LOOP | SND_ASYNC);
 		bool inBattle = true;
 		Encounter FirstBattle(1, database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
+		FirstBattle = RandomSpawn.GenerateEncounter(TheGroup.Leader.Level);
 		// FirstBattle = EncounterManager::GetEncounter(int)
 		FirstBattle.GenerateEncounter(TheGroup);
 		while (inBattle) {
 			DrawCombatScreen();
-			FirstBattle.TakeTurn();
+			TheGroup = FirstBattle.TakeTurn();
 			if (!FirstBattle.Battling) {
 				inBattle = false;
 			}

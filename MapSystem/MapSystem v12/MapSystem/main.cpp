@@ -47,6 +47,7 @@ int main()
 	Database dialogue;
 	beast.LoadMonsters();
 	dialogue.LoadText();
+	
 
 	//New GAME
 	//Create character
