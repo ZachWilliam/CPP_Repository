@@ -335,7 +335,7 @@ public:
             Target.MOBILITY = Target.UP;
             cout << Target.name << "'s mobility has been raised!" << endl;
         }
-       // _getch();
+        _getch();
     }
 
     void DoAttack(Enemy User)
@@ -377,10 +377,10 @@ public:
     Party TakeTurn()
     {
         Order.clear();
-        CalculateInitiative();
+		CalculateInitiative();
         if (InitiativeOrder > Order.size())
         {
-            InitiativeOrder--;
+            InitiativeOrder = 0;
         }
         for (int i = Order.size() - 1; i >= 0; i--)
         {
@@ -393,7 +393,7 @@ public:
                     Order.erase(Order.begin() + i);
                     if (i <= InitiativeOrder)
                     {
-                        InitiativeOrder--;
+                        InitiativeOrder = 0;
                     }
                 }
             }
