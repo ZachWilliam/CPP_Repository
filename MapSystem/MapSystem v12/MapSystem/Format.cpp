@@ -124,7 +124,7 @@ void ClearBottom() {
 }
 
 void ClearRight() {
-	string line (GManager.SIDE_WIDTH, ' ');
+	string line (GManager.SIDE_WIDTH - 1, ' ');
 
 	for (int i = 0; i < GManager.SCREEN_HEIGHT; i++)
 	{
