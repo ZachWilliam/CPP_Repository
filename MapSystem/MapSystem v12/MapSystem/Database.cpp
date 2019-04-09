@@ -150,7 +150,7 @@ void Database::LoadText()
 			tText = data[3];
 			tSpeaker = data[4];
 
-			Dialogue temp(tMapID,tSpeakerID,tTextID, tText, tSpeaker);
+			Dialogue temp(tMapID, tSpeakerID, tTextID, tText, tSpeaker);
 			Scenes.push_back(temp);
 			//cout << "line: " << Scenes[loopCount].m_MapID << Scenes[loopCount].m_SpeakerID << Scenes[loopCount].m_TextID << " loaded\n";
 			loopCount++;
@@ -171,24 +171,29 @@ void Database::DisplayBeastiary()
 	vector<Monster>::iterator iter;
 	for (iter = Beastiary.begin(); iter != Beastiary.end(); iter++)
 	{
-		if (iter != Beastiary.end())
+		if ((*iter).m_ID == -1)
 		{
-			cout << (*iter).m_ID << ". ";
-			if ((*iter).m_Seen == true)
-			{
-				cout << (*iter).m_Name << " - " << (*iter).m_Type;
-				//cout << (*iter).m_Desc << endl;
-			}
-			else if ((*iter).m_Seen == false)
-			{
-				cout << "???????";
-			}
 			cout << endl;
 		}
-		else {}
+		else
+		{
+		cout << (*iter).m_ID << ". ";
+		if ((*iter).m_Seen == true)
+		{
+			cout << (*iter).m_Name << " - " << (*iter).m_Type;
+			//cout << (*iter).m_Desc << endl;
+		}
+		else if ((*iter).m_Seen == false)
+		{
+			cout << "???????";
+		}
+		cout << endl;
+		}
 	}
 
 }
+
+
 void Database::UpdateMonster(int monsterID)
 {
 	vector<Monster>::iterator iter;
