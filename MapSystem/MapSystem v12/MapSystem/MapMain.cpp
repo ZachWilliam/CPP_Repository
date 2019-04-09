@@ -417,7 +417,7 @@ void MapMain::DoInteraction() {
 	if (interactChar == '!') {
 		//Find enemy
 		int locInEnemyVec = -1;
-		bool isVictorious = true;
+		int isVictorious = 0;
 		for (int i = 0; i < curMap.v_mapEnemies.size(); i++)
 		{
 			if (curMap.v_mapEnemies[i].row == charRow && curMap.v_mapEnemies[i].col == charCol)
@@ -443,7 +443,7 @@ void MapMain::DoInteraction() {
 			Encounter FirstBattle(4, database_monsters.GetMonster(-1), database_monsters.GetMonster(2), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
 			if (curMap.mapID == 5)
 			{
-				Encounter FirstBattle(4, database_monsters.GetMonster(-1), database_monsters.GetMonster(2), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
+				Encounter FirstBattle(10, database_monsters.GetMonster(-1), database_monsters.GetMonster(2), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
 			}
 			if (curMap.mapID == 8)
 			{
@@ -460,8 +460,7 @@ void MapMain::DoInteraction() {
 				//system("cls");
 			}
 			isVictorious = FirstBattle.Victory;
-			//if (!isVictorious) GManager.gameState = GManager.GAME_OVER;
-			if (!isVictorious  && curMap.mapID == 5) GManager.gameState = GManager.GAME_WON;
+			if (isVictorious == 0) GManager.gameState = GManager.GAME_OVER;
 			if (isVictorious && curMap.mapID == 8) GManager.gameState = GManager.GAME_WON;
 			FadeToBlack();
 			ClearBottom();
@@ -475,7 +474,7 @@ void MapMain::DoInteraction() {
 		}
 		SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		//Update Map based on win/lose
-		if (isVictorious) {
+		if (isVictorious == 1) {
 			if (locInEnemyVec != -1) {
 				curMap.map[charRow][charCol] = ' ';
 				curMap.v_mapEnemies[locInEnemyVec].isDefeated = true;
@@ -580,7 +579,7 @@ bool MapMain::CheckCollision(char p_nextChar) {
 void MapMain::CheckForBattle() {
 	const int BATTLE_NUMBER = 1;
 	int num = rand() % curEncounterChance + 1;
-	bool isVictorious = false;
+	int isVictorious = 0;
 	//Trigger battle
 	if (num == BATTLE_NUMBER && stepCount > CHECK_EVERY_STEPS * 2) {
 		//Reset battle variables
@@ -604,7 +603,7 @@ void MapMain::CheckForBattle() {
 			//system("cls");
 		}
 		isVictorious = FirstBattle.Victory;
-		//if (!isVictorious) GManager.gameState = GManager.GAME_OVER;
+		if (isVictorious == 0) GManager.gameState = GManager.GAME_OVER;
 		FadeToBlack();
 		ClearBottom();
 		ClearRight();
@@ -707,36 +706,37 @@ void MapMain::DrawRight() {
 	GoToXY(4, right_start_col + 1); cout << CenterPhrase(curMap.name, side_width - 2);
 	
 	//Legend
-	GoToXY(10, right_start_col + 1); cout << CenterPhrase("Legend", side_width - 2);
-	GoToXY(11, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
-	GoToXY(12, right_start_col + 1);
+	GoToXY(9, right_start_col + 1); cout << CenterPhrase("Legend", side_width - 2);
+	GoToXY(10, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
+	GoToXY(11, right_start_col + 1);
 		cout << "          ";
 		SetColorAndBackground(RED); cout << " ";
 		SetColorAndBackground(); cout << " Player";
-	GoToXY(13, right_start_col + 1);
+	GoToXY(12, right_start_col + 1);
 		cout << "          ";
 		SetColorAndBackground(YELLOW); cout << " ";
 		SetColorAndBackground(); cout << " Chest";
-	GoToXY(14, right_start_col + 1);
+	GoToXY(13, right_start_col + 1);
 		cout << "           ";
 		SetColorAndBackground(LIGHTMAGENTA); cout << " ";
 		SetColorAndBackground(); cout << " NPC";
-	GoToXY(15, right_start_col + 1);
+	GoToXY(14, right_start_col + 1);
 		cout << "        ";
 		SetColorAndBackground(LIGHTCYAN); cout << " ";
 		SetColorAndBackground(); cout << " Save Point";
-	GoToXY(16, right_start_col + 1);
+	GoToXY(15, right_start_col + 1);
 		cout << "          ";
 		SetColorAndBackground(LIGHTRED); cout << " ";
 		SetColorAndBackground(); cout << " Enemy";
 	
 	
 	//Controls
-	GoToXY(21, right_start_col + 1); cout << CenterPhrase("Controls", side_width - 2);
-	GoToXY(22, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
-	GoToXY(23, right_start_col + 1); cout << CenterPhrase("Arrow Keys = Move", side_width - 2);
-	GoToXY(24, right_start_col + 1); cout << CenterPhrase("Z = Interact", side_width - 2);
-	GoToXY(25, right_start_col + 1); cout << CenterPhrase("X = Back", side_width - 2);
+	GoToXY(20, right_start_col + 1); cout << CenterPhrase("Controls", side_width - 2);
+	GoToXY(21, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
+	GoToXY(22, right_start_col + 1); cout << CenterPhrase("Arrow Keys = Move", side_width - 2);
+	GoToXY(23, right_start_col + 1); cout << CenterPhrase("Z = Interact", side_width - 2);
+	GoToXY(24, right_start_col + 1); cout << CenterPhrase("X = Back", side_width - 2);
+	GoToXY(25, right_start_col + 1); cout << CenterPhrase("P = Pause / Inventory", side_width - 2);
 }
 
 void MapMain::DrawCombatScreen()
