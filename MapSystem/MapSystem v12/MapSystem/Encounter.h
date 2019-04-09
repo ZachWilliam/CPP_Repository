@@ -74,7 +74,7 @@ public:
 	bool ChooseTarget = false;
 	bool Flee = false;
 	bool Report = false;
-	bool Victory = false;
+	int Victory = 0;
 	int TotalXP = 0;
 	enum BattleStats { ATTACK = 0, DEFENSE, MAGIC, RESISTANCE, SPEED, HIT, AVOID, CRIT };
 
@@ -399,7 +399,7 @@ public:
             }
         }
         Battling = false;
-        Victory = true;
+        Victory = 1;
         for (int i = Order.size() - 1; i >= 0; i--)
         {
             if (!Order[i].combatantValue.PlayerControl)
@@ -407,7 +407,7 @@ public:
                 Battling = true;
             }
         }
-		if (!Battling && Victory)
+		if (!Battling && Victory == 1)
 		{
 			PlaySound("Sound/fanfare_theme.wav", NULL, SND_FILENAME | SND_ASYNC);
 			gotoxy(0, 30);
@@ -479,7 +479,7 @@ public:
         if (Battling)
         {
             Battling = false;
-            Victory = false;
+            Victory = 0;
             for (int i = Order.size() - 1; i >= 0; i--)
             {
                 if (Order[i].combatantValue.PlayerControl)
@@ -493,7 +493,7 @@ public:
         }
         if (!Battling)
         {
-            if (Victory)
+            if (Victory == 1)
             {
                 for (size_t i = 0; i < PlayerParty.Container.size(); i++)
                 {
@@ -952,6 +952,7 @@ public:
                     else if (Selection == 2 && TopMenu)
                     {
                         TopMenu = false;
+						Victory = 2;
                         Flee = true;
                         Selection = 0;
                     }
