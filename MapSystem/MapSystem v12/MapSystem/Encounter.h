@@ -343,7 +343,7 @@ public:
 
         Damage = 1;
         Damage += User.BattleStats[0];
-        if (User.AI == 0)
+        if (User.AI == 0 || User.AI == 1 || User.AI == 2 || User.AI == 3)
         {
             while (true)
             {

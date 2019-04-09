@@ -236,7 +236,7 @@ public:
 		}
 		
 		BattleStats = CurrentStats.BattleStats(0);
-		Max_HP = 8 + Level * (CurrentStats.CONSTITUTION / 2);
+		Max_HP = 8 * Level + CurrentStats.CONSTITUTION * 2;
 		SetHP(Max_HP);
 		MaxHP = Max_HP;
 	}
