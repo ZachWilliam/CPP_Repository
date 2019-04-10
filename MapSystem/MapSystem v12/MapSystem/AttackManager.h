@@ -42,7 +42,7 @@ public:
         }
         if (self.m_Weapon_Type.m_Name == "wand")
         {
-            if (self.m_Prefix_Name == "bad" || self.m_Prefix_Name == "basic" || self.m_Prefix_Name == "legendarily bad")
+            if (self.m_Prefix_Name == "Bad" || self.m_Prefix_Name == "Basic" || self.m_Prefix_Name == "Legendarily bad")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][0];
                 if (self.SpellSlot > 1)
@@ -54,7 +54,7 @@ public:
                     RetVal[2] = SpellBook[self.m_DamageType.m_Enhancement][1];
                 }
             }
-            if (self.m_Prefix_Name == "good")
+            if (self.m_Prefix_Name == "Good")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][1];
                 if (self.SpellSlot > 1)
@@ -66,7 +66,7 @@ public:
                     RetVal[2] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 }
             }
-            if (self.m_Prefix_Name == "great")
+            if (self.m_Prefix_Name == "Great")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 if (self.SpellSlot > 1)
@@ -78,7 +78,7 @@ public:
                     RetVal[2] = SpellBook[self.m_DamageType.m_Enhancement][3];
                 }
             }
-            if (self.m_Prefix_Name == "legendary" || self.m_Prefix_Name == "Super Fantastic")
+            if (self.m_Prefix_Name == "Legendary" || self.m_Prefix_Name == "Super Fantastic")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 if (self.SpellSlot > 1)
@@ -93,7 +93,7 @@ public:
         }
         else if (self.m_Weapon_Type.m_Name == "scroll")
         {
-            if (self.m_Prefix_Name == "bad" || self.m_Prefix_Name == "basic" || self.m_Prefix_Name == "legendarily bad" || self.m_Prefix_Name == "good")
+            if (self.m_Prefix_Name == "Bad" || self.m_Prefix_Name == "Basic" || self.m_Prefix_Name == "Legendarily bad" || self.m_Prefix_Name == "Good")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][0];
                 if (self.SpellSlot > 1)
@@ -105,7 +105,7 @@ public:
                     RetVal[2] = SpellBook[self.m_DamageType.m_Enhancement][1];
                 }
             }
-            if (self.m_Prefix_Name == "great")
+            if (self.m_Prefix_Name == "Great")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][1];
                 if (self.SpellSlot > 1)
@@ -125,7 +125,7 @@ public:
                     RetVal[2] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 }
             }
-            if (self.m_Prefix_Name == "legendary" || self.m_Prefix_Name == "Super Fantastic")
+            if (self.m_Prefix_Name == "Legendary" || self.m_Prefix_Name == "Super Fantastic")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 if (self.SpellSlot > 1)
@@ -148,7 +148,7 @@ public:
         }
         else if (self.m_Weapon_Type.m_Name == "tome")
         {
-            if (self.m_Prefix_Name == "bad" || self.m_Prefix_Name == "basic" || self.m_Prefix_Name == "legendarily bad")
+            if (self.m_Prefix_Name == "Bad" || self.m_Prefix_Name == "Basic" || self.m_Prefix_Name == "Legendarily bad")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][0];
                 if (self.SpellSlot > 1)
@@ -160,7 +160,7 @@ public:
                     RetVal[2] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 }
             }
-            if (self.m_Prefix_Name == "good" || self.m_Prefix_Name == "great")
+            if (self.m_Prefix_Name == "Good" || self.m_Prefix_Name == "Great")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 if (self.SpellSlot > 1)
@@ -172,7 +172,7 @@ public:
                     RetVal[2] = SpellBook[self.m_DamageType.m_Enhancement][3];
                 }
             }
-            if (self.m_Prefix_Name == "legendary" || self.m_Prefix_Name == "Super Fantastic")
+            if (self.m_Prefix_Name == "Legendary" || self.m_Prefix_Name == "Super Fantastic")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 if (self.SpellSlot > 1)
@@ -187,7 +187,7 @@ public:
         }
         if (self.m_Weapon_Type.m_Name == "staff" && self.m_DamageType.m_Enhancement != 9)
         {
-            if (self.m_Prefix_Name != "legendary" && self.m_Prefix_Name != "Super Fantastic")
+            if (self.m_Prefix_Name != "Legendary" && self.m_Prefix_Name != "Super Fantastic")
             {
                 RetVal[1] = PhysMoves[6];
                 if (self.SpellSlot > 1)

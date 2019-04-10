@@ -110,6 +110,7 @@ public:
                 cout << "Wielding ";
                 Container[i].PlayerInventory.m_Weapon.DisplayName();
 				cout << endl;
+				cout << "Spell Slots: " << Container[i].PlayerInventory.m_Weapon.SpellSlot << endl;
 				cout << "Wearing ";
 				Container[i].PlayerInventory.m_Armor.DisplayName();
                 cout << endl;
