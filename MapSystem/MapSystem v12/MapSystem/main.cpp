@@ -104,19 +104,19 @@ int main()
 						TheGroup.DisplayParty();
 						PartyInventory Inventory(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
 						//Show party overview
-						Inventory.DisplayPartyInventory();
 						_getch();
 						PlaySound(NULL, NULL, 0);
 						system("cls");
 
 						//Generate Attacks
+						/*
 						for (size_t i = 0; i < TheGroup.Container.size(); i++)
 						{
 							if (TheGroup.Container[i].name != "NULL_NAME")
 							{
 								TheGroup.Container[i].GenerateAttacks();
 							}
-						}
+						}*/
 
 						
 

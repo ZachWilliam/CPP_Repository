@@ -26,7 +26,7 @@ WWWWb           TT                                          TT                  
 WWWWb            TT                    GGG                  TT                  bWWWW
 WWWWb            TT                   GGGGG                TT                   bWWWW
 WWWWb            TT                   GG?GG                 TT                  bWWWW
-WWWWb           TT                                         TT                   bWWWW
+WWWWb           tt                                         TT                   bWWWW
 WWWWb           TT                                          TT                  bWWWW
 WWWWb           TT          TT                             TT                   bWWWW
 WWWWb           TT          TT                              TT                  bWWWW

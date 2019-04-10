@@ -57,6 +57,7 @@ public:
 		AllClasses[1].LUK_G = 50;
         AllClasses[1].RStat = 2;
         AllClasses[1].StarterWeapon.SetWeapon(9, 2, 1);
+		AllClasses[1].StarterWeapon.SpellSlot = 1;
         AllClasses[1].AbilityDesc = "Ability - Spellweaver: Gives +2 Damage to Wands.";
         AllClasses[2] = PlayerClass("Archer", NonClass, Archer);
         AllClasses[2].Desc1 = "A dexterous class that specializes in ranged combat.";
@@ -183,6 +184,7 @@ public:
 		AllClasses[7].LUK_G = 50;
         AllClasses[7].RStat = 2;
         AllClasses[7].StarterWeapon.SetWeapon(10, 2, 1);
+		AllClasses[7].StarterWeapon.SpellSlot = 1;
         AllClasses[7].AbilityDesc = "Ability - Avid Reader: Gives +2 Damage to Tomes.";
         AllClasses[8] = PlayerClass("Clergy", NonClass, Clergy);
         AllClasses[8].Desc1 = "A dedicated healing class, capable of wielding staves";
@@ -203,7 +205,8 @@ public:
 		AllClasses[8].WIS_G = 75;
 		AllClasses[8].LUK_G = 50;
         AllClasses[8].RStat = 3;
-        AllClasses[8].StarterWeapon.SetWeapon(12, 2, 10);
+        AllClasses[8].StarterWeapon.SetWeapon(12, 2, 9);
+		AllClasses[8].StarterWeapon.SpellSlot = 1;
         AllClasses[8].AbilityDesc = "Ability - Serene Grace: Gives +2 Healing to Staves.";
 		// PROMOTION ---------------------------------------------------------------------------------
         // PROMOTION ---------------------------------------------------------------------------------

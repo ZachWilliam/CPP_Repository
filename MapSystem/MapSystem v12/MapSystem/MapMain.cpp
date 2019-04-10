@@ -24,7 +24,7 @@ int MapMain::main() {
 void MapMain::Setup(int p_mapID, int p_row, int p_col) {
 	bool mapFound = false;
 
-	RandomSpawn.GenerateRegions(database_monsters);
+	RandomSpawn.GenerateRegions(database_monsters, 1);
 
 	for (int i = 0; i < mapManager.mapList.size(); i++)
 	{
@@ -460,7 +460,7 @@ void MapMain::DoInteraction() {
 				PlayBattleTransEffect();
 				PlaySound("Sound/battle_theme.wav", NULL, SND_LOOP | SND_ASYNC);
 			}
-
+			int temp = TheGroup.Leader.Level;
 			bool inBattle = true;
 			Encounter FirstBattle(4, database_monsters.GetMonster(-1), database_monsters.GetMonster(2), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
 			if (curMap.mapID == 5)
@@ -480,6 +480,17 @@ void MapMain::DoInteraction() {
 			}
 			// FirstBattle = EncounterManager::GetEncounter(int)
 			FirstBattle.GenerateEncounter(TheGroup);
+			for (size_t i = 0; i < 3; i++)
+			{
+				if (!FirstBattle.FrontRow[i].NullEnemy)
+				{
+					database_monsters.UpdateMonster(FirstBattle.FrontRow[i].EnemyID);
+				}
+				if (!FirstBattle.BackRow[i].NullEnemy)
+				{
+					database_monsters.UpdateMonster(FirstBattle.BackRow[i].EnemyID);
+				}
+			}
 			while (inBattle) {
 				DrawCombatScreen();
 				TheGroup = FirstBattle.TakeTurn();
@@ -491,6 +502,14 @@ void MapMain::DoInteraction() {
 			isVictorious = FirstBattle.Victory;
 			if (isVictorious == LOSE) GManager.gameState = GManager.GAME_OVER;
 			if (isVictorious == WIN && curMap.mapID == 8) GManager.gameState = GManager.GAME_WON;
+			else if (isVictorious == WIN)
+			{
+				while (temp < TheGroup.Leader.Level)
+				{
+					temp++;
+					RandomSpawn.GenerateRegions(database_monsters, temp);
+				}
+			}
 			FadeToBlack();
 			ClearBottom();
 			ClearRight();
@@ -620,6 +639,7 @@ void MapMain::CheckForBattle() {
 		PlayBattleTransEffect();
 		PlaySound("Sound/battle_theme.wav", NULL, SND_LOOP | SND_ASYNC);
 		bool inBattle = true;
+		int temp = TheGroup.Leader.Level;
 		Encounter FirstBattle(1, database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
 		FirstBattle = RandomSpawn.GenerateEncounter(TheGroup.Leader.Level);
 		for (size_t i = 0; i < TheGroup.Container.size(); i++)
@@ -631,6 +651,17 @@ void MapMain::CheckForBattle() {
 		}
 		// FirstBattle = EncounterManager::GetEncounter(int)
 		FirstBattle.GenerateEncounter(TheGroup);
+		for (size_t i = 0; i < 3; i++)
+		{
+			if (!FirstBattle.FrontRow[i].NullEnemy)
+			{
+				database_monsters.UpdateMonster(FirstBattle.FrontRow[i].EnemyID);
+			}
+			if (!FirstBattle.BackRow[i].NullEnemy)
+			{
+				database_monsters.UpdateMonster(FirstBattle.BackRow[i].EnemyID);
+			}
+		}
 		while (inBattle) {
 			DrawCombatScreen();
 			TheGroup = FirstBattle.TakeTurn();
@@ -644,6 +675,11 @@ void MapMain::CheckForBattle() {
 			GManager.gameState = GManager.GAME_OVER;
 		}
 		else if(isVictorious == WIN) {
+			while (temp < TheGroup.Leader.Level)
+			{
+				temp++;
+				RandomSpawn.GenerateRegions(database_monsters, temp);
+			}
 			string tempText = "";
 			int temp = rand() % 101;
 			if (temp > 40 && temp < 70)
@@ -829,4 +865,16 @@ void MapMain::DrawCombatScreen()
 	cout << "       |                 |                 |                 |       ";
 	gotoxy(1, 26);
 	cout << "-------I-----------------I-----------------I-----------------I-------";
+}
+
+void MapMain::SaveStringToFile(string p_saveString)
+{
+	ofstream myfile("save.txt");
+	if (myfile.is_open())
+	{
+		myfile << p_saveString;
+		myfile.close();
+		cout << "Save Successful" << endl;
+	}
+	else cout << "Unable to open file";
 }
