@@ -87,6 +87,7 @@ public:
 
 	void DrawScreen();
 	void DrawRight();
+	void DrawAll();
 	void DrawCombatScreen();
 
 	void SaveStringToFile(string p_saveString);

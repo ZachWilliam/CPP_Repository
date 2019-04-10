@@ -212,12 +212,15 @@ void MapMain::Logic() {
 void MapMain::PauseMenu() {
 
 	SetColorAndBackground();
-	GoToXY(GManager.BOT_START_ROW, 0);
+	bool closeMenu = false;
 
 	char again = 'y';
-	while ((again != 'n') && (again != 'p'))
+	while ((again != 'n') && (again != 'p') && (closeMenu == false))
 	{
-		ClearBottom();
+		//ClearBottom();
+		system("cls");
+		DrawAll();
+		GoToXY(GManager.BOT_START_ROW, 0);
 		int choice = 0;
 		string wordChoice;
 
@@ -241,11 +244,15 @@ void MapMain::PauseMenu() {
 		switch (choice)
 		{
 		case 1:
-			ClearBottom();
+			system("cls");
+			DrawAll();
+			GoToXY(GManager.BOT_START_ROW, 0);
 			Inventory.DisplayPartyInventory();
 			break;
 		case 2:
-			ClearBottom();
+			system("cls");
+			DrawAll();
+			GoToXY(GManager.BOT_START_ROW, 0);
 			TheGroup.DisplayParty();
 			/*cout << "1. " << TheGroup.Container[1].name << endl;
 			TheGroup.Container[1].PlayerInventory.EquipedWeapon();
@@ -261,7 +268,9 @@ void MapMain::PauseMenu() {
 			cout << endl;*/
 			break;
 		case 3:
-			ClearBottom();
+			system("cls");
+			DrawAll();
+			GoToXY(GManager.BOT_START_ROW, 0);
 
 			cout << "1. " << TheGroup.Container[1].name << endl;
 			TheGroup.Container[1].PlayerInventory.EquipedWeapon();
@@ -276,7 +285,9 @@ void MapMain::PauseMenu() {
 			Inventory.SwapEquipedWeapon(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
 			break;
 		case 4:
-			ClearBottom();
+			system("cls");
+			DrawAll();
+			GoToXY(GManager.BOT_START_ROW, 0);
 
 			cout << "1. " << TheGroup.Container[1].name << endl;
 			TheGroup.Container[1].PlayerInventory.EquipedArmor();
@@ -291,18 +302,24 @@ void MapMain::PauseMenu() {
 			Inventory.SwapEquipedArmor(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
 			break;
 		case 5:
-			ClearBottom();
+			system("cls");
+			DrawAll();
+			GoToXY(GManager.BOT_START_ROW, 0);
 			database_monsters.DisplayBeastiary();
 			break;
 		default:
+			closeMenu = true;
 			break;
 		}
-		cout << "More? (y/n): ";
-		cin >> again;
+		if (closeMenu != true) {
+			cout << "More? (y/n): ";
+			cin >> again;
+		}
 	};
 
-	ClearBottom();
-
+	system("cls");
+	DrawAll();
+	closeMenu = false;
 }
 
 void MapMain::DoInteraction() {
@@ -865,6 +882,12 @@ void MapMain::DrawCombatScreen()
 	cout << "       |                 |                 |                 |       ";
 	gotoxy(1, 26);
 	cout << "-------I-----------------I-----------------I-----------------I-------";
+}
+
+void MapMain::DrawAll() {
+	DrawGUI();
+	DrawScreen();
+	DrawRight();
 }
 
 void MapMain::SaveStringToFile(string p_saveString)
