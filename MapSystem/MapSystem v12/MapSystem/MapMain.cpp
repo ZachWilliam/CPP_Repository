@@ -486,7 +486,7 @@ void MapMain::DoInteraction() {
 			}
 			if (curMap.mapID == 8)
 			{
-				FirstBattle = Encounter(4, database_monsters.GetMonster(-1), database_monsters.GetMonster(74), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
+				FirstBattle = Encounter(1, database_monsters.GetMonster(-1), database_monsters.GetMonster(75), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
 			}
 			for (size_t i = 0; i < TheGroup.Container.size(); i++)
 			{
@@ -496,7 +496,7 @@ void MapMain::DoInteraction() {
 				}
 			}
 			// FirstBattle = EncounterManager::GetEncounter(int)
-			FirstBattle.GenerateEncounter(TheGroup);
+			FirstBattle.GenerateEncounter(TheGroup,Inventory);
 			for (size_t i = 0; i < 3; i++)
 			{
 				if (!FirstBattle.FrontRow[i].NullEnemy)
@@ -667,7 +667,7 @@ void MapMain::CheckForBattle() {
 			}
 		}
 		// FirstBattle = EncounterManager::GetEncounter(int)
-		FirstBattle.GenerateEncounter(TheGroup);
+		FirstBattle.GenerateEncounter(TheGroup,Inventory);
 		for (size_t i = 0; i < 3; i++)
 		{
 			if (!FirstBattle.FrontRow[i].NullEnemy)

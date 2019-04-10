@@ -10,6 +10,7 @@
 #include "Attack.h"
 #include "AttackManager.h"
 #include "Transitions.h"
+#include "Backpack.h"
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -52,6 +53,7 @@ public:
 	//void DoHeal(Combatant, Combatant&);
 	vector<Monster> AllEnemies = {};
 	Party PlayerParty;
+	PartyInventory Inventory;
 	vector<Enemy> FrontRow = { Enemy(-1), Enemy(-1), Enemy(-1) };
 	vector<Enemy> BackRow = { Enemy(-1), Enemy(-1), Enemy(-1) };
 	vector<MyStruct> Order;
@@ -92,9 +94,10 @@ public:
 		AllEnemies.push_back(BR_E);
 
     }
-    void GenerateEncounter(Party& Players)
+    void GenerateEncounter(Party& Players, PartyInventory &Inv)
     {
         PlayerParty = Players;
+		Inventory = Inv;
         CalculateInitiative();
 		FrontRow = { Enemy(AllEnemies[0],Level), Enemy(AllEnemies[1],Level), Enemy(AllEnemies[2],Level) };
 		BackRow = { Enemy(AllEnemies[3],Level), Enemy(AllEnemies[4],Level), Enemy(AllEnemies[5],Level) };
@@ -355,7 +358,9 @@ public:
 				if (temp < User.CurrentStats.LUCK)
 				{
 					Damage = Damage * 2;
+					SetColorAndBackground(0, 14);
 					cout << "Critical hit!" << endl;
+					SetColorAndBackground(0, 15);
 				}
 				Target.CurrentHP -= Damage;
 				Target.CurrentHP = _Max_value(0, Target.CurrentHP);
@@ -458,7 +463,9 @@ public:
 						if (temp < User.CurrentStats.LUCK)
 						{
 							Damage = Damage * 2;
+							SetColorAndBackground(0, 14);
 							cout << "Critical hit!" << endl;
+							SetColorAndBackground(0, 15);
 						}
                         cout << PlayerParty.Container[dir].name << " takes " << Damage << " damage!" << endl;
                         PlayerParty.Container[dir].CurrentHP -= Damage;
@@ -681,13 +688,34 @@ public:
 					cout << "                                                                                        " << endl;
 					gotoxy(0, 30);
 					cout << self.name << " the " << self.Job.name << ":" << endl;
-					cout << self.CurrentStats.STRENGTH << " (+" << Selection[choice].STR_BASE << ")" << endl;
-					cout << self.CurrentStats.DEXTERITY << " (+" << Selection[choice].DEX_BASE << ")" << endl;
-					cout << self.CurrentStats.CONSTITUTION << " (+" << Selection[choice].CON_BASE << ")" << endl;
-					cout << self.CurrentStats.AGILITY << " (+" << Selection[choice].AGI_BASE << ")" << endl;
-					cout << self.CurrentStats.INTELLIGENCE << " (+" << Selection[choice].INT_BASE << ")" << endl;
-					cout << self.CurrentStats.WISDOM << " (+" << Selection[choice].WIS_BASE << ")" << endl;
-					cout << self.CurrentStats.LUCK << " (+" << Selection[choice].LUK_BASE << ")" << endl;
+					cout << "Strength ----------------------------------------------------------------- " << self.CurrentStats.STRENGTH;
+					SetColorAndBackground(0, 3);
+					cout << " (+" << Selection[choice].STR_BASE << ")" << endl;
+					SetColorAndBackground(0, 15);
+					cout << "Dexterity ---------------------------------------------------------------- " << self.CurrentStats.DEXTERITY;
+					SetColorAndBackground(0, 3);
+					cout << " (+" << Selection[choice].DEX_BASE << ")" << endl;
+					SetColorAndBackground(0, 15);
+					cout << "Constitution ------------------------------------------------------------- " << self.CurrentStats.CONSTITUTION;
+					SetColorAndBackground(0, 3);
+					cout << " (+" << Selection[choice].CON_BASE << ")" << endl;
+					SetColorAndBackground(0, 15);
+					cout << "Agility ------------------------------------------------------------------ " << self.CurrentStats.AGILITY;
+					SetColorAndBackground(0, 3);
+					cout << " (+" << Selection[choice].AGI_BASE << ")" << endl;
+					SetColorAndBackground(0, 15);
+					cout << "Intelligence ------------------------------------------------------------- " << self.CurrentStats.INTELLIGENCE;
+					SetColorAndBackground(0, 3);
+					cout << " (+" << Selection[choice].INT_BASE << ")" << endl;
+					SetColorAndBackground(0, 15);
+					cout << "Wisdom ------------------------------------------------------------------- " << self.CurrentStats.WISDOM;
+					SetColorAndBackground(0, 3);
+					cout << " (+" << Selection[choice].WIS_BASE << ")" << endl;
+					SetColorAndBackground(0, 15);
+					cout << "Luck --------------------------------------------------------------------- " << self.CurrentStats.LUCK;
+					SetColorAndBackground(0, 3);
+					cout << " (+" << Selection[choice].LUK_BASE << ")" << endl;
+					SetColorAndBackground(0, 15);
 					cout << endl;
 					cout << ".............................." << "Press [Z] to Continue" << ".............................." << endl;
 					gotoxy(72, 1);
@@ -705,6 +733,97 @@ public:
 				}
 			}
 		}
+	}
+	void PauseMenu() {
+
+		SetColorAndBackground();
+		GoToXY(GManager.BOT_START_ROW, 0);
+
+		char again = 'y';
+		while ((again != 'n') && (again != 'p'))
+		{
+			ClearBottom();
+			int choice = 0;
+			string wordChoice;
+
+			cout << "Make a selection:\n\n";
+			cout << "1.     Display Inventory\n";
+			cout << "2.     Display Party Stats\n";
+			cout << "3.     Swap Weapon\n";
+			cout << "4.     Swap Armor\n";
+			cout << "5.     Display Beastiary\n";
+			cout << "6.     Exit\n";
+			cout << "Choice: ";
+			cin >> wordChoice;
+			choice = wordChoice[0] - 48;
+
+			while ((choice <= 0) || (choice > 6))
+			{
+				cout << "Invalid selection. Reselect:\n";
+				cin >> wordChoice;
+				choice = wordChoice[0] - 48;
+			};
+			switch (choice)
+			{
+			case 1:
+				ClearBottom();
+				Inventory.DisplayPartyInventory();
+				break;
+			case 2:
+				ClearBottom();
+				PlayerParty.DisplayParty();
+				/*cout << "1. " << TheGroup.Container[1].name << endl;
+				TheGroup.Container[1].PlayerInventory.EquipedWeapon();
+				TheGroup.Container[1].PlayerInventory.EquipedArmor();
+				cout << endl;
+				cout << "2. " << TheGroup.Container[3].name << endl;
+				TheGroup.Container[3].PlayerInventory.EquipedWeapon();
+				TheGroup.Container[3].PlayerInventory.EquipedArmor();
+				cout << endl;
+				cout << "3. " << TheGroup.Container[5].name << endl;
+				TheGroup.Container[5].PlayerInventory.EquipedWeapon();
+				TheGroup.Container[5].PlayerInventory.EquipedArmor();
+				cout << endl;*/
+				break;
+			case 3:
+				ClearBottom();
+
+				cout << "1. " << PlayerParty.Container[1].name << endl;
+				PlayerParty.Container[1].PlayerInventory.EquipedWeapon();
+				cout << endl;
+				cout << "2. " << PlayerParty.Container[3].name << endl;
+				PlayerParty.Container[3].PlayerInventory.EquipedWeapon();
+				cout << endl;
+				cout << "3. " << PlayerParty.Container[5].name << endl;
+				PlayerParty.Container[5].PlayerInventory.EquipedWeapon();
+				cout << endl;
+
+				Inventory.SwapEquipedWeapon(PlayerParty.Container[1].PlayerInventory, PlayerParty.Container[3].PlayerInventory, PlayerParty.Container[5].PlayerInventory);
+				break;
+			case 4:
+				ClearBottom();
+
+				cout << "1. " << PlayerParty.Container[1].name << endl;
+				PlayerParty.Container[1].PlayerInventory.EquipedArmor();
+				cout << endl;
+				cout << "2. " << PlayerParty.Container[3].name << endl;
+				PlayerParty.Container[3].PlayerInventory.EquipedArmor();
+				cout << endl;
+				cout << "3. " << PlayerParty.Container[5].name << endl;
+				PlayerParty.Container[5].PlayerInventory.EquipedArmor();
+				cout << endl;
+
+				Inventory.SwapEquipedArmor(PlayerParty.Container[1].PlayerInventory, PlayerParty.Container[3].PlayerInventory, PlayerParty.Container[5].PlayerInventory);
+				break;
+			default:
+				break;
+			}
+			cout << "More? (y/n): ";
+			cin >> again;
+		};
+
+		ClearBottom();
+
 	}
     Party TakeTurn()
     {
@@ -1000,7 +1119,7 @@ public:
                         }
                         if (i == 1)
                         {
-                            cout << "           Item           ";
+                            cout << "         Inventory        ";
                         }
                         if (i == 2)
                         {
@@ -1042,7 +1161,10 @@ public:
                 }
                 else if (ItmMenu)
                 {
-                    cout << "Used an item!                                                      ";
+					PauseMenu();
+					ItmMenu = false;
+					TopMenu = true;
+					continue;
                 }
                 else if (Flee)
                 {
