@@ -89,7 +89,7 @@ public:
 	void DrawRight();
 	void DrawCombatScreen();
 
-	void WriteToFile(string p_saveString);
+	void SaveStringToFile(string p_saveString);
 };
 
 #endif

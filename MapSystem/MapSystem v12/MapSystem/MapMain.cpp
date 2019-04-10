@@ -862,7 +862,7 @@ void MapMain::DrawCombatScreen()
 	cout << "-------I-----------------I-----------------I-----------------I-------";
 }
 
-void MapMain::WriteToFile(string p_saveString)
+void MapMain::SaveStringToFile(string p_saveString)
 {
 	ofstream myfile("save.txt");
 	if (myfile.is_open())
