@@ -109,13 +109,14 @@ int main()
 						system("cls");
 
 						//Generate Attacks
+						/*
 						for (size_t i = 0; i < TheGroup.Container.size(); i++)
 						{
 							if (TheGroup.Container[i].name != "NULL_NAME")
 							{
 								TheGroup.Container[i].GenerateAttacks();
 							}
-						}
+						}*/
 
 						
 

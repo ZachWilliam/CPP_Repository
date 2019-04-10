@@ -355,7 +355,7 @@ public:
 				if (temp < User.CurrentStats.LUCK)
 				{
 					Damage = Damage * 2;
-					cout << "Critical hit!";
+					cout << "Critical hit!" << endl;
 				}
 				Target.CurrentHP -= Damage;
 				Target.CurrentHP = _Max_value(0, Target.CurrentHP);
@@ -458,7 +458,7 @@ public:
 						if (temp < User.CurrentStats.LUCK)
 						{
 							Damage = Damage * 2;
-							cout << "Critical hit!";
+							cout << "Critical hit!" << endl;
 						}
                         cout << PlayerParty.Container[dir].name << " takes " << Damage << " damage!" << endl;
                         PlayerParty.Container[dir].CurrentHP -= Damage;

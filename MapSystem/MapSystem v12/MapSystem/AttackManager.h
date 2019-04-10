@@ -343,6 +343,9 @@ public:
         SpellBook[8][5].effect = 3;
         SpellBook[8][6].effect = 7;
         SpellBook[8][7].effect = 7;
+		SpellBook.push_back({ Attack("Heal", 100, 7),
+							  Attack("Cure Ailment", 100, 7),
+							  Attack("Heal More", 100, 8) });
     }
 	vector<Attack> PhysMoves;
 	vector<vector<Attack>> SpellBook;

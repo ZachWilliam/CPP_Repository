@@ -205,7 +205,8 @@ public:
 		AllClasses[8].WIS_G = 75;
 		AllClasses[8].LUK_G = 50;
         AllClasses[8].RStat = 3;
-        AllClasses[8].StarterWeapon.SetWeapon(12, 2, 10);
+        AllClasses[8].StarterWeapon.SetWeapon(12, 2, 9);
+		AllClasses[8].StarterWeapon.SpellSlot = 1;
         AllClasses[8].AbilityDesc = "Ability - Serene Grace: Gives +2 Healing to Staves.";
 		// PROMOTION ---------------------------------------------------------------------------------
         // PROMOTION ---------------------------------------------------------------------------------
