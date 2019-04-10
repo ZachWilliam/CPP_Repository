@@ -902,7 +902,6 @@ void MapMain::SaveStringToFile(string p_saveString)
 	}
 	else cout << "Unable to open file";
 }
-}
 
 
 
