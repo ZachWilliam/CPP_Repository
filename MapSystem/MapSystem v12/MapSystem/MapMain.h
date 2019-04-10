@@ -53,6 +53,7 @@ public:
 	bool openInventory = false;
 
 	//Battle Info
+	enum eVictorious {LOSE,WIN,FLEE};
 	const int CHECK_EVERY_STEPS = 4;
 	const int MIN_ENCOUNTER_CHANCE = 2;
 	const int MAX_ENCOUNTER_CHANCE = 12;

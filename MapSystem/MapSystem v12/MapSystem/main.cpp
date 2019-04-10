@@ -56,12 +56,14 @@ int main()
 	const int MENU_SIZE = 4;
 	int menuLocation = 0;
 	bool isQuitting = false;
+	bool animateTitle = true;
 
-
-	DrawTitle(true);
+	PlaySound("Sound/title_screen.wav", NULL, SND_LOOP | SND_ASYNC);
+	DrawTitle(animateTitle);
+	animateTitle = false;
 
 	while (!isQuitting) {
-		DrawTitle();
+		DrawTitle(animateTitle);
 		DrawMenu(menuLocation);
 		switch (_getch()) {
 			case 72: {//UP
@@ -78,10 +80,19 @@ int main()
 				switch (menuLocation) {
 					case CONTINUE: { //Continue
 						menuLocation = CONTINUE;
+
+						//Load stuff
+						//load maps based on id.
+						//change maps chests based on whether the is open is true
+						//get rid of enmies based on teh same thing
+						//Remove parts of teh walls in town based on where you are in quest. Will have to assume if quest is finished that the player opened the gate or opposite, prolly opposite
+							//no real way to be able to tell if they completeed the quest but didnt actually open the gate/bridge
+
 						break;
 					}
 					case NEW_GAME: { // New Gane
 						menuLocation = CONTINUE;
+						SetColorAndBackground();
 						//Create character
 						bool inBattle = false;
 						Player PC = Player();
@@ -95,6 +106,7 @@ int main()
 						//Show party overview
 						Inventory.DisplayPartyInventory();
 						_getch();
+						PlaySound(NULL, NULL, 0);
 						system("cls");
 
 						//Generate Attacks
@@ -106,7 +118,7 @@ int main()
 							}
 						}
 
-						SetColorAndBackground();
+						
 
 						//Create and start game loop
 						GManager.gameState = GManager.PLAY;
@@ -118,6 +130,12 @@ int main()
 
 						//Play either game over or the game ending
 						EndGame endGame(dialogue);
+
+						//PlaySound(NULL, NULL, 0);
+						system("cls");
+
+						PlaySound("Sound/title_screen.wav", NULL, SND_LOOP | SND_ASYNC);
+						animateTitle = true;
 						break;
 					}
 					case CREDITS: { // Credits
@@ -144,31 +162,31 @@ void DrawTitle(bool p_animate) {
 
 	GoToXY(0, 0);
 	string title = R"(
-                  ____     ________   ________     ____       ____    __   ___       
-                 (    )   (___  ___) (___  ___)   (    )     / ___)  () ) / __)      
-                 / /\ \       ) )        ) )      / /\ \    / /      ( (_/ /         
-                ( (__) )     ( (        ( (      ( (__) )  ( (       ()   (          
-                 )    (       ) )        ) )      )    (   ( (       () /\ \         
-                /  /\  \     ( (        ( (      /  /\  \   \ \___   ( (  \ \        
-               /__(  )__\    /__\       /__\    /__(  )__\   \____)  ()_)  \_\       
-                                                                                     
-                                    ____        __      _                            
-                                   / __ \      /  \    / )                           
-                                  / /  \ \    / /\ \  / /                            
-                                 ( ()  () )   ) ) ) ) ) )                            
-                                 ( ()  () )  ( ( ( ( ( (                             
-                                  \ \__/ /   / /  \ \/ /                             
-                                   \____/   (_/    \__/                              
-                                                                                     
-        __   ___   ______       ____       ____    __   ___    _____      __      _  
-       () ) / __) (   __ \     (    )     / ___)  () ) / __)  / ___/     /  \    / ) 
-       ( (_/ /     ) (__) )    / /\ \    / /      ( (_/ /    ( (__      / /\ \  / /  
-       ()   (     (    __/    ( (__) )  ( (       ()   (      ) __)     ) ) ) ) ) )  
-       () /\ \     ) \ \  _    )    (   ( (       () /\ \    ( (       ( ( ( ( ( (   
-       ( (  \ \   ( ( \ \_))  /  /\  \   \ \___   ( (  \ \    \ \___   / /  \ \/ /   
-       ()_)  \_\   )_) \__/  /__(  )__\   \____)  ()_)  \_\    \____\ (_/    \__/    
-                                                                                  
-                       <~~~~~Press "Z" On One Of The Following~~~~~>
+                   ____     ________   ________     ____       ____    __   ___       
+                  (    )   (___  ___) (___  ___)   (    )     / ___)  () ) / __)      
+                  / /\ \       ) )        ) )      / /\ \    / /      ( (_/ /         
+                 ( (__) )     ( (        ( (      ( (__) )  ( (       ()   (          
+                  )    (       ) )        ) )      )    (   ( (       () /\ \         
+                 /  /\  \     ( (        ( (      /  /\  \   \ \___   ( (  \ \        
+                /__(  )__\    /__\       /__\    /__(  )__\   \____)  ()_)  \_\       
+                                                                                      
+                                     ____        __      _                            
+                                    / __ \      /  \    / )                           
+                                   / /  \ \    / /\ \  / /                            
+                                  ( ()  () )   ) ) ) ) ) )                            
+                                  ( ()  () )  ( ( ( ( ( (                             
+                                   \ \__/ /   / /  \ \/ /                             
+                                    \____/   (_/    \__/                              
+                                                                                      
+         __   ___   ______       ____       ____    __   ___    _____      __      _  
+        () ) / __) (   __ \     (    )     / ___)  () ) / __)  / ___/     /  \    / ) 
+        ( (_/ /     ) (__) )    / /\ \    / /      ( (_/ /    ( (__      / /\ \  / /  
+        ()   (     (    __/    ( (__) )  ( (       ()   (      ) __)     ) ) ) ) ) )  
+        () /\ \     ) \ \  _    )    (   ( (       () /\ \    ( (       ( ( ( ( ( (   
+        ( (  \ \   ( ( \ \_))  /  /\  \   \ \___   ( (  \ \    \ \___   / /  \ \/ /   
+        ()_)  \_\   )_) \__/  /__(  )__\   \____)  ()_)  \_\    \____\ (_/    \__/    
+                                                                                   
+                        <~~~~~Press "Z" On One Of The Following~~~~~>
 	)";
 
 	for (int i = 0; i < title.size(); i++)
@@ -183,41 +201,42 @@ void Credits() {
 	SetColorAndBackground(BLACK, LIGHTCYAN);
 
 	//Use center word here
-	cout << endl << "Created By VGDD Class of 2019" << endl;
+	cout << endl << CenterPhrase("Created By VGDD Class of 2019", 92) << endl;
 	cout << endl;
-	cout << R"(
-                                      +-+-+-+-+-+
-                                      |S|c|o|t|t|
-                                      +-+-+-+-+-+
+	cout << R"(  
+                                        +-+-+-+-+-+
+                                        |S|c|o|t|t|
+                                        +-+-+-+-+-+
+)" << endl
+<< R"(  
+                                         +-+-+-+-+
+                                         |Z|a|c|h|
+                                         +-+-+-+-+
+)" << endl
+<< R"(  
+                                    +-+-+-+-+-+-+-+-+-+
+                                    |S|e|b|a|s|t|i|a|n|s
+                                    +-+-+-+-+-+-+-+-+-+
+)" << endl
+<< R"(  
+                                       +-+-+-+-+-+-+
+                                       |C|u|r|t|i|s|
+                                       +-+-+-+-+-+-+
 )" << endl
 << R"(
-                                       +-+-+-+-+
-                                       |Z|a|c|h|
-                                       +-+-+-+-+
+                                         +-+-+-+-+
+                                         |N|i|c|k|
+                                         +-+-+-+-+
 )" << endl
 << R"(
-                                  +-+-+-+-+-+-+-+-+-+
-                                  |S|e|b|a|s|t|i|a|n|
-                                  +-+-+-+-+-+-+-+-+-+
-)" << endl
-<< R"(
-                                     +-+-+-+-+-+-+
-                                     |C|u|r|t|i|s|
-                                     +-+-+-+-+-+-+
-)" << endl
-<< R"(
-                                       +-+-+-+-+
-                                       |N|i|c|k|
-                                       +-+-+-+-+
-)" << endl
-<< R"(
-                                      +-+-+-+-+-+
-                                      |A|a|r|o|n|
-                                      +-+-+-+-+-+
+                                        +-+-+-+-+-+
+                                        |A|a|r|o|n|
+                                        +-+-+-+-+-+
 )" << endl;
-
+	cout << "\n" << CenterPhrase("Music and SFX from Final Fantasy 1 (NES), Zelda 1(NES) and Pokemon Red(GB)", 92) << endl;
+	cout << CenterPhrase("8 Bit Beach Wave by josepharaoh99 from www.freesound.org", 92) << endl;
 	//Use Centerword here
-	cout << "Press any key to continue..." << endl;
+	cout << "\n\n" << CenterPhrase("Press any key to continue...",92) << endl;
 	_getch();
 	system("cls");
 
@@ -227,12 +246,14 @@ void DrawMenu(int p_menuLocation) {
 	const int MENU_SIZE = 4;
 	const string MENU[MENU_SIZE] = { "Continue", "New Game", "Credits", "Quit" };
 
+	cout << "\n\n";
+
 	GoToXY(28, 0);
 	for (int i = 0; i < MENU_SIZE; i++)
 	{
 		if (i == p_menuLocation) SetColorAndBackground(BLACK, LIGHTCYAN);
 		else SetColorAndBackground(BLACK, CYAN);
 		//Use Center Word here
-		cout << MENU[i] << endl;
+		cout << CenterPhrase(MENU[i],92) << endl;
 	}
 }

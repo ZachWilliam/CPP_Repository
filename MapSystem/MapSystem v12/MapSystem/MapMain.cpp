@@ -484,19 +484,20 @@ void MapMain::DoInteraction() {
 				//system("cls");
 			}
 			isVictorious = FirstBattle.Victory;
-			if (isVictorious == 0) GManager.gameState = GManager.GAME_OVER;
-			if (isVictorious && curMap.mapID == 8) GManager.gameState = GManager.GAME_WON;
+			if (isVictorious == LOSE) GManager.gameState = GManager.GAME_OVER;
+			if (isVictorious == WIN && curMap.mapID == 8) GManager.gameState = GManager.GAME_WON;
 			FadeToBlack();
 			ClearBottom();
 			ClearRight();
 			DrawRight();
 			
+			if(isVictorious == FLEE || isVictorious == WIN && curMap.mapID != 8) SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		}
 		else {
 			PlayBattleTransEffect();
 			OutputSpeech("This is where the battle would take place, but we didn't find the targeted enemy.", "The Battle");
 		}
-		SoundManager::Instance().PlayMusic(curMap.mapMusic);
+		
 		//Update Map based on win/lose
 		if (isVictorious == 1) {
 			if (locInEnemyVec != -1) {
@@ -634,27 +635,31 @@ void MapMain::CheckForBattle() {
 			//system("cls");
 		}
 		isVictorious = FirstBattle.Victory;
-		if (isVictorious == 0) GManager.gameState = GManager.GAME_OVER;
+		if (isVictorious == LOSE) {
+			GManager.gameState = GManager.GAME_OVER;
+		}
+		else if(isVictorious == WIN) {
+			string tempText = "";
+			int temp = rand() % 101;
+			if (temp > 40 && temp < 70)
+			{
+				tempText = Inventory.AddWeapon(-1, -1, -1);
+			}
+			else if (temp > 70)
+			{
+				tempText = Inventory.AddArmor(-1, -1, -1);
+			}
+			if (tempText != "")
+			{
+				OutputSpeech(tempText, "Enemy Drops:");
+			}
+		}
 		FadeToBlack();
 		ClearBottom();
 		ClearRight();
 		DrawRight();
+		if(isVictorious != FLEE) SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		
-		SoundManager::Instance().PlayMusic(curMap.mapMusic);
-		string tempText = "";
-		int temp = rand() % 101;
-		if (temp > 40 && temp < 70)
-		{
-			tempText = Inventory.AddWeapon(-1, -1, -1);
-		}
-		else if (temp > 70)
-		{
-			tempText = Inventory.AddArmor(-1, -1, -1);
-		}
-		if (tempText != "")
-		{
-			OutputSpeech(tempText, "Enemy Drops:");
-		}
 	}
 	else {
 		//Make it more likely to get a encounter next battle check
