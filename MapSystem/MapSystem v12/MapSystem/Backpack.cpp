@@ -72,6 +72,7 @@ PartyInventory::PartyInventory(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3
 	EQUIPED_ARMOR3 = BP3ref.m_Armor;
 	INV_ARMOR.push_back(EQUIPED_ARMOR3);
 }
+PartyInventory::PartyInventory() {}
 
 void PartyInventory::AddWeaponsRandom()
 {

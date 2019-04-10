@@ -32,6 +32,7 @@ class PartyInventory
 {
 public:
 	PartyInventory(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref);
+	PartyInventory();
 	vector<Weapon> INV_WEAPON;
 	vector<Armor> INV_ARMOR;
 
