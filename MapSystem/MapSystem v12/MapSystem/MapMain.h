@@ -11,6 +11,7 @@
 #include "QuestManager.h"
 #include "GameManager.h"
 #include "Encounter.h"
+#include "EncounterManager.h"
 #include <vector>
 #include <conio.h>
 using namespace std;
@@ -42,6 +43,7 @@ public:
 	Database database_text;
 	Party TheGroup;
 	PartyInventory Inventory;
+	EncounterManager RandomSpawn;
 
 	//Player Info
 	enum eDirection { LEFT = -1, RIGHT = 1, UP = -1, DOWN = 1, NEUTRAL = 0 };
@@ -54,6 +56,7 @@ public:
 	bool openInventory = false;
 
 	//Battle Info
+	enum eVictorious {LOSE,WIN,FLEE};
 	const int CHECK_EVERY_STEPS = 4;
 	const int MIN_ENCOUNTER_CHANCE = 2;
 	const int MAX_ENCOUNTER_CHANCE = 12;
@@ -87,7 +90,10 @@ public:
 
 	void DrawScreen();
 	void DrawRight();
+	void DrawAll();
 	void DrawCombatScreen();
+
+	void SaveStringToFile(string p_saveString);
 };
 
 #endif

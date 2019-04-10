@@ -57,22 +57,22 @@ public:
         else if (PC.Job.name == "Archer")
         {
             AddToParty(Par.GetPartyMember(8), 3);
-            AddToParty(Par.GetPartyMember(3), 5);
+            AddToParty(Par.GetPartyMember(1), 5);
         }
         else if (PC.Job.name == "Lancer")
         {
             AddToParty(Par.GetPartyMember(8), 3);
-            AddToParty(Par.GetPartyMember(2), 5);
+            AddToParty(Par.GetPartyMember(7), 5);
         }
         else if (PC.Job.name == "Fighter")
         {
             AddToParty(Par.GetPartyMember(8), 3);
-            AddToParty(Par.GetPartyMember(5), 5);
+            AddToParty(Par.GetPartyMember(7), 5);
         }
         else if (PC.Job.name == "Brawler")
         {
             AddToParty(Par.GetPartyMember(8), 3);
-            AddToParty(Par.GetPartyMember(4), 5);
+            AddToParty(Par.GetPartyMember(1), 5);
         }
         else if (PC.Job.name == "Rogue")
         {
@@ -86,23 +86,25 @@ public:
         }
         else if (PC.Job.name == "Clergy")
         {
-            srand(static_cast<unsigned int>(time(0)));
-            int choice1 = rand() % 4;
-            int choice2 = rand() % 4 + 1;
-            AddToParty(Par.GetPartyMember(choice1), 3);
+            
+            int choice2 = rand() % 3 + 1;
+            AddToParty(Par.GetPartyMember(7), 3);
 
-            AddToParty(Par.GetPartyMember(choice1 + choice2), 5);
+            AddToParty(Par.GetPartyMember(choice2), 5);
         }
 
     }
     void DisplayParty()
     {
+		int counter = 1;
         for (size_t i = 0; i < Container.size(); i++)
         {
+			
             if (Container[i].name != "NULL_NAME")
             {
                 cout << endl;
-                cout << Container[i].name << ", the " << Container[i].Job.name << endl;
+                cout <<  counter << ": " << Container[i].name << ", the " << Container[i].Job.name << endl;
+				cout << "Level: " << Container[i].Level << " | EXP: " << Container[i].CurrentEXP << "/" << Container[i].OnTheLevel[Container[i].Level] << endl;
                 cout << "STR: " << Container[i].CurrentStats.STRENGTH << " | ";
                 cout << "DEX: " << Container[i].CurrentStats.DEXTERITY << " | ";
                 cout << "CON: " << Container[i].CurrentStats.CONSTITUTION << " | ";
@@ -112,7 +114,12 @@ public:
                 cout << "LUK: " << Container[i].CurrentStats.LUCK << " | " << endl;
                 cout << "Wielding ";
                 Container[i].PlayerInventory.m_Weapon.DisplayName();
+				cout << endl;
+				cout << "Spell Slots: " << Container[i].PlayerInventory.m_Weapon.SpellSlot << endl;
+				cout << "Wearing ";
+				Container[i].PlayerInventory.m_Armor.DisplayName();
                 cout << endl;
+				counter++;
             }
         }
     }

@@ -42,7 +42,7 @@ public:
         }
         if (self.m_Weapon_Type.m_Name == "wand")
         {
-            if (self.m_Prefix_Name == "bad" || self.m_Prefix_Name == "basic" || self.m_Prefix_Name == "legendarily bad")
+            if (self.m_Prefix_Name == "Bad" || self.m_Prefix_Name == "Basic" || self.m_Prefix_Name == "Legendarily bad")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][0];
                 if (self.SpellSlot > 1)
@@ -54,7 +54,7 @@ public:
                     RetVal[2] = SpellBook[self.m_DamageType.m_Enhancement][1];
                 }
             }
-            if (self.m_Prefix_Name == "good")
+            if (self.m_Prefix_Name == "Good")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][1];
                 if (self.SpellSlot > 1)
@@ -66,7 +66,7 @@ public:
                     RetVal[2] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 }
             }
-            if (self.m_Prefix_Name == "great")
+            if (self.m_Prefix_Name == "Great")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 if (self.SpellSlot > 1)
@@ -78,7 +78,7 @@ public:
                     RetVal[2] = SpellBook[self.m_DamageType.m_Enhancement][3];
                 }
             }
-            if (self.m_Prefix_Name == "legendary" || self.m_Prefix_Name == "Super Fantastic")
+            if (self.m_Prefix_Name == "Legendary" || self.m_Prefix_Name == "Super Fantastic")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 if (self.SpellSlot > 1)
@@ -93,7 +93,7 @@ public:
         }
         else if (self.m_Weapon_Type.m_Name == "scroll")
         {
-            if (self.m_Prefix_Name == "bad" || self.m_Prefix_Name == "basic" || self.m_Prefix_Name == "legendarily bad" || self.m_Prefix_Name == "good")
+            if (self.m_Prefix_Name == "Bad" || self.m_Prefix_Name == "Basic" || self.m_Prefix_Name == "Legendarily bad" || self.m_Prefix_Name == "Good")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][0];
                 if (self.SpellSlot > 1)
@@ -105,7 +105,7 @@ public:
                     RetVal[2] = SpellBook[self.m_DamageType.m_Enhancement][1];
                 }
             }
-            if (self.m_Prefix_Name == "great")
+            if (self.m_Prefix_Name == "Great")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][1];
                 if (self.SpellSlot > 1)
@@ -125,7 +125,7 @@ public:
                     RetVal[2] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 }
             }
-            if (self.m_Prefix_Name == "legendary" || self.m_Prefix_Name == "Super Fantastic")
+            if (self.m_Prefix_Name == "Legendary" || self.m_Prefix_Name == "Super Fantastic")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 if (self.SpellSlot > 1)
@@ -148,7 +148,7 @@ public:
         }
         else if (self.m_Weapon_Type.m_Name == "tome")
         {
-            if (self.m_Prefix_Name == "bad" || self.m_Prefix_Name == "basic" || self.m_Prefix_Name == "legendarily bad")
+            if (self.m_Prefix_Name == "Bad" || self.m_Prefix_Name == "Basic" || self.m_Prefix_Name == "Legendarily bad")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][0];
                 if (self.SpellSlot > 1)
@@ -160,7 +160,7 @@ public:
                     RetVal[2] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 }
             }
-            if (self.m_Prefix_Name == "good" || self.m_Prefix_Name == "great")
+            if (self.m_Prefix_Name == "Good" || self.m_Prefix_Name == "Great")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 if (self.SpellSlot > 1)
@@ -172,7 +172,7 @@ public:
                     RetVal[2] = SpellBook[self.m_DamageType.m_Enhancement][3];
                 }
             }
-            if (self.m_Prefix_Name == "legendary" || self.m_Prefix_Name == "Super Fantastic")
+            if (self.m_Prefix_Name == "Legendary" || self.m_Prefix_Name == "Super Fantastic")
             {
                 RetVal[0] = SpellBook[self.m_DamageType.m_Enhancement][2];
                 if (self.SpellSlot > 1)
@@ -187,7 +187,7 @@ public:
         }
         if (self.m_Weapon_Type.m_Name == "staff" && self.m_DamageType.m_Enhancement != 9)
         {
-            if (self.m_Prefix_Name != "legendary" && self.m_Prefix_Name != "Super Fantastic")
+            if (self.m_Prefix_Name != "Legendary" && self.m_Prefix_Name != "Super Fantastic")
             {
                 RetVal[1] = PhysMoves[6];
                 if (self.SpellSlot > 1)
@@ -243,7 +243,7 @@ public:
                              Attack("Rupture", 100, 2),
                              Attack("Collapse", 100, 2),
                              Attack("Panta Rei", 100, 2),
-                             Attack("Debilitate", 100, 2) });
+                             Attack("Debilitate", 0, 2) });
         SpellBook[0][5].effect = 8;
         SpellBook.push_back({ Attack("Fireball", 100, 2),
                              Attack("Firewall", 75, 4),
@@ -263,6 +263,11 @@ public:
                              Attack("Winterveil", 0, 7),
                              Attack("Cool Breeze", 100, 8),
                              Attack("Ice Palace", 100, 7) });
+		SpellBook[2][0].effect = 6;
+		SpellBook[2][1].effect = 6;
+		SpellBook[2][2].effect = 6;
+		SpellBook[2][3].effect = 6;
+		SpellBook[2][4].effect = 6;
         SpellBook[2][5].effect = 3;
         SpellBook[2][7].effect = 3;
         SpellBook.push_back({ Attack("Bubble", 100, 2),
@@ -291,42 +296,56 @@ public:
                              Attack("Tornado", 100, 2),
                              Attack("Hurricane", 100, 2),
                              Attack("Miasmaime", 100, 2),
-                             Attack("Stormguard", 100, 7),
-                             Attack("Storm Song", 100, 8),
+                             Attack("Stormguard", 0, 7),
+                             Attack("Storm Song", 0, 8),
                              Attack("Lunar Rondo", 100, 8) });
+		SpellBook[5][0].effect = 6;
+		SpellBook[5][1].effect = 6;
+		SpellBook[5][2].effect = 6;
+		SpellBook[5][3].effect = 6;
+		SpellBook[5][4].effect = 6;
         SpellBook[5][5].effect = 5;
         SpellBook[5][6].effect = 5;
         SpellBook[5][7].effect = 1;
         SpellBook.push_back({ Attack("Venom Sting", 100, 2),
-                             Attack("Vine Grip", 100, 2),
-                             Attack("Virus Wave", 100, 2),
-                             Attack("Earthquake", 100, 2),
-                             Attack("Blightstorm", 100, 2),
+                             Attack("Vine Grip", 150, 2),
+                             Attack("Virus Wave", 80, 4),
+                             Attack("Earthquake", 100, 6),
+                             Attack("Blightstorm", 150, 6),
                              Attack("Poison Cloud", 30, 6),
                              Attack("Healing Sap", 100, 7),
-                             Attack("Resonance", 100, 8) });
+                             Attack("Resonance", 50, 8) });
+		SpellBook[6][0].effect = 4;
+		SpellBook[6][2].effect = 4;
+		SpellBook[6][4].effect = 4;
         SpellBook[6][7].effect = 3;
-        SpellBook.push_back({ Attack("Life Drain", 100, 2),
-                             Attack("Decay Wave", 100, 2),
+        SpellBook.push_back({ Attack("Ruin", 100, 2),
+                             Attack("Decay Wave", 80, 4),
+                             Attack("Life Drain", 150, 2),
+                             Attack("Netherrend", 150, 4),
+                             Attack("Hel Vertigo", 150, 6),
                              Attack("Nosferatu", 100, 2),
-                             Attack("Netherrend", 100, 2),
-                             Attack("Hel Vertigo", 100, 2),
-                             Attack("Hex Vex", 100, 2),
-                             Attack("Nethergate", 100, 7),
+                             Attack("Nethergate", 0, 7),
                              Attack("Sacred Poetry", 100, 6) });
+		SpellBook[7][1].effect = 4;
+		SpellBook[7][2].effect = 9;
+		SpellBook[7][5].effect = 9;
         SpellBook[7][6].effect = 3;
-        SpellBook[7][7].effect = 9;
+        SpellBook[7][7].effect = 10;
         SpellBook.push_back({ Attack("Purge", 100, 2),
-                             Attack("Radiance", 100, 2),
-                             Attack("Smite", 100, 2),
-                             Attack("God's Hand", 100, 2),
-                             Attack("Edenbeam", 100, 2),
+                             Attack("Radiance", 80, 4),
+                             Attack("Smite", 150, 2),
+                             Attack("God's Hand", 200, 2),
+                             Attack("Edenbeam", 200, 6),
                              Attack("Purify", 100, 7),
                              Attack("Restore", 100, 7),
-                             Attack("Heavensend", 100, 8) });
+                             Attack("Heavensend", 200, 8) });
         SpellBook[8][5].effect = 3;
         SpellBook[8][6].effect = 7;
         SpellBook[8][7].effect = 7;
+		SpellBook.push_back({ Attack("Heal", 100, 7),
+							  Attack("Cure Ailment", 100, 7),
+							  Attack("Heal More", 100, 8) });
     }
 	vector<Attack> PhysMoves;
 	vector<vector<Attack>> SpellBook;

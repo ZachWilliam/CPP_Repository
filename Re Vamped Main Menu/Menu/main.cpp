@@ -146,17 +146,12 @@ void Menu()
 				{
 				case 0:						//Continue
 				{
-
 					system("cls");
 
 				}break;
 				case 1:						//New Game
 				{
 					system("cls");
-
-					
-					
-					
 
 				}break;
 				case 2:				//Credits

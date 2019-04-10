@@ -5,7 +5,8 @@ MapMain::MapMain(Database &p_database, Database &p_beastiary, Party &p_party, Pa
 	database_text(p_database),
 	database_monsters(p_beastiary),
 	TheGroup(p_party),
-	Inventory(p_inventory)
+	Inventory(p_inventory),
+	RandomSpawn()
 {}
 
 
@@ -23,6 +24,9 @@ int MapMain::main() {
 
 void MapMain::Setup(int p_mapID, int p_row, int p_col) {
 	bool mapFound = false;
+
+	RandomSpawn.GenerateRegions(database_monsters, 1);
+
 	for (int i = 0; i < mapManager.mapList.size(); i++)
 	{
 		if (mapManager.mapList[i].mapID == p_mapID) {
@@ -163,6 +167,7 @@ void MapMain::Logic() {
 
 	//Inventory
 	if (openInventory) {
+		openInventory = false;
 		PauseMenu();
 	}
 
@@ -208,48 +213,114 @@ void MapMain::Logic() {
 void MapMain::PauseMenu() {
 
 	SetColorAndBackground();
-	GoToXY(GManager.BOT_START_ROW, 0);
+	bool closeMenu = false;
 
-
-	int choice;
-	cout << "Make a selection:\n\n";
-	cout << "1.     Display Inventory\n";
-	cout << "2.     Swap Weapon\n";
-	cout << "3.     Swap Armor\n";
-	cout << "4.     Display Beastiary\n";
-	cout << "Choice: ";
-	cin >> choice;
-
-	if ((choice <= 0) || (choice > 4))
+	char again = 'y';
+	while ((again != 'n') && (again != 'p') && (closeMenu == false))
 	{
-		cout << "Invalid selection. Reselect:\n";
-		cin >> choice;
-	}
-	else
-	{
+		//ClearBottom();
+		system("cls");
+		DrawAll();
+		GoToXY(GManager.BOT_START_ROW, 0);
+		int choice = 0;
+		string wordChoice;
+
+		cout << "Make a selection:\n\n";
+		cout << "1.     Display Inventory\n";
+		cout << "2.     Display Party Stats\n";
+		cout << "3.     Swap Weapon\n";
+		cout << "4.     Swap Armor\n";
+		cout << "5.     Display Beastiary\n";
+		cout << "6.     Exit\n";
+		cout << "Choice: ";
+		cin >> wordChoice;
+		choice = wordChoice[0] - 48;
+
+		while ((choice <= 0) || (choice > 6))
+		{
+			cout << "Invalid selection. Reselect:\n";
+			cin >> wordChoice;
+			choice = wordChoice[0] - 48;
+		};
 		switch (choice)
 		{
 		case 1:
-			//cout << "Display Inventory\n";
+			system("cls");
+			DrawAll();
+			GoToXY(GManager.BOT_START_ROW, 0);
 			Inventory.DisplayPartyInventory();
 			break;
 		case 2:
-			//cout << "Swap Weapon\n";
-			Inventory.SwapEquipedWeapon(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
+			system("cls");
+			DrawAll();
+			GoToXY(GManager.BOT_START_ROW, 0);
+			TheGroup.DisplayParty();
+			/*cout << "1. " << TheGroup.Container[1].name << endl;
+			TheGroup.Container[1].PlayerInventory.EquipedWeapon();
+			TheGroup.Container[1].PlayerInventory.EquipedArmor();
+			cout << endl;
+			cout << "2. " << TheGroup.Container[3].name << endl;
+			TheGroup.Container[3].PlayerInventory.EquipedWeapon();
+			TheGroup.Container[3].PlayerInventory.EquipedArmor();
+			cout << endl;
+			cout << "3. " << TheGroup.Container[5].name << endl;
+			TheGroup.Container[5].PlayerInventory.EquipedWeapon();
+			TheGroup.Container[5].PlayerInventory.EquipedArmor();
+			cout << endl;*/
 			break;
 		case 3:
-			//cout << "Swap Armor\n";
-			Inventory.SwapEquipedArmor(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
+			system("cls");
+			DrawAll();
+			GoToXY(GManager.BOT_START_ROW, 0);
+
+			cout << "1. " << TheGroup.Container[1].name << endl;
+			TheGroup.Container[1].PlayerInventory.EquipedWeapon();
+			cout << endl;
+			cout << "2. " << TheGroup.Container[3].name << endl;
+			TheGroup.Container[3].PlayerInventory.EquipedWeapon();
+			cout << endl;
+			cout << "3. " << TheGroup.Container[5].name << endl;
+			TheGroup.Container[5].PlayerInventory.EquipedWeapon();
+			cout << endl;
+				
+			Inventory.SwapEquipedWeapon(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
 			break;
 		case 4:
-			cout << "Display Beastiary\n";
-			//this is where beastiary goes
+			system("cls");
+			DrawAll();
+			GoToXY(GManager.BOT_START_ROW, 0);
+
+			cout << "1. " << TheGroup.Container[1].name << endl;
+			TheGroup.Container[1].PlayerInventory.EquipedArmor();
+			cout << endl;
+			cout << "2. " << TheGroup.Container[3].name << endl;
+			TheGroup.Container[3].PlayerInventory.EquipedArmor();
+			cout << endl;
+			cout << "3. " << TheGroup.Container[5].name << endl;
+			TheGroup.Container[5].PlayerInventory.EquipedArmor();
+			cout << endl;
+
+			Inventory.SwapEquipedArmor(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
+			break;
+		case 5:
+			system("cls");
+			DrawAll();
+			GoToXY(GManager.BOT_START_ROW, 0);
+			database_monsters.DisplayBeastiary();
+			break;
+		default:
+			closeMenu = true;
 			break;
 		}
-	}
+		if (closeMenu != true) {
+			cout << "More? (y/n): ";
+			cin >> again;
+		}
+	};
 
-	ClearBottom();
-
+	system("cls");
+	DrawAll();
+	closeMenu = false;
 }
 
 void MapMain::DoInteraction() {
@@ -277,8 +348,8 @@ void MapMain::DoInteraction() {
 
 	//Chest
 	if (interactChar == '=') {
-
-		int locInChestVec = curMap.OpenChest(charRow, charCol, database_text, questManager);
+		
+		int locInChestVec = curMap.OpenChest(charRow, charCol, database_text, questManager, Inventory);
 		if (locInChestVec != -1) {
 			//Change data in local map copy
 			curMap.map[charRow][charCol] = ' ';
@@ -386,7 +457,7 @@ void MapMain::DoInteraction() {
 	if (interactChar == '!') {
 		//Find enemy
 		int locInEnemyVec = -1;
-		bool isVictorious = true;
+		int isVictorious = 0;
 		for (int i = 0; i < curMap.v_mapEnemies.size(); i++)
 		{
 			if (curMap.v_mapEnemies[i].row == charRow && curMap.v_mapEnemies[i].col == charCol)
@@ -407,36 +478,70 @@ void MapMain::DoInteraction() {
 				PlayBattleTransEffect();
 				PlaySound("Sound/battle_theme.wav", NULL, SND_LOOP | SND_ASYNC);
 			}
-
+			int temp = TheGroup.Leader.Level;
 			bool inBattle = true;
 			Encounter FirstBattle(4, database_monsters.GetMonster(-1), database_monsters.GetMonster(2), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
+			if (curMap.mapID == 5)
+			{
+				FirstBattle = Encounter(10, database_monsters.GetMonster(-1), database_monsters.GetMonster(2), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
+			}
+			if (curMap.mapID == 8)
+			{
+				FirstBattle = Encounter(4, database_monsters.GetMonster(-1), database_monsters.GetMonster(74), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
+			}
+			for (size_t i = 0; i < TheGroup.Container.size(); i++)
+			{
+				if (TheGroup.Container[i].name != "NULL_NAME")
+				{
+					TheGroup.Container[i].GenerateAttacks();
+				}
+			}
 			// FirstBattle = EncounterManager::GetEncounter(int)
 			FirstBattle.GenerateEncounter(TheGroup);
+			for (size_t i = 0; i < 3; i++)
+			{
+				if (!FirstBattle.FrontRow[i].NullEnemy)
+				{
+					database_monsters.UpdateMonster(FirstBattle.FrontRow[i].EnemyID);
+				}
+				if (!FirstBattle.BackRow[i].NullEnemy)
+				{
+					database_monsters.UpdateMonster(FirstBattle.BackRow[i].EnemyID);
+				}
+			}
 			while (inBattle) {
 				DrawCombatScreen();
-				FirstBattle.TakeTurn();
+				TheGroup = FirstBattle.TakeTurn();
 				if (!FirstBattle.Battling) {
 					inBattle = false;
 				}
 				//system("cls");
 			}
 			isVictorious = FirstBattle.Victory;
-			//if (!isVictorious) GManager.gameState = GManager.GAME_OVER;
-			if (!isVictorious  && curMap.mapID == 5) GManager.gameState = GManager.GAME_WON;
-			if (isVictorious && curMap.mapID == 8) GManager.gameState = GManager.GAME_WON;
+			if (isVictorious == LOSE) GManager.gameState = GManager.GAME_OVER;
+			if (isVictorious == WIN && curMap.mapID == 8) GManager.gameState = GManager.GAME_WON;
+			else if (isVictorious == WIN)
+			{
+				while (temp < TheGroup.Leader.Level)
+				{
+					temp++;
+					RandomSpawn.GenerateRegions(database_monsters, temp);
+				}
+			}
 			FadeToBlack();
 			ClearBottom();
 			ClearRight();
 			DrawRight();
-
+			
+			if(isVictorious == FLEE || isVictorious == WIN && curMap.mapID != 8) SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		}
 		else {
 			PlayBattleTransEffect();
 			OutputSpeech("This is where the battle would take place, but we didn't find the targeted enemy.", "The Battle");
 		}
-		SoundManager::Instance().PlayMusic(curMap.mapMusic);
+		
 		//Update Map based on win/lose
-		if (isVictorious) {
+		if (isVictorious == 1) {
 			if (locInEnemyVec != -1) {
 				curMap.map[charRow][charCol] = ' ';
 				curMap.v_mapEnemies[locInEnemyVec].isDefeated = true;
@@ -541,7 +646,7 @@ bool MapMain::CheckCollision(char p_nextChar) {
 void MapMain::CheckForBattle() {
 	const int BATTLE_NUMBER = 1;
 	int num = rand() % curEncounterChance + 1;
-	bool isVictorious = false;
+	int isVictorious = 0;
 	//Trigger battle
 	if (num == BATTLE_NUMBER && stepCount > CHECK_EVERY_STEPS * 2) {
 		//Reset battle variables
@@ -552,25 +657,68 @@ void MapMain::CheckForBattle() {
 		PlayBattleTransEffect();
 		PlaySound("Sound/battle_theme.wav", NULL, SND_LOOP | SND_ASYNC);
 		bool inBattle = true;
+		int temp = TheGroup.Leader.Level;
 		Encounter FirstBattle(1, database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
+		FirstBattle = RandomSpawn.GenerateEncounter(TheGroup.Leader.Level);
+		for (size_t i = 0; i < TheGroup.Container.size(); i++)
+		{
+			if (TheGroup.Container[i].name != "NULL_NAME")
+			{
+				TheGroup.Container[i].GenerateAttacks();
+			}
+		}
 		// FirstBattle = EncounterManager::GetEncounter(int)
 		FirstBattle.GenerateEncounter(TheGroup);
+		for (size_t i = 0; i < 3; i++)
+		{
+			if (!FirstBattle.FrontRow[i].NullEnemy)
+			{
+				database_monsters.UpdateMonster(FirstBattle.FrontRow[i].EnemyID);
+			}
+			if (!FirstBattle.BackRow[i].NullEnemy)
+			{
+				database_monsters.UpdateMonster(FirstBattle.BackRow[i].EnemyID);
+			}
+		}
 		while (inBattle) {
 			DrawCombatScreen();
-			FirstBattle.TakeTurn();
+			TheGroup = FirstBattle.TakeTurn();
 			if (!FirstBattle.Battling) {
 				inBattle = false;
 			}
 			//system("cls");
 		}
 		isVictorious = FirstBattle.Victory;
-		//if (!isVictorious) GManager.gameState = GManager.GAME_OVER;
+		if (isVictorious == LOSE) {
+			GManager.gameState = GManager.GAME_OVER;
+		}
+		else if(isVictorious == WIN) {
+			while (temp < TheGroup.Leader.Level)
+			{
+				temp++;
+				RandomSpawn.GenerateRegions(database_monsters, temp);
+			}
+			string tempText = "";
+			int temp = rand() % 101;
+			if (temp > 40 && temp < 70)
+			{
+				tempText = Inventory.AddWeapon(-1, -1, -1);
+			}
+			else if (temp > 70)
+			{
+				tempText = Inventory.AddArmor(-1, -1, -1);
+			}
+			if (tempText != "")
+			{
+				OutputSpeech(tempText, "Enemy Drops:");
+			}
+		}
 		FadeToBlack();
 		ClearBottom();
 		ClearRight();
 		DrawRight();
-
-		SoundManager::Instance().PlayMusic(curMap.mapMusic);
+		if(isVictorious != FLEE) SoundManager::Instance().PlayMusic(curMap.mapMusic);
+		
 	}
 	else {
 		//Make it more likely to get a encounter next battle check
@@ -667,36 +815,37 @@ void MapMain::DrawRight() {
 	GoToXY(4, right_start_col + 1); cout << CenterPhrase(curMap.name, side_width - 2);
 
 	//Legend
-	GoToXY(10, right_start_col + 1); cout << CenterPhrase("Legend", side_width - 2);
-	GoToXY(11, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
+	GoToXY(9, right_start_col + 1); cout << CenterPhrase("Legend", side_width - 2);
+	GoToXY(10, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
+	GoToXY(11, right_start_col + 1);
+		cout << "          ";
+		SetColorAndBackground(RED); cout << " ";
+		SetColorAndBackground(); cout << " Player";
 	GoToXY(12, right_start_col + 1);
-	cout << "          ";
-	SetColorAndBackground(RED); cout << " ";
-	SetColorAndBackground(); cout << " Player";
+		cout << "          ";
+		SetColorAndBackground(YELLOW); cout << " ";
+		SetColorAndBackground(); cout << " Chest";
 	GoToXY(13, right_start_col + 1);
-	cout << "          ";
-	SetColorAndBackground(YELLOW); cout << " ";
-	SetColorAndBackground(); cout << " Chest";
+		cout << "           ";
+		SetColorAndBackground(LIGHTMAGENTA); cout << " ";
+		SetColorAndBackground(); cout << " NPC";
 	GoToXY(14, right_start_col + 1);
-	cout << "           ";
-	SetColorAndBackground(LIGHTMAGENTA); cout << " ";
-	SetColorAndBackground(); cout << " NPC";
+		cout << "        ";
+		SetColorAndBackground(LIGHTCYAN); cout << " ";
+		SetColorAndBackground(); cout << " Save Point";
 	GoToXY(15, right_start_col + 1);
-	cout << "        ";
-	SetColorAndBackground(LIGHTCYAN); cout << " ";
-	SetColorAndBackground(); cout << " Save Point";
-	GoToXY(16, right_start_col + 1);
-	cout << "          ";
-	SetColorAndBackground(LIGHTRED); cout << " ";
-	SetColorAndBackground(); cout << " Enemy";
-
-
+		cout << "          ";
+		SetColorAndBackground(LIGHTRED); cout << " ";
+		SetColorAndBackground(); cout << " Enemy";
+	
+	
 	//Controls
-	GoToXY(21, right_start_col + 1); cout << CenterPhrase("Controls", side_width - 2);
-	GoToXY(22, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
-	GoToXY(23, right_start_col + 1); cout << CenterPhrase("Arrow Keys = Move", side_width - 2);
-	GoToXY(24, right_start_col + 1); cout << CenterPhrase("Z = Interact", side_width - 2);
-	GoToXY(25, right_start_col + 1); cout << CenterPhrase("X = Back", side_width - 2);
+	GoToXY(20, right_start_col + 1); cout << CenterPhrase("Controls", side_width - 2);
+	GoToXY(21, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
+	GoToXY(22, right_start_col + 1); cout << CenterPhrase("Arrow Keys = Move", side_width - 2);
+	GoToXY(23, right_start_col + 1); cout << CenterPhrase("Z = Interact", side_width - 2);
+	GoToXY(24, right_start_col + 1); cout << CenterPhrase("X = Back", side_width - 2);
+	GoToXY(25, right_start_col + 1); cout << CenterPhrase("P = Pause / Inventory", side_width - 2);
 }
 
 void MapMain::DrawCombatScreen()
@@ -734,6 +883,25 @@ void MapMain::DrawCombatScreen()
 	cout << "       |                 |                 |                 |       ";
 	gotoxy(1, 26);
 	cout << "-------I-----------------I-----------------I-----------------I-------";
+}
+
+void MapMain::DrawAll() {
+	DrawGUI();
+	DrawScreen();
+	DrawRight();
+}
+
+void MapMain::SaveStringToFile(string p_saveString)
+{
+	ofstream myfile("save.txt");
+	if (myfile.is_open())
+	{
+		myfile << p_saveString;
+		myfile.close();
+		cout << "Save Successful" << endl;
+	}
+	else cout << "Unable to open file";
+}
 }
 
 

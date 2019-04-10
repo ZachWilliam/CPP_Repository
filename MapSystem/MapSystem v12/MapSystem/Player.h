@@ -42,10 +42,10 @@ public:
 	int RStat;
 	int CurrentEXP = 0;
 
-	vector<int> OnTheLevel = { 0,100,200,400,800,1600,3200,6400,12800,25600,51200,
+	vector<int> OnTheLevel = {0,100,200,400,800,1200,1600,2400,3200,6400,12800,25600,51200,
 								102400,153600,204800,307000,409600,614900,819200,
-								1214300,1638400,2457600,3276800 };
-
+								1214300};
+	
 	PlayerClass Job = PlayerClass();
 
 	int Max_HP = 0;
@@ -55,27 +55,31 @@ public:
 	void LevelUp()
 	{
 		Level++;
+		if (Level == 10)
+		{
+			
+		}
 		int Determine;
 		Determine = (rand() % 100);
-		if (Job.STR_G > 100)
+		if (Job.STR_G > 100 && CurrentStats.STRENGTH <= 30)
 		{
 			CurrentStats.STRENGTH++;
 			if (Determine < Job.STR_G - 100)
 			{
 				CurrentStats.STRENGTH++;
-				cout << "STR: " << CurrentStats.STRENGTH << " + 2" << endl;
+				cout << "STR: " << CurrentStats.STRENGTH << " (+ 2)" << endl;
 			}
 			else
 			{
-				cout << "STR: " << CurrentStats.STRENGTH << " + 1" << endl;
+				cout << "STR: " << CurrentStats.STRENGTH << " (+ 1)" << endl;
 			}
 		}
 		else
 		{
-			if (Determine < Job.STR_G)
+			if (Determine < Job.STR_G && CurrentStats.STRENGTH <= 30)
 			{
 				CurrentStats.STRENGTH++;
-				cout << "STR: " << CurrentStats.STRENGTH << " + 1" << endl;
+				cout << "STR: " << CurrentStats.STRENGTH << " (+ 1)" << endl;
 			}
 			else
 			{
@@ -83,25 +87,25 @@ public:
 			}
 		}
 		Determine = (rand() % 100);
-		if (Job.DEX_G > 100)
+		if (Job.DEX_G > 100 && CurrentStats.DEXTERITY <= 30)
 		{
 			CurrentStats.DEXTERITY++;
 			if (Determine < Job.DEX_G - 100)
 			{
 				CurrentStats.DEXTERITY++;
-				cout << "DEX: " << CurrentStats.DEXTERITY << " + 2" << endl;
+				cout << "DEX: " << CurrentStats.DEXTERITY << " (+ 2)" << endl;
 			}
 			else
 			{
-				cout << "DEX: " << CurrentStats.DEXTERITY << " + 1" << endl;
+				cout << "DEX: " << CurrentStats.DEXTERITY << " (+ 1)" << endl;
 			}
 		}
 		else
 		{
-			if (Determine < Job.DEX_G)
+			if (Determine < Job.DEX_G && CurrentStats.DEXTERITY <= 30)
 			{
 				CurrentStats.DEXTERITY++;
-				cout << "DEX: " << CurrentStats.DEXTERITY << " + 1" << endl;
+				cout << "DEX: " << CurrentStats.DEXTERITY << " (+ 1)" << endl;
 			}
 			else
 			{
@@ -109,25 +113,25 @@ public:
 			}
 		}
 		Determine = (rand() % 100);
-		if (Job.CON_G > 100)
+		if (Job.CON_G > 100 && CurrentStats.CONSTITUTION <= 30)
 		{
 			CurrentStats.CONSTITUTION++;
 			if (Determine < Job.CON_G - 100)
 			{
 				CurrentStats.CONSTITUTION++;
-				cout << "CON: " << CurrentStats.CONSTITUTION << " + 2" << endl;
+				cout << "CON: " << CurrentStats.CONSTITUTION << " (+ 2)" << endl;
 			}
 			else
 			{
-				cout << "CON: " << CurrentStats.CONSTITUTION << " + 1" << endl;
+				cout << "CON: " << CurrentStats.CONSTITUTION << " (+ 1)" << endl;
 			}
 		}
 		else
 		{
-			if (Determine < Job.CON_G)
+			if (Determine < Job.CON_G && CurrentStats.CONSTITUTION <= 30)
 			{
 				CurrentStats.CONSTITUTION++;
-				cout << "CON: " << CurrentStats.CONSTITUTION << " + 1" << endl;
+				cout << "CON: " << CurrentStats.CONSTITUTION << " (+ 1)" << endl;
 			}
 			else
 			{
@@ -135,25 +139,25 @@ public:
 			}
 		}
 		Determine = (rand() % 100);
-		if (Job.AGI_G > 100)
+		if (Job.AGI_G > 100 && CurrentStats.AGILITY <= 30)
 		{
 			CurrentStats.AGILITY++;
 			if (Determine < Job.AGI_G - 100)
 			{
 				CurrentStats.AGILITY++;
-				cout << "AGI: " << CurrentStats.AGILITY << " + 2" << endl;
+				cout << "AGI: " << CurrentStats.AGILITY << " (+ 2)" << endl;
 			}
 			else
 			{
-				cout << "AGI: " << CurrentStats.AGILITY << " + 1" << endl;
+				cout << "AGI: " << CurrentStats.AGILITY << " (+ 1)" << endl;
 			}
 		}
 		else
 		{
-			if (Determine < Job.AGI_G)
+			if (Determine < Job.AGI_G && CurrentStats.AGILITY <= 30)
 			{
 				CurrentStats.AGILITY++;
-				cout << "AGI: " << CurrentStats.AGILITY << " + 1" << endl;
+				cout << "AGI: " << CurrentStats.AGILITY << " (+ 1)" << endl;
 			}
 			else
 			{
@@ -161,51 +165,51 @@ public:
 			}
 		}
 		Determine = (rand() % 100);
-		if (Job.INT_G > 100)
+		if (Job.INT_G > 100 && CurrentStats.INTELLIGENCE <= 30)
 		{
 			CurrentStats.INTELLIGENCE++;
 			if (Determine < Job.INT_G - 100)
 			{
 				CurrentStats.INTELLIGENCE++;
-				cout << "INT: " << CurrentStats.AGILITY << " + 2" << endl;
+				cout << "INT: " << CurrentStats.INTELLIGENCE << " (+ 2)" << endl;
 			}
 			else
 			{
-				cout << "INT: " << CurrentStats.AGILITY << " + 1" << endl;
+				cout << "INT: " << CurrentStats.INTELLIGENCE << " (+ 1)" << endl;
 			}
 		}
 		else
 		{
-			if (Determine < Job.INT_G)
+			if (Determine < Job.INT_G && CurrentStats.INTELLIGENCE <= 30)
 			{
 				CurrentStats.INTELLIGENCE++;
-				cout << "INT: " << CurrentStats.AGILITY << " + 1" << endl;
+				cout << "INT: " << CurrentStats.INTELLIGENCE << " (+ 1)" << endl;
 			}
 			else
 			{
-				cout << "INT: " << CurrentStats.AGILITY << endl;
+				cout << "INT: " << CurrentStats.INTELLIGENCE << endl;
 			}
 		}
 		Determine = (rand() % 100);
-		if (Job.WIS_G > 100)
+		if (Job.WIS_G > 100 && CurrentStats.WISDOM <= 30)
 		{
 			CurrentStats.WISDOM++;
 			if (Determine < Job.WIS_G - 100)
 			{
 				CurrentStats.WISDOM++;
-				cout << "WIS: " << CurrentStats.WISDOM << " + 2" << endl;
+				cout << "WIS: " << CurrentStats.WISDOM << " (+ 2)" << endl;
 			}
 			else
 			{
-				cout << "WIS: " << CurrentStats.WISDOM << " + 1" << endl;
+				cout << "WIS: " << CurrentStats.WISDOM << " (+ 1)" << endl;
 			}
 		}
 		else
 		{
-			if (Determine < Job.WIS_G)
+			if (Determine < Job.WIS_G && CurrentStats.WISDOM <= 30)
 			{
 				CurrentStats.WISDOM++;
-				cout << "WIS: " << CurrentStats.WISDOM << " + 1" << endl;
+				cout << "WIS: " << CurrentStats.WISDOM << " (+ 1)" << endl;
 			}
 			else
 			{
@@ -213,25 +217,25 @@ public:
 			}
 		}
 		Determine = (rand() % 100);
-		if (Job.LUK_G > 100)
+		if (Job.LUK_G > 100 && CurrentStats.LUCK <= 30)
 		{
 			CurrentStats.LUCK++;
 			if (Determine < Job.LUK_G - 100)
 			{
 				CurrentStats.LUCK++;
-				cout << "LUK: " << CurrentStats.LUCK << " + 2" << endl;
+				cout << "LUK: " << CurrentStats.LUCK << " (+ 2)" << endl;
 			}
 			else
 			{
-				cout << "LUK: " << CurrentStats.LUCK << " + 1" << endl;
+				cout << "LUK: " << CurrentStats.LUCK << " (+ 1)" << endl;
 			}
 		}
 		else
 		{
-			if (Determine < Job.LUK_G)
+			if (Determine < Job.LUK_G && CurrentStats.LUCK <= 30)
 			{
 				CurrentStats.LUCK++;
-				cout << "LUK: " << CurrentStats.LUCK << " + 1" << endl;
+				cout << "LUK: " << CurrentStats.LUCK << " (+ 1)" << endl;
 			}
 			else
 			{
@@ -240,7 +244,7 @@ public:
 		}
 
 		BattleStats = CurrentStats.BattleStats(0);
-		Max_HP = 8 + Level * (CurrentStats.CONSTITUTION / 2);
+		Max_HP = 8 * Level + CurrentStats.CONSTITUTION * 2;
 		SetHP(Max_HP);
 		MaxHP = Max_HP;
 	}

@@ -14,6 +14,8 @@ class Database
 public:
 	Database();
 	void DisplayBeastiary();
+	void UpdateMonster(int monsterID);
+	//void DisplayMonster();
 	void DisplayText();
 	vector<Monster>Beastiary;
 	vector<Dialogue>Scenes;

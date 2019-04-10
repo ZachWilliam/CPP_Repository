@@ -80,7 +80,7 @@ Weapon::Weapon(int WeaponChoice, int prefix_name)
 }
 
 
-const string Weapon::PREFIX_NAMES[NUM_PREFIX_NAMES] = { "legendarily bad", "bad", "basic", "good", "great", "legendary", "Super Fantastic" };
+const string Weapon::PREFIX_NAMES[NUM_PREFIX_NAMES] = { "Legendarily bad", "Bad", "Basic", "Good", "Great", "Legendary", "Super Fantastic" };
 
 void Weapon::SetDamageType(int EleChoice = -1)
 {
@@ -90,6 +90,7 @@ void Weapon::SetDamageType(int EleChoice = -1)
 		temp = 0;
 		int tempSpell;
 		tempSpell = (rand() % 10) + 1;
+		tempSpell = 9;
 		if (tempSpell < 7)
 		{
 			SpellSlot = 1;
@@ -490,8 +491,8 @@ string Weapon::GetName(int Choice = -1)
 			break;
 		case 666://specific
 			m_Prefix_Name = PREFIX_NAMES[6];
-			m_DamageMIN += 15;
-			m_DamageMAX += 25;
+			m_DamageMIN += 150;
+			m_DamageMAX += 250;
 			namePick = Choice;
 			break;
 		}
