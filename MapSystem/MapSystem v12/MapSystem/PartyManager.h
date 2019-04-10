@@ -22,7 +22,7 @@ public:
 	Player GetPartyMember(int PC)
 	{
 		int choice = rand() % 100 + 1;
-		choice = 94;
+		//choice = 94;
 		if (PC < 8)
 		{
 			if (choice < 60)

@@ -119,7 +119,7 @@ public:
 				}
 			}
 		}
-		TotalXP = TotalXP * 4;
+		//TotalXP = TotalXP * 4;
     }
     void CalculateInitiative()
     {
