@@ -31,7 +31,7 @@ void Setup() {
 	HWND console = GetConsoleWindow();
 	RECT r;
 	GetWindowRect(console, &r);
-	MoveWindow(console, r.left, r.top, 845, 790, TRUE);
+	MoveWindow(console, r.left, r.top, 845, 850, TRUE);
 
 	SetCursor(false);
 }
