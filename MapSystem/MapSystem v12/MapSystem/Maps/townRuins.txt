@@ -5,7 +5,7 @@ Ruins of Maple Grove
 18,1
 10
 -1,-1,7,0,1e//NPC data Row/Col/MapID/NameID/TextID  //Weapon // Inn //Mayor //BottomLeft NPC // Armor
-20,52,0,6,6,6,1 19,121,0,6,6,6,3 19,129,0,6,6,6,2e //Chest data
+20,52,0,-1,-1,-1,1 19,121,0,6,6,6,3 19,129,0,-1,-1,-1,2e //Chest data
 e //Enemy Coords
 Sound/overworld_music.wav
 e
