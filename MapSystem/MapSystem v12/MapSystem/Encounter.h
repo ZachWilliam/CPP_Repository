@@ -247,7 +247,7 @@ public:
     }
     void DoAttack(Combatant& User, Enemy& Target)
     {
-        int HitChance = ((Target.BattleStats[7] - User.BattleStats[6]) * 5);
+        int HitChance = ((Target.BattleStats[7] - User.BattleStats[6]) * 2);
 		HitChance += HitChance / 2 * Target.MOBILITY;
 		HitChance -= HitChance / 2 * User.MOBILITY;
 
@@ -442,7 +442,7 @@ public:
                 int dir = rand() % 6;
                 if (PlayerParty.Container[dir].name != "NULL_NAME" && PlayerParty.Container[dir].CurrentHP > 0)
                 {
-                    int HitChance = ((((PlayerParty.Container[dir].BattleStats[7] * 5 + PlayerParty.Container[dir].PlayerInventory.m_Armor.m_Avoidance)) - User.BattleStats[6] * 5)) + 10;
+                    int HitChance = ((((PlayerParty.Container[dir].BattleStats[7] * 5 + PlayerParty.Container[dir].PlayerInventory.m_Armor.m_Avoidance)) - User.BattleStats[6] * 2)) + 10;
                     if (rand() % 100 > HitChance)
                     {
                         Damage -= PlayerParty.Container[dir].BattleStats[1];
