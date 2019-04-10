@@ -53,7 +53,7 @@ public:
 	//void DoHeal(Combatant, Combatant&);
 	vector<Monster> AllEnemies = {};
 	Party PlayerParty;
-	//PartyInventory Inventory;
+	PartyInventory Inventory;
 	vector<Enemy> FrontRow = { Enemy(-1), Enemy(-1), Enemy(-1) };
 	vector<Enemy> BackRow = { Enemy(-1), Enemy(-1), Enemy(-1) };
 	vector<MyStruct> Order;
@@ -97,7 +97,7 @@ public:
     void GenerateEncounter(Party& Players, PartyInventory &Inv)
     {
         PlayerParty = Players;
-		//Inventory = Inv;
+		Inventory = Inv;
         CalculateInitiative();
 		FrontRow = { Enemy(AllEnemies[0],Level), Enemy(AllEnemies[1],Level), Enemy(AllEnemies[2],Level) };
 		BackRow = { Enemy(AllEnemies[3],Level), Enemy(AllEnemies[4],Level), Enemy(AllEnemies[5],Level) };
@@ -767,7 +767,7 @@ public:
 			{
 			case 1:
 				ClearBottom();
-				//Inventory.DisplayPartyInventory();
+				Inventory.DisplayPartyInventory();
 				break;
 			case 2:
 				ClearBottom();
@@ -798,7 +798,7 @@ public:
 				PlayerParty.Container[5].PlayerInventory.EquipedWeapon();
 				cout << endl;
 
-				//Inventory.SwapEquipedWeapon(PlayerParty.Container[1].PlayerInventory, PlayerParty.Container[3].PlayerInventory, PlayerParty.Container[5].PlayerInventory);
+				Inventory.SwapEquipedWeapon(PlayerParty.Container[1].PlayerInventory, PlayerParty.Container[3].PlayerInventory, PlayerParty.Container[5].PlayerInventory);
 				break;
 			case 4:
 				ClearBottom();
@@ -813,7 +813,7 @@ public:
 				PlayerParty.Container[5].PlayerInventory.EquipedArmor();
 				cout << endl;
 
-				//Inventory.SwapEquipedArmor(PlayerParty.Container[1].PlayerInventory, PlayerParty.Container[3].PlayerInventory, PlayerParty.Container[5].PlayerInventory);
+				Inventory.SwapEquipedArmor(PlayerParty.Container[1].PlayerInventory, PlayerParty.Container[3].PlayerInventory, PlayerParty.Container[5].PlayerInventory);
 				break;
 			default:
 				break;
@@ -1119,7 +1119,7 @@ public:
                         }
                         if (i == 1)
                         {
-                            cout << "           Item           ";
+                            cout << "         Inventory        ";
                         }
                         if (i == 2)
                         {
@@ -1161,7 +1161,10 @@ public:
                 }
                 else if (ItmMenu)
                 {
-                    cout << "Used an item!                                                      ";
+					PauseMenu();
+					ItmMenu = false;
+					TopMenu = true;
+					continue;
                 }
                 else if (Flee)
                 {

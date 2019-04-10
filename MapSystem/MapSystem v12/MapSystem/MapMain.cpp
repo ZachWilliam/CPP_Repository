@@ -496,7 +496,7 @@ void MapMain::DoInteraction() {
 				}
 			}
 			// FirstBattle = EncounterManager::GetEncounter(int)
-			FirstBattle.GenerateEncounter(TheGroup);
+			FirstBattle.GenerateEncounter(TheGroup,Inventory);
 			for (size_t i = 0; i < 3; i++)
 			{
 				if (!FirstBattle.FrontRow[i].NullEnemy)
@@ -667,7 +667,7 @@ void MapMain::CheckForBattle() {
 			}
 		}
 		// FirstBattle = EncounterManager::GetEncounter(int)
-		FirstBattle.GenerateEncounter(TheGroup);
+		FirstBattle.GenerateEncounter(TheGroup,Inventory);
 		for (size_t i = 0; i < 3; i++)
 		{
 			if (!FirstBattle.FrontRow[i].NullEnemy)
