@@ -63,11 +63,17 @@ public:
 			if (Determine < Job.STR_G - 100)
 			{
 				CurrentStats.STRENGTH++;
-				cout << "STR: " << CurrentStats.STRENGTH << " (+ 2)" << endl;
+				cout << "STR: " << CurrentStats.STRENGTH;
+				SetColorAndBackground(0, 10);
+				cout << " (+ 2)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 			else
 			{
-				cout << "STR: " << CurrentStats.STRENGTH << " (+ 1)" << endl;
+				cout << "STR: " << CurrentStats.STRENGTH;
+				SetColorAndBackground(0, 2);
+				cout << " (+ 1)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 		}
 		else
@@ -75,7 +81,10 @@ public:
 			if (Determine < Job.STR_G && CurrentStats.STRENGTH <= 30)
 			{
 				CurrentStats.STRENGTH++;
-				cout << "STR: " << CurrentStats.STRENGTH << " (+ 1)" << endl;
+				cout << "STR: " << CurrentStats.STRENGTH;
+				SetColorAndBackground(0, 2);
+				cout << " (+ 1)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 			else
 			{
@@ -89,11 +98,17 @@ public:
 			if (Determine < Job.DEX_G - 100)
 			{
 				CurrentStats.DEXTERITY++;
-				cout << "DEX: " << CurrentStats.DEXTERITY << " (+ 2)" << endl;
+				cout << "DEX: " << CurrentStats.DEXTERITY;
+				SetColorAndBackground(0, 10);
+				cout << " (+ 2)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 			else
 			{
-				cout << "DEX: " << CurrentStats.DEXTERITY << " (+ 1)" << endl;
+				cout << "DEX: " << CurrentStats.DEXTERITY;
+				SetColorAndBackground(0, 2);
+				cout << " (+ 1)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 		}
 		else
@@ -101,7 +116,10 @@ public:
 			if (Determine < Job.DEX_G && CurrentStats.DEXTERITY <= 30)
 			{
 				CurrentStats.DEXTERITY++;
-				cout << "DEX: " << CurrentStats.DEXTERITY << " (+ 1)" << endl;
+				cout << "DEX: " << CurrentStats.DEXTERITY;
+				SetColorAndBackground(0, 2);
+				cout << " (+ 1)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 			else
 			{
@@ -115,11 +133,17 @@ public:
 			if (Determine < Job.CON_G - 100)
 			{
 				CurrentStats.CONSTITUTION++;
-				cout << "CON: " << CurrentStats.CONSTITUTION << " (+ 2)" << endl;
+				cout << "CON: " << CurrentStats.CONSTITUTION;
+				SetColorAndBackground(0, 10);
+				cout << " (+ 2)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 			else
 			{
-				cout << "CON: " << CurrentStats.CONSTITUTION << " (+ 1)" << endl;
+				cout << "CON: " << CurrentStats.CONSTITUTION;
+				SetColorAndBackground(0, 2);
+				cout << " (+ 1)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 		}
 		else
@@ -127,7 +151,10 @@ public:
 			if (Determine < Job.CON_G && CurrentStats.CONSTITUTION <= 30)
 			{
 				CurrentStats.CONSTITUTION++;
-				cout << "CON: " << CurrentStats.CONSTITUTION << " (+ 1)" << endl;
+				cout << "CON: " << CurrentStats.CONSTITUTION;
+				SetColorAndBackground(0, 2);
+				cout << " (+ 1)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 			else
 			{
@@ -141,11 +168,17 @@ public:
 			if (Determine < Job.AGI_G - 100)
 			{
 				CurrentStats.AGILITY++;
-				cout << "AGI: " << CurrentStats.AGILITY << " (+ 2)" << endl;
+				cout << "AGI: " << CurrentStats.AGILITY;
+				SetColorAndBackground(0, 10);
+				cout << " (+ 2)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 			else
 			{
-				cout << "AGI: " << CurrentStats.AGILITY << " (+ 1)" << endl;
+				cout << "AGI: " << CurrentStats.AGILITY;
+				SetColorAndBackground(0, 2);
+				cout << " (+ 1)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 		}
 		else
@@ -153,7 +186,10 @@ public:
 			if (Determine < Job.AGI_G && CurrentStats.AGILITY <= 30)
 			{
 				CurrentStats.AGILITY++;
-				cout << "AGI: " << CurrentStats.AGILITY << " (+ 1)" << endl;
+				cout << "AGI: " << CurrentStats.AGILITY;
+				SetColorAndBackground(0, 2);
+				cout << " (+ 1)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 			else
 			{
@@ -167,11 +203,17 @@ public:
 			if (Determine < Job.INT_G - 100)
 			{
 				CurrentStats.INTELLIGENCE++;
-				cout << "INT: " << CurrentStats.INTELLIGENCE << " (+ 2)" << endl;
+				cout << "INT: " << CurrentStats.INTELLIGENCE;
+				SetColorAndBackground(0, 10);
+				cout << " (+ 2)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 			else
 			{
-				cout << "INT: " << CurrentStats.INTELLIGENCE << " (+ 1)" << endl;
+				cout << "INT: " << CurrentStats.INTELLIGENCE;
+				SetColorAndBackground(0, 2);
+				cout << " (+ 1)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 		}
 		else
@@ -179,7 +221,10 @@ public:
 			if (Determine < Job.INT_G && CurrentStats.INTELLIGENCE <= 30)
 			{
 				CurrentStats.INTELLIGENCE++;
-				cout << "INT: " << CurrentStats.INTELLIGENCE << " (+ 1)" << endl;
+				cout << "INT: " << CurrentStats.INTELLIGENCE;
+				SetColorAndBackground(0, 2);
+				cout << " (+ 1)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 			else
 			{
@@ -193,11 +238,17 @@ public:
 			if (Determine < Job.WIS_G - 100)
 			{
 				CurrentStats.WISDOM++;
-				cout << "WIS: " << CurrentStats.WISDOM << " (+ 2)" << endl;
+				cout << "WIS: " << CurrentStats.WISDOM;
+				SetColorAndBackground(0, 10);
+				cout << " (+ 2)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 			else
 			{
-				cout << "WIS: " << CurrentStats.WISDOM << " (+ 1)" << endl;
+				cout << "WIS: " << CurrentStats.WISDOM;
+				SetColorAndBackground(0, 2);
+				cout << " (+ 1)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 		}
 		else
@@ -205,7 +256,10 @@ public:
 			if (Determine < Job.WIS_G && CurrentStats.WISDOM <= 30)
 			{
 				CurrentStats.WISDOM++;
-				cout << "WIS: " << CurrentStats.WISDOM << " (+ 1)" << endl;
+				cout << "WIS: " << CurrentStats.WISDOM;
+				SetColorAndBackground(0, 2);
+				cout << " (+ 1)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 			else
 			{
@@ -219,11 +273,17 @@ public:
 			if (Determine < Job.LUK_G - 100)
 			{
 				CurrentStats.LUCK++;
-				cout << "LUK: " << CurrentStats.LUCK << " (+ 2)" << endl;
+				cout << "LUK: " << CurrentStats.LUCK;
+				SetColorAndBackground(0, 10);
+				cout << " (+ 2)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 			else
 			{
-				cout << "LUK: " << CurrentStats.LUCK << " (+ 1)" << endl;
+				cout << "LUK: " << CurrentStats.LUCK;
+				SetColorAndBackground(0, 2);
+				cout << " (+ 1)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 		}
 		else
@@ -231,7 +291,10 @@ public:
 			if (Determine < Job.LUK_G && CurrentStats.LUCK <= 30)
 			{
 				CurrentStats.LUCK++;
-				cout << "LUK: " << CurrentStats.LUCK << " (+ 1)" << endl;
+				cout << "LUK: " << CurrentStats.LUCK;
+				SetColorAndBackground(0, 2);
+				cout << " (+ 1)" << endl;
+				SetColorAndBackground(0, 15);
 			}
 			else
 			{
