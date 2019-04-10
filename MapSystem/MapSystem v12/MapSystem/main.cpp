@@ -204,34 +204,34 @@ void Credits() {
 	cout << endl << CenterPhrase("Created By VGDD Class of 2019", 92) << endl;
 	cout << endl;
 	cout << R"(  
-                                        +-+-+-+-+-+
-                                        |S|c|o|t|t|
-                                        +-+-+-+-+-+
+                            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                            |S|c|o|t|t| |V|a|n|d|e|r| |P|r|y|t|
+                            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 )" << endl
 << R"(  
-                                         +-+-+-+-+
-                                         |Z|a|c|h|
-                                         +-+-+-+-+
+                                 +-+-+-+-+-+-+-+-+-+-+-+-+
+                                 |Z|a|c|h| |W|i|l|l|i|a|m|
+                                 +-+-+-+-+-+-+-+-+-+-+-+-+
 )" << endl
 << R"(  
-                                    +-+-+-+-+-+-+-+-+-+
-                                    |S|e|b|a|s|t|i|a|n|s
-                                    +-+-+-+-+-+-+-+-+-+
+                          +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                          |S|e|b|a|s|t|i|a|n| |R|y|d|z|e|w|s|k|i|
+                          +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 )" << endl
 << R"(  
-                                       +-+-+-+-+-+-+
-                                       |C|u|r|t|i|s|
-                                       +-+-+-+-+-+-+
+                              +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                              |C|u|r|t|i|s| |A|l|d|e|r|s|o|n|
+                              +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 )" << endl
 << R"(
-                                         +-+-+-+-+
-                                         |N|i|c|k|
-                                         +-+-+-+-+
+                                  +-+-+-+-+-+-+-+-+-+-+-+
+                                  |N|i|c|k| |W|a|l|k|e|r|
+                                  +-+-+-+-+-+-+-+-+-+-+-+
 )" << endl
 << R"(
-                                        +-+-+-+-+-+
-                                        |A|a|r|o|n|
-                                        +-+-+-+-+-+
+                                   +-+-+-+-+-+-+-+-+-+-+
+                                   |A|a|r|o|n| |Z|i|n|n|
+                                   +-+-+-+-+-+-+-+-+-+-+
 )" << endl;
 	cout << "\n" << CenterPhrase("Music and SFX from Final Fantasy 1 (NES), Zelda 1(NES) and Pokemon Red(GB)", 92) << endl;
 	cout << CenterPhrase("8 Bit Beach Wave by josepharaoh99 from www.freesound.org", 92) << endl;
