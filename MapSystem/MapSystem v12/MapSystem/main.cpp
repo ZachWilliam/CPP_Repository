@@ -104,7 +104,6 @@ int main()
 						TheGroup.DisplayParty();
 						PartyInventory Inventory(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
 						//Show party overview
-						Inventory.DisplayPartyInventory();
 						_getch();
 						PlaySound(NULL, NULL, 0);
 						system("cls");
@@ -215,7 +214,7 @@ void Credits() {
 )" << endl
 << R"(  
                                     +-+-+-+-+-+-+-+-+-+
-                                    |S|e|b|a|s|t|i|a|n|
+                                    |S|e|b|a|s|t|i|a|n|s
                                     +-+-+-+-+-+-+-+-+-+
 )" << endl
 << R"(  
