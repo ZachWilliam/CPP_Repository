@@ -861,3 +861,15 @@ void MapMain::DrawCombatScreen()
 	gotoxy(1, 26);
 	cout << "-------I-----------------I-----------------I-----------------I-------";
 }
+
+void MapMain::SaveStringToFile(string p_saveString)
+{
+	ofstream myfile("save.txt");
+	if (myfile.is_open())
+	{
+		myfile << p_saveString;
+		myfile.close();
+		cout << "Save Successful" << endl;
+	}
+	else cout << "Unable to open file";
+}
