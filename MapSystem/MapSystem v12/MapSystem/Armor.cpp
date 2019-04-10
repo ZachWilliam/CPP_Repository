@@ -44,7 +44,7 @@ Armor::Armor(int ArmorChoice, int prefix_name)
 	ID = uniqueID++;
 }
 
-const string Armor::PREFIX_NAMES[NUM_PREFIX_NAMES] = { "legendarily bad", "bad", "basic", "good", "great", "legendary", "Super Fantastic" };
+const string Armor::PREFIX_NAMES[NUM_PREFIX_NAMES] = { "Legendarily bad", "Bad", "Basic", "Good", "Great", "Legendary", "Super Fantastic" };
 
 void Armor::SetResistanceType(int EleChoice = -1)
 {

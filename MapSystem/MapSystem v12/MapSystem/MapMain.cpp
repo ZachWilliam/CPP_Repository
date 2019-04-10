@@ -223,7 +223,7 @@ void MapMain::PauseMenu() {
 
 		cout << "Make a selection:\n\n";
 		cout << "1.     Display Inventory\n";
-		cout << "2.     Display Equiped Weapons and Armor\n";
+		cout << "2.     Display Party Stats\n";
 		cout << "3.     Swap Weapon\n";
 		cout << "4.     Swap Armor\n";
 		cout << "5.     Display Beastiary\n";
@@ -246,43 +246,48 @@ void MapMain::PauseMenu() {
 			break;
 		case 2:
 			ClearBottom();
-			cout << TheGroup.Container[1].name << endl;
+			TheGroup.DisplayParty();
+			/*cout << "1. " << TheGroup.Container[1].name << endl;
 			TheGroup.Container[1].PlayerInventory.EquipedWeapon();
 			TheGroup.Container[1].PlayerInventory.EquipedArmor();
 			cout << endl;
-			cout << TheGroup.Container[3].name << endl;
+			cout << "2. " << TheGroup.Container[3].name << endl;
 			TheGroup.Container[3].PlayerInventory.EquipedWeapon();
 			TheGroup.Container[3].PlayerInventory.EquipedArmor();
 			cout << endl;
-			cout << TheGroup.Container[5].name << endl;
+			cout << "3. " << TheGroup.Container[5].name << endl;
 			TheGroup.Container[5].PlayerInventory.EquipedWeapon();
 			TheGroup.Container[5].PlayerInventory.EquipedArmor();
-			cout << endl;
+			cout << endl;*/
 			break;
 		case 3:
 			ClearBottom();
-			for (int i = 0; i < 6; ++i)
-			{
-				if (TheGroup.Container[i].name != "NULL_NAME")
-				{
-					cout << TheGroup.Container[i].name << endl;
-					TheGroup.Container[i].PlayerInventory.EquipedWeapon();
-					cout << endl;
-				}
-			}
+
+			cout << "1. " << TheGroup.Container[1].name << endl;
+			TheGroup.Container[1].PlayerInventory.EquipedWeapon();
+			cout << endl;
+			cout << "2. " << TheGroup.Container[3].name << endl;
+			TheGroup.Container[3].PlayerInventory.EquipedWeapon();
+			cout << endl;
+			cout << "3. " << TheGroup.Container[5].name << endl;
+			TheGroup.Container[5].PlayerInventory.EquipedWeapon();
+			cout << endl;
+				
 			Inventory.SwapEquipedWeapon(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
 			break;
 		case 4:
 			ClearBottom();
-			for (int i = 0; i < 6; ++i)
-			{
-				if (TheGroup.Container[i].name != "NULL_NAME")
-				{
-					cout << TheGroup.Container[i].name << endl;
-					TheGroup.Container[i].PlayerInventory.EquipedArmor();
-					cout << endl;
-				}
-			}
+
+			cout << "1. " << TheGroup.Container[1].name << endl;
+			TheGroup.Container[1].PlayerInventory.EquipedArmor();
+			cout << endl;
+			cout << "2. " << TheGroup.Container[3].name << endl;
+			TheGroup.Container[3].PlayerInventory.EquipedArmor();
+			cout << endl;
+			cout << "3. " << TheGroup.Container[5].name << endl;
+			TheGroup.Container[5].PlayerInventory.EquipedArmor();
+			cout << endl;
+
 			Inventory.SwapEquipedArmor(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
 			break;
 		case 5:

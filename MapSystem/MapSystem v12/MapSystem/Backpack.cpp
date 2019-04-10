@@ -2,7 +2,7 @@
 
 Backpack::Backpack(int gold = 0, int buildingMaterials = 0, bool questItem = false,//purse
 	int setWeaponType = 0, int setWeaponName = 1, int setDamType = 10,//weapon
-	int setArmorType = 0, int setArmorName = 1, int setResType = 10,//armor
+	int setArmorType = 3, int setArmorName = 2, int setResType = 10,//armor
 	int potion = 12)//potion
 {
 	m_Purse.SetPurse(gold, buildingMaterials, questItem);
@@ -131,6 +131,7 @@ void PartyInventory::DisplayPartyWeapons()
 	cout << "\nWeapons:\n";
 	for (int i = 0; i < INV_WEAPON.size(); ++i)
 	{
+		cout << i << ". ";
 		INV_WEAPON[i].DisplayName();
 		cout << endl;
 	}
@@ -142,6 +143,7 @@ void PartyInventory::DisplayPartyArmor()
 	cout << "\nArmor:\n";
 	for (int i = 0; i < INV_ARMOR.size(); ++i)
 	{
+		cout << i << ". ";
 		INV_ARMOR[i].DisplayName();
 		cout << endl;
 	}
