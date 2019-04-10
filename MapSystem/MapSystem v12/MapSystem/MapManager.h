@@ -14,6 +14,10 @@ class MapManager
 {
 public:
 	MapManager();
+	MapManager(string serialString);
+
+	string Serialized();
+
 	vector <Map> mapList;
 
 

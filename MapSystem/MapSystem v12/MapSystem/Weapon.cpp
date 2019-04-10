@@ -1,4 +1,5 @@
 #include "Weapon.h"
+#include "ConvertHelper.h"
 
 WeaponType::WeaponType(string weapon_type, int damageMIN, int damageMAX, int statUsed, int wielded)
 {
@@ -15,6 +16,26 @@ string WeaponType::ToString()
 	return m_Name;
 }
 
+WeaponType::WeaponType(string serialString)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+}
+
+string WeaponType::Serialized()
+{
+	string serialString = "";
+
+	serialString += "Name:" + m_Name + ",";
+	serialString += "DamageMIN:" + to_string(m_DamageMIN) + ",";
+	serialString += "DamageMAX:" + to_string(m_DamageMAX) + ",";
+	serialString += "StatUsed:" + etos((int)m_StatUsed) + ",";
+	serialString += "Wielded:" + etos((int)m_Wielded) + ",";
+
+	return serialString;
+}
+
+
+
 
 DamageType::DamageType(int hit = 0, int ele = 0)
 {
@@ -30,6 +51,24 @@ string DamageType::ToString(bool magic)
 	}
 	return temp;
 }
+
+DamageType::DamageType(string serialString)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+}
+
+string DamageType::Serialized()
+{
+	string serialString = "";
+
+	serialString += "Technique:" + etos((int)m_Technique) + ",";
+	serialString += "Enhancement:" + to_string(m_Enhancement) + ",";
+
+	return serialString;
+}
+
+
+
 
 Weapon::Weapon(int WeaponChoice, int prefix_name)
 {
@@ -534,4 +573,25 @@ void Weapon::SetRandomWeapon()
 	GetType(-1);
 	GetName(-1);
 	SetDamageType(-1);
+}
+
+Weapon::Weapon(string serialString)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+}
+
+string Weapon::Serialized()
+{
+	string serialString = "";
+
+	serialString += "ID:" + to_string(ID) + ",";
+	serialString += "SpellSlot:" + to_string(SpellSlot) + ",";
+	serialString += "PrefixName:" + m_Prefix_Name + ",";
+	serialString += "WeaponType{" + m_Weapon_Type.Serialized() + "},";
+	serialString += "DamageMIN:" + to_string(m_DamageMIN) + ",";
+	serialString += "DamageMAX:" + to_string(m_DamageMAX) + ",";
+	serialString += "Magic:" + btos(m_Magic) + ",";
+	serialString += "DamageType{" + m_DamageType.Serialized() + "},";
+
+	return serialString;
 }

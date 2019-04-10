@@ -1,5 +1,5 @@
 #include "Map.h"
-
+#include "ConvertHelper.h"
 
 
 Map::Map(const string &p_name, const vector<vector<char> > &p_map, int p_mapID, bool p_canBattle, vector<Coord> p_transPoints, vector<NPC> p_npcs, vector<Chest> p_chests,
@@ -72,4 +72,95 @@ int Map::OpenChest(int p_row, int p_col, Database &p_database, QuestManager& p_q
 }
 
 
+Map::Map(string serialString)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+}
 
+string Map::Serialized()
+{
+	string serialString = "";
+
+	// TODO - find a workaround for a vector<vector<type>> data member, 
+	{
+		serialString += "map[";
+		serialString += "],";
+		//serialString += ":" + /*???*/ + ",";
+	}
+
+	serialString += "mapID:" + to_string(mapID) + ",";
+	serialString += "name:" + name + ",";
+	serialString += "canBattle:" + btos(canBattle) + ",";
+	{
+		serialString += "transitionPoints[";
+		if (v_transitionPoints.size() > 0)
+		{
+			for (size_t i = 0; i < v_transitionPoints.size(); ++i)
+			{
+				serialString += "{";
+				serialString += v_transitionPoints[i].Serialized();
+				serialString += "},";
+			}
+		}
+		serialString += "],";
+	}
+	{
+		serialString += "NPCs[";
+		if (v_NPCs.size() > 0)
+		{
+			for (size_t i = 0; i < v_NPCs.size(); ++i)
+			{
+				serialString += "{";
+				serialString += v_NPCs[i].Serialized();
+				serialString += "},";
+			}
+		}
+		serialString += "],";
+	}
+	{
+		serialString += "chests[";
+		if (v_chests.size() > 0)
+		{
+			for (size_t i = 0; i < v_chests.size(); ++i)
+			{
+				serialString += "{";
+				serialString += v_chests[i].Serialized();
+				serialString += "},";
+			}
+		}
+		serialString += "],";
+	}
+	{
+		serialString += "mapEnemies[";
+		if (v_mapEnemies.size() > 0)
+		{
+			for (size_t i = 0; i < v_mapEnemies.size(); ++i)
+			{
+				serialString += "{";
+				serialString += v_mapEnemies[i].Serialized();
+				serialString += "},";
+			}
+		}
+		serialString += "],";
+	}
+	{
+		serialString += "questNPCs[";
+		if (v_questNPCs.size() > 0)
+		{
+			for (size_t i = 0; i < v_questNPCs.size(); ++i)
+			{
+				serialString += "{";
+				serialString += v_questNPCs[i].Serialized();
+				serialString += "},";
+			}
+		}
+		serialString += "],";
+	}
+	serialString += "defaultPR:" + to_string(defaultPR) + ",";
+	serialString += "defaultPC:" + to_string(defaultPC) + ",";
+	serialString += "spaceColor:" + to_string(spaceColor) + ",";
+	serialString += "mapMusic:" + mapMusic + ",";
+	serialString += "playedFlavorTxt:" + btos(playedFlavorTxt) + ",";
+
+	return serialString;
+}

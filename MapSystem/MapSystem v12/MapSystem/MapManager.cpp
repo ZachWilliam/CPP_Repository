@@ -70,16 +70,16 @@ void MapManager::LoadMap(ifstream &p_fileToRead) {
 				//Getting ID
 				if (i == 0) { id = stoi(line); break; }
 				//Getting Name
-				if (i == 1) { name = line;  break;	}
+				if (i == 1) { name = line;  break; }
 				//Getting can battke
-				if (i == 2) {canBattle = stoi(line); break;	}
+				if (i == 2) { canBattle = stoi(line); break; }
 				//Getting transition coords
 				if (i == 3) {
 					v_tempCoords = GetCoords(line);
 					break;
 				}
 				//Get default coords
-				if (i == 4) { 
+				if (i == 4) {
 					int posInLine = 0;
 					for (int i = 0; i < 2; i++)
 					{
@@ -151,13 +151,13 @@ vector<Coord> MapManager::GetCoords(const string &p_line) {
 			}
 			int num = stoi(tempNum);
 			v_curInfo.push_back(num);
-			if(p_line[posInLine] != 'e' && p_line[posInLine] != ' ') posInLine++;
+			if (p_line[posInLine] != 'e' && p_line[posInLine] != ' ') posInLine++;
 		}
 		Coord newCoord(v_curInfo[0], v_curInfo[1], v_curInfo[2], v_curInfo[3], v_curInfo[4]);
 		v_tempCoords.push_back(newCoord);
 		if (p_line[posInLine] != 'e') posInLine++;
 	}
-	
+
 	return v_tempCoords;
 }
 
@@ -277,3 +277,28 @@ vector<MapEnemy> MapManager::GetEnemies(const string &p_line) {
 }
 
 
+MapManager::MapManager(string serialString)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+}
+
+string MapManager::Serialized()
+{
+	string serialString = "";
+
+	{
+		serialString += "mapList[";
+		if (mapList.size() > 0)
+		{
+			for (size_t i = 0; i < mapList.size(); ++i)
+			{
+				serialString += "{";
+				serialString += mapList[i].Serialized();
+				serialString += "},";
+			}
+		}
+		serialString += "],";
+	}
+
+	return serialString;
+}

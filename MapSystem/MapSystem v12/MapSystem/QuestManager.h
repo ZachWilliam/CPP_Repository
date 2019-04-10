@@ -16,7 +16,9 @@ public:
 		static QuestManager instance;
 		return instance;
 	}*/
+	QuestManager(string serialString);
 
+	string Serialized();
 
 	vector<Quest>questList;
 

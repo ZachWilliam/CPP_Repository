@@ -1,4 +1,5 @@
 #include "MapMain.h"
+#include "ConvertHelper.h"
 
 MapMain::MapMain(Database &p_database, Database &p_beastiary, Party &p_party, PartyInventory &p_inventory) :
 	database_text(p_database),
@@ -43,14 +44,14 @@ void MapMain::Setup(int p_mapID, int p_row, int p_col) {
 
 	if (p_row == 0 || p_col == 0) {
 		playerR = curMap.defaultPR;
-		 playerC = curMap.defaultPC;
+		playerC = curMap.defaultPC;
 	}
 	else {
 		playerR = p_row;
 		playerC = p_col;
 	}
 
-	
+
 	lastChar = curMap.map[playerR][playerC];
 
 	//Prep screen
@@ -58,11 +59,11 @@ void MapMain::Setup(int p_mapID, int p_row, int p_col) {
 	SetColorAndBackground();
 
 	//Put player on the map if its not the intro screen
-	if(curMap.mapID != 1) curMap.map[playerR][playerC] = 'P';
+	if (curMap.mapID != 1) curMap.map[playerR][playerC] = 'P';
 
 	//Draw screens
 	DrawGUI();
-	if(curMap.mapID != 1) DrawScreen();
+	if (curMap.mapID != 1) DrawScreen();
 	else {
 		SetColorAndBackground(LIGHTGRAY);
 		for (int i = 0; i < screen_height; i++)
@@ -141,7 +142,7 @@ void MapMain::Logic() {
 				break;
 			}
 		}
-		
+
 		//If we found the coords
 		if (posInCoordVec != -1) {
 			Coord nextCoord = curMap.v_transitionPoints[posInCoordVec];
@@ -276,7 +277,7 @@ void MapMain::DoInteraction() {
 
 	//Chest
 	if (interactChar == '=') {
-		
+
 		int locInChestVec = curMap.OpenChest(charRow, charCol, database_text, questManager);
 		if (locInChestVec != -1) {
 			//Change data in local map copy
@@ -427,7 +428,7 @@ void MapMain::DoInteraction() {
 			ClearBottom();
 			ClearRight();
 			DrawRight();
-			
+
 		}
 		else {
 			PlayBattleTransEffect();
@@ -568,7 +569,7 @@ void MapMain::CheckForBattle() {
 		ClearBottom();
 		ClearRight();
 		DrawRight();
-		
+
 		SoundManager::Instance().PlayMusic(curMap.mapMusic);
 	}
 	else {
@@ -581,8 +582,8 @@ void MapMain::CheckForBattle() {
 
 
 void MapMain::SetMap(int p_pRow, int p_pCol, int p_mapID) {
-	PlayMapTransEffect(curMap,rowMove, columnMove, true);
-	   	
+	PlayMapTransEffect(curMap, rowMove, columnMove, true);
+
 
 	//Find map to change to by ID
 	for (int i = 0; i < mapManager.mapList.size(); i++)
@@ -613,7 +614,7 @@ void MapMain::SetMap(int p_pRow, int p_pCol, int p_mapID) {
 		if (playerC - dist_from_mid_c >= 0 && curMap.map[0].size() - playerC >= dist_from_mid_c) columnMove = playerC - dist_from_mid_c;
 		else if (curMap.map[0].size() - playerC < dist_from_mid_c) columnMove = curMap.map[0].size() - screen_width;
 	}
-	
+
 	PlayMapTransEffect(curMap, rowMove, columnMove, false);
 
 	SoundManager::Instance().PlayMusic(curMap.mapMusic);
@@ -664,32 +665,32 @@ void MapMain::DrawRight() {
 	GoToXY(2, right_start_col + 1); cout << CenterPhrase("Location", side_width - 2);
 	GoToXY(3, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
 	GoToXY(4, right_start_col + 1); cout << CenterPhrase(curMap.name, side_width - 2);
-	
+
 	//Legend
 	GoToXY(10, right_start_col + 1); cout << CenterPhrase("Legend", side_width - 2);
 	GoToXY(11, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
 	GoToXY(12, right_start_col + 1);
-		cout << "          ";
-		SetColorAndBackground(RED); cout << " ";
-		SetColorAndBackground(); cout << " Player";
+	cout << "          ";
+	SetColorAndBackground(RED); cout << " ";
+	SetColorAndBackground(); cout << " Player";
 	GoToXY(13, right_start_col + 1);
-		cout << "          ";
-		SetColorAndBackground(YELLOW); cout << " ";
-		SetColorAndBackground(); cout << " Chest";
+	cout << "          ";
+	SetColorAndBackground(YELLOW); cout << " ";
+	SetColorAndBackground(); cout << " Chest";
 	GoToXY(14, right_start_col + 1);
-		cout << "           ";
-		SetColorAndBackground(LIGHTMAGENTA); cout << " ";
-		SetColorAndBackground(); cout << " NPC";
+	cout << "           ";
+	SetColorAndBackground(LIGHTMAGENTA); cout << " ";
+	SetColorAndBackground(); cout << " NPC";
 	GoToXY(15, right_start_col + 1);
-		cout << "        ";
-		SetColorAndBackground(LIGHTCYAN); cout << " ";
-		SetColorAndBackground(); cout << " Save Point";
+	cout << "        ";
+	SetColorAndBackground(LIGHTCYAN); cout << " ";
+	SetColorAndBackground(); cout << " Save Point";
 	GoToXY(16, right_start_col + 1);
-		cout << "          ";
-		SetColorAndBackground(LIGHTRED); cout << " ";
-		SetColorAndBackground(); cout << " Enemy";
-	
-	
+	cout << "          ";
+	SetColorAndBackground(LIGHTRED); cout << " ";
+	SetColorAndBackground(); cout << " Enemy";
+
+
 	//Controls
 	GoToXY(21, right_start_col + 1); cout << CenterPhrase("Controls", side_width - 2);
 	GoToXY(22, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
@@ -733,4 +734,38 @@ void MapMain::DrawCombatScreen()
 	cout << "       |                 |                 |                 |       ";
 	gotoxy(1, 26);
 	cout << "-------I-----------------I-----------------I-----------------I-------";
+}
+
+
+
+
+string MapMain::Serialized()
+{
+	string serialString = "";
+
+	serialString += "mapManager{" + mapManager.Serialized() + "}"/**/;		//TODO - Serialized() method not quite finished, look into a solution for a vector<vector<Type>> data member	//TODO - need deserialize constructor for: QuestNPC, MapEnemy, Chest, NPC, Coord, Map, MapManager
+	//serialString += "curMap{" /*+ "..." + "}"*/;							//TODO - Debating on how to proceed...
+	serialString += "curMap:" + to_string(curMap.mapID) + ",";				//TODO - for now lets save by the current maps mapID(int) value
+	serialString += "questManager{" + questManager.Serialized() + "}"/**/;	//TODO - need deserialize constructor for: QuestManager, Quest
+	//serialString += "database_monsters{" /*+ "..." + "}"*/;					//TODO - give Database a Serialized() method	..................................	- QUESTION - is this needed? leaning towards "no"
+	//serialString += "database_text{" /*+ "..." + "}"*/;						//TODO - relates to Database.Serialized() method that should be made at this point	- QUESTION - is this needed? leaning towards "no"
+	serialString += "TheGroup{" + TheGroup.Serialized() + "}"/**/;			//TODO - need deserialize constructor for: Player, PlayerClass, Backpack, Weapon, DamageType, WeaponType, Armor, ElementType, ArmorType, Potion, Purse, Attack, Stats
+	serialString += "Inventory{" + Inventory.Serialized() + "}"/**/;		//TODO - need deserialize constructor for: PartyInventory
+
+	// Player Info
+	serialString += "cDir:" + etos((int)cDir) + ",";
+	serialString += "rDir:" + etos((int)rDir) + ",";
+	serialString += "playerR:" + to_string(playerR) + ",";
+	serialString += "playerC:" + to_string(playerC) + ",";
+	serialString += "lastChar:"; serialString += lastChar; serialString += ","; //note: if you are wondering, string doesnt like adding (+) char values, hence 3 commands in one line to achieve what we need
+	serialString += "interact:" + btos(interact) + ",";
+	serialString += "openInventory:" + btos(openInventory) + ",";
+
+	// Battle Info
+	serialString += "stepCount:" + to_string(stepCount) + ",";
+
+	// ?Input?
+	//serialString += ":" + to_string() + ",";
+
+	return serialString;
 }

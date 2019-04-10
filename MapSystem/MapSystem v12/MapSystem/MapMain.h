@@ -19,6 +19,9 @@ class MapMain
 {
 public:
 	MapMain(Database &p_database, Database &p_beastiary, Party &p_party, PartyInventory &p_inventory);
+	MapMain(string serialString);
+
+	string Serialized();
 
 	const int border = GameManager::instance().BORDER;
 	const int screen_width = GameManager::instance().SCREEN_WIDTH;

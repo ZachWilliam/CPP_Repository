@@ -36,4 +36,3 @@ private:
 	std::string m_parsedClassSString;
 
 };
-

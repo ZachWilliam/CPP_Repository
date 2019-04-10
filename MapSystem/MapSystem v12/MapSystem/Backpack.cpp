@@ -45,6 +45,26 @@ void Backpack::Status()
 	}
 }
 
+Backpack::Backpack(string serialString)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+}
+
+string Backpack::Serialized()
+{
+	string serialString = "";
+
+	serialString += "Purse{" + m_Purse.Serialized() + "},";
+	serialString += "Weapon{" + m_Weapon.Serialized() + "},";
+	serialString += "Armor{" + m_Armor.Serialized() + "},";
+	serialString += "Potion{" + m_Potion.Serialized() + "},";
+
+	return serialString;
+}
+
+
+
+
 PartyInventory::PartyInventory(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref)
 {
 	EQUIPED_WEAPON1 = BP1ref.m_Weapon;
@@ -256,4 +276,49 @@ void PartyInventory::SwapEquipedArmor(Backpack &BP1ref, Backpack &BP2ref, Backpa
 			break;
 		}
 	}
+}
+
+PartyInventory::PartyInventory(string serialString)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+}
+
+string PartyInventory::Serialized()
+{
+	string serialString = "";
+
+	{
+		serialString += "invWeapon[";
+		if (INV_WEAPON.size() > 0)
+		{
+			for (size_t i = 0; i < INV_WEAPON.size(); ++i)
+			{
+				serialString += "{";
+				serialString += INV_WEAPON[i].Serialized();
+				serialString += "},";
+			}
+		}
+		serialString += "],";
+	}
+	{
+		serialString += "invArmor[";
+		if (INV_ARMOR.size() > 0)
+		{
+			for (size_t i = 0; i < INV_ARMOR.size(); ++i)
+			{
+				serialString += "{";
+				serialString += INV_ARMOR[i].Serialized();
+				serialString += "},";
+			}
+		}
+		serialString += "],";
+	}
+	serialString += "equipedWeapon1{" + EQUIPED_WEAPON1.Serialized() + "},";
+	serialString += "equipedArmor1{" + EQUIPED_ARMOR1.Serialized() + "},";
+	serialString += "equipedWeapon2{" + EQUIPED_WEAPON2.Serialized() + "},";
+	serialString += "equipedArmor2{" + EQUIPED_ARMOR2.Serialized() + "},";
+	serialString += "equipedWeapon3{" + EQUIPED_WEAPON3.Serialized() + "},";
+	serialString += "equipedArmor3{" + EQUIPED_ARMOR3.Serialized() + "},";
+
+	return serialString;
 }

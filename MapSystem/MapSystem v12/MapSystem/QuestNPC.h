@@ -7,6 +7,9 @@ class QuestNPC
 {
 public:
 	QuestNPC(int p_row, int p_col, int p_mapID, int p_locInVec, int p_nameID, vector<int> p_dIDs);
+	QuestNPC(string serialString);
+
+	string Serialized();
 
 	int row;
 	int col;

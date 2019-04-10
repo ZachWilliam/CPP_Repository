@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "PartyManager.h"
 #include <time.h>
+#include "ConvertHelper.h"
 #pragma once
 
 using namespace std;
@@ -20,6 +21,10 @@ public:
 		Container.push_back(Player("NULL_NAME"));
 		Container.push_back(Player("NULL_NAME"));
 	}
+	inline Party(string serialString);
+
+	inline string Serialized();
+
     void AddToParty(Player PM, int Pos)
     {
         if (Container[Pos].name == "NULL_NAME")
@@ -129,3 +134,32 @@ public:
 	
 
 };
+
+Party::Party(string serialString)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+}
+
+string Party::Serialized()
+{
+	string serialString = "";
+
+	serialString += "Leader{" + Leader.Serialized() + "},";
+	{
+		serialString += "Container[";
+		if (Container.size() > 0)
+		{
+			for (size_t i = 0; i < Container.size(); ++i)
+			{
+				serialString += "{";
+				serialString += Container[i].Serialized();
+				serialString += "},";
+			}
+		}
+		serialString += "],";
+	}
+	//serialString += "Par{" +  + "},";
+	serialString += "isBank:" + btos(isBank) + ",";
+
+	return serialString;
+}

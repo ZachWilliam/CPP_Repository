@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{DD702E6E-4708-4FC4-B7E2-823951664C0C}</ProjectGuid>
     <RootNamespace>MapSystem</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -120,6 +120,7 @@
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="Coord.cpp" />
     <ClCompile Include="Database.cpp" />
+    <ClCompile Include="DeserializeHelper.cpp" />
     <ClCompile Include="Dialogue.cpp" />
     <ClCompile Include="EndGame.cpp" />
     <ClCompile Include="Format.cpp" />
@@ -149,8 +150,10 @@
     <ClInclude Include="Chest.h" />
     <ClInclude Include="ClassManager.h" />
     <ClInclude Include="Combatant.h" />
+    <ClInclude Include="ConvertHelper.h" />
     <ClInclude Include="Coord.h" />
     <ClInclude Include="Database.h" />
+    <ClInclude Include="DeserializeHelper.h" />
     <ClInclude Include="Dialogue.h" />
     <ClInclude Include="Encounter.h" />
     <ClInclude Include="EncounterManager.h" />

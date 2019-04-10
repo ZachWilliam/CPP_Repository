@@ -15,6 +15,10 @@ class ArmorType
 public:
 	ArmorType(string, int, int, int, int, int);
 	ArmorType();
+	ArmorType(string serialString);
+
+	string Serialized();
+
 	string ToString();
 	string m_Name;
 	int m_DamageResist;
@@ -27,11 +31,14 @@ public:
 };
 
 
-
 class ElementType
 {
 public:
 	ElementType(int, int);
+	ElementType(string serialString);
+
+	string Serialized();
+
 	enum WhoIsFor { light = 0, medium = 1, heavy = 2, special = 3 };
 	WhoIsFor m_WhoIsFor;
 	vector<string> Element = { "entrophy", "fire", "ice", "water", "thunder", "wind", "earth", "darkness", "light", "healing" };
@@ -40,12 +47,15 @@ public:
 };
 
 
-
 class Armor
 {
 public:
 	int ID;
 	Armor(int ArmorChoice = 0, int prefix_name = -1);
+	Armor(string serialString);
+
+	string Serialized();
+
 	void Status();
 	string GetName(int Choice);
 	void GetType(int Choice);
@@ -87,7 +97,6 @@ public:
 	static const int NUM_PREFIX_NAMES = 7;
 	static const string PREFIX_NAMES[NUM_PREFIX_NAMES];
 };
-
 
 
 #endif

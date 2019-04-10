@@ -19,8 +19,11 @@ using namespace std;
 class Map
 {
 public:
-	Map(const string &p_name, const vector<vector<char> > &p_map, int p_mapID, bool p_canBattle, vector<Coord> p_transPoints, vector<NPC> p_npcs, vector<Chest> p_chests, 
+	Map(const string &p_name, const vector<vector<char> > &p_map, int p_mapID, bool p_canBattle, vector<Coord> p_transPoints, vector<NPC> p_npcs, vector<Chest> p_chests,
 		vector<MapEnemy> p_mapEnemies, vector<QuestNPC> p_questNPCs, int p_defPR, int p_defPC, int p_spaceColor, string p_mapMusic);
+	Map(string serialString);
+
+	string Serialized();
 
 	vector<vector<char> > map;
 	int mapID;

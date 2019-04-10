@@ -19,6 +19,10 @@ class Backpack
 {
 public:
 	Backpack(int, int, bool, int, int, int, int, int, int, int);
+	Backpack(string serialString);
+
+	string Serialized();
+
 	Purse m_Purse = Purse();
 	Weapon m_Weapon = Weapon();
 	Armor m_Armor = Armor();
@@ -30,6 +34,10 @@ class PartyInventory
 {
 public:
 	PartyInventory(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref);
+	PartyInventory(string serialString);
+
+	string Serialized();
+
 	vector<Weapon> INV_WEAPON;
 	vector<Armor> INV_ARMOR;
 

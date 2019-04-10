@@ -22,6 +22,9 @@ class Purse
 {
 public:
 	Purse(int gold = 0, int buildingMaterials = 0, bool questItem = false);
+	inline Purse(string serialString);
+
+	inline string Serialized();
 
 	void Status();
 	void ResetAll();
@@ -44,11 +47,31 @@ public:
 	string QuestToString();
 };
 
+Purse::Purse(string serialString)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+}
+
+string Purse::Serialized()
+{
+	string serialString = "";
+
+	serialString += "Gold:" + to_string(m_Gold) + ",";
+	serialString += "BuildingMaterials:" + to_string(m_BuildingMaterials) + ",";
+	serialString += "QuestItem:" + to_string(m_QuestItem) + ",";
+
+	return serialString;
+}
+
 
 class Potion
 {
 public:
 	Potion(int PotionName = -1);
+	inline Potion(string serialString);
+
+	inline string Serialized();
+
 	string DisplayName();
 	string m_Name;
 	int m_HealAmount;
@@ -79,5 +102,22 @@ public:
 	int GetBuyValue();
 };
 
+Potion::Potion(string serialString)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+}
+
+string Potion::Serialized()
+{
+	string serialString = "";
+
+	serialString += "Name:" + m_Name + ",";
+	serialString += "HealAmount:" + to_string(m_HealAmount) + ",";
+	serialString += "DamageAmount:" + to_string(m_DamageAmount) + ",";
+	serialString += "MagicAttack:" + to_string(m_MagicAttack) + ",";
+	serialString += "MagicResist:" + to_string(m_MagicResist) + ",";
+
+	return serialString;
+}
 
 #endif

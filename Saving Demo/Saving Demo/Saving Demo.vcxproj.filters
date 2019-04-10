@@ -32,5 +32,8 @@
     <ClInclude Include="DeserializeHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ConvertHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 #include "Armor.h"
+#include "ConvertHelper.h"
 
 ArmorType::ArmorType() {}
 
@@ -18,6 +19,27 @@ string ArmorType::ToString()
 	return m_Name;
 }
 
+ArmorType::ArmorType(string serialString)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+}
+
+string ArmorType::Serialized()
+{
+	string serialString = "";
+
+	serialString += "Name:" + m_Name + ",";
+	serialString += "DamageResist:" + to_string(m_DamageResist) + ",";
+	serialString += "MagicResist:" + to_string(m_MagicResist) + ",";
+	serialString += "Avoidance:" + to_string(m_Avoidance) + ",";
+	serialString += "StatUsed:" + etos((int)m_StatUsed) + ",";
+	serialString += "Wieghted:" + etos((int)m_Wieghted) + ",";
+
+	return serialString;
+}
+
+
+
 
 ElementType::ElementType(int isfor = 0, int ele = 0)
 {
@@ -33,6 +55,24 @@ string ElementType::ToString(bool magic)
 	}
 	return temp;
 }
+
+ElementType::ElementType(string serialString)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+}
+
+string ElementType::Serialized()
+{
+	string serialString = "";
+
+	serialString += "WhoIsFor:" + etos((int)m_WhoIsFor) + ",";
+	serialString += "Enhancement:" + to_string(m_Enhancement) + ",";
+
+	return serialString;
+}
+
+
+
 
 Armor::Armor(int ArmorChoice, int prefix_name)
 {
@@ -522,4 +562,25 @@ void Armor::SetRandomArmor()
 	GetType(-1);
 	GetName(-1);
 	SetResistanceType(-1);
+}
+
+Armor::Armor(string serialString)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+}
+
+string Armor::Serialized()
+{
+	string serialString = "";
+
+	serialString += "ID:" + to_string(ID) + ",";
+	serialString += "PrefixName:" + m_Prefix_Name + ",";
+	serialString += "ArmorType{" + m_Armor_Type.Serialized() + "},";
+	serialString += "DamageResist:" + to_string(m_DamageResist) + ",";
+	serialString += "MagicResist:" + to_string(m_MagicResist) + ",";
+	serialString += "Avoidance:" + to_string(m_Avoidance) + ",";
+	serialString += "Magic:" + btos(m_Magic) + ",";
+	serialString += "ElementType{" + m_ElementType.Serialized() + "},";
+
+	return serialString;
 }

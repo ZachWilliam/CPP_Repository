@@ -15,6 +15,10 @@ class WeaponType
 public:
 	WeaponType(string, int, int, int, int);
 	WeaponType();
+	WeaponType(string serialString);
+
+	string Serialized();
+
 	string ToString();
 	string m_Name;
 	int m_DamageMIN;
@@ -30,6 +34,10 @@ class DamageType
 {
 public:
 	DamageType(int, int);
+	DamageType(string serialString);
+
+	string Serialized();
+
 	enum HitType { no_hit = 0, pierce = 1, slash = 2, bludgeon = 3 };
 	HitType m_Technique;
 	vector<string> Element = { "entrophy", "fire", "ice", "water", "thunder", "wind", "earth", "darkness", "light", "healing" };
@@ -44,6 +52,10 @@ class Weapon
 public:
 	int ID;
 	Weapon(int WeaponChoice = 0, int prefix_name = -1);
+	Weapon(string serialString);
+
+	string Serialized();
+
 	void Status();
 	int Attack();
 	string GetName(int Choice);

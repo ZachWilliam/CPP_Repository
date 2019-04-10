@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="college_classes.h" />
+    <ClInclude Include="ConvertHelper.h" />
     <ClInclude Include="DeserializeHelper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

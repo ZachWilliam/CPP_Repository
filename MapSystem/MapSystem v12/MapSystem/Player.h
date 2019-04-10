@@ -12,40 +12,44 @@ using namespace std;
 class Player : public Combatant
 {
 public:
-    Player()
-    {
-        name = "";
-        GeneratePlayer();
-    }
-    Player(string call)
-    {
-        name = call;
-        Combatant::name = name;
-        GeneratePlayer();
-    }
-    void GeneratePlayer()
-    {
-        PlayerControl = true;
-    }
-    void GenerateAttacks()
-    {
-        AttackManager Man = AttackManager();
-        CurrentMoves = Man.GenerateMovesFromWeapon(PlayerInventory.m_Weapon);
-    }
+	Player()
+	{
+		name = "";
+		GeneratePlayer();
+	}
+	Player(string call/*, char dummyValue*/)
+	{
+		name = call;
+		Combatant::name = name;
+		GeneratePlayer();
+	}
+	inline Player(string serialString, char dummyValue);
 
-	string name;
+	inline string Serialized();
+
+	void GeneratePlayer()
+	{
+		PlayerControl = true;
+	}
+	void GenerateAttacks()
+	{
+		AttackManager Man = AttackManager();
+		CurrentMoves = Man.GenerateMovesFromWeapon(PlayerInventory.m_Weapon);
+	}
+
+	//string name;			// TODO - determine if this is needed or not as it is inherited from the Combatant class
 	int Level = 1;
 	int RStat;
 	int CurrentEXP = 0;
 
-	vector<int> OnTheLevel = {0,100,200,400,800,1600,3200,6400,12800,25600,51200,
+	vector<int> OnTheLevel = { 0,100,200,400,800,1600,3200,6400,12800,25600,51200,
 								102400,153600,204800,307000,409600,614900,819200,
-								1214300,1638400,2457600,3276800};
-	
+								1214300,1638400,2457600,3276800 };
+
 	PlayerClass Job = PlayerClass();
-	
+
 	int Max_HP = 0;
-	
+
 	bool operator==(const Player &che) { return name == che.name; };
 
 	void LevelUp()
@@ -234,10 +238,76 @@ public:
 				cout << "LUK: " << CurrentStats.LUCK << endl;
 			}
 		}
-		
+
 		BattleStats = CurrentStats.BattleStats(0);
 		Max_HP = 8 + Level * (CurrentStats.CONSTITUTION / 2);
 		SetHP(Max_HP);
 		MaxHP = Max_HP;
 	}
 };
+
+Player::Player(string serialString, char dummyValue)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+}
+
+string Player::Serialized()
+{
+	string serialString = "";
+
+	// from "Combatant"
+	serialString += "name:" + name + ",";
+	serialString += "status:" + etos((int)status) + ",";
+	serialString += "OFFENSE:" + etos((int)OFFENSE) + ",";
+	serialString += "DEFENSE:" + etos((int)DEFENSE) + ",";
+	serialString += "MOBILITY:" + etos((int)MOBILITY) + ",";
+	serialString += "CurrentStats{" + CurrentStats.Serialized() + "},";
+	{
+		serialString += "BattleStats[";
+		if (BattleStats.size() > 0)
+		{
+			for (size_t i = 0; i < BattleStats.size(); ++i)
+			{
+				serialString += "stat:" + to_string(BattleStats[i]) + ",";
+			}
+		}
+		serialString += "],";
+	}
+	{
+		serialString += "Resistances[";
+		if (Resistances.size() > 0)
+		{
+			for (size_t i = 0; i < Resistances.size(); ++i)
+			{
+				serialString += "res:" + to_string(Resistances[i]) + ",";
+			}
+		}
+		serialString += "],";
+	}
+	serialString += "init:" + to_string(initiative) + ",";
+	serialString += "HP:" + to_string(CurrentHP) + ",";
+	serialString += "MaxHP:" + to_string(MaxHP) + ",";
+	serialString += "Mana:" + to_string(CurrentMana) + ",";
+	serialString += "PlayerControl:" + btos(PlayerControl) + ",";
+	{
+		serialString += "CurrentMoves[";
+		if (CurrentMoves.size() > 0)
+		{
+			for (size_t i = 0; i < CurrentMoves.size(); ++i)
+			{
+				serialString += "{";
+				serialString += CurrentMoves[i].Serialized();
+				serialString += "},";
+			}
+		}
+		serialString += "],";
+	}
+	serialString += "PlayerInventory{" + PlayerInventory.Serialized() + "},";
+	// from "Player"
+	serialString += "LVL:" + to_string(Level) + ",";
+	serialString += "RStat:" + to_string(RStat) + ",";
+	serialString += "EXP:" + to_string(CurrentEXP) + ",";
+	serialString += "Job{" + Job.Serialized() + "},";
+
+	return serialString;
+}
