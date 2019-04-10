@@ -495,7 +495,7 @@ void MapMain::DoInteraction() {
 				//system("cls");
 			}
 			isVictorious = FirstBattle.Victory;
-			if (isVictorious == LOSE) GManager.gameState = GManager.GAME_OVER;
+			if (isVictorious == FLEE) GManager.gameState = GManager.GAME_WON;
 			if (isVictorious == WIN && curMap.mapID == 8) GManager.gameState = GManager.GAME_WON;
 			else if (isVictorious == WIN)
 			{
