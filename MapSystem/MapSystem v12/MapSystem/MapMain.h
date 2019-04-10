@@ -88,6 +88,8 @@ public:
 	void DrawScreen();
 	void DrawRight();
 	void DrawCombatScreen();
+
+	void WriteToFile(string p_saveString);
 };
 
 #endif
