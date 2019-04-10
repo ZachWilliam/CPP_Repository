@@ -91,12 +91,15 @@ public:
     }
     void DisplayParty()
     {
+		int counter = 1;
         for (size_t i = 0; i < Container.size(); i++)
         {
+			
             if (Container[i].name != "NULL_NAME")
             {
                 cout << endl;
-                cout << Container[i].name << ", the " << Container[i].Job.name << endl;
+                cout <<  counter << ": " << Container[i].name << ", the " << Container[i].Job.name << endl;
+				cout << "Level: " << Container[i].Level << " | EXP: " << Container[i].CurrentEXP << "/" << Container[i].OnTheLevel[Container[i].Level] << endl;
                 cout << "STR: " << Container[i].CurrentStats.STRENGTH << " | ";
                 cout << "DEX: " << Container[i].CurrentStats.DEXTERITY << " | ";
                 cout << "CON: " << Container[i].CurrentStats.CONSTITUTION << " | ";
@@ -106,7 +109,11 @@ public:
                 cout << "LUK: " << Container[i].CurrentStats.LUCK << " | " << endl;
                 cout << "Wielding ";
                 Container[i].PlayerInventory.m_Weapon.DisplayName();
+				cout << endl;
+				cout << "Wearing ";
+				Container[i].PlayerInventory.m_Armor.DisplayName();
                 cout << endl;
+				counter++;
             }
         }
     }

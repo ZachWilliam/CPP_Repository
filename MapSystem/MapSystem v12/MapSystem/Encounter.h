@@ -351,6 +351,12 @@ public:
 			
 			if (AttackUsed.power != 0)
 			{
+				int temp = rand() % 100;
+				if (temp < User.CurrentStats.LUCK)
+				{
+					Damage = Damage * 2;
+					cout << "Critical hit!";
+				}
 				Target.CurrentHP -= Damage;
 				Target.CurrentHP = _Max_value(0, Target.CurrentHP);
 				if (!Target.NullEnemy)
@@ -448,6 +454,12 @@ public:
                         Damage -= PlayerParty.Container[dir].BattleStats[1];
                         Damage -= PlayerParty.Container[dir].PlayerInventory.m_Armor.m_DamageResist;
                         Damage = _Max_value(Damage, 0);
+						int temp = rand() % 100;
+						if (temp < User.CurrentStats.LUCK)
+						{
+							Damage = Damage * 2;
+							cout << "Critical hit!";
+						}
                         cout << PlayerParty.Container[dir].name << " takes " << Damage << " damage!" << endl;
                         PlayerParty.Container[dir].CurrentHP -= Damage;
                         if (PlayerParty.Container[dir].CurrentHP <= 0)
