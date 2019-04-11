@@ -486,7 +486,7 @@ void Weapon::Status()
 }
 void Weapon::DamageMinMaxStatus()
 {
-	cout << "\nmin damage: " + to_string(m_DamageMIN) + " , max damage: " + to_string(m_DamageMAX);
+	cout << "(min: " + to_string(m_DamageMIN) + ") , (max: " + to_string(m_DamageMAX) + ")";
 }
 int Weapon::Attack()
 {
