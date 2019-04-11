@@ -174,7 +174,7 @@ public:
                     DoAttack(User, BackRow[Choice - 3]);
                     DoAttack(User, BackRow[Choice - 3]);
                 }
-                cout << BackRow[Choice - 3].name << ": " << BackRow[Choice - 3].CurrentHP << "/" << BackRow[Choice - 3].MAX_HP;
+                //cout << BackRow[Choice - 3].name << ": " << BackRow[Choice - 3].CurrentHP << "/" << BackRow[Choice - 3].MAX_HP;
             }
             else
             {
@@ -243,7 +243,7 @@ public:
 						}
 					}
                 }
-                cout << FrontRow[Choice].name << ": " << FrontRow[Choice].CurrentHP << "/" << FrontRow[Choice].MAX_HP;
+                //cout << FrontRow[Choice].name << ": " << FrontRow[Choice].CurrentHP << "/" << FrontRow[Choice].MAX_HP;
             }
             _getch();
         }
@@ -423,7 +423,7 @@ public:
 
     }
 
-    void DoHeal(Combatant User, Combatant & Target)
+    void DoHeal(Combatant & User, Combatant & Target)
     {
 
         Damage = User.PlayerInventory.m_Weapon.Attack();
@@ -458,7 +458,7 @@ public:
 	{
 
 		Target.CurrentHP += amount;
-		Target.CurrentHP = _Min_value(Target.MaxHP, Target.CurrentHP);
+		if (Target.CurrentHP > Target.MaxHP) { Target.CurrentHP = Target.MaxHP; cout << "\nTrunk'd\n"; }
 		cout << Target.name << " healed " << amount << " health! " << endl;
 
 	}
@@ -889,6 +889,7 @@ public:
 						if (Order[e].combatantValue.name == PlayerParty.Container[i].name)
 						{
 							Order[e].combatantValue.CurrentMoves = PlayerParty.Container[i].CurrentMoves;
+							Order[e].combatantValue.PlayerInventory.m_Weapon = PlayerParty.Container[i].PlayerInventory.m_Weapon;
 						}
 					}
 				}
@@ -1589,7 +1590,14 @@ public:
                             {
                                 if (FrontRow[Selection].NullEnemy != true)
                                 {
-                                    GenerateAttack(Order[InitiativeOrder].combatantValue, AttackUsed, Selection);
+									for (size_t i = 0; i < PlayerParty.Container.size(); i++)
+									{
+										if (Order[InitiativeOrder].combatantValue.name == PlayerParty.Container[i].name)
+										{
+											GenerateAttack(PlayerParty.Container[i], AttackUsed, Selection);
+										}
+									}
+                                    
                                     ChooseTarget = false;
                                     Selection = 0;
                                     Damage = 0;
@@ -1600,7 +1608,13 @@ public:
                             {
                                 if (BackRow[Selection - 3].NullEnemy != true)
                                 {
-                                    GenerateAttack(Order[InitiativeOrder].combatantValue, AttackUsed, Selection);
+									for (size_t i = 0; i < PlayerParty.Container.size(); i++)
+									{
+										if (Order[InitiativeOrder].combatantValue.name == PlayerParty.Container[i].name)
+										{
+											GenerateAttack(PlayerParty.Container[i], AttackUsed, Selection);
+										}
+									}
                                     ChooseTarget = false;
                                     Selection = 0;
                                     Damage = 0;
