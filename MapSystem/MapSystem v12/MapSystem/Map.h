@@ -37,6 +37,8 @@ public:
 	bool playedFlavorTxt = false;
 
 	int OpenChest(int p_row, int p_col, Database &p_database, QuestManager &p_qManager, PartyInventory &p_iventory);
+	void GenerateMap();
+	void SearchForMapByID(ifstream &p_fileToRead);
 };
 
 #endif

@@ -55,5 +55,89 @@ int Map::OpenChest(int p_row, int p_col, Database &p_database, QuestManager& p_q
 	return locInChestVec;
 }
 
+void Map::GenerateMap() {
+	string path = "Maps/";
+	string searchPattern = "*.txt";
+	string fullSearchPath = path + searchPattern;
 
+	WIN32_FIND_DATA FindData;
+	HANDLE hFind;
+
+	hFind = FindFirstFile(fullSearchPath.c_str(), &FindData);
+
+	if (hFind == INVALID_HANDLE_VALUE)
+	{
+		cout << "Error searching directory\n";
+		return;
+	}
+
+	do
+	{
+		string filePath = path + FindData.cFileName;
+		ifstream in(filePath.c_str());
+		if (in)
+		{
+			SearchForMapByID(in);
+		}
+		else
+		{
+			cout << "Problem opening file " << FindData.cFileName << "\n";
+		}
+	} while (FindNextFile(hFind, &FindData) > 0);
+
+	if (GetLastError() != ERROR_NO_MORE_FILES)
+	{
+		cout << "Something went wrong during searching\n";
+	}
+
+
+}
+
+void Map::SearchForMapByID(ifstream &p_fileToRead) {
+	vector<vector<char> > tempMap;
+	bool foundID = false;
+
+	string line;
+	//ifstream myfile("introisland.txt");
+	if (p_fileToRead.is_open())
+	{
+		int i = 0;
+		while (getline(p_fileToRead, line))
+		{
+			vector<char>temp;
+			for (int j = 0; j < line.size(); j++)
+			{
+				//Checking ID, break method if not matching
+				if (i == 0) { 
+					if (stoi(line) != mapID)return;
+					else foundID = true;
+					break; 
+				}
+
+			}
+			if (i > 10)tempMap.push_back(temp);
+			i++;
+		}
+		p_fileToRead.close();
+	}
+
+	//Reset map
+	map = tempMap;
+
+	//Update chests on map
+	for (int i = 0; i < v_chests.size(); i++)
+	{
+		if (v_chests[i].opened == true) {
+			map[v_chests[i].row][v_chests[i].col] = ' ';
+		}
+	}
+
+	//Update trigger enemies on map
+	for (int i = 0; i < v_mapEnemies.size(); i++)
+	{
+		if (v_mapEnemies[i].isDefeated == true) {
+			map[v_mapEnemies[i].row][v_mapEnemies[i].col] = ' ';
+		}
+	}
+}
 

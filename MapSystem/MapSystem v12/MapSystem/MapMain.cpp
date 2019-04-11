@@ -22,20 +22,33 @@ int MapMain::main() {
 }
 
 void MapMain::Setup(int p_mapID, int p_row, int p_col) {
-	bool mapFound = false;
+	//NEW GAME
+	if (GManager.gameState = GManager.NEW_GAME) {
+		bool mapFound = false;
 
-	RandomSpawn.GenerateRegions(database_monsters, 1);
+		RandomSpawn.GenerateRegions(database_monsters, 1);
 
-	for (int i = 0; i < mapManager.mapList.size(); i++)
-	{
-		if (mapManager.mapList[i].mapID == p_mapID) {
-			curMap = mapManager.mapList[i];
-			mapFound = true;
-			break;
+		for (int i = 0; i < mapManager.mapList.size(); i++)
+		{
+			if (mapManager.mapList[i].mapID == p_mapID) {
+				curMap = mapManager.mapList[i];
+				mapFound = true;
+				break;
+			}
+		}
+		//If we didnt find the map then set it to the town map
+		if (!mapFound) {
+			for (int i = 0; i < mapManager.mapList.size(); i++)
+			{
+				if (mapManager.mapList[i].mapID == 6) {
+					curMap = mapManager.mapList[i];
+					break;
+				}
+			}
 		}
 	}
-	//If we didnt find the map then set it to the town map
-	if (!mapFound) {
+	//CONTINUE
+	else if (GManager.gameState = GManager.CONTINUE) {
 		for (int i = 0; i < mapManager.mapList.size(); i++)
 		{
 			if (mapManager.mapList[i].mapID == 6) {
@@ -43,17 +56,33 @@ void MapMain::Setup(int p_mapID, int p_row, int p_col) {
 				break;
 			}
 		}
+
+		//Change town map based on quest
+		if (questManager.questList[0].isQuestActive) {
+			//Update town map to open gate (we can safely assume were on the town map and can use curMap
+			curMap.map[18][131] = 'g';
+			curMap.map[19][131] = 'g';
+
+			for (size_t i = 0; i < mapManager.mapList.size(); i++)
+			{
+				if (curMap.mapID == mapManager.mapList[i].mapID) {
+					mapManager.mapList[i].map[18][131] = 'g';
+					mapManager.mapList[i].map[19][131] = 'g';
+					break;
+				}
+			}
+		}
 	}
 
 	if (p_row == 0 || p_col == 0) {
 		playerR = curMap.defaultPR;
-		 playerC = curMap.defaultPC;
+		playerC = curMap.defaultPC;
 	}
 	else {
 		playerR = p_row;
 		playerC = p_col;
 	}
-
+	
 	
 	lastChar = curMap.map[playerR][playerC];
 
@@ -107,6 +136,8 @@ void MapMain::Setup(int p_mapID, int p_row, int p_col) {
 	if (curMap.mapID == 1) {
 		SetMap(curMap.v_transitionPoints[0].nextMapR, curMap.v_transitionPoints[0].nextMapC, curMap.v_transitionPoints[0].nextMapID);
 	}
+
+	GManager.gameState = GManager.PLAY;
 }
 
 void MapMain::Input() {
@@ -716,7 +747,7 @@ void MapMain::CheckForBattle() {
 		ClearBottom();
 		ClearRight();
 		DrawRight();
-		if(isVictorious != FLEE) SoundManager::Instance().PlayMusic(curMap.mapMusic);
+		if(isVictorious != LOSE) SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		
 	}
 	else {

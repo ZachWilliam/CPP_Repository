@@ -56,6 +56,7 @@ int main()
 	const int MENU_SIZE = 4;
 	int menuLocation = 0;
 	bool isQuitting = false;
+	bool drawTitle = true;
 	bool animateTitle = true;
 
 	PlaySound("Sound/title_screen.wav", NULL, SND_LOOP | SND_ASYNC);
@@ -63,7 +64,12 @@ int main()
 	animateTitle = false;
 
 	while (!isQuitting) {
-		DrawTitle(animateTitle);
+		if (drawTitle) {
+			DrawTitle(animateTitle);
+			animateTitle = false;
+			drawTitle = false;
+		}
+
 		DrawMenu(menuLocation);
 		switch (_getch()) {
 			case 72: {//UP
@@ -80,13 +86,8 @@ int main()
 				switch (menuLocation) {
 					case CONTINUE: { //Continue
 						menuLocation = CONTINUE;
-
-						//Load stuff
-						//load maps based on id.
-						//change maps chests based on whether the is open is true
-						//get rid of enmies based on teh same thing
-						//Remove parts of teh walls in town based on where you are in quest. Will have to assume if quest is finished that the player opened the gate or opposite, prolly opposite
-							//no real way to be able to tell if they completeed the quest but didnt actually open the gate/bridge
+						GManager.gameState = GManager.CONTINUE;
+						
 
 						break;
 					}
@@ -121,7 +122,7 @@ int main()
 						
 
 						//Create and start game loop
-						GManager.gameState = GManager.PLAY;
+						GManager.gameState = GManager.NEW_GAME;
 						MapMain mapMain(dialogue, beast, TheGroup, Inventory);
 						mapMain.Setup(1, 0, 0);
 						mapMain.main();
@@ -136,10 +137,12 @@ int main()
 
 						PlaySound("Sound/title_screen.wav", NULL, SND_LOOP | SND_ASYNC);
 						animateTitle = true;
+						drawTitle = true;
 						break;
 					}
 					case CREDITS: { // Credits
 						Credits();
+						drawTitle = true;
 						menuLocation = CONTINUE;
 						break;
 					}
@@ -158,7 +161,6 @@ int main()
 void DrawTitle(bool p_animate) {
 	int animateSpeed = 1;
 	if (!p_animate) animateSpeed = 0;
-	SetColorAndBackground(BLACK, LIGHTCYAN);
 
 	GoToXY(0, 0);
 	string title = R"(
@@ -198,39 +200,38 @@ void DrawTitle(bool p_animate) {
 
 void Credits() {
 	system("cls");
-	SetColorAndBackground(BLACK, LIGHTCYAN);
 
 	//Use center word here
 	cout << endl << CenterPhrase("Created By VGDD Class of 2019", 92) << endl;
 	cout << endl;
 	cout << R"(  
                             +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                            |S|c|o|t|t| |V|a|n|d|e|r| |P|r|y|t|
+                            |S c o t t   V a n d e r   P r y t|
                             +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 )" << endl
 << R"(  
                                  +-+-+-+-+-+-+-+-+-+-+-+-+
-                                 |Z|a|c|h| |W|i|l|l|i|a|m|
+                                 |Z a c h   W i l l i a m|
                                  +-+-+-+-+-+-+-+-+-+-+-+-+
 )" << endl
 << R"(  
                           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                          |S|e|b|a|s|t|i|a|n| |R|y|d|z|e|w|s|k|i|
+                          |S e b a s t i a n   R y d z e w s k i|
                           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 )" << endl
 << R"(  
                               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                              |C|u|r|t|i|s| |A|l|d|e|r|s|o|n|
+                              |C u r t i s   A l d e r s o n|
                               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 )" << endl
 << R"(
                                   +-+-+-+-+-+-+-+-+-+-+-+
-                                  |N|i|c|k| |W|a|l|k|e|r|
+                                  |N i c k   W a l k e r|
                                   +-+-+-+-+-+-+-+-+-+-+-+
 )" << endl
 << R"(
                                    +-+-+-+-+-+-+-+-+-+-+
-                                   |A|a|r|o|n| |Z|i|n|n|
+                                   |A a r o n   Z i n n|
                                    +-+-+-+-+-+-+-+-+-+-+
 )" << endl;
 	cout << "\n" << CenterPhrase("Music and SFX from Final Fantasy 1 (NES), Zelda 1(NES) and Pokemon Red(GB)", 92) << endl;
@@ -251,9 +252,9 @@ void DrawMenu(int p_menuLocation) {
 	GoToXY(28, 0);
 	for (int i = 0; i < MENU_SIZE; i++)
 	{
-		if (i == p_menuLocation) SetColorAndBackground(BLACK, LIGHTCYAN);
-		else SetColorAndBackground(BLACK, CYAN);
-		//Use Center Word here
+		if (i == p_menuLocation) SetColorAndBackground(BLACK, RED);
+		else SetColorAndBackground();
 		cout << CenterPhrase(MENU[i],92) << endl;
 	}
+	SetColorAndBackground();
 }

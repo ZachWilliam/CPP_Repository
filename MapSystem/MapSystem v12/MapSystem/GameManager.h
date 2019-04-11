@@ -8,7 +8,7 @@ public:
 		static GameManager instance;
 		return instance;
 	}
-	enum eGameState{MENU, PLAY, GAME_OVER, GAME_WON };
+	enum eGameState{MENU, NEW_GAME, CONTINUE, PLAY, GAME_OVER, GAME_WON };
 	eGameState gameState = MENU;
 
 	const int BORDER = 2;

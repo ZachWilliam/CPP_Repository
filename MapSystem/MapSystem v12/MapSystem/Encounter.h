@@ -1168,11 +1168,12 @@ public:
                 }
                 else if (Flee)
                 {
+					PlaySound("Sound/runaway_sfx.wav", NULL, SND_FILENAME | SND_ASYNC);
                     cout << "You have fled the battle!                                                ";
                     //Order.erase(Order.begin() + InitiativeOrder);
                     //PlayerParty.Container.erase(std::remove(PlayerParty.Container.begin(), PlayerParty.Container.end(), Order[InitiativeOrder]));
                     InitiativeOrder--;
-                    _getch();
+					Sleep(200);
                     Battling = false;
                     break;
                 }
