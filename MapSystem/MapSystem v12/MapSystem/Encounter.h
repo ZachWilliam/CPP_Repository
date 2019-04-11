@@ -51,6 +51,7 @@ public:
 	//void DoAttack(Combatant, Enemy&);
 	//void DoAttack(Enemy);
 	//void DoHeal(Combatant, Combatant&);
+	vector<string> Targets = { "Single","Single","Single","Single","Column","Front Row","All","Single","All"};
 	vector<Monster> AllEnemies = {};
 	Party PlayerParty;
 	PartyInventory Inventory;
@@ -1277,6 +1278,13 @@ public:
                         SetColorAndBackground(0, 15);
                     }
                     cout << "|" << endl;
+					cout << "----------------------------------------------------------------------------------------" << endl;
+					cout << Order[InitiativeOrder].combatantValue.CurrentMoves[Selection].name;
+					cout << " | Power: " << Order[InitiativeOrder].combatantValue.CurrentMoves[Selection].power;
+					cout << " | Target: " << Targets[Order[InitiativeOrder].combatantValue.CurrentMoves[Selection].target];
+					cout << endl;
+					cout << Order[InitiativeOrder].combatantValue.CurrentMoves[Selection].desc << endl;
+					cout << "----------------------------------------------------------------------------------------";
                 }
                 else if (ItmMenu)
                 {
@@ -1604,12 +1612,14 @@ public:
                 {
                     if (ItmMenu || AtkMenu)
                     {
+						Selection = 0;
                         ItmMenu = false;
                         AtkMenu = false;
                         TopMenu = true;
                     }
                     else if (ChooseTarget)
                     {
+						Selection = 0;
                         ChooseTarget = false;
                         AtkMenu = true;
                     }

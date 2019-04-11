@@ -732,11 +732,11 @@ void MapMain::CheckForBattle() {
 			}
 			string tempText = "";
 			int temp = rand() % 101;
-			if (temp > 40 && temp < 70)
+			if (temp > 50 && temp < 75)
 			{
 				tempText = Inventory.AddWeapon(-1, -1, -1);
 			}
-			else if (temp > 70)
+			else if (temp > 75)
 			{
 				tempText = Inventory.AddArmor(-1, -1, -1);
 			}

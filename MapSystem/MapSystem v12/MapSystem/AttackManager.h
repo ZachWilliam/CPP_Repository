@@ -244,7 +244,10 @@ public:
         PhysMoves.push_back(Attack("Heal", 100, 7));
         PhysMoves.push_back(Attack("Cure Ailment", 100, 7));
         PhysMoves.push_back(Attack("Heal More", 100, 7));
-        SpellBook.push_back({ Attack("Break", 100, 2),
+		PhysMoves[6].desc = "A spell that heals a single target.";
+		PhysMoves[7].desc = "A spell that slightly heals a single target and reverts any\nlowered stats.";
+		PhysMoves[8].desc = "A spell that heals the whole party.";
+		SpellBook.push_back({ Attack("Break", 100, 2),
                              Attack("Spacial Rift", 100, 4),
                              Attack("Rupture", 150, 2),
                              Attack("Collapse", 100, 6),
@@ -313,33 +316,53 @@ public:
 		SpellBook[3][0].desc = "A spell that hurls a ball of water at an enemy.";
 		SpellBook[3][1].desc = "A spell that summons a vicious wave to pummel the front row of enemies.";
 		SpellBook[3][2].desc = "A spell that creates a pillar of water under a single enemy.";
-		SpellBook[3][3].desc = "A spell that causes an eruption of flames that engulfs all enemies.";
-		SpellBook[3][4].desc = "A spell that heats the battlefield until the air catches fire, burning enemies from the inside out.";
-		SpellBook[3][5].desc = "A spell that causes an ally to go into a fever pitch, increasing their offensive power.";
-		SpellBook[3][6].desc = "A spell that creates a warm aura through your whole party, healing the entire team.";
-		SpellBook[3][7].desc = "A spell that imbues an ally with a fiery warmth, healing them and raising their attack.";
+		SpellBook[3][3].desc = "A spell that drenches the computer's CPU in water, causing the game to\ncrash.";
+		SpellBook[3][4].desc = "A spell that compresses steam isnide of the enemy's body, causing it to\n burst from within.";
+		SpellBook[3][5].desc = "A spell that wraps an ally in a shield of rushing water, increasing their\ndefenses.";
+		SpellBook[3][6].desc = "A spell that creates a spray of pure water that heals the entire party.";
+		SpellBook[3][7].desc = "A spell that creates a pool of water surrounding your party, weakening\nincoming attacks.";
 
         SpellBook[3][5].effect = 3;
         SpellBook[3][7].effect = 3;
         SpellBook.push_back({ Attack("Shock", 100, 2),
-                             Attack("Plasma Burst", 100, 2),
-                             Attack("Thunderbolt", 100, 2),
-                             Attack("Discharge", 100, 2),
-                             Attack("Thunderhead", 100, 2),
+                             Attack("Plasma Burst", 75, 4),
+                             Attack("Thunderbolt", 150, 2),
+                             Attack("Discharge", 100, 6),
+                             Attack("Thunderhead", 150, 6),
                              Attack("Excite", 0, 7),
                              Attack("Charge", 0, 7),
                              Attack("Supersedence", 0, 7) });
+
+		SpellBook[4][0].desc = "A spell that shoots an electric beam at an enemy.";
+		SpellBook[4][1].desc = "A spell that shoots a ball of energy at the foes, bursting across the\nentire front row.";
+		SpellBook[4][2].desc = "A spell that summons a bolt from the sky to smite the enemy.";
+		SpellBook[4][3].desc = "A spell that blasts the enemy with a flurry of electrical energy,\nengulfing all enemies.";
+		SpellBook[4][4].desc = "A spell that summons a dark cloud above the enemy party that rains\nlightning down upon all of the enemies.";
+		SpellBook[4][5].desc = "A spell that embues an ally with electrical energy, increasing\ntheir mobility.";
+		SpellBook[4][6].desc = "A spell that charges an ally with electrical energy, increasing\ntheir attack power.";
+		SpellBook[4][7].desc = "A spell that awakens dormant magical powers inside of an ally,\nincreasing all of their stats.";
+
         SpellBook[4][5].effect = 5;
         SpellBook[4][6].effect = 1;
         SpellBook[4][7].effect = 7;
         SpellBook.push_back({ Attack("Gust", 100, 2),
-                             Attack("Vorpal Wind", 100, 2),
-                             Attack("Tornado", 100, 2),
-                             Attack("Hurricane", 100, 2),
-                             Attack("Miasmaime", 100, 2),
+                             Attack("Vorpal Wind", 75, 4),
+                             Attack("Tornado", 50, 6),
+                             Attack("Hurricane", 100, 5),
+                             Attack("Miasmaime", 150, 3),
                              Attack("Stormguard", 0, 7),
                              Attack("Storm Song", 0, 8),
                              Attack("Lunar Rondo", 100, 8) });
+
+		SpellBook[5][0].desc = "A spell that blasts a gust of wind at an enemy. The draft\nreduces the enemy's mobility.";
+		SpellBook[5][1].desc = "A spell that summons a tearing wind to rend through the front\nrow of enemies. The draft reduces the enemy's mobility.";
+		SpellBook[5][2].desc = "A spell that summons a whirlwind that tears through the enemy ranks.\nThe draft reduces the enemy's mobility.";
+		SpellBook[5][3].desc = "A spell that creates a massive cyclone of wind that ravages the entire\nenemy party. The draft reduces the enemy's mobility.";
+		SpellBook[5][4].desc = "A spell that launches a vicious ball of rending wind that hits a target twice.\nThe draft reduces the enemy's mobility.";
+		SpellBook[5][5].desc = "A spell that wraps an ally in a shield of wind, increasing their mobility.";
+		SpellBook[5][6].desc = "A song that summons violent winds that make it harder for enemy attacks to\nconnect with your party.";
+		SpellBook[5][7].desc = "A song that summons soothing winds that heal your whole party, and increase\ntheir attack.";
+
 		SpellBook[5][0].effect = 6;
 		SpellBook[5][1].effect = 6;
 		SpellBook[5][2].effect = 6;
@@ -356,9 +379,21 @@ public:
                              Attack("Poison Cloud", 30, 6),
                              Attack("Healing Sap", 100, 7),
                              Attack("Resonance", 50, 8) });
+
+		SpellBook[6][0].desc = "A spell that creates a poison spear to impale an enemy with venomous energy. The poison\nreduces the enemy's defense.";
+		SpellBook[6][1].desc = "A spell that summons vines to constrict a target, squeezing the life out of them.";
+		SpellBook[6][2].desc = "A spell that creates a wave of toxic energy that engulfs the enemy's front row.\nThe poison reduces the enemy's defense.";
+		SpellBook[6][3].desc = "A spell that summons violent tremors to damage the entire enemy party.";
+		SpellBook[6][4].desc = "A spell that summons a whirlwind of poisonous wind to ravage the entire enemy\nparty. The poison reduces the enemy's defense.";
+		SpellBook[6][5].desc = "A spell that summons a poisonous mist around the enemies. The poison reduces\nthe enemy's defense.";
+		SpellBook[6][6].desc = "A spell that creates a healing aura around a single party member,\nincreasing their defense.";
+		SpellBook[6][7].desc = "A spell that summons a natural energy from the earth that heals your party\nand increases their defense.";
+
 		SpellBook[6][0].effect = 4;
 		SpellBook[6][2].effect = 4;
 		SpellBook[6][4].effect = 4;
+		SpellBook[6][5].effect = 4;
+		SpellBook[6][6].effect = 3;
         SpellBook[6][7].effect = 3;
         SpellBook.push_back({ Attack("Ruin", 100, 2),
                              Attack("Decay Wave", 80, 4),
@@ -368,6 +403,16 @@ public:
                              Attack("Nosferatu", 100, 2),
                              Attack("Nethergate", 0, 7),
                              Attack("Sacred Poetry", 100, 6) });
+
+		SpellBook[7][0].desc = "A spell that summons dark spires underneath an enemy to impale them.";
+		SpellBook[7][1].desc = "A spell that creates a wave of deathly energy that engulfs the enemy's front row.\nThe poison reduces the enemy's defense.";
+		SpellBook[7][2].desc = "A spell that creates a dark spear of vampiric energy that drains an enemy's\nhealth and heals the user.";
+		SpellBook[7][3].desc = "A spell that creates a portal to the Underworld that tears through the enemy's front row.";
+		SpellBook[7][4].desc = "A spell that summons a portal to the Underworld that drags the enemy party\nthrough the hellscape before dropping them back into the mortal world.";
+		SpellBook[7][5].desc = "A spell that wraps the target in vampiric energy that drains the enemy's health\nand heals the user.";
+		SpellBook[7][6].desc = "A spell that summons a portal to the Underworld that spews negative energy around\na single party member, reducing the damage they take from incoming attacks.";
+		SpellBook[7][7].desc = "A reading of Vogon poetry that heals your whole party. Sheer exposure to\nthe poetry rends the minds of any enemy that hears it.";
+
 		SpellBook[7][1].effect = 4;
 		SpellBook[7][2].effect = 9;
 		SpellBook[7][5].effect = 9;
@@ -381,12 +426,25 @@ public:
                              Attack("Purify", 100, 7),
                              Attack("Restore", 100, 7),
                              Attack("Heavensend", 200, 8) });
+
+		SpellBook[8][0].desc = "A spell that blasts the enemy with holy energy.";
+		SpellBook[8][1].desc = "A spell that sheds holy light over the enemy front row.";
+		SpellBook[8][2].desc = "A spell that summons a bolt of holy energy from the sky onto an enemy.";
+		SpellBook[8][3].desc = "A spell that summons a shining fist from the sky that crashes down on an enemy.";
+		SpellBook[8][4].desc = "A spell that summons a pillar of holy energy that drowns the entire enemy party in light.";
+		SpellBook[8][5].desc = "A spell that purges irregularities from an ally's body, restoring their\nhealth and increasing their defense.";
+		SpellBook[8][6].desc = "A spell that revitalizes a party member, restoring their health and\nraising all of their stats.";
+		SpellBook[8][7].desc = "A spell that shines holy light on the party, greatly restoring their\nhealth and raising all of their stats.";
+
         SpellBook[8][5].effect = 3;
         SpellBook[8][6].effect = 7;
         SpellBook[8][7].effect = 7;
 		SpellBook.push_back({ Attack("Heal", 100, 7),
 							  Attack("Cure Ailment", 100, 7),
 							  Attack("Heal More", 100, 8) });
+		SpellBook[9][0].desc = "A spell that heals a single target.";
+		SpellBook[9][1].desc = "A spell that slightly heals a single target and reverts any\nlowered stats.";
+		SpellBook[9][2].desc = "A spell that heals the whole party.";
     }
 	vector<Attack> PhysMoves;
 	vector<vector<Attack>> SpellBook;
