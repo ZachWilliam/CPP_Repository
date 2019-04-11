@@ -467,7 +467,17 @@ public:
     {
 
         Damage = 1;
-        Damage += User.BattleStats[0];
+		int Decider = 0;
+		bool magic = false;
+		if (User.BattleStats[0] < User.BattleStats[2])
+		{
+			Damage += User.BattleStats[2];
+			magic = true;
+		}
+		else
+		{
+			Damage += User.BattleStats[0];
+		}
         if (User.AI == 0 || User.AI == 1 || User.AI == 2 || User.AI == 3)
         {
             while (true)
@@ -478,9 +488,17 @@ public:
                     int HitChance = ((((PlayerParty.Container[dir].BattleStats[7] + PlayerParty.Container[dir].PlayerInventory.m_Armor.m_Avoidance) - User.BattleStats[6]) * 2));
                     if (rand() % 100 > HitChance)
                     {
-                        Damage -= PlayerParty.Container[dir].BattleStats[1];
-                        Damage -= PlayerParty.Container[dir].PlayerInventory.m_Armor.m_DamageResist;
-                        Damage = _Max_value(Damage, 0);
+						if (magic)
+						{
+							Damage -= PlayerParty.Container[dir].BattleStats[3];
+							Damage -= PlayerParty.Container[dir].PlayerInventory.m_Armor.m_MagicResist;
+						}
+						else
+						{
+							Damage -= PlayerParty.Container[dir].BattleStats[1];
+							Damage -= PlayerParty.Container[dir].PlayerInventory.m_Armor.m_DamageResist;
+						}
+                        Damage = _Max_value(Damage, 1);
 						int temp = rand() % 100;
 						if (temp < User.CurrentStats.LUCK)
 						{
@@ -1651,7 +1669,14 @@ public:
         else
         {
             gotoxy(0, 33);
-            cout << Order[InitiativeOrder].combatantValue.name << " attacks!                                                                     " << endl;
+			if (Order[InitiativeOrder].combatantValue.BattleStats[0] < Order[InitiativeOrder].combatantValue.BattleStats[2])
+			{
+				cout << Order[InitiativeOrder].combatantValue.name << " casts a magical attack!                                                      " << endl;
+			}
+			else
+			{
+				cout << Order[InitiativeOrder].combatantValue.name << " attacks!                                                                     " << endl;
+			}
             bool done = false;
             for (size_t i = 0; i < FrontRow.size(); i++)
             {
@@ -1669,7 +1694,11 @@ public:
                     done = true;
                 }
             }
-            _getch();
+			char CharTzar = KEY_UP;
+			while (CharTzar == KEY_UP || CharTzar == KEY_DOWN || CharTzar == KEY_LEFT || CharTzar == KEY_RIGHT)
+			{
+				CharTzar = _getch();
+			}
             InitiativeOrder++;
             if (InitiativeOrder >= Order.size())
             {

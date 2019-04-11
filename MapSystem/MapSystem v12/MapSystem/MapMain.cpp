@@ -691,7 +691,9 @@ void MapMain::CheckForBattle() {
 		bool inBattle = true;
 		int temp = TheGroup.Leader.Level;
 		Encounter FirstBattle(1, database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(0), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
-		FirstBattle = RandomSpawn.GenerateEncounter(TheGroup.Leader.Level);
+		
+		FirstBattle = RandomSpawn.GenerateEncounter(TheGroup.Leader.Level, curMap.mapID);
+
 		for (size_t i = 0; i < TheGroup.Container.size(); i++)
 		{
 			if (TheGroup.Container[i].name != "NULL_NAME")
