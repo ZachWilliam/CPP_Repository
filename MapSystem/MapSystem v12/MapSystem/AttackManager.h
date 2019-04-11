@@ -230,20 +230,33 @@ public:
     {
 
         PhysMoves.push_back(Attack("Skewer", 100, 0));
+		PhysMoves[0].desc = "A basic attack that deals piercing damage.";
         PhysMoves.push_back(Attack("Strike", 100, 0));
+		PhysMoves[1].desc = "A basic attack that deals slashing damage.";
         PhysMoves.push_back(Attack("Bash", 100, 0));
+		PhysMoves[2].desc = "A basic attack that deals bludgeoning damage.";
         PhysMoves.push_back(Attack("Multiattack", 50, 1));
+		PhysMoves[3].desc = "An attack that deals piercing damage twice.";
         PhysMoves.push_back(Attack("Shoot", 100, 2));
+		PhysMoves[4].desc = "A basic attack that deals piercing damage.";
         PhysMoves.push_back(Attack("Multistrike", 50, 3));
+		PhysMoves[5].desc = "An attack that deals slashing damage twice.";
         PhysMoves.push_back(Attack("Heal", 100, 7));
         PhysMoves.push_back(Attack("Cure Ailment", 100, 7));
         PhysMoves.push_back(Attack("Heal More", 100, 7));
         SpellBook.push_back({ Attack("Break", 100, 2),
-                             Attack("Spacial Rift", 100, 2),
-                             Attack("Rupture", 100, 2),
-                             Attack("Collapse", 100, 2),
-                             Attack("Panta Rei", 100, 2),
+                             Attack("Spacial Rift", 100, 4),
+                             Attack("Rupture", 150, 2),
+                             Attack("Collapse", 100, 6),
+                             Attack("Panta Rei", 200, 2),
                              Attack("Debilitate", 0, 2) });
+		SpellBook[0][0].desc = "A spell that shatters the space that an enemy's body occupies.";
+		SpellBook[0][1].desc = "A spell that tears through the space that an enemy occupies, rending their body apart.";
+		SpellBook[0][2].desc = "A spell that causes space to rapidly expand, damaging anything that it touches.";
+		SpellBook[0][3].desc = "A spell that causes space to impode upon itself, sucking in nearby enemies.";
+		SpellBook[0][4].desc = "A spell that pulls on the enemy's soul, pulling them towards the afterlife.";
+		SpellBook[0][5].desc = "A spell that disrupts the molecular bonds of an enemy's being, weakening them thoroughly.";
+
         SpellBook[0][5].effect = 8;
         SpellBook.push_back({ Attack("Fireball", 100, 2),
                              Attack("Firewall", 75, 4),
@@ -253,6 +266,16 @@ public:
                              Attack("Aggro", 0, 7),
                              Attack("Hearthfire", 100, 8),
                              Attack("Blazing Soul", 100, 7) });
+		SpellBook[1][0].desc = "A spell that casts a projectile ball of fire at an enemy.";
+		SpellBook[1][1].desc = "A spell that summons a wall of fire that engulfs the front row of enemies.";
+		SpellBook[1][2].desc = "A spell that creates a vicous pillar of fire around a single enemy.";
+		SpellBook[1][3].desc = "A spell that causes an eruption of flames that engulfs all enemies.";
+		SpellBook[1][4].desc = "A spell that heats the battlefield until the air catches fire, burning enemies from the inside out.";
+		SpellBook[1][5].desc = "A spell that causes an ally to go into a fever pitch, increasing their offensive power.";
+		SpellBook[1][5].desc = "A spell that creates a warm aura through your whole party, healing the entire team.";
+		SpellBook[1][5].desc = "A spell that .";
+
+
         SpellBook[1][5].effect = 1;
         SpellBook[1][7].effect = 1;
         SpellBook.push_back({ Attack("Ice Shard", 100, 2),

@@ -891,6 +891,7 @@ public:
 				Inventory.SwapEquipedArmor(PlayerParty.Container[1].PlayerInventory, PlayerParty.Container[3].PlayerInventory, PlayerParty.Container[5].PlayerInventory);
 				break;
 			default:
+				again = 'n';
 				break;
 			}
 			if (choice != 5)
