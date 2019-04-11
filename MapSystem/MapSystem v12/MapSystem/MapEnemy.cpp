@@ -1,5 +1,6 @@
 #include "MapEnemy.h"
-#include"ConvertHelper.h"
+#include "ConvertHelper.h"
+#include "DeserializeHelper.h"
 
 MapEnemy::MapEnemy(int p_row, int p_col, bool p_isDefeated, int p_isBoss, int p_isFinalBoss) :
 	row(p_row),
@@ -12,7 +13,31 @@ MapEnemy::MapEnemy(int p_row, int p_col, bool p_isDefeated, int p_isBoss, int p_
 
 MapEnemy::MapEnemy(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			row = stoi(helper.ParsedValue());
+			break;
+		case 1:
+			col = stoi(helper.ParsedValue());
+			break;
+		case 2:
+			isDefeated = stob(helper.ParsedValue());
+			break;
+		case 3:
+			isBoss = stob(helper.ParsedValue());
+			break;
+		case 4:
+			isFinalBoss = stob(helper.ParsedValue());
+			break;
+		}
+	}
 }
 
 string MapEnemy::Serialized()

@@ -1,5 +1,5 @@
 #include "NPC.h"
-
+#include "DeserializeHelper.h"
 
 
 NPC::NPC(int p_row, int p_col, int p_mapID, int p_nameID, int p_dID) :
@@ -13,7 +13,32 @@ NPC::NPC(int p_row, int p_col, int p_mapID, int p_nameID, int p_dID) :
 
 NPC::NPC(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			row = stoi(helper.ParsedValue());
+			break;
+		case 1:
+			col = stoi(helper.ParsedValue());
+			break;
+		case 2:
+			mapID = stoi(helper.ParsedValue());
+			break;
+		case 3:
+			nameID = stoi(helper.ParsedValue());
+			break;
+		case 4:
+			dialogueID = stoi(helper.ParsedValue());
+			break;
+		}
+	}
+
 }
 
 string NPC::Serialized()

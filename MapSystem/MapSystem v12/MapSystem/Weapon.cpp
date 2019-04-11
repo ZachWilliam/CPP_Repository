@@ -1,5 +1,6 @@
 #include "Weapon.h"
 #include "ConvertHelper.h"
+#include "DeserializeHelper.h"
 
 WeaponType::WeaponType(string weapon_type, int damageMIN, int damageMAX, int statUsed, int wielded)
 {
@@ -18,7 +19,31 @@ string WeaponType::ToString()
 
 WeaponType::WeaponType(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			m_Name = helper.ParsedValue();
+			break;
+		case 1:
+			m_DamageMIN = stoi(helper.ParsedValue());
+			break;
+		case 2:
+			m_DamageMAX = stoi(helper.ParsedValue());
+			break;
+		case 3:
+			m_StatUsed = (stat)stoi(helper.ParsedValue());
+			break;
+		case 4:
+			m_Wielded = (wield)stoi(helper.ParsedValue());
+			break;
+		}
+	}
 }
 
 string WeaponType::Serialized()
@@ -54,7 +79,22 @@ string DamageType::ToString(bool magic)
 
 DamageType::DamageType(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			m_Technique = (HitType)stoi(helper.ParsedValue());
+			break;
+		case 1:
+			m_Enhancement = stoi(helper.ParsedValue());
+			break;
+		}
+	}
 }
 
 string DamageType::Serialized()
@@ -578,7 +618,40 @@ void Weapon::SetRandomWeapon()
 
 Weapon::Weapon(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			ID = stoi(helper.ParsedValue());
+			break;
+		case 1:
+			SpellSlot = stoi(helper.ParsedValue());
+			break;
+		case 2:
+			m_Prefix_Name = helper.ParsedValue();
+			break;
+		case 3:
+			m_Weapon_Type = WeaponType(helper.ParsedClassSString());
+			break;
+		case 4:
+			m_DamageMIN = stoi(helper.ParsedValue());
+			break;
+		case 5:
+			m_DamageMAX = stoi(helper.ParsedValue());
+			break;
+		case 6:
+			m_Magic = stob(helper.ParsedValue());
+			break;
+		case 7:
+			m_DamageType = DamageType(helper.ParsedClassSString());
+			break;
+		}
+	}
 }
 
 string Weapon::Serialized()

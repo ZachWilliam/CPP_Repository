@@ -1,4 +1,5 @@
 #include "Backpack.h"
+#include "DeserializeHelper.h"
 
 Backpack::Backpack(int gold = 0, int buildingMaterials = 0, bool questItem = false,//purse
 	int setWeaponType = 0, int setWeaponName = 1, int setDamType = 10,//weapon
@@ -57,7 +58,28 @@ void Backpack::EquipedArmor()
 
 Backpack::Backpack(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			m_Purse = Purse(helper.ParsedClassSString());
+			break;
+		case 1:
+			m_Weapon = Weapon(helper.ParsedClassSString());
+			break;
+		case 2:
+			m_Armor = Armor(helper.ParsedClassSString());
+			break;
+		case 3:
+			m_Potion = Potion(helper.ParsedClassSString());
+			break;
+		}
+	}
 }
 
 string Backpack::Serialized()
@@ -74,6 +96,9 @@ string Backpack::Serialized()
 
 
 
+
+PartyInventory::PartyInventory()
+{}
 
 PartyInventory::PartyInventory(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref)
 {
@@ -404,7 +429,40 @@ void PartyInventory::SwapEquipedArmor(Backpack &BP1ref, Backpack &BP2ref, Backpa
 
 PartyInventory::PartyInventory(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			INV_WEAPON.push_back(Weapon(helper.ParsedClassSString()));
+			break;
+		case 1:
+			INV_ARMOR.push_back(Armor(helper.ParsedClassSString()));
+			break;
+		case 2:
+			EQUIPED_WEAPON1 = Weapon(helper.ParsedClassSString());
+			break;
+		case 3:
+			EQUIPED_ARMOR1 = Armor(helper.ParsedClassSString());
+			break;
+		case 4:
+			EQUIPED_WEAPON2 = Weapon(helper.ParsedClassSString());
+			break;
+		case 5:
+			EQUIPED_ARMOR2 = Armor(helper.ParsedClassSString());
+			break;
+		case 6:
+			EQUIPED_WEAPON3 = Weapon(helper.ParsedClassSString());
+			break;
+		case 7:
+			EQUIPED_ARMOR3 = Armor(helper.ParsedClassSString());
+			break;
+		}
+	}
 }
 
 string PartyInventory::Serialized()

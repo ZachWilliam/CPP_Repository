@@ -1,5 +1,5 @@
 #include "Coord.h"
-
+#include "DeserializeHelper.h"
 
 
 Coord::Coord(int p_thisMapR, int p_thisMapC, int p_nextMapR, int p_nextMapC, int p_nextMapID) :
@@ -13,7 +13,31 @@ Coord::Coord(int p_thisMapR, int p_thisMapC, int p_nextMapR, int p_nextMapC, int
 
 Coord::Coord(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			thisMapR = stoi(helper.ParsedValue());
+			break;
+		case 1:
+			thisMapC = stoi(helper.ParsedValue());
+			break;
+		case 2:
+			nextMapR = stoi(helper.ParsedValue());
+			break;
+		case 3:
+			nextMapC = stoi(helper.ParsedValue());
+			break;
+		case 4:
+			nextMapID = stoi(helper.ParsedValue());
+			break;
+		}
+	}
 }
 
 string Coord::Serialized()

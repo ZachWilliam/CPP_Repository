@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "DeserializeHelper.h"
 
 using namespace std;
 
@@ -32,7 +33,28 @@ public:
 
 Attack::Attack(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			name = helper.ParsedValue();
+			break;
+		case 1:
+			power = stoi(helper.ParsedValue());
+			break;
+		case 2:
+			target = stoi(helper.ParsedValue());
+			break;
+		case 3:
+			effect = stoi(helper.ParsedValue());
+			break;
+		}
+	}
 }
 
 string Attack::Serialized()

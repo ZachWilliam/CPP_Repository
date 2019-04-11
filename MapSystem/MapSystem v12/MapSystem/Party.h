@@ -3,6 +3,7 @@
 #include "PartyManager.h"
 #include <time.h>
 #include "ConvertHelper.h"
+#include "DeserializeHelper.h"
 #pragma once
 
 using namespace std;
@@ -144,7 +145,25 @@ public:
 
 Party::Party(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			Leader = Player(helper.ParsedClassSString());
+			break;
+		case 1:
+			Container.push_back(Player(helper.ParsedClassSString()));
+			break;
+		case 2:
+			isBank = stob(helper.ParsedValue());
+			break;
+		}
+	}
 }
 
 string Party::Serialized()

@@ -35,6 +35,7 @@ public:
 class PartyInventory
 {
 public:
+	PartyInventory();
 	PartyInventory(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref);
 	PartyInventory(string serialString);
 

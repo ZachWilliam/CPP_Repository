@@ -6,6 +6,8 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include "ConvertHelper.h"
+#include "DeserializeHelper.h"
 
 using namespace std;
 /*
@@ -49,7 +51,25 @@ public:
 
 Purse::Purse(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			m_Gold = stoi(helper.ParsedValue());
+			break;
+		case 1:
+			m_BuildingMaterials = stoi(helper.ParsedValue());
+			break;
+		case 2:
+			m_QuestItem = stob(helper.ParsedValue());
+			break;
+		}
+	}
 }
 
 string Purse::Serialized()
@@ -104,7 +124,31 @@ public:
 
 Potion::Potion(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			m_Name = helper.ParsedValue();
+			break;
+		case 1:
+			m_HealAmount = stoi(helper.ParsedValue());
+			break;
+		case 2:
+			m_DamageAmount = stoi(helper.ParsedValue());
+			break;
+		case 3:
+			m_MagicAttack = stoi(helper.ParsedValue());
+			break;
+		case 4:
+			m_MagicResist = stoi(helper.ParsedValue());
+			break;
+		}
+	}
 }
 
 string Potion::Serialized()

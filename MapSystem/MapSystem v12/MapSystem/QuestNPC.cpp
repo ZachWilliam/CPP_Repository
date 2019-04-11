@@ -1,4 +1,5 @@
 #include "QuestNPC.h"
+#include "DeserializeHelper.h"
 
 
 
@@ -14,7 +15,34 @@ QuestNPC::QuestNPC(int p_row, int p_col, int p_mapID, int p_locInVec, int p_name
 
 QuestNPC::QuestNPC(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			row = stoi(helper.ParsedValue());
+			break;
+		case 1:
+			col = stoi(helper.ParsedValue());
+			break;
+		case 2:
+			mapID = stoi(helper.ParsedValue());
+			break;
+		case 3:
+			nameID = stoi(helper.ParsedValue());
+			break;
+		case 4:
+			dialogueIDs.push_back(stoi(helper.ParsedValue()));
+			break;
+		case 5:
+			locInDialogueVec = stoi(helper.ParsedValue());
+			break;
+		}
+	}
 }
 
 string QuestNPC::Serialized()

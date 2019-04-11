@@ -1,5 +1,6 @@
 #include "MapMain.h"
 #include "ConvertHelper.h"
+#include "DeserializeHelper.h"
 
 MapMain::MapMain(Database &p_database, Database &p_beastiary, Party &p_party, PartyInventory &p_inventory) :
 	database_text(p_database),
@@ -282,7 +283,7 @@ void MapMain::PauseMenu() {
 			cout << "3. " << TheGroup.Container[5].name << endl;
 			TheGroup.Container[5].PlayerInventory.EquipedWeapon();
 			cout << endl;
-				
+
 			Inventory.SwapEquipedWeapon(TheGroup.Container[1].PlayerInventory, TheGroup.Container[3].PlayerInventory, TheGroup.Container[5].PlayerInventory);
 			break;
 		case 4:
@@ -348,7 +349,7 @@ void MapMain::DoInteraction() {
 
 	//Chest
 	if (interactChar == '=') {
-		
+
 		int locInChestVec = curMap.OpenChest(charRow, charCol, database_text, questManager, Inventory);
 		if (locInChestVec != -1) {
 			//Change data in local map copy
@@ -532,14 +533,14 @@ void MapMain::DoInteraction() {
 			ClearBottom();
 			ClearRight();
 			DrawRight();
-			
-			if(isVictorious == FLEE || isVictorious == WIN && curMap.mapID != 8) SoundManager::Instance().PlayMusic(curMap.mapMusic);
+
+			if (isVictorious == FLEE || isVictorious == WIN && curMap.mapID != 8) SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		}
 		else {
 			PlayBattleTransEffect();
 			OutputSpeech("This is where the battle would take place, but we didn't find the targeted enemy.", "The Battle");
 		}
-		
+
 		//Update Map based on win/lose
 		if (isVictorious == 1) {
 			if (locInEnemyVec != -1) {
@@ -566,6 +567,7 @@ void MapMain::DoInteraction() {
 	if (interactChar == '$') {
 		PlaySound("Sound/save_music.wav", NULL, SND_FILENAME | SND_SYNC);
 		//Call save function
+		SaveStringToFile(Serialized());
 
 		SoundManager::Instance().PlayMusic(curMap.mapMusic);
 		OutputSpeech("Call the save function here.", "Save Point");
@@ -692,7 +694,7 @@ void MapMain::CheckForBattle() {
 		if (isVictorious == LOSE) {
 			GManager.gameState = GManager.GAME_OVER;
 		}
-		else if(isVictorious == WIN) {
+		else if (isVictorious == WIN) {
 			while (temp < TheGroup.Leader.Level)
 			{
 				temp++;
@@ -717,8 +719,8 @@ void MapMain::CheckForBattle() {
 		ClearBottom();
 		ClearRight();
 		DrawRight();
-		if(isVictorious != FLEE) SoundManager::Instance().PlayMusic(curMap.mapMusic);
-		
+		if (isVictorious != FLEE) SoundManager::Instance().PlayMusic(curMap.mapMusic);
+
 	}
 	else {
 		//Make it more likely to get a encounter next battle check
@@ -818,27 +820,27 @@ void MapMain::DrawRight() {
 	GoToXY(9, right_start_col + 1); cout << CenterPhrase("Legend", side_width - 2);
 	GoToXY(10, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
 	GoToXY(11, right_start_col + 1);
-		cout << "          ";
-		SetColorAndBackground(RED); cout << " ";
-		SetColorAndBackground(); cout << " Player";
+	cout << "          ";
+	SetColorAndBackground(RED); cout << " ";
+	SetColorAndBackground(); cout << " Player";
 	GoToXY(12, right_start_col + 1);
-		cout << "          ";
-		SetColorAndBackground(YELLOW); cout << " ";
-		SetColorAndBackground(); cout << " Chest";
+	cout << "          ";
+	SetColorAndBackground(YELLOW); cout << " ";
+	SetColorAndBackground(); cout << " Chest";
 	GoToXY(13, right_start_col + 1);
-		cout << "           ";
-		SetColorAndBackground(LIGHTMAGENTA); cout << " ";
-		SetColorAndBackground(); cout << " NPC";
+	cout << "           ";
+	SetColorAndBackground(LIGHTMAGENTA); cout << " ";
+	SetColorAndBackground(); cout << " NPC";
 	GoToXY(14, right_start_col + 1);
-		cout << "        ";
-		SetColorAndBackground(LIGHTCYAN); cout << " ";
-		SetColorAndBackground(); cout << " Save Point";
+	cout << "        ";
+	SetColorAndBackground(LIGHTCYAN); cout << " ";
+	SetColorAndBackground(); cout << " Save Point";
 	GoToXY(15, right_start_col + 1);
-		cout << "          ";
-		SetColorAndBackground(LIGHTRED); cout << " ";
-		SetColorAndBackground(); cout << " Enemy";
-	
-	
+	cout << "          ";
+	SetColorAndBackground(LIGHTRED); cout << " ";
+	SetColorAndBackground(); cout << " Enemy";
+
+
 	//Controls
 	GoToXY(20, right_start_col + 1); cout << CenterPhrase("Controls", side_width - 2);
 	GoToXY(21, right_start_col + 1); cout << CenterPhrase("------------", side_width - 2);
@@ -904,20 +906,83 @@ void MapMain::SaveStringToFile(string p_saveString)
 }
 
 
+MapMain::MapMain(string serialString)
+{
+	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	//int tempMapID = 0;
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			mapManager = MapManager(helper.ParsedClassSString());
+			break;
+		case 1:
+			// TODO - curMap (Map)
+			//tempMapID = stoi(helper.ParsedValue());
+			break;
+		case 2:
+			questManager = QuestManager(helper.ParsedClassSString());
+			break;
+			//case :
+			//
+			//	break;
+			//case :
+			//
+			//	break;
+		case 3:
+			TheGroup = Party(helper.ParsedClassSString());
+			break;
+		case 4:
+			Inventory = PartyInventory(helper.ParsedClassSString());
+			break;
+		case 5:
+			cDir = (eDirection)stoi(helper.ParsedValue());
+			break;
+		case 6:
+			rDir = (eDirection)stoi(helper.ParsedValue());
+			break;
+		case 7:
+			playerR = stoi(helper.ParsedValue());
+				break;
+		case 8:
+			playerC = stoi(helper.ParsedValue());
+				break;
+		case 9:
+			lastChar = (helper.ParsedValue())[0];
+				break;
+		case 10:
+			interact = stob(helper.ParsedValue());
+				break;
+		case 11:
+			openInventory = stob(helper.ParsedValue());
+				break;
+		case 12:
+			stepCount = stoi(helper.ParsedValue());
+				break;
+		}
+	}
+
+	//curMap = mapManager.mapList[tempMapID];
+}
 
 
 string MapMain::Serialized()
 {
 	string serialString = "";
 
-	serialString += "mapManager{" + mapManager.Serialized() + "}"/**/;		//TODO - Serialized() method not quite finished, look into a solution for a vector<vector<Type>> data member	//TODO - need deserialize constructor for: QuestNPC, MapEnemy, Chest, NPC, Coord, Map, MapManager
+	serialString += "mapManager{" + mapManager.Serialized() + "}";		//TODO - Serialized() method and serialString constructor in Map class not quite finished, look into a solution for a vector<vector<Type>> data member
 	//serialString += "curMap{" /*+ "..." + "}"*/;							//TODO - Debating on how to proceed...
 	serialString += "curMap:" + to_string(curMap.mapID) + ",";				//TODO - for now lets save by the current maps mapID(int) value
-	serialString += "questManager{" + questManager.Serialized() + "}"/**/;	//TODO - need deserialize constructor for: QuestManager, Quest
+	serialString += "questManager{" + questManager.Serialized() + "}";
 	//serialString += "database_monsters{" /*+ "..." + "}"*/;					//TODO - give Database a Serialized() method	..................................	- QUESTION - is this needed? leaning towards "no"
 	//serialString += "database_text{" /*+ "..." + "}"*/;						//TODO - relates to Database.Serialized() method that should be made at this point	- QUESTION - is this needed? leaning towards "no"
-	serialString += "TheGroup{" + TheGroup.Serialized() + "}"/**/;			//TODO - need deserialize constructor for: Player, PlayerClass, Backpack, Weapon, DamageType, WeaponType, Armor, ElementType, ArmorType, Potion, Purse, Attack, Stats
-	serialString += "Inventory{" + Inventory.Serialized() + "}"/**/;		//TODO - need deserialize constructor for: PartyInventory
+	serialString += "TheGroup{" + TheGroup.Serialized() + "}";
+	serialString += "Inventory{" + Inventory.Serialized() + "}";
 
 	// Player Info
 	serialString += "cDir:" + etos((int)cDir) + ",";
@@ -931,8 +996,7 @@ string MapMain::Serialized()
 	// Battle Info
 	serialString += "stepCount:" + to_string(stepCount) + ",";
 
-	// ?Input?
-	//serialString += ":" + to_string() + ",";
+	// TODO - ?Input?
 
 	return serialString;
 }

@@ -1,5 +1,5 @@
 #include "MapManager.h"
-
+#include "DeserializeHelper.h"
 
 
 MapManager::MapManager()
@@ -279,7 +279,19 @@ vector<MapEnemy> MapManager::GetEnemies(const string &p_line) {
 
 MapManager::MapManager(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			mapList.push_back(Map(helper.ParsedClassSString()));
+			break;
+		}
+	}
 }
 
 string MapManager::Serialized()

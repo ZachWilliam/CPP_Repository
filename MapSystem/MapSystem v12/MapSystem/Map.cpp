@@ -1,5 +1,6 @@
 #include "Map.h"
 #include "ConvertHelper.h"
+#include "DeserializeHelper.h"
 
 
 Map::Map(const string &p_name, const vector<vector<char> > &p_map, int p_mapID, bool p_canBattle, vector<Coord> p_transPoints, vector<NPC> p_npcs, vector<Chest> p_chests,
@@ -58,7 +59,58 @@ int Map::OpenChest(int p_row, int p_col, Database &p_database, QuestManager& p_q
 
 Map::Map(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			//map		/*vector<vector<char>>*/ //TODO - find a work-around
+			break;
+		case 1:
+			mapID = stoi(helper.ParsedValue());
+			break;
+		case 2:
+			name = helper.ParsedValue();
+			break;
+		case 3:
+			canBattle = stob(helper.ParsedValue());
+			break;
+		case 4:
+			v_transitionPoints.push_back(Coord(helper.ParsedClassSString()));
+			break;
+		case 5:
+			v_NPCs.push_back(NPC(helper.ParsedClassSString()));
+			break;
+		case 6:
+			v_chests.push_back(Chest(helper.ParsedClassSString()));
+			break;
+		case 7:
+			v_mapEnemies.push_back(MapEnemy(helper.ParsedClassSString()));
+			break;
+		case 8:
+			v_questNPCs.push_back(QuestNPC(helper.ParsedClassSString()));
+			break;
+		case 9:
+			defaultPR = stoi(helper.ParsedValue());
+			break;
+		case 10:
+			defaultPC = stoi(helper.ParsedValue());
+			break;
+		case 11:
+			spaceColor = stoi(helper.ParsedValue());
+			break;
+		case 12:
+			mapMusic = helper.ParsedValue();
+			break;
+		case 13:
+			playedFlavorTxt = stob(helper.ParsedValue());
+			break;
+		}
+	}
 }
 
 string Map::Serialized()

@@ -1,5 +1,6 @@
 #include "Chest.h"
 #include "ConvertHelper.h"
+#include "DeserializeHelper.h"
 
 
 Chest::Chest(int p_row, int p_col, bool p_opened, int p_id1, int p_id2, int p_id3, int p_itemID) :
@@ -15,7 +16,37 @@ Chest::Chest(int p_row, int p_col, bool p_opened, int p_id1, int p_id2, int p_id
 
 Chest::Chest(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			row = stoi(helper.ParsedValue());
+			break;
+		case 1:
+			col = stoi(helper.ParsedValue());
+			break;
+		case 2:
+			opened = stob(helper.ParsedValue());
+			break;
+		case 3:
+			id1 = stoi(helper.ParsedValue());
+			break;
+		case 4:
+			id2 = stoi(helper.ParsedValue());
+			break;
+		case 5:
+			id3 = stoi(helper.ParsedValue());
+			break;
+		case 6:
+			itemType = stoi(helper.ParsedValue());
+			break;
+		}
+	}
 }
 
 string Chest::Serialized()

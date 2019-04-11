@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "DeserializeHelper.h"
 #pragma once
 
 using namespace std;
@@ -91,7 +92,37 @@ public:
 
 Stats::Stats(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			STRENGTH = stoi(helper.ParsedValue());
+			break;
+		case 1:
+			DEXTERITY = stoi(helper.ParsedValue());
+			break;
+		case 2:
+			CONSTITUTION = stoi(helper.ParsedValue());
+			break;
+		case 3:
+			AGILITY = stoi(helper.ParsedValue());
+			break;
+		case 4:
+			INTELLIGENCE = stoi(helper.ParsedValue());
+			break;
+		case 5:
+			WISDOM = stoi(helper.ParsedValue());
+			break;
+		case 6:
+			LUCK = stoi(helper.ParsedValue());
+			break;
+		}
+	}
 }
 
 string Stats::Serialized()

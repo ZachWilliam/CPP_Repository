@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Weapon.h"
 #include "ConvertHelper.h"
+#include "DeserializeHelper.h"
 #pragma once
 
 using namespace std;
@@ -51,7 +52,100 @@ public:
 
 PlayerClass::PlayerClass(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			name = helper.ParsedValue();
+			break;
+		case 1:
+			Desc1 = helper.ParsedValue();
+			break;
+		case 2:
+			Desc2 = helper.ParsedValue();
+			break;
+		case 3:
+			Desc3 = helper.ParsedValue();
+			break;
+		case 4:
+			AbilityDesc = helper.ParsedValue();
+			break;
+		case 5:
+			STR_BASE = stoi(helper.ParsedValue());
+			break;
+		case 6:
+			DEX_BASE = stoi(helper.ParsedValue());
+			break;
+		case 7:
+			CON_BASE = stoi(helper.ParsedValue());
+			break;
+		case 8:
+			AGI_BASE = stoi(helper.ParsedValue());
+			break;
+		case 9:
+			INT_BASE = stoi(helper.ParsedValue());
+			break;
+		case 10:
+			WIS_BASE = stoi(helper.ParsedValue());
+			break;
+		case 11:
+			LUK_BASE = stoi(helper.ParsedValue());
+			break;
+		case 12:
+			STR_G = stoi(helper.ParsedValue());
+			break;
+		case 13:
+			DEX_G = stoi(helper.ParsedValue());
+			break;
+		case 14:
+			CON_G = stoi(helper.ParsedValue());
+			break;
+		case 15:
+			AGI_G = stoi(helper.ParsedValue());
+			break;
+		case 16:
+			INT_G = stoi(helper.ParsedValue());
+			break;
+		case 17:
+			WIS_G = stoi(helper.ParsedValue());
+			break;
+		case 18:
+			LUK_G = stoi(helper.ParsedValue());
+			break;
+		case 19:
+			Simple = stob(helper.ParsedValue());
+			break;
+		case 20:
+			Martial = stob(helper.ParsedValue());
+			break;
+		case 21:
+			Ranged = stob(helper.ParsedValue());
+			break;
+		case 22:
+			Magic = stob(helper.ParsedValue());
+			break;
+		case 23:
+			Staff = stob(helper.ParsedValue());
+			break;
+		case 24:
+			RStat = stoi(helper.ParsedValue());
+			break;
+		case 25:
+			Prerequisite = (BaseType)stoi(helper.ParsedValue());
+			break;
+		case 26:
+			Current = (BaseType)stoi(helper.ParsedValue());
+			break;
+		case 27:
+			StarterWeapon = Weapon(helper.ParsedClassSString());
+			break;
+		}
+	}
 }
 
 string PlayerClass::Serialized()

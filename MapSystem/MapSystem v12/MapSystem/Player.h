@@ -5,6 +5,7 @@
 #include "Backpack.h"
 #include "Attack.h"
 #include "AttackManager.h"
+#include "DeserializeHelper.h"
 #pragma once
 
 using namespace std;
@@ -252,7 +253,73 @@ public:
 
 Player::Player(string serialString, char dummyValue)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			name = helper.ParsedValue();
+			break;
+		case 1:
+			status = (Status)stoi(helper.ParsedValue());
+			break;
+		case 2:
+			OFFENSE = (Stat_Change)stoi(helper.ParsedValue());
+			break;
+		case 3:
+			DEFENSE = (Stat_Change)stoi(helper.ParsedValue());
+			break;
+		case 4:
+			MOBILITY = (Stat_Change)stoi(helper.ParsedValue());
+			break;
+		case 5:
+			CurrentStats = Stats(helper.ParsedClassSString());
+			break;
+		case 6:
+			BattleStats.push_back(stoi(helper.ParsedValue()));
+			break;
+		case 7:
+			Resistances.push_back(stof(helper.ParsedValue()));
+			break;
+		case 8:
+			initiative = stoi(helper.ParsedValue());
+			break;
+		case 9:
+			CurrentHP = stoi(helper.ParsedValue());
+			break;
+		case 10:
+			MaxHP = stoi(helper.ParsedValue());
+			break;
+		case 11:
+			CurrentMana = stoi(helper.ParsedValue());
+			break;
+		case 12:
+			PlayerControl = stob(helper.ParsedValue());
+			break;
+		case 13:
+			CurrentMoves.push_back(Attack(helper.ParsedClassSString()));
+			break;
+		case 14:
+			PlayerInventory = Backpack(helper.ParsedClassSString());
+			break;
+		case 15:
+			Level = stoi(helper.ParsedValue());
+			break;
+		case 16:
+			RStat = stoi(helper.ParsedValue());
+			break;
+		case 17:
+			CurrentEXP = stoi(helper.ParsedValue());
+			break;
+		case 18:
+			Job = PlayerClass(helper.ParsedClassSString());
+			break;
+		}
+	}
 }
 
 string Player::Serialized()

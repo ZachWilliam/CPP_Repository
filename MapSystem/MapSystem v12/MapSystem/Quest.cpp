@@ -1,5 +1,6 @@
 #include "Quest.h"
 #include "ConvertHelper.h"
+#include "DeserializeHelper.h"
 
 
 Quest::Quest(string p_name, bool p_isActive, bool p_isFinished, int p_mapID, int p_questID)
@@ -15,7 +16,31 @@ Quest::Quest(string p_name, bool p_isActive, bool p_isFinished, int p_mapID, int
 
 Quest::Quest(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			questName = helper.ParsedValue();
+			break;
+		case 1:
+			isQuestActive = stob(helper.ParsedValue());
+			break;
+		case 2:
+			isQuestFinished = stob(helper.ParsedValue());
+			break;
+		case 3:
+			mapID = stoi(helper.ParsedValue());
+			break;
+		case 4:
+			questID = stoi(helper.ParsedValue());
+			break;
+		}
+	}
 }
 
 string Quest::Serialized()

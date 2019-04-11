@@ -1,5 +1,5 @@
 #include "QuestManager.h"
-
+#include "DeserializeHelper.h"
 
 
 QuestManager::QuestManager()
@@ -16,7 +16,19 @@ void QuestManager::questSetup()
 
 QuestManager::QuestManager(string serialString)
 {
-	// TODO - DESERIALIZE CONSTRUCTOR
+	DeserializeHelper helper(serialString);
+
+	while (helper.isActive)
+	{
+		helper.NextParse();
+
+		switch (helper.ParseCount())
+		{
+		case 0:
+			questList.push_back(Quest(helper.ParsedClassSString()));
+			break;
+		}
+	}
 }
 
 string QuestManager::Serialized()
