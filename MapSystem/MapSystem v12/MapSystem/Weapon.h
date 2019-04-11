@@ -45,6 +45,7 @@ public:
 	int ID;
 	Weapon(int WeaponChoice = 0, int prefix_name = -1);
 	void Status();
+	void DamageMinMaxStatus();
 	int Attack();
 	string GetName(int Choice);
 	void GetType(int Choice);

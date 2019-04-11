@@ -481,7 +481,11 @@ void Weapon::GetType(int Choice = -1)
 
 void Weapon::Status()
 {
-	//cout << m_Prefix_Name << " " << m_Weapon_Type.ToString() + m_DamageType.ToString(m_Magic);
+	cout << m_Prefix_Name << " " << m_Weapon_Type.ToString() + m_DamageType.ToString(m_Magic);
+	cout << "\nmin damage: " + to_string(m_DamageMIN) + " , max damage: " + to_string(m_DamageMAX);
+}
+void Weapon::DamageMinMaxStatus()
+{
 	cout << "\nmin damage: " + to_string(m_DamageMIN) + " , max damage: " + to_string(m_DamageMAX);
 }
 int Weapon::Attack()
