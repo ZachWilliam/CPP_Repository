@@ -1284,7 +1284,7 @@ public:
 					cout << " | Target: " << Targets[Order[InitiativeOrder].combatantValue.CurrentMoves[Selection].target];
 					cout << endl;
 					cout << Order[InitiativeOrder].combatantValue.CurrentMoves[Selection].desc << endl;
-					cout << "----------------------------------------------------------------------------------------";
+					cout << "----------------------------------------------------------------------------------------" << endl;
                 }
                 else if (ItmMenu)
                 {
