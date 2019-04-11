@@ -466,7 +466,7 @@ void MapMain::DoInteraction() {
 
 				OutputSpeech(speech, name);
 			}
-			else if (interactChar == '&') {
+			/*else if (interactChar == '&') {
 				//Call Inn Function and stuff
 				OutputSpeech("Welcome to the inn, inn stuff would happen here.", "Inn Keeper");
 			}
@@ -477,7 +477,7 @@ void MapMain::DoInteraction() {
 			else if (interactChar == '%') {
 				//Call Armor shop function and stuff
 				OutputSpeech("Armor shop function call would be here.", "Armor Shop");
-			}
+			}*/
 		}
 		else
 			OutputSpeech("Could not find NPC associated with these coordinates.", "ERROR");
