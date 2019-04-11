@@ -124,7 +124,7 @@ int main()
 						//Create and start game loop
 						GManager.gameState = GManager.NEW_GAME;
 						MapMain mapMain(dialogue, beast, TheGroup, Inventory);
-						mapMain.Setup(6, 0, 0);
+						mapMain.Setup(1, 0, 0);
 						mapMain.main();
 
 						system("cls");
