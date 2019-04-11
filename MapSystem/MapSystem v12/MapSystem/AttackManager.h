@@ -268,24 +268,32 @@ public:
                              Attack("Blazing Soul", 100, 7) });
 		SpellBook[1][0].desc = "A spell that casts a projectile ball of fire at an enemy.";
 		SpellBook[1][1].desc = "A spell that summons a wall of fire that engulfs the front row of enemies.";
-		SpellBook[1][2].desc = "A spell that creates a vicous pillar of fire around a single enemy.";
+		SpellBook[1][2].desc = "A spell that creates a vicious pillar of fire around a single enemy.";
 		SpellBook[1][3].desc = "A spell that causes an eruption of flames that engulfs all enemies.";
 		SpellBook[1][4].desc = "A spell that heats the battlefield until the air catches fire, burning enemies from the inside out.";
 		SpellBook[1][5].desc = "A spell that causes an ally to go into a fever pitch, increasing their offensive power.";
-		SpellBook[1][5].desc = "A spell that creates a warm aura through your whole party, healing the entire team.";
-		SpellBook[1][5].desc = "A spell that .";
-
+		SpellBook[1][6].desc = "A spell that creates a warm aura through your whole party, healing the entire team.";
+		SpellBook[1][7].desc = "A spell that imbues an ally with a fiery warmth, healing them and raising their attack.";
 
         SpellBook[1][5].effect = 1;
         SpellBook[1][7].effect = 1;
         SpellBook.push_back({ Attack("Ice Shard", 100, 2),
                              Attack("Blizzard", 75, 4),
                              Attack("Cryosphere", 150, 2),
-                             Attack("Glaciate", 75, 4),
+                             Attack("Glaciate", 100, 4),
                              Attack("Aurora", 150, 6),
                              Attack("Winterveil", 0, 7),
                              Attack("Cool Breeze", 100, 8),
                              Attack("Ice Palace", 100, 7) });
+		SpellBook[2][0].desc = "A spell that launches a spear of ice at the enemy. The freezing\ncold lowers their attack.";
+		SpellBook[2][1].desc = "A spell that calls on a blizzard that hits the enemy front row.\nThe freezing cold lowers their attack.";
+		SpellBook[2][2].desc = "A spell that freezes a ball of air around a single enemy. The\nfreezing cold lowers their attack.";
+		SpellBook[2][3].desc = "A spell that causes a wall of freezing mist blasts the front row\nof enemies. The freezing cold lowers their attack.";
+		SpellBook[2][4].desc = "A spell that drops the temperature of the battlefield far below the point of\nfreezing, causing a display of polar lights above the enemies. The freezing cold causes\ntheir attack to drop.";
+		SpellBook[2][5].desc = "A spell that wraps an ally in icy energy, weakening incoming attacks.";
+		SpellBook[2][6].desc = "A spell that calls on a cool breeze to heal all of your allies.";
+		SpellBook[2][7].desc = "A spell that creates a shield of solid ice around an ally to raise their defense.\nThe spell also restores some of their HP.";
+
 		SpellBook[2][0].effect = 6;
 		SpellBook[2][1].effect = 6;
 		SpellBook[2][2].effect = 6;
@@ -301,6 +309,16 @@ public:
                              Attack("Oegis", 0, 7),
                              Attack("Fountain", 100, 8),
                              Attack("Wishing Well", 100, 8) });
+
+		SpellBook[3][0].desc = "A spell that hurls a ball of water at an enemy.";
+		SpellBook[3][1].desc = "A spell that summons a vicious wave to pummel the front row of enemies.";
+		SpellBook[3][2].desc = "A spell that creates a pillar of water under a single enemy.";
+		SpellBook[3][3].desc = "A spell that causes an eruption of flames that engulfs all enemies.";
+		SpellBook[3][4].desc = "A spell that heats the battlefield until the air catches fire, burning enemies from the inside out.";
+		SpellBook[3][5].desc = "A spell that causes an ally to go into a fever pitch, increasing their offensive power.";
+		SpellBook[3][6].desc = "A spell that creates a warm aura through your whole party, healing the entire team.";
+		SpellBook[3][7].desc = "A spell that imbues an ally with a fiery warmth, healing them and raising their attack.";
+
         SpellBook[3][5].effect = 3;
         SpellBook[3][7].effect = 3;
         SpellBook.push_back({ Attack("Shock", 100, 2),

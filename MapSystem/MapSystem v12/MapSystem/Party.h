@@ -109,7 +109,7 @@ public:
                 cout << "LUK: " << Container[i].CurrentStats.LUCK << " | " << endl;
                 cout << "Wielding ";
                 Container[i].PlayerInventory.m_Weapon.DisplayName();
-				//Container[i].PlayerInventory.m_Weapon.
+				Container[i].PlayerInventory.m_Weapon.DamageMinMaxStatus();
 				cout << endl;
 				cout << "Wearing ";
 				Container[i].PlayerInventory.m_Armor.DisplayName();
