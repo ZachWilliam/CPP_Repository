@@ -51,7 +51,7 @@ public:
 	//void DoAttack(Combatant, Enemy&);
 	//void DoAttack(Enemy);
 	//void DoHeal(Combatant, Combatant&);
-	vector<string> Targets = { "Single","Single","Single","Single","Column","Front Row","All","Single","All"};
+	vector<string> Targets = { "Single","Single","Single","Single","Front Row","Column","All","Single","All"};
 	vector<Monster> AllEnemies = {};
 	Party PlayerParty;
 	PartyInventory Inventory;
@@ -970,7 +970,7 @@ public:
 		CalculateInitiative();
         if (InitiativeOrder >= Order.size())
         {
-            InitiativeOrder = 0;
+            InitiativeOrder --;
         }
         for (int i = Order.size() - 1; i >= 0; i--)
         {
@@ -983,7 +983,7 @@ public:
                     Order.erase(Order.begin() + i);
                     if (i <= InitiativeOrder)
                     {
-                        InitiativeOrder = 0;
+                        InitiativeOrder --;
                     }
                 }
             }
@@ -1299,7 +1299,7 @@ public:
                     cout << "|" << endl;
 					cout << "----------------------------------------------------------------------------------------" << endl;
 					cout << Order[InitiativeOrder].combatantValue.CurrentMoves[Selection].name;
-					cout << " | Power: " << Order[InitiativeOrder].combatantValue.CurrentMoves[Selection].power;
+					cout << " | Power: " << Order[InitiativeOrder].combatantValue.CurrentMoves[Selection].power << "%";
 					cout << " | Target: " << Targets[Order[InitiativeOrder].combatantValue.CurrentMoves[Selection].target];
 					cout << endl;
 					cout << Order[InitiativeOrder].combatantValue.CurrentMoves[Selection].desc << endl;
