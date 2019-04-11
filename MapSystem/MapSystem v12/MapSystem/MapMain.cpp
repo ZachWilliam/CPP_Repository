@@ -557,6 +557,8 @@ void MapMain::DoInteraction() {
 					temp++;
 					RandomSpawn.GenerateRegions(database_monsters, temp);
 				}
+				string tempText = Inventory.AddWeapon(-1,5,-1);
+				OutputSpeech(tempText, "Stone Golem Drops:");
 			}
 			FadeToBlack();
 			ClearBottom();
