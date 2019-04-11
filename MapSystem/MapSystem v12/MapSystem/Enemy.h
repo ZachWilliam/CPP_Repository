@@ -34,7 +34,7 @@ public:
             Level = 5;
 
             SpawnAtLevel(Level);
-            MAX_HP = 8 * Level + stats.CONSTITUTION * 2;
+			MAX_HP = 6 * Level + stats.CONSTITUTION;
             SetHP(MAX_HP);
         }
         else
@@ -67,7 +67,7 @@ public:
 			AI = me.m_Target;
 
 			SpawnAtLevel(Level);
-			MAX_HP = 8 * Level + stats.CONSTITUTION * 2;
+			MAX_HP = 6 * Level + stats.CONSTITUTION;
 			SetHP(MAX_HP);
 		}
 		else
@@ -195,7 +195,7 @@ public:
             }
         }
         BattleStats = stats.BattleStats(0);
-        MAX_HP = 8 + Level * (stats.CONSTITUTION / 2);
+        MAX_HP = 6 * Level + stats.CONSTITUTION;
         SetHP(MAX_HP);
         MaxHP = MAX_HP;
     }
