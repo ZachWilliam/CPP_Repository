@@ -4,7 +4,7 @@ Maple Grove
 5,125,26,52,5 18,132,18,1,7 19,132,19,1,7 38,65,1,33,8 38,66,1,34,8 38,67,1,34,8 38,68,1,35,8e //Transition Coords  
 10,69
 10
--1,-1,6,0,1 4,28,6,2,2 4,63,6,2,2 29,31,6,2,1 30,119,6,2,2e//NPC data Row/Col/MapID/NameID/TextID  //Weapon // Inn //Mayor //BottomLeft NPC // Armor
+-1,-1,6,0,1 4,28,6,4,1 4,63,6,5,1 29,31,6,2,1 30,119,6,3,1e//NPC data Row/Col/MapID/NameID/TextID  //Weapon // Inn //Mayor //BottomLeft NPC // Armor
 e //Chest data
 e //Enemy Data
 Sound/town_music.wav

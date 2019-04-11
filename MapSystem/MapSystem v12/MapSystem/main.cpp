@@ -234,7 +234,7 @@ void Credits() {
                                    |A a r o n   Z i n n|
                                    +-+-+-+-+-+-+-+-+-+-+
 )" << endl;
-	cout << "\n" << CenterPhrase("Music and SFX from Final Fantasy 1 (NES), Zelda 1(NES) and Pokemon Red(GB)", 92) << endl;
+	cout << "\n" << CenterPhrase("Music and SFX from Final Fantasy 1(NES), Zelda 1(NES) and Pokemon Red(GB)", 92) << endl;
 	cout << CenterPhrase("8 Bit Beach Wave by josepharaoh99 from www.freesound.org", 92) << endl;
 	//Use Centerword here
 	cout << "\n\n" << CenterPhrase("Press any key to continue...",92) << endl;
@@ -252,7 +252,7 @@ void DrawMenu(int p_menuLocation) {
 	GoToXY(28, 0);
 	for (int i = 0; i < MENU_SIZE; i++)
 	{
-		if (i == p_menuLocation) SetColorAndBackground(BLACK, RED);
+		if (i == p_menuLocation) SetColorAndBackground(BLACK, LIGHTCYAN);
 		else SetColorAndBackground();
 		cout << CenterPhrase(MENU[i],92) << endl;
 	}
