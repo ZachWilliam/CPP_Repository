@@ -197,9 +197,26 @@ public:
                 }
                 else if (Used.target == 4)
                 {
-                    DoAttack(User, FrontRow[0]);
-                    DoAttack(User, FrontRow[1]);
-                    DoAttack(User, FrontRow[2]);
+					bool desu = false;
+					for (size_t i = 0; i < 3; i++)
+					{
+						if (!FrontRow[i].NullEnemy)
+						{
+							desu = true;
+						}
+					}
+					if (desu)
+					{
+						DoAttack(User, FrontRow[0]);
+						DoAttack(User, FrontRow[1]);
+						DoAttack(User, FrontRow[2]);
+					}
+					else
+					{
+						DoAttack(User, BackRow[0]);
+						DoAttack(User, BackRow[1]);
+						DoAttack(User, BackRow[2]);
+					}
                 }
                 else if (Used.target == 5)
                 {
@@ -250,6 +267,10 @@ public:
     }
     void DoAttack(Combatant& User, Enemy& Target)
     {
+		if (Target.NullEnemy)
+		{
+			return;
+		}
         int HitChance = ((Target.BattleStats[7] - User.BattleStats[6]) * 2);
 		HitChance += HitChance / 2 * Target.MOBILITY;
 		HitChance -= HitChance / 2 * User.MOBILITY;
@@ -453,7 +474,7 @@ public:
                 int dir = rand() % 6;
                 if (PlayerParty.Container[dir].name != "NULL_NAME" && PlayerParty.Container[dir].CurrentHP > 0)
                 {
-                    int HitChance = ((((PlayerParty.Container[dir].BattleStats[7] * 5 + PlayerParty.Container[dir].PlayerInventory.m_Armor.m_Avoidance)) - User.BattleStats[6] * 2)) + 10;
+                    int HitChance = ((((PlayerParty.Container[dir].BattleStats[7] + PlayerParty.Container[dir].PlayerInventory.m_Armor.m_Avoidance) - User.BattleStats[6]) * 2));
                     if (rand() % 100 > HitChance)
                     {
                         Damage -= PlayerParty.Container[dir].BattleStats[1];
@@ -743,6 +764,46 @@ public:
 		while ((again != 'n') && (again != 'p'))
 		{
 			ClearBottom();
+			gotoxy(0, 30);
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			cout << "                                                                                        " << endl;
+			gotoxy(0, 0);
+			cout << "#";
+			gotoxy(0, 30);
 			int choice = 0;
 			string wordChoice;
 
@@ -751,8 +812,7 @@ public:
 			cout << "2.     Display Party Stats\n";
 			cout << "3.     Swap Weapon\n";
 			cout << "4.     Swap Armor\n";
-			cout << "5.     Display Beastiary\n";
-			cout << "6.     Exit\n";
+			cout << "5.     Exit\n";
 			cout << "Choice: ";
 			cin >> wordChoice;
 			choice = wordChoice[0] - 48;
@@ -1423,7 +1483,7 @@ public:
                         
                         AttackUsed = Order[InitiativeOrder].combatantValue.CurrentMoves[Selection];
 						Selection = 0;
-						if (AttackUsed.target == 4 || AttackUsed.target == 6 || AttackUsed.target == 6)
+						if (AttackUsed.target == 4 || AttackUsed.target == 6 || AttackUsed.target == 8)
 						{
 							GenerateAttack(Order[InitiativeOrder].combatantValue, AttackUsed, Selection);
 							AtkMenu = false;
