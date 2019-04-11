@@ -22,7 +22,7 @@ public:
 	Player GetPartyMember(int PC)
 	{
 		int choice = rand() % 100 + 1;
-		//choice = 94;
+		//choice = 99;
 		if (PC < 8)
 		{
 			if (choice < 60)
@@ -258,7 +258,7 @@ public:
 		AllPresets[23].PlayerInventory.m_Weapon.SetWeapon(11, 3, 7);
 		AllPresets[23].PlayerInventory.m_Armor.SetArmor(7, 2, 7);
 		AllPresets[23].Max_HP = 8 + AllPresets[23].CurrentStats.CONSTITUTION;
-		AllPresets[23].PlayerInventory.m_Weapon.SpellSlot = 2;
+		AllPresets[23].PlayerInventory.m_Weapon.SpellSlot = 3;
 
 		AllPresets[24] = Player("Reginald");
 		AllPresets[24].Job = Man.AllClasses[8];
