@@ -47,7 +47,7 @@ void EndGame::GameOver() {
 
 	AnimateBigText(gameOver);
 
-	OutputSpeech("", "");
+	OutputSpeech("Thanks for Trying!!!", "The Dev's");
 }
 
 void EndGame::PlayEnding() {
