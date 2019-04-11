@@ -859,6 +859,21 @@ public:
 				cout << endl;
 
 				Inventory.SwapEquipedWeapon(PlayerParty.Container[1].PlayerInventory, PlayerParty.Container[3].PlayerInventory, PlayerParty.Container[5].PlayerInventory);
+				for (size_t i = 0; i < PlayerParty.Container.size(); i++)
+				{
+					if (PlayerParty.Container[i].name != "NULL_NAME")
+					{
+						PlayerParty.Container[i].GenerateAttacks();
+					}
+					for (size_t e = 0; e < Order.size(); e++)
+					{
+						if (Order[e].combatantValue.name == PlayerParty.Container[i].name)
+						{
+							Order[e].combatantValue.CurrentMoves = PlayerParty.Container[i].CurrentMoves;
+						}
+					}
+				}
+
 				break;
 			case 4:
 				ClearBottom();
@@ -878,11 +893,54 @@ public:
 			default:
 				break;
 			}
-			cout << "More? (y/n): ";
-			cin >> again;
+			if (choice != 5)
+			{
+				cout << "More? (y/n): ";
+				cin >> again;
+			}
 		};
 
 		ClearBottom();
+		gotoxy(0, 30);
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		cout << "                                                                                        " << endl;
+		gotoxy(0, 0);
+		cout << "#";
+		gotoxy(0, 30);
 
 	}
     Party TakeTurn()
