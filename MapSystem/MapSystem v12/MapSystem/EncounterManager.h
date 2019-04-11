@@ -215,19 +215,19 @@ public:
 	{
 		if (r == 7)
 		{
-			int temp = rand() % 2 + ((lvl - 1) * 3);
+			int temp = rand() % 3 + ((lvl - 1) * 3);
 			if (lvl == 20)
 			{
-				temp = rand() % 5 + ((lvl - 1) * 3);
+				temp = rand() % 6 + ((lvl - 1) * 3);
 			}
 			return MazeRand[temp];
 		}
 		else
 		{
-			int temp = rand() % 2 + ((lvl - 1) * 3);
+			int temp = rand() % 3 + ((lvl - 1) * 3);
 			if (lvl == 20)
 			{
-				temp = rand() % 5 + ((lvl - 1) * 3);
+				temp = rand() % 6 + ((lvl - 1) * 3);
 			}
 			return CaveRands[temp];
 		}
