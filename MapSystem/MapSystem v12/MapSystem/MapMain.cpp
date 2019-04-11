@@ -513,11 +513,11 @@ void MapMain::DoInteraction() {
 			Encounter FirstBattle(4, database_monsters.GetMonster(-1), database_monsters.GetMonster(2), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
 			if (curMap.mapID == 5)
 			{
-				FirstBattle = Encounter(10, database_monsters.GetMonster(-1), database_monsters.GetMonster(2), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
+				FirstBattle = Encounter(5, database_monsters.GetMonster(-1), database_monsters.GetMonster(2), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
 			}
 			if (curMap.mapID == 8)
 			{
-				FirstBattle = Encounter(1, database_monsters.GetMonster(-1), database_monsters.GetMonster(75), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
+				FirstBattle = Encounter(10, database_monsters.GetMonster(-1), database_monsters.GetMonster(75), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1), database_monsters.GetMonster(-1));
 			}
 			for (size_t i = 0; i < TheGroup.Container.size(); i++)
 			{
