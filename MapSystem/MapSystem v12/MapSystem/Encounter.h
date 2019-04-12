@@ -478,6 +478,9 @@ public:
 		{
 			Damage += User.BattleStats[0];
 		}
+
+		Damage += (Damage / 2) * User.OFFENSE;
+
         if (User.AI == 0 || User.AI == 1 || User.AI == 2 || User.AI == 3)
         {
             while (true)
