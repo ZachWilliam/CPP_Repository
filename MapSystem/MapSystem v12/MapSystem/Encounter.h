@@ -1055,7 +1055,23 @@ public:
 								_getch();
 								CharacterPromotion(PlayerParty.Container[i]);
 							}
-							else if (PlayerParty.Container[i].Level == 20) { break; }
+							else if (PlayerParty.Container[i].Level == 20) 
+							{ 
+								_getch();
+								gotoxy(0, 30);
+								cout << "                                                                                        " << endl;
+								cout << "                                                                                        " << endl;
+								cout << "                                                                                        " << endl;
+								cout << "                                                                                        " << endl;
+								cout << "                                                                                        " << endl;
+								cout << "                                                                                        " << endl;
+								cout << "                                                                                        " << endl;
+								cout << "                                                                                        " << endl;
+								cout << "                                                                                        " << endl;
+								cout << "                                                                                        " << endl;
+								gotoxy(0, 30);
+								break;
+							}
 
 						}
 						else
