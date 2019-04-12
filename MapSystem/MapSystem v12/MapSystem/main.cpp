@@ -52,8 +52,8 @@ int main()
 	beast.LoadMonsters();
 	dialogue.LoadText();
 	
-	enum menuState { CONTINUE, NEW_GAME, CREDITS, QUIT };
-	const int MENU_SIZE = 4;
+	enum menuState { NEW_GAME, CREDITS, QUIT };
+	const int MENU_SIZE = 3;
 	int menuLocation = 0;
 	bool isQuitting = false;
 	bool drawTitle = true;
@@ -84,15 +84,15 @@ int main()
 			}
 			case 'z': {
 				switch (menuLocation) {
-					case CONTINUE: { //Continue
+					/*case CONTINUE: { //Continue
 						menuLocation = CONTINUE;
 						GManager.gameState = GManager.CONTINUE;
 						
 
 						break;
-					}
+					}*/
 					case NEW_GAME: { // New Gane
-						menuLocation = CONTINUE;
+						menuLocation = NEW_GAME;
 						SetColorAndBackground();
 						//Create character
 						bool inBattle = false;
@@ -143,7 +143,7 @@ int main()
 					case CREDITS: { // Credits
 						Credits();
 						drawTitle = true;
-						menuLocation = CONTINUE;
+						menuLocation = NEW_GAME;
 						break;
 					}
 					case QUIT: { // Quit
@@ -244,8 +244,8 @@ void Credits() {
 }
 
 void DrawMenu(int p_menuLocation) {
-	const int MENU_SIZE = 4;
-	const string MENU[MENU_SIZE] = { "Continue", "New Game", "Credits", "Quit" };
+	const int MENU_SIZE = 3;
+	const string MENU[MENU_SIZE] = { "New Game", "Credits", "Quit" };
 
 	cout << "\n\n";
 
