@@ -75,7 +75,7 @@ public:
 			CaveRands.push_back(Encounter(6, Beasts.GetMonster(-1), Beasts.GetMonster(13), Beasts.GetMonster(-1), Beasts.GetMonster(-1), Beasts.GetMonster(14), Beasts.GetMonster(-1)));
 			CaveRands.push_back(Encounter(6, Beasts.GetMonster(0), Beasts.GetMonster(13), Beasts.GetMonster(0), Beasts.GetMonster(-1), Beasts.GetMonster(-1), Beasts.GetMonster(-1)));
 			MazeRand.push_back(Encounter(6, Beasts.GetMonster(6), Beasts.GetMonster(7), Beasts.GetMonster(6), Beasts.GetMonster(-1), Beasts.GetMonster(-1), Beasts.GetMonster(-1)));
-			MazeRand.push_back(Encounter(6, Beasts.GetMonster(-1), Beasts.GetMonster(26), Beasts.GetMonster(-1), Beasts.GetMonster(26), Beasts.GetMonster(-1), Beasts.GetMonster(26)));
+			MazeRand.push_back(Encounter(6, Beasts.GetMonster(-1), Beasts.GetMonster(28), Beasts.GetMonster(-1), Beasts.GetMonster(28), Beasts.GetMonster(-1), Beasts.GetMonster(28)));
 			MazeRand.push_back(Encounter(6, Beasts.GetMonster(22), Beasts.GetMonster(-1), Beasts.GetMonster(22), Beasts.GetMonster(-1), Beasts.GetMonster(21), Beasts.GetMonster(-1)));
 		}
 		if (which == 7)

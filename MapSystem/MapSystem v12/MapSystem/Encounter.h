@@ -174,6 +174,11 @@ public:
                     DoAttack(User, BackRow[Choice - 3]);
                     DoAttack(User, BackRow[Choice - 3]);
                 }
+				else if (Used.target == 5)
+				{
+					DoAttack(User, FrontRow[Choice - 3]);
+					DoAttack(User, BackRow[Choice - 3]);
+				}
                 //cout << BackRow[Choice - 3].name << ": " << BackRow[Choice - 3].CurrentHP << "/" << BackRow[Choice - 3].MAX_HP;
             }
             else
