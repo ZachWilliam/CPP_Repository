@@ -45,6 +45,8 @@ public:
 	Weapon EQUIPED_WEAPON3;
 	Armor EQUIPED_ARMOR3;
 
+	int ConvertToInt(string wordChoice);
+
 	void AddWeaponsRandom();
 	void AddArmorRandom();
 

@@ -152,6 +152,24 @@ void PartyInventory::DisplayPartyArmor()
 	}
 	cout << endl;
 }
+int PartyInventory::ConvertToInt(string wordChoice)
+{
+	if (wordChoice.size() == 1)
+	{
+		int choice = wordChoice[0] - 48;
+		return choice;
+	}
+	if (wordChoice.size() >= 2)
+	{
+		int choice = stoi(wordChoice.substr(0, 2));
+		return choice;
+	}
+	else
+	{
+		int choice = 100;
+		return choice;
+	}
+}
 
 void PartyInventory::SwapEquipedWeapon(Backpack &BP1ref, Backpack &BP2ref, Backpack &BP3ref)
 {
@@ -184,18 +202,18 @@ void PartyInventory::SwapEquipedWeapon(Backpack &BP1ref, Backpack &BP2ref, Backp
 			DisplayPartyWeapons();
 			cout << "Select Weapon: ";
 			cin >> wordChoice;
-			choice = wordChoice[0] - 48;
+			choice = ConvertToInt(wordChoice);
 			while ((choice > INV_WEAPON.size() - 1) || (choice < 0))
 			{
 				cout << "Invalid Selection. Reselect: ";
 				cin >> wordChoice;
-				choice = wordChoice[0] - 48;
+				choice = ConvertToInt(wordChoice);
 			};
 			while ((EQUIPED_WEAPON1.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON2.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON3.ID == INV_WEAPON[choice].ID))
 			{
 				cout << "Already in use. Reselect: ";
 				cin >> wordChoice;
-				choice = wordChoice[0] - 48;
+				choice = ConvertToInt(wordChoice);
 				if ((choice > INV_WEAPON.size() - 1) || (choice < 0))
 				{
 					cout << "Invalid Selection.\n";
@@ -224,18 +242,18 @@ void PartyInventory::SwapEquipedWeapon(Backpack &BP1ref, Backpack &BP2ref, Backp
 			DisplayPartyWeapons();
 			cout << "Select Weapon: ";
 			cin >> wordChoice;
-			choice = wordChoice[0] - 48;
+			choice = ConvertToInt(wordChoice);
 			while ((choice > INV_WEAPON.size() - 1) || (choice < 0))
 			{
 				cout << "Invalid Selection. Reselect: ";
 				cin >> wordChoice;
-				choice = wordChoice[0] - 48;
+				choice = ConvertToInt(wordChoice);
 			};
 			while ((EQUIPED_WEAPON1.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON2.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON3.ID == INV_WEAPON[choice].ID))
 			{
 				cout << "Already in use. Reselect: ";
 				cin >> wordChoice;
-				choice = wordChoice[0] - 48;
+				choice = ConvertToInt(wordChoice);
 				if ((choice > INV_WEAPON.size() - 1) || (choice < 0))
 				{
 					cout << "Invalid Selection.\n";
@@ -264,18 +282,18 @@ void PartyInventory::SwapEquipedWeapon(Backpack &BP1ref, Backpack &BP2ref, Backp
 			DisplayPartyWeapons();
 			cout << "Select Weapon: ";
 			cin >> wordChoice;
-			choice = wordChoice[0] - 48;
+			choice = ConvertToInt(wordChoice);
 			while ((choice > INV_WEAPON.size() - 1) || (choice < 0))
 			{
 				cout << "Invalid Selection. Reselect: ";
 				cin >> wordChoice;
-				choice = wordChoice[0] - 48;
+				choice = ConvertToInt(wordChoice);
 			};
 			while ((EQUIPED_WEAPON1.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON2.ID == INV_WEAPON[choice].ID) || (EQUIPED_WEAPON3.ID == INV_WEAPON[choice].ID))
 			{
 				cout << "Already in use. Reselect: ";
 				cin >> wordChoice;
-				choice = wordChoice[0] - 48;
+				choice = ConvertToInt(wordChoice);
 				if ((choice > INV_WEAPON.size() - 1) || (choice < 0))
 				{
 					cout << "Invalid Selection.\n";
@@ -327,18 +345,18 @@ void PartyInventory::SwapEquipedArmor(Backpack &BP1ref, Backpack &BP2ref, Backpa
 			DisplayPartyArmor();
 			cout << "Select Armor: ";
 			cin >> wordChoice;
-			choice = wordChoice[0] - 48;
+			choice = ConvertToInt(wordChoice);
 			while ((choice > INV_ARMOR.size() - 1) || (choice < 0))
 			{
 				cout << "Invalid Selection. Reselect: ";
 				cin >> wordChoice;
-				choice = wordChoice[0] - 48;
+				choice = ConvertToInt(wordChoice);
 			};
 			while ((EQUIPED_ARMOR1.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR2.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR3.ID == INV_ARMOR[choice].ID))
 			{
 				cout << "Already in use. Reselect: ";
 				cin >> wordChoice;
-				choice = wordChoice[0] - 48;
+				choice = ConvertToInt(wordChoice);
 				if ((choice > INV_ARMOR.size() - 1) || (choice < 0))
 				{
 					cout << "Invalid Selection.\n";
@@ -367,18 +385,18 @@ void PartyInventory::SwapEquipedArmor(Backpack &BP1ref, Backpack &BP2ref, Backpa
 			DisplayPartyArmor();
 			cout << "Select Armor: ";
 			cin >> wordChoice;
-			choice = wordChoice[0] - 48;
+			choice = ConvertToInt(wordChoice);
 			while ((choice > INV_ARMOR.size() - 1) || (choice < 0))
 			{
 				cout << "Invalid Selection. Reselect: ";
 				cin >> wordChoice;
-				choice = wordChoice[0] - 48;
+				choice = ConvertToInt(wordChoice);
 			};
 			while ((EQUIPED_ARMOR1.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR2.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR3.ID == INV_ARMOR[choice].ID))
 			{
 				cout << "Already in use. Reselect: ";
 				cin >> wordChoice;
-				choice = wordChoice[0] - 48;
+				choice = ConvertToInt(wordChoice);
 				if ((choice > INV_ARMOR.size() - 1) || (choice < 0))
 				{
 					cout << "Invalid Selection.\n";
@@ -407,18 +425,18 @@ void PartyInventory::SwapEquipedArmor(Backpack &BP1ref, Backpack &BP2ref, Backpa
 			DisplayPartyArmor();
 			cout << "Select Armor: ";
 			cin >> wordChoice;
-			choice = wordChoice[0] - 48;
+			choice = ConvertToInt(wordChoice);
 			while ((choice > INV_ARMOR.size() - 1) || (choice < 0))
 			{
 				cout << "Invalid Selection. Reselect: ";
 				cin >> wordChoice;
-				choice = wordChoice[0] - 48;
+				choice = ConvertToInt(wordChoice);
 			};
 			while ((EQUIPED_ARMOR1.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR2.ID == INV_ARMOR[choice].ID) || (EQUIPED_ARMOR3.ID == INV_ARMOR[choice].ID))
 			{
 				cout << "Already in use. Reselect: ";
 				cin >> wordChoice;
-				choice = wordChoice[0] - 48;
+				choice = ConvertToInt(wordChoice);
 				if ((choice > INV_ARMOR.size() - 1) || (choice < 0))
 				{
 					cout << "Invalid Selection.\n";
