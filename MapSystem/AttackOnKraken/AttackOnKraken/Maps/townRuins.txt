@@ -1,0 +1,50 @@
+7
+Ruins of Maple Grove
+1
+18,0,18,131,6 19,0,19,131,6e //Transition Coords
+18,1
+10
+-1,-1,7,0,1e//NPC data Row/Col/MapID/NameID/TextID  //Weapon // Inn //Mayor //BottomLeft NPC // Armor
+20,52,0,-1,-1,-1,1 19,121,0,6,6,6,3 19,129,0,-1,-1,-1,2e //Chest data
+e //Enemy Coords
+Sound/overworld_music.wav
+e
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RR    RR          RttttttttR    RRRR     R       RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR             ttttttt               RRRRRRRRRRRRRR
+RR    RR          RttttttttR             R                        RRRRRRRRRRRRRR               tttttttttttt               RRRRRRRRRRR
+RR    RR  RRRRRR  RttttttttR  RRRRRRRRR  R                        RRRRRRRRR                     tttttttttt                  RRRRRRRRR
+RR    RR  RttttR  RRRR  RRRR     RRRRRR  R       R       RR       RRRRRR                          ttttttt                     RRRRRRR
+RR    RR  RttttR  R        R       RRRR  R       R       RR       RRR                                                          RRRRRR
+RR    RR  RttttR  R        R         RR  R       R       RR       RR                                                            RRRRR
+RR    RR  RttttR  R        R          R  R       R       RR       RR        RRRRRRRRRRRR                                       RRRRRR
+RR    RR  RttttR  R  R  R  R    WW    R  R       R       RR       RR       RRRRRRRRRRR                RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RR    RR  RttttR  R  RttR  R   WWWW   R  R       R       RR       RR      RRRRRRRRRR                  RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RR    RR  RttttR  R  RttR  R   WWWW   R  RRRRRRRRR       RR              RRRRRRRRR                    RRRRRttttttttttttttttttRRRRRRRR
+RR    RR  RttttR  R  RttR  R   WWWW   R                  RR             RRRRRRRR                      RRRRtttttttttttttttttttRRRRRRRR
+RR    RR  RttttR     RttR  R    WW    R                  RR       RRRRRRRRRRRR                        RRRtttttttttWWWttttttttRRRRRRRR
+RR gg RR  RttttR     RttR  R    WW    R  RRRRRRRRR       RR              RRR                          RRttttttttWWWWWttttttttRRRRRRRR
+RR gg RR  RttttRRRRRRRttR  R          R  R               RR              RR                       RRRRRRttttttWWWWWWtttttttttRRRRRRRR
+RRggggRR  RtttttttttttttR  R          R  R               RRRRRRRRRRRRRR  RR                    RRRRRtttttttttWWWWWWttttttttttRRRRRRRR
+RRggggRR  RtttttttttttttR  R          R  R  RRRRRRRRRRRRRRR              RR                      ttttttttttttWWWWWWttttttttttRRRRRRRR
+?ggggggg  RtttttRRRRRRRRR  RRRRR  RRRRR  R  RRRRRRRRRRRRRRR              RRR                     ttttttttttttWWWWWWtttttt tttRRRt tRR
+?ggggggg  RtttttR                 R      R  RRtttttt ttttRR              RRR                   RRRRRttttttttttWWWWWWtttt = ttRRR = RR
+RRggggRR  RtttttR                 R      R  RRttttt = tttRR              RRR                      RRRRRRtttttttWWWWWWtttt tttRRRt tRR
+RRggggRR  RtttttR  R  R   RRRRRRRRRRRRR  R  RRtttttt ttttRR    RRRRRRRRRRRRR       WWWW               RRttttttttWWWWWWtttttRRRRRtttRR
+RR gg RR  RRRRRRR  RttR   R           R  R  RRtttttttttttRR    RR                WWWWWWWW             RRRtttttttttWWWWWWRRRRRRRRtttRR
+RR gg RR           RttR   R           R  R  RRtttttttttttRR    RR              WWWWWWWWWWWW           RRRRttttttttttWWWWWRRRRRRRtttRR
+RR    RR           RttR   R           R  R  RRtttttttttttRR    RR     tWWWWWWWWWWWWWWWWWWWW           RRRRRttttttttttWWWWRRRRRRRtttRR
+RR    RRRRRRRRRRR  RttR   R           R  R   ttttttttttttRR    RR     tWWWWWWWWWWWWWWWWWWWWWW         RRRRRRRRRRRRRRRWWWWRRRRRRRtttRR
+RR    RRttttttttR  RttR   R           R  R   ttttttttttttRR    RR      ttttttttttttttttWWWWWWW        RRRRRRRRRRRRRRRWWWWRRRRRRRtttRR
+RR    RRttttttttR  RttR   R           R  R  RRtttttttttttRR    RRR                     tttWWWWW                      WWWWRRRRRtttttRR
+RR    RRRRRttRRRR  RttR   R           R  R  RRRRRRRRRRRRRRR    RRRR                       tttWWWW                    WWWWRRRtttttttRR
+RR    RRtttttttt   RttR   R           R  R  RRRRRRRRRRRRRRR    RRRRRRRRRRRRRRRRRRRRRRR       tWWWWWWWWWWWWW        WWWWWRRtttttttttRR
+RR    RRRRRRRRRRR  RttR   R              R                       tttttttttttttttttRRRRR       tWWWWWWWWWWWWWWWWWWWWWWWWWtttttttttttRR
+RR    RRRRRRRRRRR  RRRR   RRRRRR         RR                      ttttttttttttttttRRRRRRR       tWWWWWWWWWWWWWWWWWWWWWWWtttttttttttRRR
+RR gg RR            RR              RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRttttttRRRRRRRRR       tttttttttttttttttttttttttttttttttRRRR
+RR gggg                           RRRRRttttttttttttttttttttttttttttttttttttttttRRRRRRRRRRR            ttttttttttttttttttttttttttRRRRR
+RR gggg                           RRRRRtttttttttttttttttttttttttttttttttttttttRRRRRRRRRRRRR                ttttttttttttttttttttRRRRRR
+RR    RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRttttttttttttttttttttttttttRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RR    RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRtttttttttttttttRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
