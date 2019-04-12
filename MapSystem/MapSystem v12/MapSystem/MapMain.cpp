@@ -48,6 +48,7 @@ void MapMain::Setup(int p_mapID, int p_row, int p_col) {
 		}
 	}
 	//CONTINUE
+	/*
 	else if (GManager.gameState = GManager.CONTINUE) {
 		for (int i = 0; i < mapManager.mapList.size(); i++)
 		{
@@ -72,7 +73,7 @@ void MapMain::Setup(int p_mapID, int p_row, int p_col) {
 				}
 			}
 		}
-	}
+	}*/
 
 	if (p_row == 0 || p_col == 0) {
 		playerR = curMap.defaultPR;
