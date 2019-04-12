@@ -1017,7 +1017,7 @@ public:
 				
 			}
 			PlayerParty.Leader.CurrentEXP += TotalXP;
-			while (true)
+			while (PlayerParty.Leader.Level < 20)
 			{
 				if (PlayerParty.Leader.OnTheLevel[PlayerParty.Leader.Level] <= PlayerParty.Leader.CurrentEXP)
 				{
@@ -1032,7 +1032,7 @@ public:
 			
 			for (size_t i = 0; i < PlayerParty.Container.size(); i++)
 			{
-				if (PlayerParty.Container[i].name != "NULL_NAME" && PlayerParty.Container[i].CurrentHP != 0)
+				if (PlayerParty.Container[i].name != "NULL_NAME" && PlayerParty.Container[i].CurrentHP != 0 && PlayerParty.Container[i].Level != 20)
 				{
 					cout << PlayerParty.Container[i].name << " gained " << TotalXP << " experience points!" << endl;
 					PlayerParty.Container[i].CurrentEXP += TotalXP;
@@ -1047,7 +1047,7 @@ public:
 								_getch();
 								CharacterPromotion(PlayerParty.Container[i]);
 							}
-							
+							else if (PlayerParty.Container[i].Level == 20) { break; }
 
 						}
 						else

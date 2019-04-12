@@ -99,8 +99,12 @@ public:
             {
                 cout << endl;
                 cout <<  counter << ": " << Container[i].name << ", the " << Container[i].Job.name << endl;
-				cout << "Level: " << Container[i].Level << " | EXP: " << Container[i].CurrentEXP << "/" << Container[i].OnTheLevel[Container[i].Level] << endl;
-                cout << "STR: " << Container[i].CurrentStats.STRENGTH << " | ";
+				cout << "Level: " << Container[i].Level;
+				if (Container[i].Level < 20) {
+					cout << " | EXP: " << Container[i].CurrentEXP << "/" << Container[i].OnTheLevel[Container[i].Level] << endl;
+				}
+				else cout << endl;
+				cout << "STR: " << Container[i].CurrentStats.STRENGTH << " | ";
                 cout << "DEX: " << Container[i].CurrentStats.DEXTERITY << " | ";
                 cout << "CON: " << Container[i].CurrentStats.CONSTITUTION << " | ";
                 cout << "AGI: " << Container[i].CurrentStats.AGILITY << " | ";
